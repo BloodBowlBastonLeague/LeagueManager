@@ -1,0 +1,18 @@
+oc_platform_home:
+    path:      /platform
+    defaults:  { _controller: OCPlatformBundle:Advert:index }
+
+oc_platform_view:
+    path:      /platform/advert/{id}
+    defaults:  { _controller: OCPlatformBundle:Advert:view }
+
+oc_platform_add:
+    path:      /platform/add
+    defaults:  { _controller: OCPlatformBundle:Advert:add }
+
+oc_platform_view_slug:
+    path:      /platform/{year}/{slug}.{format}
+    defaults:  { _controller: OCPlatformBundle:Advert:viewSlug }
+    requirements:
+        year:   \d{4}
+        format: html|xml
