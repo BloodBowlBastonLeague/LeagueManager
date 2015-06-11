@@ -1,0 +1,157 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1; background: url('bg2.png'); overflow: none;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+* { box-sizing: border-box; }
+
+/* League Manager */
+#intro { position:fixed; width:100vw; height:18px; background:#000000; font-size: 12px;box-sizing: border-box; line-height: 14px;
+		 text-align:center; font-family:'Hind'; font-size: 14	px;  color:#f1f1f1; z-index:9;}
+nav { position:fixed; top:18px; width:100vw; height:50px; padding: 0 0 10px; color:#ffffff; z-index:9;
+	background: -webkit-linear-gradient(#006cb6, #000000); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(#006cb6, #000000); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(#006cb6, #000000); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#006cb6, #000000); /* Standard syntax */}
+nav > .navmenu > ul {line-height: 50px;}	
+nav > .navmenu > ul > li { font-family: 'Play'; height:50px; padding: 0 10px; border-left: 1px solid #000000; display:inline-block;}
+
+nav > .navmenu > ul > li > a { text-decoration: none; color: #ffffff;}
+
+#main { position:relative; width:100vw; height:calc(100vh - 68px); top:68px; z-index:0; overflow-y:auto;}
+#bottom { width:100vw; height:168px; position:fixed; top:600px; left: 0px; }
+
+
+/*--- Text ---*/
+h1 { font-family: 'Play'; font-size: 40px; line-height: 40px; font-weight: 700;}
+h2 { font-family: 'Play'; font-size: 20px; line-height: 24px; font-weight: 400; color: #F68525 ;}
+h3 { font-family: 'Play'; font-size: 26px; line-height: 30px; font-weight: 700; color: #F68525 ;margin: 0 0 10px 0;}
+h4 { font-family: 'Play'; font-size: 20px; line-height: 24px; font-weight: 400;margin: 0 0 10px 0;color:#006cb6;}
+h5 { font-size: 20px; line-height: 30px; }
+h6 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; text-align: right; margin:10px 0 0 0;}
+p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc;}
+
+
+.title { margin:20px 80px 20px 80px; padding:10px 20px; background: #101010;  border: 1px solid #F68525; text-align: center;}
+article { margin:20px 80px 40px 80px; padding:10px 20px; background: #101010; border-radius: 3px; border-bottom: 2px solid #F68525; }
+article > h6 {color: #F68525 ;}
+.random { display:inline-block; height:230; margin:20px; padding: 135px 10px 10px; background: #ffffff url('BBcity.png') no-repeat; background-size: contain; border-bottom: 2px solid #006cb6; border-radius: 0 0 3px 3px;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
+.random > h4 {color:#006cb6;}
+.random > p {color:#000000;}
+.warningLeft { position:absolute; left:0px; height:150px; width:700px;  padding: 0px 5px 5px 20px; background: #000000; border: 3px solid #D0021B; border-left: 0; border-radius: 0 1vh 1vh 0; color: #ffffff; box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
+.warningLeft > h4,h6 { color: #D0021B }
+.warningLeft > h5 { text-align: right;}
+
+
+#container { width:100vw; position:fixed; left:0; top:0; z-index:0;}
+/*--- Layers ---*/ 
+.layer { display: table; position: relative; float:left; left: 0; top: 0;  }
+/* Levels */
+.lvl--1 { z-index:-1;}
+.lvl-0  { z-index:0; }
+.lvl-1  { z-index:1; }
+.lvl-2  { z-index:2; }
+.lvl-3  { z-index:3; }
+.lvl-4  { z-index:4; }
+.lvl-5  { z-index:5; }
+
+/* Alignment */
+.y-top    {vertical-align: top; height:inherit; }
+.y-top-cell {display: table-cell; vertical-align: top; height:inherit; }
+.y-center {display: table-cell; height:inherit; width:inherit; vertical-align: middle !important;}
+.y-bottom {display: table-cell; vertical-align: bottom !important;}
+
+.x-left   {text-align: left !important;}
+.x-center {text-align: center !important;}
+.x-right  {text-align: right !important;}
+
+/* ----------------
+    Grid System 
+---------------- */
+
+/* Vertical dividers */
+.vd { display:table; float:left; }
+.vd-5   { height:5vh !important;    display:table; float:left; }
+.vd-10  { height:10vh !important;   display:table; float:left; }
+.vd-15  { height:15vh !important;   display:table; float:left; }
+.vd-20  { height:20vh !important;   display:table; float:left; }
+.vd-25  { height:25vh !important;   display:table; float:left; }
+.vd-30  { height:30vh !important;   display:table; float:left; }
+.vd-35  { height:35vh !important;   display:table; float:left; }
+.vd-40  { height:40vh !important;   display:table; float:left; }
+.vd-45  { height:45vh !important;   display:table; float:left; }
+.vd-50  { height:50vh !important;   display:table; float:left; }
+.vd-55  { height:55vh !important;   display:table; float:left; }
+.vd-60  { height:60vh !important;   display:table; float:left; }
+.vd-70  { height:70vh !important;   display:table; float:left; }
+.vd-75  { height:75vh !important;   display:table; float:left; }
+.vd-80  { height:80vh !important;   display:table; float:left; }
+.vd-85  { height:85vh !important;   display:table; float:left; }
+.vd-90  { height:90vh !important;   display:table; float:left; }
+.vd-95  { height:95vh !important;   display:table; float:left; }
+.vd-100  { height:100vh !important;  display:table; float:left; }
+.vd-parent { height:inherit !important; display:table; float:left;}
+
+/* Horizontal Rectangle dividers */
+.hd-5  { width:5vw !important; display:table-cell;}
+.hd-10 { width:10vw !important; display:table-cell;}
+.hd-15 { width:15vw !important; display:table-cell;}
+.hd-20 { width:20vw !important; display:table-cell;}
+.hd-25 { width:25vw !important; display:table-cell;}
+.hd-30 { width:30vw !important; display:table-cell;}
+.hd-35 { width:35vw !important; display:table-cell;}
+.hd-40 { width:40vw !important; display:table-cell; }
+.hd-45 { width:45vw !important; display:table-cell;}
+.hd-50 { width:50vw !important; display:table-cell;}
+.hd-55 { width:55vw !important; display:table-cell;}
+.hd-60 { width:60vw !important; display:table-cell; }
+.hd-70 { width:70vw !important; display:table-cell; }
+.hd-75 { width:75vw !important; display:table-cell;}
+.hd-80 { width:80vw !important; display:table-cell;}
+.hd-85 { width:85vw !important; display:table-cell;}
+.hd-90 { width:90vw !important; display:table-cell;}
+.hd-100 { width:100vw !important; display:table-cell;}
+.hd-parent { width:inherit !important; }
