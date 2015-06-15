@@ -11,7 +11,7 @@
     <title>Blood Bowl Baston League</title>
     <meta name="description" content="Ligue francophone de Blood Bowl">
     <meta name="robots" content="index,follow" />
-
+<script src="libraries/jquery-2.1.4.min.js"></script>
     <link rel="stylesheet" href="main.css" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Hind' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
@@ -31,35 +31,86 @@
             </ul>
         </div>
     </nav>
+    <div id="veil" onclick="displayReader('hidden',1)"></div>
+    <div id="reader" onclick="">
+        <h3>L'histoire de la ligue</h3><div class="close" onclick="displayReader('hidden',1)"><h3>X</h3></div>
+        <article onclick="">
+            <p>
+
+Cette ligue est née de la volonté de 4 coachs, mis au ban de la société bloodbowlistique pour diverses raisons pas très propres, mais dont ce n’est pas réellement le propos ici même si on pourrait comprendre au nom de la protection nécrophage des mineurs en eaux troubles qu’on s’y attarde quelque peu... De 4 coachs disais je qui voulaient devenir leur propre maître (et le maître des autres, soit dit en passant)!
+<br/>
+<br/>
+Pour des raisons évidente d’anonymat ils transformèrent leur nom à l’aide d’anagrammes savamment pensés ! Ainsi le gros et moche Obsidian devint le moche et gros Naidisbo, Poulp le tentaculaire devint Pluop le tentaculaire, Thalar le simplet, Ralaht le puissant et Jahstrad le mystérieux devint Dasrshaj le sombre et mystérieux !
+<br/>
+<br/>
+Sous leur égide la ligue pris son envol recrutant toujours plus de coachs de talent et de valeur, collectant toujours plus de frais de licence, d’administration, de taxes professionnelles, de taxes sur le personnel, de taxe d’apprentissage, de pénalités pour débordement, de pénalités de retard, d’avance etc etc etc vous l’aurez compris, sous l’égide de nos 4 administrateurs la BBBL connue une période de croissance et de prospérité leur permettant d’engranger, à titre personnel, des profits surnuméraires !
+<br/>
+<br/>
+Le club des 5 (oui ils partageaient les bénéfices en 5, 1 pour chacun d’entre eux, et 1 pour la ligue !) limita, dans un premier temps, l’accession de la ligue aux Elfes Sylvains, Orques, Nains, Gobelins, Elfes Noires, Humains, Skavens, Hommes Lézards, Chaos. Pendant cette période bénie, Obsidian (le coach, rien a voir avec l’admin tricheur et truqueur) survola la compétition avec Les Enfants d'Itarille qui prirent leur retraite après seulement deux saisons (et deux victoires évidemment). Les Nains s’engouffrèrent alors dans la brèche avant d’en être délogé par un coach (très) jeune à l’époque et dont le nom devrait marquer la ligue a jamais : Relaxmax et ses elfes noires de la maison de Shinrill !
+<br/>
+<br/>
+Après 5 saisons la pression populaire devint plus forte, elle réclamait plus de races, plus de sang, plus d’amazone ! L’administrotarum opta pour un changement radical laissant à l’ensemble des races ou presque, la possibilité de venir jouer au blood bowl !
+<br/>
+<br/>
+En effet le calcul était simple : plus de races, plus d’équipes, plus de rentrée d’argent ! C’est pourquoi ils organisèrent, pour la première fois de leur histoire, l’exclusion de l’ensemble des équipes existantes, arguant qu’elles avaient joui d’une position dominante et qu’il faudrait maintenant, pour restaurer l’esprit de compétition et d’égalité cher à notre ligue, « laisser la place » a des équipes plus jeunes et plus motivés (et surtout moins regardantes sur la redistribution des droits de cabalvision). La présaison fut décidé à l’unanimité !
+<br/>
+Des coaches du monde entier rejoignirent les rangs de la BBBL pour un championnat de plus en plus relevé mais qui ne dura en réalité que 3 saisons … Trois saisons pendant lesquels un coach au talent indéniable s’imposa comme une référence et un digne succésseur des enfants d’itarille : Arrrggh et ses WWBB. Maudit comme le sont les grands coaches d’elfes des bois, Arrrggh prit sa retraite dans la foulée, laissant la ligue de nouveau orpheline … C’est a ce moment précis qu’un nécromant, dont le nom ne vous sera surement pas inconnu, revint sur le devant de la scène ! RelaxMax le bien nommé était de retour !
+<br/>
+<br/>
+A partir de la fin de la saison 8 le championnat, cher au cœur de nos coaches les plus fidèles, muta pour revenir vers les bases du blood bowl : une séquence de 4 tournois par an (Coupe des Arcanes, Coupe du Chaos, Trophée du magazine Tribune, Superbowl de l’administratorum) pour lesquels la qualification éminemment méritocratique, se basait sur les résultats tant passé que récent de l’équipe par un système de « gloire » si compliqué que quasi aucun coach ne le compris vraiment (en même temps si les coaches étaient des êtres intelligents, ils auraient opté pour un vrai métier !). Il permit a de nombreuses équipes de venir, de disparaitre, de revenir avant de redisparaitre … Ce système ne dura qu’un an avant d’être tout bonnement abandonné sous la pression populaire (coachulaire plutôt). Comme souvent dans notre monde, le Warp, imprévisible, implacable, tomba sur blood bowl city entrainant avec lui quelques équipes triées sur le volet !
+<br/>
+<br/>
+Les champions se succédèrent sans constance. Les races aussi, un gros turn over frappa la ligue ! Les fans perdirent leurs idoles, il n’y eu plus d’équipe survolant la compétition … Les profits s’effondrèrent, une grande partie des coaches, lassés par un championnat trop relevé et une organisation absconse préférèrent tout simplement se retirer de la compétition pour retourner vers des championnats de moindre envergure. C’est aussi à cette période qu’on vit la disparition consécutive de Ralaht (retrait du coaching, mais toujours présent pour engranger les bénéfices ou un repas gratuit) , Pluop vaincu par une diaspora de buveur de lait de plus en plus organisés.
+<br/>
+<br/>
+Le pouvoir revint donc quasi exclusivement dans les mains de Naidisbo qui introduit un nouveau sbire : à l’anagramme imprononcable : Feuille de Chene qui devint F2c ou C2f comme vous voulez. Ils rétablirent ensemble le système initial de championnat permettant l’émergence de (très) vieux coach, qui attendait, patiemment son temps : Voodoo et les Darkside Magic qui dominèrent le championnat remportant un doublé historique ! La ligue semblait alors retrouver son rythme de croisière, mais un sombre et mystérieux individu manigançait dans l’ombre son retour fracassant ! (enfin son arrivée fracassante plutôt). Dartshaj enrageait de n’avoir jamais rien gagné ! Il avait compris depuis longtemps qu’une victoire « honnête » était exclue, qu’il faudrait passer des voies plus sombres et plus mystérieuses !
+<br/>
+<br/>
+Il commença alors un travail de sap savonnant les planches de ses collègues mais néanmoins amis administrateurs ! Naidisbo disparu le premier, un beau matin sans crier gard ! Il était pourtant rare de voir un homme de ce gabarit se mouvoir et encore moins quitter la ville… en 12 saisons il n’avait quitté l’admnistrotarum que 2 fois ! pour la mort de son Lapin nain « Poupy » et pour aller chercher un peu plus de nourriture. C2F en fut particulièrement affecté ! Gémissant comme un caniche abandonné dans une voiture en pleine canicule, C2F tourna longuement en rond ! Il ne savait pas comment se venger !
+<br/>
+<br/>
+Parallèlement les résultats de Dartshaj s’améliorèrent de manière pour le moins surprenante ! Il gagna coup sur coup deux compétitions de suite sonnant le glas de son dernier ennemi : C2F ! Mais tandis que ce dernier disparaissait, il promut un agitateur connu de tous au poste d’administrateur général : emarshA fit donc son entrée dans la cours des grands !
+<br/>
+<br/>
+Dans un premier temps l’administrateur le plus intègre de la BBBL (en même ils n’étaient plus que deux) chercha comment circonscrire l’effet DarsthaJ. Mais devant l’ampleur du mal et de la corruption, il du prendre une ultime mesure radicale et instaurer la tolérance 0 pour la corruption de l’administration !
+<br/>
+<br/>
+Pour la seconde fois de son histoire, la BBBL dû pratiquer ce que nous appellerons un reroll général, renvoyant l’ensemble des franchises déjà présente avant de repartir plus sainement avec de nouvelles équipes !
+
+</p>
+           
+        </article>
+        <h6 onclick="displayReader('hidden',1)">Fermer</h6>
+    </div>
     <div id="main">
         <div class="hd-75 y-top">
         <div class="title"><h2>Tout ce qu'il faut savoir sur la BBBL</h2></div>
-            <article>
-                <h3>Bienvenue </h3>
-                <p>Cette ligue est née de la volonté de 4 coachs, mis au ban de la société bloodbowlistique pour diverses raisons pas très propres, mais dont ce n’est pas réellement le propos ici même si on pourrait comprendre au nom de la protection nécrophage des mineurs en eaux troubles qu’on s’y attarde quelque peu... De 4 coachs disais je qui voulaient devenir leur propre maître (et le maître des autres, soit dit en passant)!</p>
-                <h6>En savoir plus...</h6>
-            </article>
-            <article>
-                <h3>L'histoire de la ligue</h3>
-                <p>Pour des raisons évidente d’anonymat ils transformèrent leur nom à l’aide d’anagrammes savamment pensés ! Ainsi le gros et moche Obsidian devint le moche et gros Naidisbo, Poulp le tentaculaire devint Pluop le tentaculaire, Thalar le simplet, Ralaht le puissant et Jahstrad le mystérieux devint Dasrshaj le sombre et mystérieux !  Sous leur égide la ligue pris son envol recrutant toujours plus de coachs de talent et de valeur, collectant toujours plus de frais de licence, d’administration, de taxes professionnelles, de taxes sur le personnel, de taxes...</p>
-                <h6>En savoir plus...</h6>
-            </article>
-            <article>
-                <h3>Nul n'est censé ignorer la loi !</h3>
-                <p>Même si celle-ci tient en 19 volumes de 1000 pages...<br/><br/>
-                Article 1.1 (extrait)<br/> Toute équipe inscrite en championnat de la BBBL est tenue de jouer un match par semaine.</p>
-                <h6>En savoir plus</h6>
-            </article>
+        <article>
+            <h3>Bienvenue </h3>
+            <p>Cette ligue est née de la volonté de 4 coachs, mis au ban de la société bloodbowlistique pour diverses raisons pas très propres, mais dont ce n’est pas réellement le propos ici même si on pourrait comprendre au nom de la protection nécrophage des mineurs en eaux troubles qu’on s’y attarde quelque peu... De 4 coachs disais je qui voulaient devenir leur propre maître (et le maître des autres, soit dit en passant)!</p>
+            <h6 onclick="displayReader('visible',1)">En savoir plus...</h6>
+        </article>
+        <article>
+            <h3>L'histoire de la ligue</h3>
+            <p>Pour des raisons évidente d’anonymat ils transformèrent leur nom à l’aide d’anagrammes savamment pensés ! Ainsi le gros et moche Obsidian devint le moche et gros Naidisbo, Poulp le tentaculaire devint Pluop le tentaculaire, Thalar le simplet, Ralaht le puissant et Jahstrad le mystérieux devint Dasrshaj le sombre et mystérieux ! Sous leur égide la ligue pris son envol recrutant toujours plus de coachs de talent et de valeur, collectant toujours plus de frais de licence, d’administration, de taxes professionnelles, de taxes sur le personnel, de taxes...</p>
+            <h6  onclick="displayReader('visible',2)" >En savoir plus...</h6>
+        </article>
+        <article>
+            <h3>Nul n'est censé ignorer la loi !</h3>
+            <p>Même si celle-ci tient en 19 volumes de 1000 pages...<br/>
+            Article 1.1 (extrait)<br/> Toute équipe inscrite en championnat de la BBBL est tenue de jouer un match par semaine.</p>
+            <h6 onclick="displayReader('visible',3)">En savoir plus</h6>
+        </article>
         </div>
         <div class="hd-25 y-top">
             <div class="random">
                 <h4>BloodBowlCity : La cité des anges… Déchus... Et bourrés aussi...</h4>
                 <!--<p>Le complexe de la BBBL est un lieu plein de vie, pluriracial et à l'architecture hétéroclite. Au centre de ce complexe perdu dans une forêt se trouve l'Administratorum, palais aux pierres blanches dont la tour en son centre, accueillant le directeur de la BBBL et les administrateurs, domine les environs. Le complexe est un vrai centre de culture du Bloodbowl où l'on peut retrouver un…</p>-->
             </div>
-            <div class="x-center y-top">
+            <div class="x-center y-top annonce">
                 <h3>Nous rejoindre</h3>
-                <p>La BBBL c'est du sang, de la violence, des indiens... Chaque jour que les dieux font, nous nous echarpons joyeusement sur les terrains.<br/>Mais toi le visiteur, toi le coach, toi le paria, toi aussi tu peux venir cramponner dans nos rangs.</p>
-                <button>Baston !</button>
+                <p>La BBBL c'est du sang, de la violence, des indiens... Chaque jour que les dieux font, nous nous echarpons joyeusement sur les terrains.</p><p>Mais toi le visiteur, toi le coach, toi le paria, toi aussi tu peux venir cramponner dans nos rangs.</p>
+                <div class="button">Baston !</div>
             </div>
         </div>
     </div>
@@ -67,5 +118,14 @@
 </div>
 
 </body>
+
+
+<script>
+function displayReader(show,articleID){
+    $("#veil").css("visibility",show)
+    $("#reader").css("visibility",show)
+}
+</script>
+
 
 </html>
