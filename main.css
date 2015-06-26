@@ -1,4 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/ 
+/* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -12,8 +12,8 @@ b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed, 
-figure, figcaption, footer, header, hgroup, 
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
 menu, nav, output, ruby, section, summary,
 time, mark, audio, video {
 	margin: 0;
@@ -25,7 +25,7 @@ time, mark, audio, video {
 }
 
 /* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure, 
+article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
@@ -46,6 +46,8 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+	color: #ffffff;
+	font-family:'Hind';
 }
 * { box-sizing: border-box; }
 
@@ -69,6 +71,11 @@ article > h6 {color: #F68525; cursor: pointer;}
 .annonce { display:inline-block; height:auto; margin:20px; padding:10px; background:transparent;}
 .annonce > p { font-size: 18px; line-height: 22px; margin:20px 0;}
 
+/*--- Competitions ---*/
+.standing { width:auto;margin:20px 80px 40px 80px; padding:10px 20px; background: #101010; border-radius: 3px; border-bottom: 2px solid #F68525; }
+.standing > table > tbody > tr { height: 28px;border-top: 0.5px solid rgba(246, 133, 37, 0.5); }
+.standing > table > tbody > tr > td {padding: 0 10px; vertical-align: middle}
+
 /* League Manager */
 #intro { position:fixed; width:100vw; height:18px; background:#000000; font-size: 12px;box-sizing: border-box; line-height: 18px;
 		 text-align:center; font-family:'Hind'; font-size: 14	px;  color:#f1f1f1; z-index:9;}
@@ -77,7 +84,7 @@ nav { position:fixed; top:18px; width:100vw; height:50px; padding: 0 0 10px; col
 	background: -o-linear-gradient(#006cb6, #000000); /* For Opera 11.1 to 12.0 */
 	background: -moz-linear-gradient(#006cb6, #000000); /* For Firefox 3.6 to 15 */
 	background: linear-gradient(#006cb6, #000000); /* Standard syntax */}
-nav > .navmenu > ul {line-height: 50px;}	
+nav > .navmenu > ul {line-height: 50px;}
 nav > .navmenu > ul > li { font-family: 'Play'; height:50px; padding: 0 10px; border-left: 1px solid #000000; display:inline-block;}
 
 nav > .navmenu > ul > li > a { text-decoration: none; color: #ffffff;}
@@ -92,7 +99,7 @@ nav > .navmenu > ul > li > a { text-decoration: none; color: #ffffff;}
 .close { position: absolute; top: 25px; right: 50px; cursor: pointer;}
 
 #container { width:100vw; position:fixed; left:0; top:0; z-index:0;}
-/*--- Layers ---*/ 
+/*--- Layers ---*/
 .layer { display: table; position: relative; float:left; left: 0; top: 0;  }
 /* Levels */
 .lvl--1 { z-index:-1;}
@@ -114,7 +121,7 @@ nav > .navmenu > ul > li > a { text-decoration: none; color: #ffffff;}
 .x-right  {text-align: right !important;}
 
 /* ----------------
-    Grid System 
+    Grid System
 ---------------- */
 
 /* Vertical dividers */
