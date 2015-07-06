@@ -11,7 +11,7 @@
     <title>Blood Bowl Baston League</title>
     <meta name="description" content="Ligue francophone de Blood Bowl">
     <meta name="robots" content="index,follow" />
-
+    <script src="libraries/jquery-2.1.4.min.js"></script>
     <link rel="stylesheet" href="main.css" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Hind' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
@@ -30,151 +30,297 @@
             </ul>
         </div>
     </nav>
-    <div id="main">
-        <div class="hd-60 y-top">
-          <div class="title"><h2>Ligue Elite</h2> </div>
-          <div class="standing">
-            <h3>Classement</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th></th>
-                  <th>Equipe</th>
-                  <th>Coach</th>
-                  <th>Pts</th>
-                  <th>V</th>
-                  <th>N</th>
-                  <th>D</th>
-                  <th>TD</th>
-                  <th>S</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="gold">
-                  <td>1</td>
-                  <td>Les Sombréros de l'amer</td>
-                  <td>Ashrame</td>
-                  <td>4</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>2</td>
-                </tr>
-                <tr class="silver">
-                  <td>2</td>
-                  <td>Les Miraculés</td>
-                  <td>Voodoo</td>
-                  <td>3</td>
-                  <td>1</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>3</td>
-                  <td>10</td>
-                </tr>
-                <tr class="bronze">
-                  <td>3</td>
-                  <td>Les Déplumeurs</td>
-                  <td>Ignatt</td>
-                  <td>3</td>
-                  <td>1</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>2</td>
-                  <td>6</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>Ah Push</td>
-                  <td>Ducky</td>
-                  <td>3</td>
-                  <td>1</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>-1</td>
-                  <td>-10</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>New-Orc Highlanders</td>
-                  <td>Elenalcar</td>
-                  <td>3</td>
-                  <td>1</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>-1</td>
-                  <td>-11</td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>Orcs on the rocs</td>
-                  <td>Unelegant Slayer</td>
-                  <td>1</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>2</td>
-                </tr>
-                <tr>
-                  <td>7</td>
-                  <td>New-Orc Highlanders</td>
-                  <td>Elenalcar</td>
-                  <td>3</td>
-                  <td>1</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>-1</td>
-                  <td>-11</td>
-                </tr>
-                <tr>
-                  <td>8</td>
-                  <td>O.U.R.S.S.</td>
-                  <td>Marcus Miragos</td>
-                  <td>1</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>0</td>
-                  <td>0</td>
-                  <td>2</td>
-                </tr>
-                <tr class="relegated">
-                  <td>9</td>
-                  <td>Les Bulles Doseurs</td>
-                  <td>Oligunar</td>
-                  <td>1</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>-1</td>
-                  <td>5</td>
-                </tr>
-                <tr class="relegated">
-                  <td>10</td>
-                  <td>Pestes et Choléra</td>
-                  <td>Elender</td>
-                  <td>1</td>
-                  <td>0</td>
-                  <td>1</td>
-                  <td>1</td>
-                  <td>-2</td>
-                  <td>-2</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <article class="random main">
-              <h3 class="test">L'affiche : Mercenaires de Daligar - Orcs on the rocs</h3>
-              <img class="left" src="affiche.jpg"/>
-              <p>Humains et orcs s'affrontent une fois de plus. Après avoir passé une saison à se volé la plus haute place du podium de mineure, Rankstail et Unelegant Slayer s'affronte en Elite dnas un match à guichets fermés.</p>
-              <h6 class="test" onclick="displayReader('visible',2)" >En savoir plus...</h6>
-          </article>
-        </div>
-        <div class="hd-40 y-top">
-        </div>
-    </div>
-
 </div>
+<div id="veil" onclick="displayReader('hidden',1)"></div>
+<div id="reader" onclick="">
+    <h3>L'affiche</h3><div class="close" onclick="displayReader('hidden',1)"><h3>X</h3></div>
+    <article onclick="">
+      <h3 class="test"> Mercenaires de Daligar - Orcs on the rocs</h3>
+      <img class="left" src="affiche.jpg"/>
+      <p>Humains et orcs s'affrontent une fois de plus. Après avoir passé une saison à se volé la plus haute place du podium de mineure, Rankstail et Unelegant Slayer s'affronte en Elite dnas un match à guichets fermés.</p>
+
+    </article>
+    <h6 onclick="displayReader('hidden',1)">Fermer</h6>
+</div>
+<div id="main">
+  <div class="hd-55 y-top">
+    <div class="panel left">
+      <div class="title"><h2>Ligue Elite</h2> </div>
+      <div class="standing">
+        <h3>Classement</h3>
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th>Equipe</th>
+              <th>Coach</th>
+              <th>Pts</th>
+              <th>V</th>
+              <th>N</th>
+              <th>D</th>
+              <th>TD</th>
+              <th>S</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="gold">
+              <td>1</td>
+              <td>Les Sombréros de l'amer</td>
+              <td>Ashrame</td>
+              <td>4</td>
+              <td>1</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>2</td>
+            </tr>
+            <tr class="silver">
+              <td>2</td>
+              <td>Les Miraculés</td>
+              <td>Voodoo</td>
+              <td>3</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>3</td>
+              <td>10</td>
+            </tr>
+            <tr class="bronze">
+              <td>3</td>
+              <td>Les Déplumeurs</td>
+              <td>Ignatt</td>
+              <td>3</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>2</td>
+              <td>6</td>
+            </tr>
+            <tr>
+              <td>4</td>
+              <td>Ah Push</td>
+              <td>Ducky</td>
+              <td>3</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>-1</td>
+              <td>-10</td>
+            </tr>
+            <tr>
+              <td>5</td>
+              <td>New-Orc Highlanders</td>
+              <td>Elenalcar</td>
+              <td>3</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>-1</td>
+              <td>-11</td>
+            </tr>
+            <tr>
+              <td>6</td>
+              <td>Orcs on the rocs</td>
+              <td>Unelegant Slayer</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>2</td>
+            </tr>
+            <tr>
+              <td>7</td>
+              <td>Mercenaires de Daligar</td>
+              <td>Rankstail</td>
+              <td>3</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>-1</td>
+              <td>-11</td>
+            </tr>
+            <tr>
+              <td>8</td>
+              <td>O.U.R.S.S.</td>
+              <td>Marcus Miragos</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>0</td>
+              <td>0</td>
+              <td>2</td>
+            </tr>
+            <tr class="relegated">
+              <td>9</td>
+              <td>Les Bulles Doseurs</td>
+              <td>Oligunar</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td>-1</td>
+              <td>5</td>
+            </tr>
+            <tr class="relegated">
+              <td>10</td>
+              <td>Pestes et Choléra</td>
+              <td>Elender</td>
+              <td>1</td>
+              <td>0</td>
+              <td>1</td>
+              <td>1</td>
+              <td>-2</td>
+              <td>-2</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <article class="random main">
+          <h3 class="test">L'affiche : Mercenaires de Daligar - Orcs on the rocs</h3>
+          <img class="left" src="resources/img/affiche.jpg"/>
+          <p>Humains et orcs s'affrontent une fois de plus. Après avoir passé une saison à se volé la plus haute place du podium de mineure, Rankstail et Unelegant Slayer s'affronte en Elite dnas un match à guichets fermés.</p>
+          <h6 class="test" onclick="displayReader('visible',2)" >En savoir plus...</h6>
+      </article>
+    </div>
+  </div>
+  <div class="hd-45 y-top">
+    <div class="panel right scroll">
+      <h6 onclick="past()">journées précédentes&nbsp;&nbsp;</h6>
+      <div id="day1" class="standing">
+        <h3>Journée 1</h3>
+        <div class="day x-center">
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team1.png"> 1 - 0 <img class="teamLogo" src="resources/img/team10.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team2.png"> VS <img class="teamLogo" src="resources/img/team9.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team3.png"> 1 - 2 <img class="teamLogo" src="resources/img/team8.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team4.png"> 3 - 1 <img class="teamLogo" src="resources/img/team7.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team5.png"> VS <img class="teamLogo" src="resources/img/team6.png">
+          </div>
+        </div>
+      </div>
+      <div class="standing">
+        <h3>Journée 2</h3>
+        <div class="day x-center">
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team1.png"> VS <img class="teamLogo" src="resources/img/team9.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team2.png"> VS <img class="teamLogo" src="resources/img/team8.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team3.png"> VS <img class="teamLogo" src="resources/img/team7.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team4.png"> VS <img class="teamLogo" src="resources/img/team6.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team5.png"> VS <img class="teamLogo" src="resources/img/team10.png">
+          </div>
+        </div>
+      </div>
+      <div class="standing">
+        <h3>Journée 3</h3>
+        <div class="day x-center">
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team1.png"> VS <img class="teamLogo" src="resources/img/team8.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team2.png"> VS <img class="teamLogo" src="resources/img/team7.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team3.png"> VS <img class="teamLogo" src="resources/img/team6.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team4.png"> VS <img class="teamLogo" src="resources/img/team10.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team5.png"> VS <img class="teamLogo" src="resources/img/team9.png">
+          </div>
+        </div>
+      </div>
+      <div class="standing">
+        <h3>Journée 4</h3>
+        <div class="day x-center">
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team1.png"> VS <img class="teamLogo" src="resources/img/team7.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team2.png"> VS <img class="teamLogo" src="resources/img/team6.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team3.png"> VS <img class="teamLogo" src="resources/img/team10.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team4.png"> VS <img class="teamLogo" src="resources/img/team9.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team5.png"> VS <img class="teamLogo" src="resources/img/team8.png">
+          </div>
+        </div>
+      </div>
+      <div class="standing">
+        <h3>Journée 5</h3>
+        <div class="day x-center">
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team1.png"> VS <img class="teamLogo" src="resources/img/team6.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team2.png"> VS <img class="teamLogo" src="resources/img/team10.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team3.png"> VS <img class="teamLogo" src="resources/img/team9.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team4.png"> VS <img class="teamLogo" src="resources/img/team8.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team5.png"> VS <img class="teamLogo" src="resources/img/team7.png">
+          </div>
+        </div>
+      </div>
+      <div class="standing">
+        <h3>Journée 6</h3>
+        <div class="day x-center">
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team1.png"> VS <img class="teamLogo" src="resources/img/team9.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team2.png"> VS <img class="teamLogo" src="resources/img/team8.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team3.png"> VS <img class="teamLogo" src="resources/img/team7.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team4.png"> VS <img class="teamLogo" src="resources/img/team6.png">
+          </div>
+          <div class="vs">
+            <img class="teamLogo" src="resources/img/team5.png"> VS <img class="teamLogo" src="resources/img/team10.png">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function displayReader(show,articleID){
+    $("#veil").css("visibility",show);
+    $("#reader").css("visibility",show);
+};
+function past(){
+  $("#day1").slideDown();
+}
+</script>
+
 
 </body>
 

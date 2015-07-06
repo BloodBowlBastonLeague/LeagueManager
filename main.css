@@ -21,7 +21,7 @@ time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;
+	overflow: hidden;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -57,7 +57,7 @@ h2 { font-family: 'Play'; font-size: 20px; line-height: 24px; font-weight: 400; 
 h3 { font-family: 'Play'; font-size: 26px; line-height: 30px; font-weight: 700; color: #F68525 ;margin: 0 0 10px 0;}
 h4 { font-family: 'Play'; font-size: 20px; line-height: 24px; font-weight: 400;margin: 0 0 10px 0;color:#006cb6;}
 h5 { font-size: 20px; line-height: 30px; }
-h6 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; text-align: right; margin:10px 0 0 0;}
+h6 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; text-align: right; margin:10px 0 0 0;color: #F68525 ;}
 p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc;}
 
 /*--- Div ---*/
@@ -67,7 +67,7 @@ article { margin:20px 80px 40px 80px; padding:10px 20px; background: #101010; bo
 article > h6 {color: #F68525; cursor: pointer;}
 .random { background: #333333; border-bottom: 2px solid #006cb6; border-radius: 0 0 3px 3px;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
 .random.main { display:inline-block; height:auto;}
-.random.side { display:inline-block; height:230px; margin:20px; padding: 135px 10px 10px; background: #333333 url('BBcity.png') no-repeat; background-size: contain; border-bottom: 2px solid #006cb6; border-radius: 0 0 3px 3px;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
+.random.side { display:inline-block; height:230px; margin:20px; padding: 135px 10px 10px; background: #333333 url('resources/img/BBcity.png') no-repeat; background-size: contain; border-bottom: 2px solid #006cb6; border-radius: 0 0 3px 3px;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
 .random > h3 { color:#006cb6 !important; }
 .test {color:#006cb6 !important;  }
 .random > h6 { color:#006cb6; }
@@ -82,6 +82,20 @@ article > h6 {color: #F68525; cursor: pointer;}
 .standing > table > tbody > tr { height: 28px;border-top: 0.5px solid rgba(246, 133, 37, 0.5); }
 .standing > table > tbody > tr > td {padding: 0 10px; vertical-align: middle}
 
+.scroll {overflow: auto}
+.panel {height: calc(100vh - 50px);
+margin: 0px 0px 50px;}
+.panel.right > div {margin-left: 40px !important;}
+.panel.right > article {margin-left: 40px !important;}
+.panel.left > div {margin-right: 40px !important;}
+.panel.left > article {margin-right: 40px !important;}
+.panel.center > div {margin-left: 40px !important;margin-right: 40px !important;}
+.panel.center > article {margin-left: 40px !important;margin-right: 40px !important;}
+.day {display: table; vertical-align: middle; width:100%;}
+.vs { display: inline-block; font-family: 'Hind'; font-size: 20px; line-height: 24px; font-weight: 400; color:#F68525; vertical-align: middle; margin: 10px 15px 0; }
+.teamLogo {width: 40px; height: 40px; display: inline;}
+#day1 {display: none;}
+
 /* League Manager */
 /*#intro { position:fixed; width:100vw; height:18px; background:#000000; font-size: 12px;box-sizing: border-box; line-height: 18px;
 		 text-align:center; font-family:'Hind'; font-size: 14	px;  color:#f1f1f1; z-index:9;}*/
@@ -94,7 +108,7 @@ nav > .navmenu > ul > li { font-family: 'Play'; height:50px; padding: 0 10px; bo
 
 nav > .navmenu > ul > li > a { text-decoration: none; color: #ffffff;}
 
-#main { position:relative; width:100vw; height:auto; top:50px; z-index:0; overflow-y:auto;}
+#main { position:relative; width:100vw; height:auto; top:50px; z-index:0;}
 #bottom { width:100vw; height:168px; position:fixed; top:600px; left: 0px; }
 
 #veil { position:fixed; background: rgba(0,0,0,0.9); width:100vw; height:calc(100vh - 68px); top:68px; z-index:4; overflow:none; visibility: hidden}
