@@ -30,7 +30,7 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
-	line-height: 1; background: url('bg2.png'); overflow: none;
+	line-height: 1; background: url('../resources/img/bg.png'); overflow: none;
 }
 ol, ul {
 	list-style: none;
@@ -52,25 +52,49 @@ table {
 * { box-sizing: border-box; }
 
 /*--- Text ---*/
-h1 { font-family: 'Play'; font-size: 40px; line-height: 40px; font-weight: 700;}
-h2 { font-family: 'Play'; font-size: 20px; line-height: 24px; font-weight: 400; color: #F68525 ;}
-h3 { font-family: 'Play'; font-size: 26px; line-height: 30px; font-weight: 700; color: #F68525 ;margin: 0 0 10px 0;}
-h4 { font-family: 'Play'; font-size: 20px; line-height: 24px; font-weight: 400;margin: 0 0 10px 0;color:#006cb6;}
+h1 { font-family: 'Play'; font-size: 40px; line-height: 50px; font-weight: 700;}
+h2 { font-family: 'Play'; font-size: 20px; line-height: 24px; font-weight: 400;}
+h3 { font-family: 'Play'; font-size: 26px; line-height: 30px; font-weight: 700;}
+h4 { font-family: 'Play'; font-size: 20px; line-height: 24px; font-weight: 400;margin: 0 0 10px 0;color:#F68525;}
 h5 { font-size: 20px; line-height: 30px; }
-h6 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; text-align: right; margin:10px 0 0 0;color: #F68525 ;}
+h6 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; text-align: right;color: #0191FF ; cursor: pointer;}
 p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc;}
+
+#navbar { position:relative; top:0px; width:100vw; height:50px; padding: 0 0 10px; color:#ffffff; z-index:9;
+	background: -webkit-linear-gradient(#0191FF,#000000); /* For Safari 5.1 to 6.0 */
+	background: -moz-linear-gradient(#0191FF,#000000); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(#0191FF,#000000); /* Standard syntax */}
+	nav > ul {line-height: 50px;}
+	nav > ul > li { font-family: 'Play'; height:50px; padding: 0 10px; border-left: 1px solid #000000; display:inline-block;}
+	nav > ul > li > a { text-decoration: none; color: #ffffff;}
+
+#main { position:relative; width:100vw; height:100vh;  z-index:0;}
+.scroll {overflow: auto}
+.panel {height: calc(100vh - 50px);
+margin: 0px 0px 50px; overflow: auto;}
+.panel.right > div {margin-left: 25px !important;}
+.panel.right > article {margin-left: 25px !important;}
+.panel.left > div {margin-right: 25px !important;}
+.panel.left > article {margin-right: 25px !important;}
+.panel.center > div {margin-left: 25px !important;margin-right: 25px !important;}
+.panel.center > article {margin-left: 25px !important;margin-right: 25px !important;}
+
+
+	.title { margin:20px 50px ; padding:10px 20px; background: rgba(0, 0, 0, 0.75);  border: 1px solid #00558D; text-align: center; color: #0191FF ;}
+	article { margin:20px 50px; padding:10px 20px; background: rgba(0, 0, 0, 0.75); border-radius: 3px; border-bottom: 2px solid #0191FF; }
+	article > h3 {color: #0191FF; margin-bottom: 10px}
+	article > h6 {color: #0191FF; cursor: pointer;}
+
 
 /*--- Div ---*/
 .button { display: inline-block; background: #F68525; font-family:'Hind'; font-size: 26px; line-height: 28px; padding:5px 15px; color:#f1f1f1;border-radius: 3px;}
-.title { margin:20px 80px 20px 80px; padding:10px 20px; background: #101010;  border: 1px solid #F68525; text-align: center;}
-article { margin:20px 80px 40px 80px; padding:10px 20px; background: #101010; border-radius: 3px; border-bottom: 2px solid #F68525; }
-article > h6 {color: #F68525; cursor: pointer;}
-.random { background: #333333; border-bottom: 2px solid #006cb6; border-radius: 0 0 3px 3px;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
+
+
+.random { background: #333333; border-bottom: 2px solid #F68525; border-radius: 0 0 3px 3px;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
 .random.main { display:inline-block; height:auto;}
-.random.side { display:inline-block; height:230px; margin:20px; padding: 135px 10px 10px; background: #333333 url('resources/img/BBcity.png') no-repeat; background-size: contain; border-bottom: 2px solid #006cb6; border-radius: 0 0 3px 3px;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
-.random > h3 { color:#006cb6 !important; }
-.test {color:#006cb6 !important;  }
-.random > h6 { color:#006cb6; }
+.random.side { display:inline-block; height:230px; margin:20px; padding: 135px 10px 10px; background: #333333 url('img/BBcity.png') no-repeat; background-size: contain; border-bottom: 2px solid #F68525; border-radius: 0 0 3px 3px;box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.9);}
+article.random > h3 { color:#F68525 !important; }
+.random > h6 { color:#F68525; }
 .random > p { color:#FFFFFF; }
 .annonce { display:inline-block; height:auto; margin:20px; padding:10px; background:transparent;}
 .annonce > p { font-size: 18px; line-height: 22px; margin:20px 0;}
@@ -78,44 +102,25 @@ article > h6 {color: #F68525; cursor: pointer;}
 .left {float: left; display:inline-block; padding-right:10px;}
 
 /*--- Competitions ---*/
-.standing { width:auto;margin:20px 80px 40px 80px; padding:10px 20px; background: #101010; border-radius: 3px; border-bottom: 2px solid #F68525; }
-.standing > table > tbody > tr { height: 28px;border-top: 0.5px solid rgba(246, 133, 37, 0.5); }
+.standing { width:auto;margin:20px 50px; padding:10px 20px; background: rgba(0, 0, 0, 0.75);; border-radius: 3px; border-bottom: 2px solid #00558D; color:#0191FF }
+.standing > table > tbody > tr { height: 28px;border-top: 0.5px solid rgba(1, 155, 255, 0.5);; }
 .standing > table > tbody > tr > td {padding: 0 10px; vertical-align: middle}
-
-.scroll {overflow: auto}
-.panel {height: calc(100vh - 50px);
-margin: 0px 0px 50px;}
-.panel.right > div {margin-left: 40px !important;}
-.panel.right > article {margin-left: 40px !important;}
-.panel.left > div {margin-right: 40px !important;}
-.panel.left > article {margin-right: 40px !important;}
-.panel.center > div {margin-left: 40px !important;margin-right: 40px !important;}
-.panel.center > article {margin-left: 40px !important;margin-right: 40px !important;}
 .day {display: table; vertical-align: middle; width:100%;}
-.vs { display: inline-block; font-family: 'Hind'; font-size: 20px; line-height: 24px; font-weight: 400; color:#F68525; vertical-align: middle; margin: 10px 15px 0; }
+.vs { display: inline-block; font-family: 'Hind'; font-size: 20px; line-height: 24px; font-weight: 400; color:#0191FF; vertical-align: middle; margin: 10px 15px 0; }
 .teamLogo {width: 40px; height: 40px; display: inline;}
 #day1 {display: none;}
 
-/* League Manager */
-/*#intro { position:fixed; width:100vw; height:18px; background:#000000; font-size: 12px;box-sizing: border-box; line-height: 18px;
-		 text-align:center; font-family:'Hind'; font-size: 14	px;  color:#f1f1f1; z-index:9;}*/
-nav { position:fixed; top:0px; width:100vw; height:50px; padding: 0 0 10px; color:#ffffff; z-index:9;
-	background: -webkit-linear-gradient#000000,#006cb6); /* For Safari 5.1 to 6.0 */
-	background: -moz-linear-gradient(#000000,#006cb6); /* For Firefox 3.6 to 15 */
-background: linear-gradient(#000000,#006cb6); /* Standard syntax */}
-nav > .navmenu > ul {line-height: 50px;}
-nav > .navmenu > ul > li { font-family: 'Play'; height:50px; padding: 0 10px; border-left: 1px solid #000000; display:inline-block;}
 
-nav > .navmenu > ul > li > a { text-decoration: none; color: #ffffff;}
-
-#main { position:relative; width:100vw; height:auto; top:50px; z-index:0;}
 #bottom { width:100vw; height:168px; position:fixed; top:600px; left: 0px; }
 
-#veil { position:fixed; background: rgba(0,0,0,0.9); width:100vw; height:calc(100vh - 68px); top:68px; z-index:4; overflow:none; visibility: hidden}
-#reader { position:fixed; margin:50px 100px; padding:25px 50px; width:calc(100vw - 200px); max-height:calc(100vh - 168px); top:68px; z-index:5; background: #101010;overflow:none; visibility: hidden}
+/* articleReader */
+#veil{ position:fixed; background: rgba(0,0,0,0.8); width:100vw; height:calc(100vh - 50px); top:50px; z-index:4; overflow:none;}
+#reader { position:fixed; margin:50px 10vw; padding:0; width:80vw; max-height:calc(100vh - 150px); top:50px; z-index:5; background: rgba(0,0,0,0.7); overflow:none; color: #F68525;}
+#reader > header { height: 35px; border-bottom: 2px solid #F68525; padding: 0 10px}
+#reader > footer { border-top: 2px solid #F68525; text-align: center;}
 #reader > article { margin:0; max-height:calc(100vh - 268px);  background: none; border:none; overflow: auto}
-#reader > h6 { text-align: center; color: #F68525; cursor: pointer; }
-.close { position: absolute; top: 25px; right: 50px; cursor: pointer;}
+#reader > footer > h6 { margin: 5px 0px;text-align: center; color: #F68525; cursor: pointer; }
+#reader > .close { position: absolute; right: 0px; cursor: pointer; }
 
 /* Competition */
 .gold { background: rgba(255,215,0,0.75);

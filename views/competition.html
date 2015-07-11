@@ -1,48 +1,3 @@
-<!DOCTYPE html>
-
-<html lang="fr-FR">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="format-detection" content="telephone=no" />
-    <meta http-equiv="Cache-control" content="private, max-age=864000" />
-
-    <title>Blood Bowl Baston League</title>
-    <meta name="description" content="Ligue francophone de Blood Bowl">
-    <meta name="robots" content="index,follow" />
-    <script src="libraries/jquery-2.1.4.min.js"></script>
-    <link rel="stylesheet" href="main.css" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Hind' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
-</head>
-
-<body>
-<div id="top">
-    <nav id="navigation">
-        <div class="hd-70 x-center y-center" ><h1>Tribunes - le mag de la BBBL</h1></div>
-        <div class="hd-30 x-right y-center navmenu" >
-            <ul>
-                <li>Forum</li>
-                <li><a href="steam://run/216890">Jouer</a></li>
-                <li><a href="mumble://srv07.serveurmumble.com:50674/">Mumble</a></li>
-                <li>Connexion</li>
-            </ul>
-        </div>
-    </nav>
-</div>
-<div id="veil" onclick="displayReader('hidden',1)"></div>
-<div id="reader" onclick="">
-    <h3>L'affiche</h3><div class="close" onclick="displayReader('hidden',1)"><h3>X</h3></div>
-    <article onclick="">
-      <h3 class="test"> Mercenaires de Daligar - Orcs on the rocs</h3>
-      <img class="left" src="affiche.jpg"/>
-      <p>Humains et orcs s'affrontent une fois de plus. Après avoir passé une saison à se volé la plus haute place du podium de mineure, Rankstail et Unelegant Slayer s'affronte en Elite dnas un match à guichets fermés.</p>
-
-    </article>
-    <h6 onclick="displayReader('hidden',1)">Fermer</h6>
-</div>
-<div id="main">
   <div class="hd-55 y-top">
     <div class="panel left">
       <div class="title"><h2>Ligue Elite</h2> </div>
@@ -178,15 +133,15 @@
       </div>
       <article class="random main">
           <h3 class="test">L'affiche : Mercenaires de Daligar - Orcs on the rocs</h3>
-          <img class="left" src="resources/img/affiche.jpg"/>
+          <img class="left" ng-click="displayReader(2)" src="resources/img/affiche.jpg"/>
           <p>Humains et orcs s'affrontent une fois de plus. Après avoir passé une saison à se volé la plus haute place du podium de mineure, Rankstail et Unelegant Slayer s'affronte en Elite dnas un match à guichets fermés.</p>
-          <h6 class="test" onclick="displayReader('visible',2)" >En savoir plus...</h6>
+          <h6 class="test" ng-click="displayReader(2)" >En savoir plus...</h6>
       </article>
     </div>
   </div>
   <div class="hd-45 y-top">
     <div class="panel right scroll">
-      <h6 onclick="past()">journées précédentes&nbsp;&nbsp;</h6>
+      <h6 ng-click="showPreviousDays(2)">journées précédentes&nbsp;&nbsp;</h6>
       <div id="day1" class="standing">
         <h3>Journée 1</h3>
         <div class="day x-center">
@@ -309,19 +264,3 @@
       </div>
     </div>
   </div>
-</div>
-
-<script>
-function displayReader(show,articleID){
-    $("#veil").css("visibility",show);
-    $("#reader").css("visibility",show);
-};
-function past(){
-  $("#day1").slideDown();
-}
-</script>
-
-
-</body>
-
-</html>

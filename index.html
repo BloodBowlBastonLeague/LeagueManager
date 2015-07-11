@@ -1,49 +1,50 @@
 <!DOCTYPE html>
-
-<html lang="fr-FR">
-
+<html  ng-app="LeagueManager">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="format-detection" content="telephone=no" />
-    <meta http-equiv="Cache-control" content="private, max-age=864000" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="format-detection" content="telephone=no" />
+  <meta http-equiv="Cache-control" content="private, max-age=864000" />
 
-    <title>Blood Bowl Baston League</title>
-    <meta name="description" content="Ligue francophone de Blood Bowl">
-    <meta name="robots" content="index,follow" />
+  <title>Blood Bowl Baston League</title>
+  <meta name="description" content="Ligue francophone de Blood Bowl">
+  <meta name="robots" content="index,follow" />
 
-    <link rel="stylesheet" href="main.css" type="text/css">
-    <link href='http://fonts.googleapis.com/css?family=Hind' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="resources/main.css" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Hind' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
 </head>
-
 <body>
-<div id="top">
-    <div id="intro" class="hd-100 x-center y-center">la Blood Bowl Baston League pr&eacute;sente</div>
-    <nav id="navigation">
-        <div class="hd-70 x-center y-center" ><h1>Tribunes - le mag de la BBBL</h1></div>
-        <div class="hd-30 x-right y-center navmenu" >
-            <ul>
-                <li>Forum</li>
-                <li><a href="steam://run/216890">Jouer</a></li>
-                <li><a href="mumble://srv07.serveurmumble.com:50674/">Mumble</a></li>
-                <li>Connexion</li>
-            </ul>
-        </div>
-    </nav>
-    <div id="main">
-        <div class="hd-75 y-top">
-          <article>
-          <a href="histoire.html">Histoire</a><br/>
-          <a href="competition.html">Competition</a>
-          </article>
-        </div>
-        <div class="hd-25 y-top">
-        </div>
-    </div>
 
+<header id="navbar">
+      <div class="hd-70 x-center"><div><h1>Tribunes - le mag de la BBBL</h1></div></div>
+      <nav id="navigation" class="hd-30 x-right y-center navmenu" >
+        <ul>
+          <li><a href="Forum">Forum</a></li>
+          <li><a href="steam://run/216890">Jouer</a></li>
+          <li><a href="mumble://srv07.serveurmumble.com:50674/">Mumble</a></li>
+          <li>Connexion</li>
+        </ul>
+    </nav>
+</header>
+<div id="main">
+  <ng-view></ng-view>
+  <!-- Articles plein écran -->
+  <article-reader></article-reader>
 </div>
 
-</body>
+  <!-- Modules Angular -->
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/restangular/dist/restangular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/lodash/lodash.js"></script>
 
+  <!-- Module BBBL -->
+  <script src="controllers/app.js"></script>
+  <script src="controllers/presentation.js"></script>
+  <script src="controllers/competition.js"></script>
+  <script src="controllers/reader.js"></script>
+
+</body>
 </html>
