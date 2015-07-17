@@ -52,7 +52,9 @@ table {
 * { box-sizing: border-box; }
 
 /*--- Text ---*/
-h1 { font-family: 'Play'; font-size: 40px; line-height: 50px; font-weight: 700;}
+h1 { font-family: 'Play'; font-size: 40px; line-height: 50px; font-weight: 700;
+color: rgba(246, 134, 37, 0.6);
+text-shadow: 1px 2px 6px #000, 0 0 0 #ffb678, 1px 2px 6px #000;}
 h2 { font-family: 'Play'; font-size: 20px; line-height: 24px; font-weight: 400;}
 h3 { font-family: 'Play'; font-size: 26px; line-height: 30px; font-weight: 700;}
 h4 { font-family: 'Play'; font-size: 20px; line-height: 24px; font-weight: 400;margin: 0 0 10px 0;color:#F68525;}

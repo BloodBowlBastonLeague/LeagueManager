@@ -9,6 +9,10 @@ LeagueManager.directive('articleReader', function(Restangular){
 			$scope.displayReader = function(articleID){
 				//Récupération de l'article via l'API REST (à venir)
 				//if(articleID){};
+				this.teams = Restangular.all('teams').getList();
+					console.log(this.teams);
+					$scope.teams = this.teams;
+
 
 				//Affichage/masquage des div
 				$scope.reader = !$scope.reader;

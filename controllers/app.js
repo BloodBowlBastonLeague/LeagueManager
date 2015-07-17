@@ -1,5 +1,11 @@
 var LeagueManager = angular.module('LeagueManager', ['ngRoute','restangular'])
 
+//API REST
+LeagueManager.config(function (RestangularProvider) {
+	RestangularProvider.setBaseUrl('http://localhost:8888/epiphany-master/examples/database/');
+});
+
+//Routage
 LeagueManager.config(function ($routeProvider, RestangularProvider) {
 	$routeProvider
   .when("/competition", {
