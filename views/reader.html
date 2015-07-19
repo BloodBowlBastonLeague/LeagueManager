@@ -1,55 +1,17 @@
-<div id="veil" ng-show="reader" ng-click="displayReader(1)"></div>
-<div id="reader" ng-show="reader" ng-click=""><div class="close" ng-click="displayReader(1)"><h3>X</h3></div>
+<div id="veil" ng-show="reader" ng-click="displayReader()"></div>
+<div id="reader" ng-show="reader" ng-click="">
+  <div class="close" ng-click="displayReader()"><h3>X</h3></div>
+
   <header class="hd-100">
-    <h3>L'histoire de la ligue</h3>
+    <h3 ng-bind-html="article.title"></h3>
   </header>
-    <article ng-click="">
-        <p>
 
-Cette ligue est née de la volonté de 4 coachs, mis au ban de la société bloodbowlistique pour diverses raisons pas très propres, mais dont ce n’est pas réellement le propos ici même si on pourrait comprendre au nom de la protection nécrophage des mineurs en eaux troubles qu’on s’y attarde quelque peu... De 4 coachs disais je qui voulaient devenir leur propre maître (et le maître des autres, soit dit en passant)!
-<br/>
-<br/>
-Pour des raisons évidente d’anonymat ils transformèrent leur nom à l’aide d’anagrammes savamment pensés ! Ainsi le gros et moche Obsidian devint le moche et gros Naidisbo, Poulp le tentaculaire devint Pluop le tentaculaire, Thalar le simplet, Ralaht le puissant et Jahstrad le mystérieux devint Dasrshaj le sombre et mystérieux !
-<br/>
-<br/>
-Sous leur égide la ligue pris son envol recrutant toujours plus de coachs de talent et de valeur, collectant toujours plus de frais de licence, d’administration, de taxes professionnelles, de taxes sur le personnel, de taxe d’apprentissage, de pénalités pour débordement, de pénalités de retard, d’avance etc etc etc vous l’aurez compris, sous l’égide de nos 4 administrateurs la BBBL connue une période de croissance et de prospérité leur permettant d’engranger, à titre personnel, des profits surnuméraires !
-<br/>
-<br/>
-Le club des 5 (oui ils partageaient les bénéfices en 5, 1 pour chacun d’entre eux, et 1 pour la ligue !) limita, dans un premier temps, l’accession de la ligue aux Elfes Sylvains, Orques, Nains, Gobelins, Elfes Noires, Humains, Skavens, Hommes Lézards, Chaos. Pendant cette période bénie, Obsidian (le coach, rien a voir avec l’admin tricheur et truqueur) survola la compétition avec Les Enfants d'Itarille qui prirent leur retraite après seulement deux saisons (et deux victoires évidemment). Les Nains s’engouffrèrent alors dans la brèche avant d’en être délogé par un coach (très) jeune à l’époque et dont le nom devrait marquer la ligue a jamais : Relaxmax et ses elfes noires de la maison de Shinrill !
-<br/>
-<br/>
-Après 5 saisons la pression populaire devint plus forte, elle réclamait plus de races, plus de sang, plus d’amazone ! L’administrotarum opta pour un changement radical laissant à l’ensemble des races ou presque, la possibilité de venir jouer au blood bowl !
-<br/>
-<br/>
-En effet le calcul était simple : plus de races, plus d’équipes, plus de rentrée d’argent ! C’est pourquoi ils organisèrent, pour la première fois de leur histoire, l’exclusion de l’ensemble des équipes existantes, arguant qu’elles avaient joui d’une position dominante et qu’il faudrait maintenant, pour restaurer l’esprit de compétition et d’égalité cher à notre ligue, « laisser la place » a des équipes plus jeunes et plus motivés (et surtout moins regardantes sur la redistribution des droits de cabalvision). La présaison fut décidé à l’unanimité !
-<br/>
-Des coaches du monde entier rejoignirent les rangs de la BBBL pour un championnat de plus en plus relevé mais qui ne dura en réalité que 3 saisons … Trois saisons pendant lesquels un coach au talent indéniable s’imposa comme une référence et un digne succésseur des enfants d’itarille : Arrrggh et ses WWBB. Maudit comme le sont les grands coaches d’elfes des bois, Arrrggh prit sa retraite dans la foulée, laissant la ligue de nouveau orpheline … C’est a ce moment précis qu’un nécromant, dont le nom ne vous sera surement pas inconnu, revint sur le devant de la scène ! RelaxMax le bien nommé était de retour !
-<br/>
-<br/>
-A partir de la fin de la saison 8 le championnat, cher au cœur de nos coaches les plus fidèles, muta pour revenir vers les bases du blood bowl : une séquence de 4 tournois par an (Coupe des Arcanes, Coupe du Chaos, Trophée du magazine Tribune, Superbowl de l’administratorum) pour lesquels la qualification éminemment méritocratique, se basait sur les résultats tant passé que récent de l’équipe par un système de « gloire » si compliqué que quasi aucun coach ne le compris vraiment (en même temps si les coaches étaient des êtres intelligents, ils auraient opté pour un vrai métier !). Il permit a de nombreuses équipes de venir, de disparaitre, de revenir avant de redisparaitre … Ce système ne dura qu’un an avant d’être tout bonnement abandonné sous la pression populaire (coachulaire plutôt). Comme souvent dans notre monde, le Warp, imprévisible, implacable, tomba sur blood bowl city entrainant avec lui quelques équipes triées sur le volet !
-<br/>
-<br/>
-Les champions se succédèrent sans constance. Les races aussi, un gros turn over frappa la ligue ! Les fans perdirent leurs idoles, il n’y eu plus d’équipe survolant la compétition … Les profits s’effondrèrent, une grande partie des coaches, lassés par un championnat trop relevé et une organisation absconse préférèrent tout simplement se retirer de la compétition pour retourner vers des championnats de moindre envergure. C’est aussi à cette période qu’on vit la disparition consécutive de Ralaht (retrait du coaching, mais toujours présent pour engranger les bénéfices ou un repas gratuit) , Pluop vaincu par une diaspora de buveur de lait de plus en plus organisés.
-<br/>
-<br/>
-Le pouvoir revint donc quasi exclusivement dans les mains de Naidisbo qui introduit un nouveau sbire : à l’anagramme imprononcable : Feuille de Chene qui devint F2c ou C2f comme vous voulez. Ils rétablirent ensemble le système initial de championnat permettant l’émergence de (très) vieux coach, qui attendait, patiemment son temps : Voodoo et les Darkside Magic qui dominèrent le championnat remportant un doublé historique ! La ligue semblait alors retrouver son rythme de croisière, mais un sombre et mystérieux individu manigançait dans l’ombre son retour fracassant ! (enfin son arrivée fracassante plutôt). Dartshaj enrageait de n’avoir jamais rien gagné ! Il avait compris depuis longtemps qu’une victoire « honnête » était exclue, qu’il faudrait passer des voies plus sombres et plus mystérieuses !
-<br/>
-<br/>
-Il commença alors un travail de sap savonnant les planches de ses collègues mais néanmoins amis administrateurs ! Naidisbo disparu le premier, un beau matin sans crier gard ! Il était pourtant rare de voir un homme de ce gabarit se mouvoir et encore moins quitter la ville… en 12 saisons il n’avait quitté l’admnistrotarum que 2 fois ! pour la mort de son Lapin nain « Poupy » et pour aller chercher un peu plus de nourriture. C2F en fut particulièrement affecté ! Gémissant comme un caniche abandonné dans une voiture en pleine canicule, C2F tourna longuement en rond ! Il ne savait pas comment se venger !
-<br/>
-<br/>
-Parallèlement les résultats de Dartshaj s’améliorèrent de manière pour le moins surprenante ! Il gagna coup sur coup deux compétitions de suite sonnant le glas de son dernier ennemi : C2F ! Mais tandis que ce dernier disparaissait, il promut un agitateur connu de tous au poste d’administrateur général : emarshA fit donc son entrée dans la cours des grands !
-<br/>
-<br/>
-Dans un premier temps l’administrateur le plus intègre de la BBBL (en même ils n’étaient plus que deux) chercha comment circonscrire l’effet DarsthaJ. Mais devant l’ampleur du mal et de la corruption, il du prendre une ultime mesure radicale et instaurer la tolérance 0 pour la corruption de l’administration !
-<br/>
-<br/>
-Pour la seconde fois de son histoire, la BBBL dû pratiquer ce que nous appellerons un reroll général, renvoyant l’ensemble des franchises déjà présente avant de repartir plus sainement avec de nouvelles équipes !
+  <article ng-click="">
+    <img ng-if="article.image == 1" src="resources/img/articles/article_{{article.article_id}}.jpg">
+    <p ng-bind-html="article.text"></p>
+  </article>
 
-</p>
-
-    </article>
-    <footer>
-      <h6 ng-click="displayReader(1)">Fermer</h6>
-    </footer>
+  <footer>
+    <h6 ng-click="displayReader()">Fermer</h6>
+  </footer>
 </div>
