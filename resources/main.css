@@ -53,20 +53,23 @@ table {
 
 /*--- Text ---*/
 h1 { font-family: 'Play'; font-size: 40px; line-height: 50px; font-weight: 700;
-color: rgba(246, 134, 37, 0.6);
-text-shadow: 1px 2px 6px #000, 0 0 0 #ffb678, 1px 2px 6px #000;}
+color: #ffffff; margin:0;padding: 0}
 h2 { font-family: 'Play'; font-size: 20px; line-height: 24px; font-weight: 400;}
 h3 { font-family: 'Play'; font-size: 26px; line-height: 30px; font-weight: 700;}
-h4 { font-family: 'Play'; font-size: 20px; line-height: 24px; font-weight: 400;margin: 0 0 10px 0;color:#F68525;}
+h4 { font-family: 'Play'; font-size: 36px; line-height: 46px; font-weight: 400;margin: 0 0 10px 0;color:#F68525;}
 h5 { font-size: 20px; line-height: 30px; }
 h6 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; text-align: right;color: #0191FF ; cursor: pointer;}
 p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc;}
 
-#navbar { position:relative; top:0px; width:100vw; height:50px; padding: 0 0 10px; color:#ffffff; z-index:9;
+
+#navbar { position:relative; top:0px; width:100vw; height:50px;line-height: 50px; color:#ffffff; z-index:9;
 	background: -webkit-linear-gradient(#0191FF,#000000); /* For Safari 5.1 to 6.0 */
 	background: -moz-linear-gradient(#0191FF,#000000); /* For Firefox 3.6 to 15 */
 	background: linear-gradient(#0191FF,#000000); /* Standard syntax */}
-	nav > ul {line-height: 50px;}
+	#home { height: inherit; background: url('img/Home.png') center center no-repeat; background-size: 25px auto;}
+	#title {height:inherit; }
+	nav { height:inherit;}
+	nav > ul {height:inherit; line-height: 50px;}
 	nav > ul > li { font-family: 'Play'; height:50px; padding: 0 10px; border-left: 1px solid #000000; display:inline-block;}
 	nav > ul > li > a { text-decoration: none; color: #ffffff;}
 
@@ -94,7 +97,9 @@ margin: 0px 0px 50px; overflow: auto;}
 
 .random { background: #333333; border-bottom: 2px solid #F68525; border-radius: 0 0 3px 3px;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
 .random.main { display:inline-block; height:auto;}
-.random.side { display:inline-block; height:230px; margin:20px; padding: 135px 10px 10px; background: #333333 url('img/BBcity.png') no-repeat; background-size: contain; border-bottom: 2px solid #F68525; border-radius: 0 0 3px 3px;box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.9);}
+.random.side { display:inline-block; height:240px;width: calc(100% - 60px); margin:20px; background: #333333; border-bottom: 2px solid #F68525; border-radius: 0 0 3px 3px;box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.9); cursor: pointer;}
+.random.side > .image { height: 120px; width: 100%}
+.random.side > .text { height: 120px; width: 100%; padding: 20px;}
 article.random > h3 { color:#F68525 !important; }
 .random > h6 { color:#F68525; }
 .random > p { color:#FFFFFF; }
@@ -119,8 +124,11 @@ article.random > h3 { color:#F68525 !important; }
 #veil{ position:fixed; background: rgba(0,0,0,0.8); width:100vw; height:calc(100vh - 50px); top:50px; z-index:4; overflow:none;}
 #reader { position:fixed; margin:50px 10vw; padding:0; width:80vw; max-height:calc(100vh - 150px); top:50px; z-index:5; background: rgba(0,0,0,0.7); overflow:none; color: #F68525;}
 #reader > header { height: 35px; border-bottom: 2px solid #F68525; padding: 0 10px}
-#reader > footer { border-top: 2px solid #F68525; text-align: center;}
+
 #reader > article { margin:0; max-height:calc(100vh - 268px);  background: none; border:none; overflow: auto}
+#reader > article > img { float:left; padding:0 20px 10px 0}
+
+#reader > footer { border-top: 2px solid #F68525; text-align: center;}
 #reader > footer > h6 { margin: 5px 0px;text-align: center; color: #F68525; cursor: pointer; }
 #reader > .close { position: absolute; right: 0px; cursor: pointer; }
 
@@ -183,6 +191,7 @@ article.random > h3 { color:#F68525 !important; }
 .vd-50  { height:50vh !important;   display:table; float:left; }
 .vd-55  { height:55vh !important;   display:table; float:left; }
 .vd-60  { height:60vh !important;   display:table; float:left; }
+.vd-65  { height:65vh !important;   display:table; float:left; }
 .vd-70  { height:70vh !important;   display:table; float:left; }
 .vd-75  { height:75vh !important;   display:table; float:left; }
 .vd-80  { height:80vh !important;   display:table; float:left; }
@@ -205,6 +214,7 @@ article.random > h3 { color:#F68525 !important; }
 .hd-50 { width:50vw !important; display:table-cell;}
 .hd-55 { width:55vw !important; display:table-cell;}
 .hd-60 { width:60vw !important; display:table-cell; }
+.hd-65 { width:65vw !important; display:table-cell; }
 .hd-70 { width:70vw !important; display:table-cell; }
 .hd-75 { width:75vw !important; display:table-cell;}
 .hd-80 { width:80vw !important; display:table-cell;}
