@@ -66,7 +66,7 @@ p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify;
 	background: -webkit-linear-gradient(#0191FF,#000000); /* For Safari 5.1 to 6.0 */
 	background: -moz-linear-gradient(#0191FF,#000000); /* For Firefox 3.6 to 15 */
 	background: linear-gradient(#0191FF,#000000); /* Standard syntax */}
-	#home { height: inherit; background: url('img/Home.png') center center no-repeat; background-size: 25px auto;}
+	#home { height: inherit; background: url('img/Home.png') center center no-repeat; background-size: 25px auto; cursor: pointer;}
 	#title {height:inherit; }
 	nav { height:inherit;}
 	nav > ul {height:inherit; line-height: 50px;}
@@ -112,15 +112,23 @@ article.random > h3 { color:#F68525 !important; }
 .standing { width:auto;margin:20px 50px; padding:10px 20px; background: rgba(0, 0, 0, 0.75);; border-radius: 3px; border-bottom: 2px solid #00558D; color:#0191FF }
 .standing > table > tbody > tr { height: 28px;border-top: 0.5px solid rgba(1, 155, 255, 0.5);; }
 .standing > table > tbody > tr > td {padding: 0 10px; vertical-align: middle}
-.day {display: table; vertical-align: middle; width:100%;}
+
+.day {width:auto; margin:20px 50px; padding:10px 20px; background: rgba(0, 0, 0, 0.75);; border-radius: 3px; border-bottom: 2px solid #00558D; color:#0191FF; height: auto;  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s; }
+.day.hide {display: none; height:0px; padding:0px 20px -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s; }
+
+.current {border: 3px solid #00558D;}
+
+.match {display: table; vertical-align: middle; width:100%;}
 .vs { display: inline-block; font-family: 'Hind'; font-size: 20px; line-height: 24px; font-weight: 400; color:#0191FF; vertical-align: middle; margin: 10px 15px 0; }
 .teamLogo {width: 40px; height: 40px; display: inline;}
-#day1 {display: none;}
 
 
 #bottom { width:100vw; height:168px; position:fixed; top:600px; left: 0px; }
 
 /* articleReader */
+
 #veil{ position:fixed; background: rgba(0,0,0,0.8); width:100vw; height:calc(100vh - 50px); top:50px; z-index:4; overflow:none;}
 #reader { position:fixed; margin:50px 10vw; padding:0; width:80vw; max-height:calc(100vh - 150px); top:50px; z-index:5; background: rgba(0,0,0,0.7); overflow:none; color: #F68525;}
 #reader > header { height: 35px; border-bottom: 2px solid #F68525; padding: 0 10px}

@@ -26,11 +26,15 @@ LeagueManager.config(function ($routeProvider, RestangularProvider) {
   });
 });
 
-LeagueManager.run(function($rootScope, $http) {
+LeagueManager.run(function($rootScope, $http, $location) {
 	//Récupération des articles en JSON (temporaire)
 	$http.get('resources/json/articles.json').then(function(result){
 			$rootScope.articles = result.data;
 		});
+
+	$rootScope.goToPage = function(page) {
+        $location.path( page );
+    };
 
 	$rootScope.randomArticle = function(categories){
 			var selection = [];

@@ -17,7 +17,7 @@
 <body>
 
 <header id="navbar">
-  <div id="home" class="hd-5 x-left"></div>
+  <div id="home" class="hd-5 x-left" ng-click="goToPage('/')"></div>
   <div id="title" class="hd-65 x-center y-center"><h1>Tribunes - le mag de la BBBL</h1></div>
   <nav id="navigation" class="hd-30 x-right y-center navmenu" >
     <ul>
@@ -41,7 +41,9 @@
   <script src="bower_components/angular-route/angular-route.min.js"></script>
   <script src="bower_components/lodash/lodash.min.js"></script>
   <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-
+  
+  </script>
+  </script>
   <!-- Module BBBL -->
   <script src="controllers/app.js"></script>
   <script src="controllers/presentation.js"></script>

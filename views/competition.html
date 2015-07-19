@@ -18,115 +18,16 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="gold">
-              <td>1</td>
-              <td>Les Sombréros de l'amer</td>
-              <td>Ashrame</td>
-              <td>4</td>
-              <td>1</td>
-              <td>1</td>
-              <td>0</td>
-              <td>1</td>
-              <td>2</td>
-            </tr>
-            <tr class="silver">
-              <td>2</td>
-              <td>Les Miraculés</td>
-              <td>Voodoo</td>
-              <td>3</td>
-              <td>1</td>
-              <td>0</td>
-              <td>0</td>
-              <td>3</td>
-              <td>10</td>
-            </tr>
-            <tr class="bronze">
-              <td>3</td>
-              <td>Les Déplumeurs</td>
-              <td>Ignatt</td>
-              <td>3</td>
-              <td>1</td>
-              <td>0</td>
-              <td>0</td>
-              <td>2</td>
-              <td>6</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Ah Push</td>
-              <td>Ducky</td>
-              <td>3</td>
-              <td>1</td>
-              <td>0</td>
-              <td>1</td>
-              <td>-1</td>
-              <td>-10</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>New-Orc Highlanders</td>
-              <td>Elenalcar</td>
-              <td>3</td>
-              <td>1</td>
-              <td>0</td>
-              <td>1</td>
-              <td>-1</td>
-              <td>-11</td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>Orcs on the rocs</td>
-              <td>Unelegant Slayer</td>
-              <td>1</td>
-              <td>0</td>
-              <td>1</td>
-              <td>0</td>
-              <td>0</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>Mercenaires de Daligar</td>
-              <td>Rankstail</td>
-              <td>3</td>
-              <td>1</td>
-              <td>0</td>
-              <td>1</td>
-              <td>-1</td>
-              <td>-11</td>
-            </tr>
-            <tr>
-              <td>8</td>
-              <td>O.U.R.S.S.</td>
-              <td>Marcus Miragos</td>
-              <td>1</td>
-              <td>0</td>
-              <td>1</td>
-              <td>0</td>
-              <td>0</td>
-              <td>2</td>
-            </tr>
-            <tr class="relegated">
-              <td>9</td>
-              <td>Les Bulles Doseurs</td>
-              <td>Oligunar</td>
-              <td>1</td>
-              <td>0</td>
-              <td>1</td>
-              <td>1</td>
-              <td>-1</td>
-              <td>5</td>
-            </tr>
-            <tr class="relegated">
-              <td>10</td>
-              <td>Pestes et Choléra</td>
-              <td>Elender</td>
-              <td>1</td>
-              <td>0</td>
-              <td>1</td>
-              <td>1</td>
-              <td>-2</td>
-              <td>-2</td>
+            <tr ng-repeat="(key,row) in standing" ng-class="{gold: key+1 == 1, silver: key+1 == 2, bronze: key+1 == 3, relegated: key+1 > 9}">
+              <td>{{key+1}}</td>
+              <td>{{row.Equipe}}</td>
+              <td>{{row.Coach}}</td>
+              <td>{{row.Pts}}</td>
+              <td>{{row.V}}</td>
+              <td>{{row.N}}</td>
+              <td>{{row.D}}</td>
+              <td>{{row.TD}}</td>
+              <td>{{row.S}}</td>
             </tr>
           </tbody>
         </table>
@@ -141,124 +42,15 @@
   </div>
   <div class="hd-45 y-top">
     <div class="panel right scroll">
-      <h6 ng-click="showPreviousDays(2)">journées précédentes&nbsp;&nbsp;</h6>
-      <div id="day1" class="standing">
-        <h3>Journée 1</h3>
-        <div class="day x-center">
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team1.png"> 1 - 0 <img class="teamLogo" src="resources/img/team10.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team2.png"> VS <img class="teamLogo" src="resources/img/team9.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team3.png"> 1 - 2 <img class="teamLogo" src="resources/img/team8.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team4.png"> 3 - 1 <img class="teamLogo" src="resources/img/team7.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team5.png"> VS <img class="teamLogo" src="resources/img/team6.png">
-          </div>
-        </div>
-      </div>
-      <div class="standing">
-        <h3>Journée 2</h3>
-        <div class="day x-center">
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team1.png"> VS <img class="teamLogo" src="resources/img/team9.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team2.png"> VS <img class="teamLogo" src="resources/img/team8.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team3.png"> VS <img class="teamLogo" src="resources/img/team7.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team4.png"> VS <img class="teamLogo" src="resources/img/team6.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team5.png"> VS <img class="teamLogo" src="resources/img/team10.png">
-          </div>
-        </div>
-      </div>
-      <div class="standing">
-        <h3>Journée 3</h3>
-        <div class="day x-center">
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team1.png"> VS <img class="teamLogo" src="resources/img/team8.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team2.png"> VS <img class="teamLogo" src="resources/img/team7.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team3.png"> VS <img class="teamLogo" src="resources/img/team6.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team4.png"> VS <img class="teamLogo" src="resources/img/team10.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team5.png"> VS <img class="teamLogo" src="resources/img/team9.png">
-          </div>
-        </div>
-      </div>
-      <div class="standing">
-        <h3>Journée 4</h3>
-        <div class="day x-center">
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team1.png"> VS <img class="teamLogo" src="resources/img/team7.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team2.png"> VS <img class="teamLogo" src="resources/img/team6.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team3.png"> VS <img class="teamLogo" src="resources/img/team10.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team4.png"> VS <img class="teamLogo" src="resources/img/team9.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team5.png"> VS <img class="teamLogo" src="resources/img/team8.png">
-          </div>
-        </div>
-      </div>
-      <div class="standing">
-        <h3>Journée 5</h3>
-        <div class="day x-center">
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team1.png"> VS <img class="teamLogo" src="resources/img/team6.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team2.png"> VS <img class="teamLogo" src="resources/img/team10.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team3.png"> VS <img class="teamLogo" src="resources/img/team9.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team4.png"> VS <img class="teamLogo" src="resources/img/team8.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team5.png"> VS <img class="teamLogo" src="resources/img/team7.png">
-          </div>
-        </div>
-      </div>
-      <div class="standing">
-        <h3>Journée 6</h3>
-        <div class="day x-center">
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team1.png"> VS <img class="teamLogo" src="resources/img/team9.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team2.png"> VS <img class="teamLogo" src="resources/img/team8.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team3.png"> VS <img class="teamLogo" src="resources/img/team7.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team4.png"> VS <img class="teamLogo" src="resources/img/team6.png">
-          </div>
-          <div class="vs">
-            <img class="teamLogo" src="resources/img/team5.png"> VS <img class="teamLogo" src="resources/img/team10.png">
+      <h6 ng-click="showPreviousDays()">journées précédentes&nbsp;&nbsp;</h6>
+      <div ng-repeat="day in calendar" id="day{{day.journee}}" ng-class="{hide: day.journee < displayDay, current: day.journee == currentDay }" class="day ">
+        <h3>Journée {{day.journee}}</h3>
+        <div class="match x-center">
+          <div class="vs" ng-repeat="match in day.matchs">
+            <img class="teamLogo" src="resources/img/teams/team{{match.idteam1}}.png">
+            <span ng-if="match.score1.length==0"> VS </span>
+            <span ng-if="match.score1.length>0"> {{match.score1}} - {{match.score2}} </span>
+            <img class="teamLogo" src="resources/img/teams/team{{match.idteam2}}.png">
           </div>
         </div>
       </div>

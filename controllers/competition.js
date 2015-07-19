@@ -1,9 +1,19 @@
-LeagueManager.controller('CompetitionCtrl', function($scope, $rootScope, $timeout, Restangular) {
+LeagueManager.controller('CompetitionCtrl', function($scope, $rootScope, $http, $timeout, Restangular) {
 
-	$scope.journee = 2;
+	//Récupération du classement en JSON (temporaire)
+	$http.get('resources/json/majeure_standing.json').then(function(result){
+			$scope.standing = result.data;
+		});
+		//Récupération de l'agenda en JSON (temporaire)
+		$http.get('resources/json/majeure_calendar.json').then(function(result){
+				$scope.calendar = result.data;
+			});
+
+	$scope.currentDay = 5;
+	$scope.displayDay = 5;
+
 	$scope.showPreviousDays = function(i){
-		for(i;i>1;i--){
-			$('#day'+1).slideDown();
-		}
+		$scope.displayDay = 0;
 	};
+
 });
