@@ -1,0 +1,36 @@
+/*--- Competitions ---*/
+.standing { width:auto; margin:20px 5vw; padding:10px 2vw; background: rgba(0, 0, 0, 0.75);; border-radius: 3px; border-bottom: 2px solid #00558D; color:#0191FF }
+.standing > table { width: 100%}
+.standing > table > tbody > tr { height: 28px; border-top: 0.5px solid rgba(1, 155, 255, 0.5);; }
+.standing > table > tbody > tr > td { line-height: 28px;padding: 0 5px; vertical-align: middle}
+
+.day {width:auto; margin:20px 5vw; padding:10px 2vw; background: rgba(0, 0, 0, 0.75);; border-radius: 3px; border-bottom: 2px solid #00558D; color:#0191FF; height: auto;  -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s; }
+.day.hide {display: none; height:0px; padding:0px 2vw -webkit-transition: all linear 0.5s;
+  transition: all linear 0.5s; }
+
+.current {border: 3px solid #00558D;}
+
+.match {display: table; vertical-align: middle; width:100%;}
+.vs { display: inline-block; font-family: 'Hind'; font-size: 20px; line-height: 24px; font-weight: 400; color:#0191FF; vertical-align: middle; margin: 10px 15px 0; }
+.teamLogo {width: 40px; height: 40px; display: inline; vertical-align: middle;}
+td { vertical-align: middle;}
+td > .teamLogo {width: 20px; height: 20px; display: inline;}
+
+
+.gold { background: rgba(255,215,0,0.75);
+	background: -webkit-linear-gradient(rgba(255,215,0,0.1),rgba(255,215,0,0.75), rgba(255,215,0,0.1));
+	background: -moz-linear-gradient(left, rgba(255,215,0,0.1),rgba(255,215,0,0.75), rgba(255,215,0,0.1));
+	background: linear-gradient(left, rgba(255,215,0,0.1),rgba(255,215,0,0.75), rgba(255,215,0,0.1)); }
+.silver {
+	background: -webkit-linear-gradient(rgba(192,192,192,0.1),rgba(192,192,192,0.75), rgba(192,192,192,0.1));
+	background: -moz-linear-gradient(left, rgba(192,192,192,0.1),rgba(192,192,192,0.75), rgba(192,192,192,0.1));
+	background: linear-gradient(left, rgba(192,192,192,0.1),rgba(192,192,192,0.75), rgba(192,192,192,0.1)); }
+.bronze {
+	background: -webkit-linear-gradient(rgba(205,127,50,0.1),rgba(205,127,50,0.75), rgba(205,127,50,0.1));
+	background: -moz-linear-gradient(left, rgba(205,127,50,0.1),rgba(205,127,50,0.75), rgba(205,127,50,0.1));
+	background: linear-gradient(left, rgba(205,127,50,0.1),rgba(205,127,50,0.75), rgba(205,127,50,0.1)); }
+.relegated {
+	background: -webkit-linear-gradient(rgba(208,2,27,0.1),rgba(208,2,27,0.5), rgba(208,2,27,0.1));
+	background: -moz-linear-gradient(left, rgba(208,2,27,0.1),rgba(208,2,27,0.5), rgba(208,2,27,0.1));
+	background: linear-gradient(left, rgba(208,2,27,0.1),rgba(208,2,27,0.5), rgba(208,2,27,0.1)); }

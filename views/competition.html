@@ -1,6 +1,5 @@
   <div class="hd-55 y-top">
     <div class="panel left">
-      <div class="title"><h2>Ligue Elite</h2> </div>
       <div class="standing">
         <h3>Classement</h3>
         <table>
@@ -20,7 +19,7 @@
           <tbody>
             <tr ng-repeat="(key,row) in standing" ng-class="{gold: key+1 == 1, silver: key+1 == 2, bronze: key+1 == 3, relegated: key+1 > 9}">
               <td>{{key+1}}</td>
-              <td>{{row.Equipe}}</td>
+              <td><img class="teamLogo" src="resources/img/teams/team{{row.idteam}}.png"> {{row.Equipe}}</td>
               <td>{{row.Coach}}</td>
               <td>{{row.Pts}}</td>
               <td>{{row.V}}</td>
@@ -33,7 +32,7 @@
         </table>
       </div>
       <article class="random main">
-          <h3 class="test">L'affiche : Mercenaires de Daligar - Orcs on the rocs</h3>
+          <h3 class="test">L'affiche : Mercenaires de Daligar - Orcs on...</h3>
           <img class="left" ng-click="displayReader(2)" src="resources/img/affiche.jpg"/>
           <p>Humains et orcs s'affrontent une fois de plus. Après avoir passé une saison à se volé la plus haute place du podium de mineure, Rankstail et Unelegant Slayer s'affronte en Elite dnas un match à guichets fermés.</p>
           <h6 class="test" ng-click="displayReader(2)" >En savoir plus...</h6>

@@ -1,4 +1,4 @@
-var LeagueManager = angular.module('LeagueManager', ['ngRoute','restangular','ngSanitize'])
+var LeagueManager = angular.module('LeagueManager', ['ngRoute','restangular','ngSanitize','ngCSS'])
 
 //API REST
 LeagueManager.config(function (RestangularProvider) {
@@ -11,7 +11,8 @@ LeagueManager.config(function ($routeProvider, RestangularProvider) {
   .when("/competition", {
 		templateUrl: 'views/competition.html',
 		controller: 'CompetitionCtrl',
-		controllerUrl: 'controllers/competition'
+		controllerUrl: 'controllers/competition',
+		css: 'css/competition.css'
 	})
 	.when("/presentation", {
 		templateUrl: 'views/presentation.html',
@@ -23,10 +24,13 @@ LeagueManager.config(function ($routeProvider, RestangularProvider) {
   })
   .when("/", {
     templateUrl: 'views/une.html',
+		controller: function($rootScope, $http, $location) {
+			$rootScope.subTitle = "le mag de la BBBL";}
   });
 });
 
 LeagueManager.run(function($rootScope, $http, $location) {
+	$rootScope.subTitle = "le mag de la BBBL";
 	//Récupération des articles en JSON (temporaire)
 	$http.get('resources/json/articles.json').then(function(result){
 			$rootScope.articles = result.data;

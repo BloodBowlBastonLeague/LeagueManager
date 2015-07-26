@@ -2,6 +2,7 @@ LeagueManager.directive('articleReader', function(Restangular){
 	return {
 		restrict: 'E',
 		templateUrl: 'views/reader.html',
+		css: 'css/reader.css',
 		controller: function($rootScope, $scope, $http, $timeout) {
 			//Initialisation de la variable d'affichage de la liseuse
 			$scope.reader = false;

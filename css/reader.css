@@ -1,0 +1,10 @@
+#veil{ position:fixed; background: rgba(0,0,0,0.8); width:100vw; height:calc(100vh - 50px); top:50px; z-index:4; overflow:none;}
+#reader { position:fixed; margin:50px 10vw; padding:0; width:80vw; max-height:calc(100vh - 150px); top:50px; z-index:5; background: rgba(0,0,0,0.7); overflow:none; color: #F68525;}
+#reader > header { height: 35px; border-bottom: 2px solid #F68525; padding: 0 10px}
+
+#reader > article { margin:0; max-height:calc(100vh - 268px);  background: none; border:none; overflow: auto}
+#reader > article > img { float:left; padding:0 20px 10px 0}
+
+#reader > footer { border-top: 2px solid #F68525; text-align: center;}
+#reader > footer > h6 { margin: 5px 0px;text-align: center; color: #F68525; cursor: pointer; }
+#reader > .close { position: absolute; right: 0px; cursor: pointer; }
