@@ -1,8 +1,59 @@
-    <div class="hd-75 y-top">
-      <article>
-        <a href="#/presentation">Présentation</a><br/>
-        <a href="#/competition">Compétition</a>
+<div class="hd-20 y-top">
+  <div class="x-center y-top annonce">
+    <h3>Découvrez la BBBL</h3>
+    <p>La Blood Bowl Baston League vous accueille quotidiennement dans ses locaux modernes de l'Administratorum, 1, place de l'Administratorum à Blood Bowl City.</p><p>Dans une ambiance chaleureuse et assainie de toute corruption, la BBBL vous offre le meilleur du BloodBowl dans le vieux monde. Dynamisme et modernité, sont les maitres mots du futur que nous vous offrons.</p>
+    <a href="#/presentation"><div class="button">En savoir plus</div></a>
+  </div>
+</div>
+<div class="hd-55 y-top">
+  <div class="vd-auto">
+    <div class="hd-55 y-top panel center">
+      <article id="randomUne0" ng-click="displayReader(randomElite.article_id)" >
+        <h3 ng-bind-html="randomElite.title"></h3>
+        <img ng-if="randomElite.image==1" class="left" ng-click="displayReader(randomElite.article_id)" src="resources/img/articles/article_{{randomElite.article_id}}.jpg"/>
+        <p ng-bind-html="randomElite.summary"></p>
+        <h6 ng-click="displayReader(randomElite.article_id)">En savoir plus...</h6>
       </article>
     </div>
-    <div class="hd-25 y-top">
+  </div>
+  <div class="vd-auto">
+    <div class="hd-30 y-top panel center">
+      <article id="randomUne1" ng-click="displayReader(randomEspoir.article_id)" >
+        <h3 ng-bind-html="randomEspoir.title"></h3>
+        <p><img ng-if="randomEspoir.image==1" class="left" src="resources/img/articles/article_{{randomEspoir.article_id}}.jpg"/>
+        <span ng-bind-html="randomEspoir.summary"></span></p>
+        <h6 ng-click="displayReader(randomEspoir.article_id)">En savoir plus...</h6>
+      </article>
     </div>
+    <div class="hd-25 y-top panel center">
+      <article id="randomUne2" class="random" ng-click="displayReader(random3.article_id)" >
+        <h3 ng-bind-html="random3.title"></h3>
+        <p><img ng-if="random3.image==1" class="left"  src="resources/img/articles/article_{{random3.article_id}}.jpg"/>
+        <span ng-bind-html="random3.summary"></span></p>
+        <h6 ng-click="displayReader(random3.article_id)">En savoir plus...</h6>
+      </article>
+    </div>
+  </div>
+</div>
+<div class="hd-25 y-top panel right">
+    <div class="standing" ng-repeat="division in standing" ng-click="goToPage('competition/'+division.ID)">
+      <h5>Division {{division.name}}</h5>
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th class="tleft">Equipe</th>
+            <th>Pts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="(key,row) in division.standing" ng-class="{gold: key+1 == 1, silver: key+1 == 2, bronze: key+1 == 3, relegated: key+1 > 9}">
+            <td>{{key+1}}</td>
+            <td class="tleft">{{row.Equipe}}</td>
+            <td>{{row.Pts}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+</div>

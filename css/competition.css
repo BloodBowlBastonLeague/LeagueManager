@@ -2,20 +2,23 @@
 .standing { width:auto; margin:20px 5vw; padding:10px 2vw; background: rgba(0, 0, 0, 0.75);; border-radius: 3px; border-bottom: 2px solid #00558D; color:#0191FF }
 .standing > table { width: 100%}
 .standing > table > tbody > tr { height: 28px; border-top: 0.5px solid rgba(1, 155, 255, 0.5);; }
-.standing > table > tbody > tr > td { line-height: 28px;padding: 0 5px; vertical-align: middle}
+.standing > table > thead > tr > th { line-height: 28px;padding: 0 5px; text-align: center; }
 
-.day {width:auto; margin:20px 5vw; padding:10px 2vw; background: rgba(0, 0, 0, 0.75);; border-radius: 3px; border-bottom: 2px solid #00558D; color:#0191FF; height: auto;  -webkit-transition: all linear 0.5s;
-  transition: all linear 0.5s; }
-.day.hide {display: none; height:0px; padding:0px 2vw -webkit-transition: all linear 0.5s;
-  transition: all linear 0.5s; }
+.standing > table > tbody > tr > td { line-height: 28px;padding: 0 5px; text-align: center; }
+
+
+.day {width:auto; margin:20px 5vw; padding:10px 1vw; background: rgba(0, 0, 0, 0.75);; border-radius: 3px; border-bottom: 2px solid #00558D; color:#0191FF; height: auto;  -webkit-transition: all linear 0.5s;
+  transition: height linear 0.5s; }
+.day.hide {display: none; height:0px; padding:10px 1vw -webkit-transition: all linear 0.5s;
+  transition: height linear 0.5s; }
 
 .current {border: 3px solid #00558D;}
 
 .match {display: table; vertical-align: middle; width:100%;}
 .vs { display: inline-block; font-family: 'Hind'; font-size: 20px; line-height: 24px; font-weight: 400; color:#0191FF; vertical-align: middle; margin: 10px 15px 0; }
 .teamLogo {width: 40px; height: 40px; display: inline; vertical-align: middle;}
-td { vertical-align: middle;}
-td > .teamLogo {width: 20px; height: 20px; display: inline;}
+td { vertical-align: middle; }
+td > .teamLogo {width: 20px; height: 20px; display: inline; padding-right: 2px}
 
 
 .gold { background: rgba(255,215,0,0.75);

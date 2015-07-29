@@ -57,7 +57,7 @@ color: #ffffff; margin:0;padding: 0}
 h2 { font-family: 'Play'; font-size: 20px; line-height: 24px; font-weight: 400;}
 h3 { font-family: 'Play'; font-size: 26px; line-height: 30px; font-weight: 700;}
 h4 { font-family: 'Play'; font-size: 36px; line-height: 46px; font-weight: 400;margin: 0 0 10px 0;color:#F68525;}
-h5 { font-size: 20px; line-height: 30px; }
+h5 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; text-align: left;color: #0191FF ; cursor: pointer; padding: 0 0 5px}
 h6 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; text-align: right;color: #0191FF ; cursor: pointer;}
 p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc;}
 
@@ -92,6 +92,7 @@ p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify;
 .panel.center > div {margin-left: 2.5vw !important;margin-right: 2.5vw !important;}
 .panel.center > article {margin-left: 2.5vw !important;margin-right: 2.5vw !important;}
 
+.annonce > h3 { color:#F68525; }
 
 	.title { margin:20px 5vw ; padding:10px 2vw; background: rgba(0, 0, 0, 0.75);  border: 1px solid #00558D; text-align: center; color: #0191FF ;}
 	article { margin:20px 5vw; padding:10px 2vw; background: rgba(0, 0, 0, 0.75); border-radius: 3px; border-bottom: 2px solid #0191FF; }
@@ -116,7 +117,7 @@ article.random > h3 { color:#F68525 !important; }
 
 .left { float: left; display:inline-block; padding-right:10px; }
 
-
+.tleft {text-align: left !important;}
 
 #bottom { width:100vw; height:168px; position:fixed; top:600px; left: 0px; }
 
@@ -170,6 +171,8 @@ article.random > h3 { color:#F68525 !important; }
 .vd-95  { height:95vh !important;   display:table; float:left; }
 .vd-100  { height:100vh !important;  display:table; float:left; }
 .vd-parent { height:inherit !important; display:table; float:left;}
+.vd-auto { height:auto !important; display:table; float:left;}
+
 
 /* Horizontal Rectangle dividers */
 .hd-5  { width:5vw !important; display:table-cell;}

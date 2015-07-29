@@ -8,7 +8,7 @@ LeagueManager.config(function (RestangularProvider) {
 //Routage
 LeagueManager.config(function ($routeProvider, RestangularProvider) {
 	$routeProvider
-  .when("/competition", {
+  .when("/competition/:ID", {
 		templateUrl: 'views/competition.html',
 		controller: 'CompetitionCtrl',
 		controllerUrl: 'controllers/competition',
@@ -24,31 +24,37 @@ LeagueManager.config(function ($routeProvider, RestangularProvider) {
   })
   .when("/", {
     templateUrl: 'views/une.html',
-		controller: function($rootScope, $http, $location) {
-			$rootScope.subTitle = "le mag de la BBBL";}
+		controller: 'UneCtrl',
+		controllerUrl: 'controllers/une',
+		css: {href:'css/une.css',preload: true}
   });
 });
 
-LeagueManager.run(function($rootScope, $http, $location) {
+LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 	$rootScope.subTitle = "le mag de la BBBL";
-	//Récupération des articles en JSON (temporaire)
-	$http.get('resources/json/articles.json').then(function(result){
-			$rootScope.articles = result.data;
-		});
+
+		$http.get('resources/json/articles.json').then(function(result){
+	$rootScope.articles = result.data;
+
+});
 
 	$rootScope.goToPage = function(page) {
         $location.path( page );
     };
 
+
 	$rootScope.randomArticle = function(categories){
+		//Récupération des articles en JSON (temporaire)
 			var selection = [];
+
 			for(i=0;i<$rootScope.articles.length;i++){
 				if($rootScope.articles[i].random == 1 && categories.indexOf($rootScope.articles[i].category) != -1){
 					selection.push($rootScope.articles[i]);
 				}
 			}
 			return selection[Math.floor(Math.random() * selection.length)];
-	}
+			};
+
 
 
 });
