@@ -1,0 +1,17 @@
+<div id="veil" ng-show="reader" ng-click="displayReader()"></div>
+<div id="reader" ng-show="reader" ng-click="">
+  <div class="close" ng-click="displayReader()"><h3>X</h3></div>
+
+  <header class="hd-100">
+    <h3 ng-bind-html="article.title"></h3>
+  </header>
+
+  <article ng-click="">
+    <img ng-if="article.image == 1" src="resources/img/articles/article_{{article.article_id}}.jpg">
+    <p ng-bind-html="article.text"></p>
+  </article>
+
+  <footer>
+    <h6 ng-click="displayReader()">Fermer</h6>
+  </footer>
+</div>
