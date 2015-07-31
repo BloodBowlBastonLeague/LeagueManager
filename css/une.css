@@ -1,4 +1,4 @@
-.standing { width:auto; margin:20px 5vw; padding:10px 1vw; background: rgba(0, 0, 0, 0.75);; border-radius: 3px; border-bottom: 2px solid #00558D; color:#0191FF; font-size: 14px}
+.standing { width:auto; margin:20px 5vw; padding:10px 1vw; background: rgba(0, 0, 0, 0.75);; border-radius: 3px; border-bottom: 2px solid #00558D; color:#0191FF; font-size: 14px;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
 .standing > table { width: 100%; cursor: pointer; text-align: center}
 .standing > table > tbody > tr { height: 18px; border-top: 0.5px solid rgba(1, 155, 255, 0.5);; }
 

@@ -8,25 +8,27 @@
 <div class="hd-55 y-top">
   <div class="vd-auto">
     <div class="hd-55 y-top panel center">
-      <article id="randomUne0" ng-click="displayReader(randomElite.article_id)" >
+      <article id="randomUne0">
         <h3 ng-bind-html="randomElite.title"></h3>
-        <img ng-if="randomElite.image==1" class="left" ng-click="displayReader(randomElite.article_id)" src="resources/img/articles/article_{{randomElite.article_id}}.jpg"/>
-        <p ng-bind-html="randomElite.summary"></p>
+        <p><img ng-if="randomElite.image==1" class="left" ng-click="displayReader(randomElite.article_id)" src="resources/img/articles/article_{{randomElite.article_id}}.jpg"/>
+        <span ng-bind-html="randomElite.summary">Les gobelins pédalent</span></p>
         <h6 ng-click="displayReader(randomElite.article_id)">En savoir plus...</h6>
+        <h2 ng-click="goToPage('competition/0')">Accèdez à la division Elite</h2>
       </article>
     </div>
   </div>
   <div class="vd-auto">
     <div class="hd-30 y-top panel center">
-      <article id="randomUne1" ng-click="displayReader(randomEspoir.article_id)" >
+      <article id="randomUne1">
         <h3 ng-bind-html="randomEspoir.title"></h3>
         <p><img ng-if="randomEspoir.image==1" class="left" src="resources/img/articles/article_{{randomEspoir.article_id}}.jpg"/>
         <span ng-bind-html="randomEspoir.summary"></span></p>
         <h6 ng-click="displayReader(randomEspoir.article_id)">En savoir plus...</h6>
+        <h2 ng-click="goToPage('competition/0')">Accèdez à la division Espoir</h2>
       </article>
     </div>
     <div class="hd-25 y-top panel center">
-      <article id="randomUne2" class="random" ng-click="displayReader(random3.article_id)" >
+      <article id="randomUne2" class="random">
         <h3 ng-bind-html="random3.title"></h3>
         <p><img ng-if="random3.image==1" class="left"  src="resources/img/articles/article_{{random3.article_id}}.jpg"/>
         <span ng-bind-html="random3.summary"></span></p>

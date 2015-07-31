@@ -10,8 +10,8 @@ LeagueManager.controller('UneCtrl', function($scope, $rootScope, $http, $timeout
 		$scope.calendar = result.data;
 	});
 
-	$scope.randomElite = $rootScope.randomArticle(['elite']);
-	$scope.randomEspoir = $rootScope.randomArticle(['espoir']);
+	$scope.randomElite = $rootScope.randomArticle(['Elite']);
+	$scope.randomEspoir = $rootScope.randomArticle(['Espoir']);
 	$scope.random3 = $rootScope.randomArticle(['presentation']);
 
 });

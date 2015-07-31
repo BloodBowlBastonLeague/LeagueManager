@@ -31,11 +31,11 @@
           </tbody>
         </table>
       </div>
-      <article class="random main">
-          <h3 class="test">L'affiche : Mercenaires de Daligar - Orcs on...</h3>
-          <img class="left" ng-click="displayReader(2)" src="resources/img/affiche.jpg"/>
-          <p>Humains et orcs s'affrontent une fois de plus. Après avoir passé une saison à se volé la plus haute place du podium de mineure, Rankstail et Unelegant Slayer s'affronte en Elite dnas un match à guichets fermés.</p>
-          <h6 class="test" ng-click="displayReader(2)" >En savoir plus...</h6>
+      <article id="random" class="random" ng-click="displayReader(random.article_id)" >
+        <h3 ng-bind-html="random.title"></h3>
+        <p><img ng-if="random.image==1" class="left"  src="resources/img/articles/article_{{random.article_id}}.jpg"/>
+        <span ng-bind-html="random.summary"></span></p>
+        <h6 ng-click="displayReader(random.article_id)">En savoir plus...</h6>
       </article>
     </div>
   </div>
