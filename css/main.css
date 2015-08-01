@@ -53,12 +53,12 @@ table {
 
 /*--- Text ---*/
 h1 { font-family: 'Play'; font-size: 40px; line-height: 50px; font-weight: 700;
-color: #ffffff; margin:0;padding: 0}
-h2 { font-family: 'Play'; font-size: 20px; line-height: 24px; font-weight: 400;}
+color: #ffffff; margin:0;padding: 0;}
+h2 { font-family: 'Play'; font-size: 20px; line-height: 24px; font-weight: 400; color:#ffffff; text-align: center; cursor: pointer; border-top: 1px solid #0191FF;padding-top: 5px;}
 h3 { font-family: 'Play'; font-size: 26px; line-height: 30px; font-weight: 700;}
 h4 { font-family: 'Play'; font-size: 36px; line-height: 46px; font-weight: 400;margin: 0 0 10px 0;color:#F68525;}
-h5 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; text-align: left;color: #0191FF ; cursor: pointer; padding: 0 0 5px}
-h6 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; text-align: right;color: #0191FF ; cursor: pointer;}
+h5 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; text-align: left;color: #0191FF ; cursor: pointer; padding: 0 0 5px;}
+h6 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; text-align: right;color: #0191FF ; cursor: pointer; margin-bottom: 10px;}
 p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc;}
 
 #logo { position:fixed; top:0px; left: 2vw; height: 90px; width: auto; cursor: pointer;}
@@ -82,9 +82,9 @@ p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify;
 	nav > ul > li > a > span { height: 25px; width: auto; display: none;}
 }
 
-#main { position:relative; width:100vw; height:100vh;  z-index:0;}
+#main { position:relative; width:100vw; height:100vh;  z-index:0; display: table;}
 .scroll {overflow: auto;}
-.panel {height: calc(100vh - 68px); margin: 0px 0px 50px; overflow: auto;}
+.panel {height: calc(100vh - 68px); margin: 0px 0px 50px; overflow-y: auto;}
 .panel.right > div {margin-left: 2.5vw !important;}
 .panel.right > article {margin-left: 2.5vw !important;}
 .panel.left > div {margin-right: 2.5vw !important;}
@@ -93,10 +93,12 @@ p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify;
 .panel.center > article {margin-left: 2.5vw !important;margin-right: 2.5vw !important;}
 
 .annonce > h3 { color:#F68525; }
+article.random > h3 { color:#F68525 !important; }
+article.random > h6 { color:#F68525 !important; }
 
-	.title { margin:20px 5vw ; padding:10px 2vw; background: rgba(0, 0, 0, 0.75);  border: 1px solid #00558D; text-align: center; color: #0191FF ;}
-	article { margin:20px 5vw; padding:10px 2vw; background: rgba(0, 0, 0, 0.75); border-radius: 3px; border-bottom: 2px solid #0191FF; }
-	article > h3 {color: #0191FF; margin-bottom: 10px}
+	.title { margin:20px 5vw ; padding:10px 2vw; background: rgba(0, 0, 0, 0.75);  border: 1px solid #00558D; text-align: center; color: #0191FF;}
+	article { margin:20px 5vw; padding:10px 2vw; background: rgba(0, 0, 0, 0.75); border-radius: 3px; border-bottom: 2px solid #0191FF; box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
+	article > h3 {color: #0191FF; margin-bottom: 10px; }
 	article > h6 {color: #0191FF; cursor: pointer;}
 
 
@@ -107,9 +109,9 @@ p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify;
 .random { background: #333333; border-bottom: 2px solid #F68525; border-radius: 0 0 3px 3px;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
 .random.main { display:inline-block; height:auto;}
 .random.side { display:inline-block; height:240px;width: calc(100% - 60px); margin:20px; background: #333333; border-bottom: 2px solid #F68525; border-radius: 0 0 3px 3px; box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.9); cursor: pointer;}
-.random.side > .image { height: 120px; width: 100%}
+.random.side > .image { height: 120px; width: 100%;}
 .random.side > .text { height: 120px; width: 100%; padding:20px 2vw;}
-article.random > h3 { color:#F68525 !important; }
+
 .random > h6 { color:#F68525; }
 .random > p { color:#FFFFFF; }
 .annonce { display:inline-block; height:auto; margin:20px; padding:10px; background:transparent;}

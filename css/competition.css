@@ -1,14 +1,13 @@
 /*--- Competitions ---*/
-.standing { width:auto; margin:20px 5vw; padding:10px 2vw; background: rgba(0, 0, 0, 0.75);; border-radius: 3px; border-bottom: 2px solid #00558D; color:#0191FF }
-.standing > table { width: 100%}
+.standing { width:auto; margin:20px 5vw; padding:10px 2vw; background: rgba(0, 0, 0, 0.75);; border-radius: 3px; border-bottom: 2px solid #00558D; color:#0191FF;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9); }
+.standing > table { width: 100%;}
 .standing > table > tbody > tr { height: 28px; border-top: 0.5px solid rgba(1, 155, 255, 0.5);; }
 .standing > table > thead > tr > th { line-height: 28px;padding: 0 5px; text-align: center; }
-
 .standing > table > tbody > tr > td { line-height: 28px;padding: 0 5px; text-align: center; }
 
 
 .day {width:auto; margin:20px 5vw; padding:10px 1vw; background: rgba(0, 0, 0, 0.75);; border-radius: 3px; border-bottom: 2px solid #00558D; color:#0191FF; height: auto;  -webkit-transition: all linear 0.5s;
-  transition: height linear 0.5s; }
+  transition: height linear 0.5s;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9); }
 .day.hide {display: none; height:0px; padding:10px 1vw -webkit-transition: all linear 0.5s;
   transition: height linear 0.5s; }
 
@@ -18,15 +17,15 @@
 .vs { display: inline-block; font-family: 'Hind'; font-size: 20px; line-height: 24px; font-weight: 400; color:#0191FF; vertical-align: middle; margin: 10px 15px 0; }
 .teamLogo {width: 40px; height: 40px; display: inline; vertical-align: middle;}
 td { vertical-align: middle; }
-td > .teamLogo {width: 20px; height: 20px; display: inline; padding-right: 2px}
-
+td > .teamLogo {width: 20px; height: 20px; display: inline; padding-right: 2px;}
+.random > p > img { max-height: 15vh; }
 
 .gold { background: rgba(255,215,0,0.75);
 	background: -webkit-linear-gradient(rgba(255,215,0,0.1),rgba(255,215,0,0.75), rgba(255,215,0,0.1));
 	background: -moz-linear-gradient(left, rgba(255,215,0,0.1),rgba(255,215,0,0.75), rgba(255,215,0,0.1));
 	background: linear-gradient(left, rgba(255,215,0,0.1),rgba(255,215,0,0.75), rgba(255,215,0,0.1)); }
-.silver {
-	background: -webkit-linear-gradient(rgba(192,192,192,0.1),rgba(192,192,192,0.75), rgba(192,192,192,0.1));
+tr.silver {
+	background: -webkit-linear-gradient(left, rgba(192,192,192,0.1),rgba(192,192,192,0.75), rgba(192,192,192,0.1));
 	background: -moz-linear-gradient(left, rgba(192,192,192,0.1),rgba(192,192,192,0.75), rgba(192,192,192,0.1));
 	background: linear-gradient(left, rgba(192,192,192,0.1),rgba(192,192,192,0.75), rgba(192,192,192,0.1)); }
 .bronze {
