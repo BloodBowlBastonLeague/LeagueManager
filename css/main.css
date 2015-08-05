@@ -61,14 +61,14 @@ h5 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; 
 h6 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; text-align: right;color: #0191FF ; cursor: pointer; margin-bottom: 10px;}
 p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc;}
 
-#logo { position:fixed; top:0px; left: 2vw; height: 90px; width: auto; cursor: pointer;}
-#intro { position:relative; width:100vw; height:18px; background:#000000; font-size: 12px;box-sizing: border-box; line-height: 18px;text-align:center; font-family:'Hind'; font-size: 14	px;  color:#f1f1f1; z-index:2;}
-#navbar { position:relative; top:0px; width:100vw; height:50px; line-height: 50px; color:#ffffff; z-index:2;
+#LM_logo { position:fixed; top:0px; left: 2vw; height: 90px; width: auto; cursor: pointer;}
+#LM_intro { position:relative; width:100vw; height:18px; background:#000000; font-size: 12px;box-sizing: border-box; line-height: 18px;text-align:center; font-family:'Hind'; font-size: 14	px;  color:#f1f1f1; z-index:2;}
+#LM_navbar { position:relative; top:0px; width:100vw; height:50px; line-height: 50px; color:#ffffff; z-index:2;
 	background: -webkit-linear-gradient(#0191FF,#000000); /* For Safari 5.1 to 6.0 */
 	background: -moz-linear-gradient(#0191FF,#000000); /* For Firefox 3.6 to 15 */
 	background: linear-gradient(#0191FF,#000000); /* Standard syntax */}
 /*	#home { height: inherit; background: url('img/Home.png') center center no-repeat; background-size: 25px auto; cursor: pointer;}*/
-	#title {height:inherit; }
+	#LM_title {height:inherit; }
 	nav { height:inherit;}
 	nav > ul {height:inherit; line-height: 50px;}
 	nav > ul > li { font-family: 'Play'; height:50px; padding: 0 1vw; border-left: 1px solid #000000; display:inline-block;}
