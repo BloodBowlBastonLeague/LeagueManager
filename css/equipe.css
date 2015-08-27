@@ -1,0 +1,18 @@
+.players { width:auto; margin:20px 5vw; padding:10px 2vw; background: rgba(0, 0, 0, 0.75);; border-radius: 3px; border-bottom: 2px solid #00558D; color:#0191FF;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9); }
+.players > table { width: 100%;}
+.players > table > tbody > tr { height: 28px; border-top: 0.5px solid rgba(1, 155, 255, 0.5);; }
+.players > table > thead > tr > th { line-height: 28px;padding: 0 5px; text-align: center; }
+.players > table > tbody > tr > td { line-height: 28px;padding: 0 5px; text-align: center; }
+
+#fame {float: right; display: inline-block; text-align: right;}
+#random > h6 {cursor: auto !important;}
+.emphase { color:#F68525; }
+.star { font-size: 30px;  line-height: 30px;  display: inline-block;
+    -ms-transform: rotate(-10deg);
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg); }
+.teamDetails {color:#FFFFFF; padding-left:18px;}
+.teamDetails > li { line-height:24px}
+
+.articleDate { float:right; display: inline-block; color:#0191FF;}
+#LM_logo { width:70px; height:70px; top:10px;}

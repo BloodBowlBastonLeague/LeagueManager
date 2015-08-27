@@ -22,24 +22,25 @@ include('phpBB_Connect.php');
 <body>
   <div id="LM_intro" class="hd-100 x-center y-center">la Blood Bowl Baston League pr&eacute;sente</div>
 <header id="LM_navbar">
-  <img id="LM_logo" src="resources/img/BBBL2.png" ng-click="goToPage('/')">
+  <div id="LM_logo"  ng-click="goToPage('/')"></div>
 
   <div id="LM_home" class="hd-5 x-left" ></div>
-  <div id="LM_title" class="hd-65 x-center y-center"><h1><?php echo $user->data['username'];?> - {{subTitle}}</h1></div>
+  <div id="LM_title" class="hd-65 x-center y-center"><h1 class="text-cutter">Tribunes - {{subTitle}}</h1></div>
   <nav id="LM_navigation" class="hd-30 x-right y-center navmenu" >
     <ul>
       <li><a title="Forum" href="Forum"><img src="resources/img/LogoForum.svg"><span>Forum</span></a></li>
       <li><a title="Lancer BloodBowl" href="steam://run/216890"><img src="resources/img/LogoSteam.svg"><span>Jouer</span></a></li>
       <li><a title="Lancer Mumble" href="mumble://srv07.serveurmumble.com:50674/"><img src="resources/img/LogoMumble.svg"><span>Mumble</span></a></li>
-      <li><a title="Connexion" href="Connect"><img src="resources/img/LogoConnect.svg"><span>Connexion</span></a></li>
+      <li ng-if="<?php echo $user->data['user_id'];?>===1" ng-click="displayConnector()"><a title="Connexion"><img src="resources/img/LogoConnect.svg"><span>Connexion</span></a></li>
+      <li ng-if="<?php echo $user->data['user_id'];?>!==1"><a title="Le vestiaire"><img src="resources/img/LogoConnect.svg"><span>Le vestiaire</span></a></li>
     </ul>
   </nav>
 </header>
 <div id="main">
-
   <ng-view></ng-view>
   <!-- Articles plein écran -->
   <article-reader></article-reader>
+
 </div>
 
   <!-- Modules Angular -->
@@ -56,6 +57,7 @@ include('phpBB_Connect.php');
   <script src="controllers/une.js"></script>
   <script src="controllers/presentation.js"></script>
   <script src="controllers/competition.js"></script>
+  <script src="controllers/equipe.js"></script>
   <script src="controllers/reader.js"></script>
 
 </body>

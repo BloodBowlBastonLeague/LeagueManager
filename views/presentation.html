@@ -1,6 +1,5 @@
 
       <div class="hd-70 y-top panel left">
-        <div class="title"><h2>Tout ce qu'il faut savoir sur la BBBL</h2></div>
         <article ng-repeat="article in articles | orderBy: 'order'"  ng-if="article.category=='presentation' && article.random == 0">
           <h3 ng-bind-html="article.title"></h3>
           <p ng-bind-html="article.summary"></p>

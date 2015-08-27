@@ -1,0 +1,181 @@
+[{ "teamID" : "227",
+  "name" : "Emile et Images",
+  "roster" : "Démons de Khorne",
+  "moto" : "Ils vous entrainent",
+  "fame" : "6",
+  "reroll" : "4",
+  "apothecary" : "1",
+  "cheerleader" : "0",
+  "assistant" : "0",
+  "value" : "1490",
+  "treasury" : "120000",
+  "coach" : "Le Lapin Troll",
+  "players" : [
+    {
+    "number" : "1",
+    "name" : "Emile",
+    "title" : "Buveur de Sang",
+    "MA" : "6",
+    "ST" : "5",
+    "AG" : "1",
+    "AV" : "9",
+    "level" : "3",
+    "XP" : "22",
+    "salary" : "220",
+    "skills" : [
+      "Juggernaut","Griffe","Cornes","Frénésie","Animal sauvage","Solitaire","Régénération","Garde","Châtaigne"
+      ]
+    },
+    {
+    "number" : "2",
+    "name" : "Mario",
+    "title" : "Démon Sanguinaire",
+    "MA" : "6",
+    "ST" : "4",
+    "AG" : "3",
+    "AV" : "7",
+    "level" : "3",
+    "XP" : "24",
+    "salary" : "150",
+    "skills" : [
+      "Juggernaut","Cornes","Blocage"
+      ]
+    },
+    {
+    "number" : "3",
+    "name" : "Jean Louis",
+    "title" : "Démon Sanguinaire",
+    "MA" : "6",
+    "ST" : "3",
+    "AG" : "3",
+    "AV" : "7",
+    "level" : "3",
+    "XP" : "26",
+    "salary" : "120",
+    "skills" : [
+      "Juggernaut","Cornes","Blocage","Garde"
+      ]
+    },
+    {
+    "number" : "4",
+    "name" : "Ri'nak le Dieu-Guerrier ",
+    "title" : "Démon Sanguinaire",
+    "MA" : "6",
+    "ST" : "3",
+    "AG" : "3",
+    "AV" : "7",
+    "level" : "1",
+    "XP" : "5",
+    "salary" : "80",
+    "skills" : [
+      "Juggernaut","Cornes"
+      ]
+    },
+    {
+    "number" : "5",
+    "name" : "Ke'haza le Seigneur",
+    "title" : "Démon Sanguinaire",
+    "MA" : "6",
+    "ST" : "3",
+    "AG" : "3",
+    "AV" : "7",
+    "level" : "1",
+    "XP" : "1",
+    "salary" : "80",
+    "skills" : [
+      "Juggernaut","Cornes"
+      ]
+    },
+    {
+    "number" : "6",
+    "name" : "Mel'nak Larme-Démon",
+    "title" : "Gladiateur possédé",
+    "MA" : "6",
+    "ST" : "3",
+    "AG" : "3",
+    "AV" : "8",
+    "level" : "1",
+    "XP" : "2",
+    "salary" : "60",
+    "skills" : [
+      "Frénésie"
+      ]
+    },
+    {
+    "number" : "7",
+    "name" : "Mal'ek Gardien-du-Trône",
+    "title" : "Gladiateur possédé",
+    "MA" : "6",
+    "ST" : "3",
+    "AG" : "3",
+    "AV" : "8",
+    "level" : "1",
+    "XP" : "2",
+    "salary" : "60",
+    "skills" : [
+      "Frénésie"
+      ]
+    },
+    {
+    "number" : "8",
+    "name" : "L'ingé son",
+    "title" : "Gladiateur possédé",
+    "MA" : "6",
+    "ST" : "3",
+    "AG" : "3",
+    "AV" : "8",
+    "level" : "3",
+    "XP" : "17",
+    "salary" : "100",
+    "skills" : [
+      "Frénésie","Blocage","Esquive"
+      ]
+    },
+    {
+    "number" : "9",
+    "name" : "Le mec qui teste les micros",
+    "title" : "Gladiateur possédé",
+    "MA" : "6",
+    "ST" : "3",
+    "AG" : "3",
+    "AV" : "8",
+    "level" : "2",
+    "XP" : "15",
+    "salary" : "80",
+    "skills" : [
+      "Frénésie","Blocage"
+      ]
+    },
+    {
+    "number" : "10",
+    "name" : "Le videur",
+    "title" : "Gladiateur possédé",
+    "MA" : "6",
+    "ST" : "3",
+    "AG" : "3",
+    "AV" : "8",
+    "level" : "2",
+    "XP" : "10",
+    "salary" : "80",
+    "skills" : [
+      "Frénésie","Blocage"
+      ]
+    },
+    {
+    "number" : "11",
+    "name" : "Le mec de la buvette ",
+    "title" : "Gladiateur possédé",
+    "MA" : "6",
+    "ST" : "3",
+    "AG" : "3",
+    "AV" : "8",
+    "level" : "2",
+    "XP" : "8",
+    "salary" : "80",
+    "skills" : [
+      "Frénésie","Blocage"
+      ]
+    }
+  ]
+}
+]
