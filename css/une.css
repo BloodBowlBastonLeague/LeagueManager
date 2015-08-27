@@ -4,3 +4,6 @@
 
 article > p > img { width: 10vw;}
 #randomUne0 > img { width: 20vw;}
+
+#LM_logo { position: fixed; top: 10px; left: 3vw; cursor: pointer; height:250px; width: 14vw;transition: all .3s}
+.annonce { margin-top: 200px;}

@@ -61,7 +61,7 @@ h5 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; 
 h6 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; text-align: right;color: #0191FF ; cursor: pointer; margin-bottom: 10px;}
 p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc;}
 
-#LM_logo { position:fixed; top:0px; left: 2vw; height: 90px; width: auto; cursor: pointer;}
+#LM_logo { position:fixed; top:0px; left: 2vw; height: 90px; width: 90px; cursor: pointer; background: url(../resources/img/BBBL2.png) center center no-repeat; background-size:contain;transition: all .3s}
 #LM_intro { position:relative; width:100vw; height:18px; background:#000000; font-size: 12px;box-sizing: border-box; line-height: 18px;text-align:center; font-family:'Hind'; font-size: 14	px;  color:#f1f1f1; z-index:2;}
 #LM_navbar { position:relative; top:0px; width:100vw; height:50px; line-height: 50px; color:#ffffff; z-index:2;
 	background: -webkit-linear-gradient(#0191FF,#000000); /* For Safari 5.1 to 6.0 */
@@ -71,7 +71,7 @@ p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify;
 	#LM_title {height:inherit; }
 	nav { height:inherit;}
 	nav > ul {height:inherit; line-height: 50px;}
-	nav > ul > li { font-family: 'Play'; height:50px; padding: 0 1vw; border-left: 1px solid #000000; display:inline-block;}
+	nav > ul > li { font-family: 'Play'; height:50px; padding: 0 1vw; border-left: 1px solid #000000; display:inline-block; cursor: pointer;}
 	nav > ul > li > a { text-decoration: none; color: #ffffff;}
 
 @media screen and (min-width: 1025px) {
@@ -84,6 +84,7 @@ p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify;
 
 #main { position:relative; width:100vw; height:100vh;  z-index:0; display: table;}
 .scroll {overflow: auto;}
+.link {cursor: pointer;}
 .panel {height: calc(100vh - 68px); margin: 0px 0px 50px; overflow-y: auto;}
 .panel.right > div {margin-left: 2.5vw !important;}
 .panel.right > article {margin-left: 2.5vw !important;}
@@ -103,10 +104,10 @@ article.random > h6 { color:#F68525 !important; }
 
 
 /*--- Div ---*/
-.button { display: inline-block; background: #F68525; font-family:'Hind'; font-size: 26px; line-height: 28px; padding:5px 1.5vw; color:#f1f1f1;border-radius: 3px;}
+.button { display: inline-block; background: #F68525; font-family:'Hind'; font-size: 26px; line-height: 28px; padding:5px 1.5vw; color:#f1f1f1;border-radius: 3px;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
+.button.small {font-size: 16px; line-height: 22px;}
 
-
-.random { background: #333333; border-bottom: 2px solid #F68525; border-radius: 0 0 3px 3px;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
+.random { background: rgba(50, 50, 50, 0.85); border-bottom: 2px solid #F68525; border-radius: 0 0 3px 3px;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
 .random.main { display:inline-block; height:auto;}
 .random.side { display:inline-block; height:240px;width: calc(100% - 60px); margin:20px; background: #333333; border-bottom: 2px solid #F68525; border-radius: 0 0 3px 3px; box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.9); cursor: pointer;}
 .random.side > .image { height: 120px; width: 100%;}
@@ -118,8 +119,8 @@ article.random > h6 { color:#F68525 !important; }
 .annonce > p { font-size: 18px; line-height: 22px; margin:20px 0;}
 
 .left { float: left; display:inline-block; padding-right:10px; }
-
 .tleft {text-align: left !important;}
+.text-cutter { white-space: nowrap; text-overflow:ellipsis; overflow:hidden;  -ms-word-wrap: break-word; -webkit-word-wrap: break-word; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; }
 
 #bottom { width:100vw; height:168px; position:fixed; top:600px; left: 0px; }
 

@@ -1,10 +1,16 @@
-#veil{ position:fixed; background: rgba(0,0,0,0.8); width:100vw; height:calc(100vh - 50px); top:50px; z-index:4; overflow:none;}
-#reader { position:fixed; margin:50px 10vw; padding:0; width:80vw; max-height:calc(100vh - 150px); top:50px; z-index:5; background: rgba(0,0,0,0.7); overflow:none; color: #F68525;}
-#reader > header { height: 35px; border-bottom: 2px solid #F68525; padding: 0 10px}
+#veil{ position:fixed; background: rgba(0,0,0,0.9); width:100vw; height:calc(100vh - 50px); top:50px; z-index:4; overflow:none;}
+.container { position:fixed; margin:50px 10vw; padding:0 2vw; width:80vw; max-height:calc(100vh - 150px); top:50px; z-index:5; background: #000000; overflow:none; color: #F68525; border:2px solid #F68525}
+.container > header { height: 35px; width:100%; border-bottom: 1px solid #F68525; padding: 0 10px;}
 
-#reader > article { margin:0; max-height:calc(100vh - 268px);  background: none; border:none; overflow: auto}
-#reader > article > img { float:left; padding:0 20px 10px 0}
+.container > article { margin:0; max-height:calc(100vh - 268px);  background: none; border:none; overflow: auto;}
+.container > article > img { float:left; padding:0 20px 10px 0;}
 
-#reader > footer { border-top: 2px solid #F68525; text-align: center;}
-#reader > footer > h6 { margin: 5px 0px;text-align: center; color: #F68525; cursor: pointer; }
-#reader > .close { position: absolute; right: 0px; cursor: pointer; }
+.container > footer { border-top: 1px solid #F68525; text-align: center;}
+.container > footer > h6 { margin: 5px 0px;text-align: center; color: #F68525; cursor: pointer; }
+.container > .close { position: absolute; right: 0px; cursor: pointer; }
+
+#newsfeed { width:100vw; height:50px; background: #000000;}
+
+#connect { width:20vw; min-width:216px; margin:50px 40vw; text-align: center; line-height: 30px;}
+#connect > form > .button { margin:10px 0; width:150px }
+#connect > form > input['text'] {  width:150px }

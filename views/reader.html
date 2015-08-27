@@ -1,5 +1,5 @@
-<div id="veil" ng-show="reader" ng-click="displayReader()"></div>
-<div id="reader" ng-show="reader" ng-click="">
+<div id="veil" ng-show="reader || connector" ng-click="displayOff()"></div>
+<div id="reader" class="container" ng-show="reader" ng-click="">
   <div class="close" ng-click="displayReader()"><h3>X</h3></div>
 
   <header class="hd-100">
@@ -13,5 +13,22 @@
 
   <footer>
     <h6 ng-click="displayReader()">Fermer</h6>
+  </footer>
+</div>
+
+<div id="connect" class="container" ng-show="connector" ng-click="">
+  <header>
+    <h3>Connexion</h3>
+  </header>
+  <form id="forumConnect" action="Forum/ucp.php?mode=login&redirect=../index.php/" accept-charset='UTF-8' method='post'>
+    Nom d'utilisateur<br/>
+    <input type="text" name="username"><br/>
+    Mot de passe<br/>
+    <input type="password" name="password"><br/>
+    <input type="checkbox" name="autologin" /> Se souvenir de moi<br/>
+    <div class="button small" ng-click="forumConnect()">Fu-sion</div><br/>
+  </form>
+  <footer>
+    <h6 ng-click="displayOff()">Fermer</h6>
   </footer>
 </div>

@@ -2,7 +2,7 @@ var LeagueManager = angular.module('LeagueManager', ['ngRoute','restangular','ng
 
 //API REST
 LeagueManager.config(function (RestangularProvider) {
-	RestangularProvider.setBaseUrl('http://localhost:8888/epiphany-master/examples/database/');
+	RestangularProvider.setBaseUrl('http://localhost:8888/');
 });
 
 //Routage
@@ -19,6 +19,12 @@ LeagueManager.config(function ($routeProvider, RestangularProvider) {
 		controller: 'PresentationCtrl',
 		controllerUrl: 'controllers/presentation'
 	})
+	.when("/equipe/:ID", {
+		templateUrl: 'views/equipe.html',
+		controller: 'EquipeCtrl',
+		controllerUrl: 'controllers/equipe',
+		css: 'css/equipe.css'
+	})
   .when("/forum", {
     templateUrl: '/Forum/index.php'
   })
@@ -33,28 +39,25 @@ LeagueManager.config(function ($routeProvider, RestangularProvider) {
 LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 	$rootScope.subTitle = "le mag de la BBBL";
 
-		$http.get('resources/json/articles.json').then(function(result){
-	$rootScope.articles = result.data;
-
-});
+	$http.get('resources/json/articles.json').then(function(result){
+		$rootScope.articles = result.data;
+	});
 
 	$rootScope.goToPage = function(page) {
-        $location.path( page );
-    };
+			$('#LM_logo').removeAttr( 'style' );
 
+    $location.path( page );
+  };
 
 	$rootScope.randomArticle = function(categories){
 		//Récupération des articles en JSON (temporaire)
-			var selection = [];
-
-			for(i=0;i<$rootScope.articles.length;i++){
-				if($rootScope.articles[i].random == 1 && categories.indexOf($rootScope.articles[i].category) != -1){
-					selection.push($rootScope.articles[i]);
-				}
+		var selection = [];
+		for(i=0;i<$rootScope.articles.length;i++){
+			if($rootScope.articles[i].random == 1 && categories.indexOf($rootScope.articles[i].category) != -1){
+				selection.push($rootScope.articles[i]);
 			}
-			return selection[Math.floor(Math.random() * selection.length)];
-			};
-
-
+		}
+		return selection[Math.floor(Math.random() * selection.length)];
+	};
 
 });
