@@ -4,8 +4,11 @@
     "type": "project",
     "autoload": {
         "psr-0": {
-            "": "src/"
+            "": "src/", 
+            "SymfonyStandard": "app/",
+            "VotreNamespace": "chemin/vers/la/bibliotheque"
         }
+
     },
     "require": {
         "php": ">=5.3.3",
@@ -20,7 +23,8 @@
         "sensio/distribution-bundle": "~2.3",
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "sensio/generator-bundle": "~2.3",
-        "incenteev/composer-parameter-handler": "~2.0"
+        "incenteev/composer-parameter-handler": "~2.0",
+        "doctrine/doctrine-fixtures-bundle": "~2.2"
     },
     "scripts": {
         "post-install-cmd": [
