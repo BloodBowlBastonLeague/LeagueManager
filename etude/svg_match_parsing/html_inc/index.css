@@ -1,0 +1,614 @@
+﻿@font-face {
+
+  /*font-family: "Midnight";*/
+  font-family: "trump_town_proregular",Arial,"Helvetica CY",Helvetica,sans-serif;
+  font-size:14px;
+
+  src: url(Midnight.ttf) format("truetype");
+
+  	/*src: url('myfont-webfont.eot?#iefix') format('embedded-opentype'), 
+
+	     url('myfont-webfont.woff') format('woff'), 
+
+	     url('myfont-webfont.ttf')  format('truetype'),
+
+	     url('myfont-webfont.svg#svgFontName') format('svg');*/
+
+}
+
+/* GENERALITES */
+
+a{color:white;text-decoration:none;}
+
+a:hover{color:#E00000;}
+
+
+
+.logo32{width:32px;height:32px;}
+
+.logo64{width:64px;height:64px;}
+
+.logo128{width:128px;height:128px;}
+
+
+
+/* FIN GENERALITES */
+
+
+.cimetiere { background:url(http://bbbl.fr/img/fonds/krokmork.png) no-repeat; background-size: 229px 481px;min-height:481px;padding-left:229px; }
+.tombstone { display:table; float: left; max-width: 130px; max-height:161px; width: 130px; height:161px; 
+	background:url(http://bbbl.fr/img/fonds/tombstone.png) bottom center no-repeat; background-size: 130px 161px; }
+.tombstone.espoir { display:table; float: left; max-width: 130px; max-height:161px; width: 130px; height:161px; 
+	background:url(http://bbbl.fr/img/fonds/tombstone.png)  bottom center no-repeat; background-size: 130px 161px; }
+.tombstone.mineure { display:table; float: left; max-width: 130px; max-height:161px; width: 130px; height:161px; 
+	background:url(http://bbbl.fr/img/fonds/tombstone.png) bottom center no-repeat; background-size: 130px 161px; }
+.tombstone.majeure { display:table; float: left; max-width: 130px; max-height:161px; width: 130px; height:161px; 
+	background:url(http://bbbl.fr/img/fonds/tombstone.png) bottom center no-repeat; background-size: 130px 161px; }
+
+.epitaph { display:table-cell; font-size: 11px; vertical-align: top; padding:60px 15px  15px 20px; 
+	text-align: center; word-break:normal; }
+p.epitaph1 { font-size: 16px !important; color:#AD0000; text-shadow:-1px 0px 0px #000000; }	
+p.epitaph2 { font-size: 12px; color:#FFFFFF; text-shadow:-1px 0px 0px #000000;}
+
+
+/* TOOLPTIP */
+
+#tooltip{z-index:10;position:absolute;background-color:black;-moz-border-radius:3px;padding:5px;max-width:200px;background-color:#3B5998;color:white;font-size:12px;margin:-3px -3px 2px;padding:2px;border:2px solid #333333;display:none;}
+
+
+
+/* BODY */
+
+body{background-image:url("http://bbbl.fr/img/fonds/fondne10.jpg");background-attachment:fixed;font-family: "trump_town_proregular",Arial,"Helvetica CY",Helvetica,sans-serif;background-repeat:no-repeat;background-color:black;}
+
+#content h1{color:#FFFFFF;}
+
+/* HEADER */
+
+#header{width:1024px;height:115px;margin:auto;border:0px solid green;position:relative;z-index:11;}
+
+#logo_accueil{z-index:3;position:absolute;left:600px;}
+
+#matchs_news{width:635px;height:115px;background-image:url(http://bbbl.fr/img/fonds/matchs-news-fond.png);float:left;z-index:2;position:absolute;top:20px;}
+
+#matchs_news ul{margin:24px 35px;width:580px;height:62px;position:relative;overflow:hidden;white-space:nowrap;}
+
+#matchs_news li{position:relative;display:inline-block;height:64px;width:580px;color:white;text-align:center;padding:22px 0;}
+
+#matchs_news img.logo_team{position:absolute;width:64px;height:64px;}
+
+
+
+
+/* BARRE DE NAVIGATION */
+
+#page,#navigation{width:1000px;overflow:hidden;margin:auto;color:#FFFFFF;}
+
+#navigation{margin-bottom:0px;width:203px;height:730px;background:transparent no-repeat;position:absolute;background-image:url(http://bbbl.fr/img/fonds/menu-nav-fond.png);z-index:3;left:0px;padding-top:50px;}
+
+#navigation h1{height:40px;margin-top:20px;color:white;background:transparent url(http://bbbl.fr/img/fonds/fond_rubrique.png) no-repeat top left;font-size:20px;font-weight: bold;text-align:center;padding-top:10px;padding-right:20px}
+
+#navigation h2{background:transparent url(http://bbbl.fr/img/fonds/titre-nav-fond.png) no-repeat top left;width:121px;height:20px;margin-left:20px;color:white;padding-left:20px;}
+
+#navigation h2:hover{background:url(http://bbbl.fr/img/fonds/titre-nav-fond_select.png)}
+
+#mumble{
+
+padding:20px 5px;color:white;font-family: "trump_town_proregular",Arial,"Helvetica CY",Helvetica,sans-serif;background:transparent no-repeat top left;font-size:0px;;
+
+width:450px;
+
+height:20px;
+
+position:absolute;right:50px;bottom:-50px;z-index:2;overflow:hidden;
+
+}
+
+#mumble table,#mumble tbody,#mumble tr,#mumble td,#mumble div{display:inline;}
+
+
+
+#form_login{position:absolute;bottom:5px;left:10px;}
+
+#form_login label{width:60px;display:inline-block;color:white;}
+
+#form_login{/*width:176px;height:134px;*/width:136px;height:54px;background-image:url(http://bbbl.fr/img/fonds/login-fond.png);bottom:auto;left:auto;position:static;margin:auto;padding:40px 20px;text-align:center;}
+
+#form_login label{width:44px;display:inline-block;height:16px;padding-top:2px;;float:left;clear:both;font-size:12px;text-align:left;}
+
+#form_login input[type=text],#form_login input[type=password]{width:80px;height:12px;float:right;clear:right;}
+
+#form_login input[type=submit]{width:60px;margin-top:8px;/*float:right;*/}
+
+
+
+#msg_user{border:0px solid red;position:absolute;top:130px;left:220px;width:400px;height:58px;overflow:auto;background:transparent;z-index:3;display:none;}
+
+#msg_user_content ul{margin:3px;}
+
+#msg_user .error{color:red;}
+
+#msg_user .valid{color:green;}
+
+#msg_user .info{color:white;}
+
+#msg_user_debug{background-color:black;}
+
+/* MENU DE NAVIGATION */
+
+
+
+/* FIN BARRE DE NAVIGATION */
+
+
+
+/* PAGE */
+
+#page{border-left:1px solid black;padding-top:20px;padding-bottom:20px;position:relative;
+
+margin:auto;border-width:0;width:963px;min-height:730px;background-image:url(http://bbbl.fr/img/fonds/player-listing.png);margin-top:0px;}
+
+.bordure { position:absolute; }
+
+#border-top{left:20px;width:983px;top:120px;z-index:-1;height:20px;}
+
+#border-right{top:0px;right:0;z-index:3;height:100%;background:transparent url(http://bbbl.fr/img/fonds/border-right-fond.png) repeat top right;width:2px;}
+
+#border-left{top:0px;left:0;z-index:3;height:100%;background:transparent url(http://bbbl.fr/img/fonds/border-left-fond.png) repeat top right;width:2px;}
+
+#border-bottom{left:-20px;width:996px;bottom:-10px;z-index:4;}
+
+/* FIN PAGE */
+
+
+
+/* CONTENT */
+
+#content{position:relative;z-index:1;padding-top:60px;padding-left:40px;padding-right:40px;}
+
+#content h1{font-size:40px;text-align:center;}
+
+#content h2{font-size:28px;text-align:center;}
+
+#content h3{font-size:18px;font-weight:bold;text-decoration :underline;}
+
+#content h4{font-size:16px;font-weight:bold;color:red;}
+#content h5{font-size:16px;font-weight:bold; line-height: 20px;}
+
+
+/* FIN CONTENT */
+
+
+
+/* divers */
+
+.close{top:0;right:0;position:absolute;cursor:pointer;}
+
+/* déclencheur de tri */
+
+.sort{cursor:pointer;}
+
+
+
+/* tmp / à replacer */
+
+/* FOCUS DES ELEMENTS DE RECHERCHE */
+
+.focus>a{color:green;}
+
+
+
+/* TABLEAU DE TYPE 1 GENERIQUE */
+
+.divtype1{position:relative;}
+
+table.tabtype1{margin:10px auto;color:white;margin-top:32px;}
+
+table.tabtype1 tr{height:32px;}
+
+table.tabtype1 thead{}
+
+table.tabtype1 td{text-align:center;vertical-align:middle;padding:0 2px;}
+
+table.tabtype1 a{cursor:pointer;text-decoration:none;color:white;}
+
+table.tabtype1 a:hover{color:yellow;}
+
+/* FOND DE TABLEAU TYPE 1*/
+
+.fondtab1{position:absolute;z-index:-1;min-height:30px;}
+
+.fondbody1{position:absolute;z-index:-1;height:36px;}
+
+.fondtitle1{position:absolute;z-index:-2;}
+
+img.logo32{width:32px;height:32px;}
+
+
+
+/* TABLEAU DE TYPE 2 GENERIQUE */
+
+table.tabtype2 tr{border:1px solid blue;}
+
+
+
+/** TABLEAU DE CLASSEMENT */
+
+table.tabclassement{}
+
+table.tabclassement tr{height:28px;}
+
+table.tabclassement thead{}
+
+table.tabclassement th{vertical-align:bottom;}
+
+table.tabclassement th a{vertical-align:bottom;font-size:16px;}
+
+table.tabclassement .poulename{font-size:28px;padding-top:20px;}
+
+table.tabclassement td{}
+
+table.tabclassement td:nth-child(5),table.tabclassement td:nth-child(4){text-align:left;}
+
+
+.divclassement{background: transparent url(http://bbbl.fr/img/fonds/classement_fond.png) no-repeat center top; background-size:800px 450px;min-height:450px;}
+
+
+/** TABLEAU RECAPITULATIF DE MATCH */
+
+table.recapmatch{}
+
+table.recapmatch tr{}
+
+table.recapmatch td{}
+
+#divrecapmatch {background:transparent url(http://bbbl.fr/img/fonds/fond_match.png) no-repeat top center;}
+
+
+
+/** TABLEAU DE LISTE DES EQUIPES */
+
+table.tabequipes{}
+
+table.tabequipes td:nth-child(3),table.tabequipes td:nth-child(4){text-align:left;}
+
+
+
+/* TABLEAU DE STATS */
+
+.divtabstat{width:800px;margin:80px auto 200px auto;position:relative;}
+
+table.tabstat{border-collapse:collapse;border-spacing:0;border-width:0px;empty-cells:show;color:black;margin:30px auto;position:relative;}
+
+table.tabstat tr{height:32px;border-bottom:1px solid gray;}
+
+table.tabstat tr{color:#FFFFFF;}
+
+table.tabstat thead tr{border-bottom-width:0;}
+
+table.tabstat thead {border-bottom:1px solid gray;}
+
+table.tabstat th{}
+
+th.tabstat_titre {font-size:40px;position:relative;height:120px;color:#FFFFFF;}
+
+table.tabstat td{text-align:center;vertical-align:middle;white-space:nowrap;}
+
+table.tabstat td:nth-child(2){text-align:left;padding-left:2px;/*max-width:150px;overflow:hidden;*/} /* Nom du joueur*/
+
+
+
+.fondtabstat{position:absolute;z-index:-1;}
+
+
+
+.options_stats{position:absolute;top:20px;left:60px;z-index:1;}
+
+.options_stats img.cup{height:16px;cursor:pointer;}
+
+
+
+
+
+
+
+/* FIN TABLEAU DE STATS */
+
+
+
+/* TABLEAU DE HOF */
+
+div.hof_conteneur{display:inline-block;padding:30px 60px 0 20px;/*height:257px;*/overflow:hidden;position:relative;/*border:1px solid red;*/width:100%;}
+
+table.hof_list{color:white;min-width:300px;}
+
+table.hof_list tr{height:32px;}
+
+table.hof_list th{vertical-align:middle;font-family: "trump_town_proregular",Arial,"Helvetica CY",Helvetica,sans-serif;}
+
+table.hof_list td{text-align:left;vertical-align:middle;padding:0 4px;}
+
+table.hof_list .hof_title{/*font-weight:900;*/font-size:16px;padding-left:30px;/*font-variant: small-caps;*/font-family: "trump_town_proregular",Arial,"Helvetica CY",Helvetica,sans-serif;vertical-align:middle;text-align:left;}
+
+/* fleches hof */
+
+img.flc_hof_ha,img.flc_hof_ba{/*position:absolute;right:50px;*/cursor:pointer;}
+
+/*img.flc_hof_ha{top:67px;}
+
+img.flc_hof_ba{bottom:14px;}*/
+
+
+
+/* LISTE DES EQUIPES */
+
+table.listeequipes{}
+
+
+
+/* LISTE DES LIGUES */
+
+#tabligues td{text-align:left;padding-left:2px;}
+
+
+
+/* FORMULAIRE TYPE 1 GENERIQUE */
+
+.formtype1{display:block;padding:4px;color:white;width:400px;margin:10px auto;border:0px solid red;}
+
+.fondform{position:absolute;z-index:-1;}
+
+.formtype1 h1{text-align:center;}
+
+.formtype1 label{width:150px;display:inline-block;}
+
+
+
+/* PLAYER LISTING */
+
+.player_listing .phototeam {background:transparent url('http://bbbl.fr/img/fonds/team_defaut.png') no-repeat center;}
+
+.player_listing{width:900px;margin:0px auto;padding:0;position:relative;min-height:1000px;}
+
+.player_listing h1{margin-bottom:16px;font-size:40px;color:#440000;text-align:center;width:850px;position:relative;background:url(http://bbbl.fr/img/fonds/titre_equipe.png) no-repeat;min-height:100px;background-position: center;padding-top:60px;}
+
+.player_listing .photo_team{width:800px;/*height:340px;*/border:2px solid black;margin:0 auto;display:block;}
+
+.player_listing .fondtitleplayerlisting{position:absolute;z-index:-1;}
+
+.player_listing table{border:0px solid black;}
+
+.player_listing table th{background-color:black;color:white;padding:2px;vertical-align:middle;}
+
+.player_listing table td{padding:4px;vertical-align:middle;}
+
+img.edit_team{cursor:pointer;}
+.player_listing neednav2{}
+
+
+.player_listing table.tabplayer{width:850px;margin:10px auto;table-layout:fixed;background:url(http://bbbl.fr/img/fonds/fond_player.png) no-repeat;min-width:666px;min-height:425px;padding-left:5px;}
+
+/*.player_listing .tabplayer th{width:20px;}
+
+.player_listing .tabplayer th:nth-child(2),.player_listing .tabplayer th:nth-child(3){white-space:nowrap;width:auto;}
+
+.player_listing .tabplayer th:nth-child(8){font-size:10px;font-family: "trump_town_proregular",Arial,"Helvetica CY",Helvetica,sans-serif;width:auto;}*/
+
+
+
+.player_listing table.tabplayer tr{border:0px solid #481623;border-width:0px 0;}
+
+.player_listing table.tabplayer tr.visible:nth-child(odd){background-image:url('http://bbbl.fr/img/fonds/blanc-transparent.png');background-position:right top;}
+
+
+
+.player_listing table.tabplayer td{overflow:hidden;white-space:nowrap;}
+
+/* colonnes centrées */
+
+.player_listing .tabplayer td:nth-child(1),
+
+.player_listing .tabplayer td:nth-child(4),
+
+.player_listing .tabplayer td:nth-child(5),
+
+.player_listing .tabplayer td:nth-child(6),
+
+.player_listing .tabplayer td:nth-child(7),
+
+.player_listing .tabplayer td:nth-child(9),
+
+.player_listing .tabplayer td:nth-child(10),
+
+.player_listing .tabplayer td:nth-child(11),
+
+.player_listing .tabdatateam td:nth-child(3){text-align:center;}
+
+/*competences*/
+
+.player_listing .tabplayer td:nth-child(8){font-size:13px;/*font-family:tahoma;*/}
+
+/*poste*/
+
+.player_listing .tabplayer td:nth-child(2){padding:0px;}
+
+
+
+.comp_poste{color:#FFFFFF;}
+
+.comp_perso{color:#00960F;}
+
+.comp_blessure{color:#BC0000;}
+
+.player_listing table.tabplayer tr.blesse,.player_listing table.tabplayer tr.blesse:nth-child(odd){background:transparent url('http://bbbl.fr/img/fonds/blesse.png') no-repeat top right;}
+
+.player_listing table.tabplayer tr.fired,.player_listing table.tabplayer tr.fired:nth-child(odd){background:transparent url('http://bbbl.fr/img/fonds/fired.png') no-repeat top right;}
+
+.player_listing table.tabplayer tr.dead,.player_listing table.tabplayer tr.dead:nth-child(odd){background:transparent url('http://bbbl.fr/img/fonds/mort.png') no-repeat top right;}
+
+.upcarac{color:#00960F;}
+
+.downcarac{color:#BC0000;}
+
+img.edit_player{position:absolute;left:0;cursor:pointer;width:20px;}
+
+
+.tabinfoteam{width-max:900px;padding-left:200px;}
+
+
+
+/* FICHE JOUEUR */
+
+.carac{color:white;}
+
+/* FIN FICHE JOUEUR */
+
+
+
+
+
+/* Fleche de défilement player */
+
+.flc_haut{position:absolute;width:28px;margin-top:180px;cursor:pointer;}
+.flc_bas{position:absolute;width:28px;cursor:pointer;}
+
+
+
+/* DEBUG */
+
+pre{background-color:white;color:black;text-align:left;}
+
+/* TMP */
+
+.tmp_white{background-color:white;}
+
+
+
+
+
+
+
+/* CREATION DE SAISON */
+
+#fd_calendar{position:relative;margin:0 50px;}
+
+
+
+/* FORMULAIRES */
+
+.pop_form{display:none;position:fixed;top:50%;left:50%;width:380px;/*height:100px;*/margin-top:-40px;margin-left:-190px;border:1px solid #900000;background-color:#CCCCCC;opacity : 0.8;padding:16px;z-index:10;}
+
+legend{text-align:center;font-size:28px;}
+
+.pop_form label{width:90px;display:inline-block;}
+
+.pop_form input[type=text]{width:90px;}
+
+
+
+
+
+/* FEUILLE EQUIPE */
+
+#code_signature{margin:0 50px;font-family: "trump_town_proregular",Arial,"Helvetica CY",Helvetica,sans-serif;padding:20px;display:none;color:#000000;}
+
+
+
+#liste_matchs{width:850px;margin-left:100px;}
+
+#liste_matchs div.match{text-align:center;line-height:48px;padding:2px;margin:2px;display:inline-block;width:700px;background-image:none;background-size:700px 48px;}
+
+#liste_matchs img{width:48px;height:48px;vertical-align:middle;}
+
+#liste_matchs img.cup{float:left;}
+
+/*#liste_matchs img.team1{float:left;}
+
+#liste_matchs img.team2{float:right;}*/
+
+#liste_matchs a{font-size:20px;}
+
+#liste_matchs h2{font-size:24px;text-align:left;padding-top:30px;}
+
+
+
+/* CADRE POUR LA MAP */
+
+#cadre_map{position:relative;width:730px;height:400px;border:0px solid red;margin:auto;padding:10px;left:-100px;}
+
+
+
+/* LE SAVIEZ VOUS */
+
+#saviez_vous{width:300px;background:transparent;position:absolute;right:30px;height:268px;z-index:11;color:#000000;}
+
+
+
+/* CADRE D'INFORMATIONS */
+
+#cadre_info{position:relative;width:400px;height:268px;background:transparent url(http://bbbl.fr/img/fonds/accueil-info-fond.png) no-repeat top left;left:370px;top:0px;overflow:hidden;color:white;font-size:12px;}
+
+
+/* GESTION DES RECOMPENSES */
+
+.type_recompense{display:none;}
+
+.recompense{border:1px solid blue;display:inline-block;padding:3px;
+
+-webkit-border-radius: 5px;
+
+-moz-border-radius: 5px;
+
+border-radius: 5px;}
+
+/*.textrp{font-family: "trump_town_proregular",Arial,"Helvetica CY",Helvetica,sans-serif;background:transparent url(http://bbbl.fr/img/fonds/blanc-transparent2.png) repeat top left;margin-bottom:36px;}
+
+.textrp p{margin:10px;text-align:justify;}*/
+
+
+
+/* HISTOIRE BBBL, REGLES et BBCITY */
+
+.headerrp {background:transparent url(http://bbbl.fr/img/fonds/rp_header.png) no-repeat top left;background-size:850px 180px;width:850px;height:180px;color:#000000;}
+
+#content .headerrp h1 {font-size:50px;padding-top:70px;color:#000000;}
+
+#content .textrp h2 {font-size:30px;padding-left:20px;color:#000000;text-align:left;}
+
+.textrp {background:transparent url(http://bbbl.fr/img/fonds/rp_row.png) repeat-y top left;background-size:850px 180px;width:850px;color:#000000;padding-left:40px;}
+
+.textrp p{padding-right:80px;}
+
+.footerrp {background:transparent url(http://bbbl.fr/img/fonds/rp_footer.png) no-repeat top left;background-size:850px 166px;width:850px;height:166px;color:#000000;}
+
+
+
+/**/
+
+.comments_list{}
+
+.comments_list>li{border:1px dotted blue;position:relative;}
+
+.comments_list>li>.supp{bottom:0px;right:0px;position:absolute;}
+
+.comments_list>li>.modd{bottom:0px;right:10px;position:absolute;}
+
+
+/* NAVIGATION INTERNE */
+
+#navigation2{text-align:center;}
+
+#navigation2 li{display:inline-block;border:0px solid blue;cursor:pointer;}
+
+#navigation2 li a{font-size:14px;;color:#FFFFFF;}
+
+#navigation2 li a:hover{color:#FFFFFF;}
+
+.nav_button { display:table-cell; color:#ffffff; vertical-align: middle; width:135px; height:62px; background: url(http://bbbl.fr/img/boutons/bouton_onglet.png) center bottom no-repeat; }
+
+.nav_button_left { display:table-cell; color:#ffffff; vertical-align: middle; width:42px; height:62px; background: url(http://bbbl.fr/img/boutons/nav_left.png) center bottom no-repeat; }
+
+.nav_button_right { display:table-cell; color:#ffffff; vertical-align: middle; width:42px; height:62px; background: url(http://bbbl.fr/img/boutons/nav_right.png) center bottom no-repeat; }
+
+/* FIN NAVIGATION INTERNE */
+

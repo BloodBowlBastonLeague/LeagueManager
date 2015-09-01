@@ -5,11 +5,13 @@ require 'cli/CliColor.class.php';
 
 
 $dom = new DomDocument('1.0','utf-8');
+$dom->preserveWhiteSpace = false;
 $dom->formatOutput = true;
 $dom->load('files/test_match.xml');
 $replay = $dom->childNodes->item(0);
 
 $dom2 = new DomDocument('1.0','utf-8');
+$dom->preserveWhiteSpace = false;
 $dom2->formatOutput = true;
 $dom2->appendChild(a($replay,$dom2));
 // a($replay);

@@ -7,6 +7,7 @@ require 'cli/CliColor.class.php';
 
 
 $dom = new DomDocument('1.0','utf-8');
+$dom->preserveWhiteSpace = false;
 $dom->load('files/test_match.xml');
 
 $replay = $dom->childNodes->item(0);
@@ -38,7 +39,7 @@ foreach ($replay->childNodes as $replay_step) {
         if (!empty($coaches_infos)) {
             print "\t\t".$coaches_infos->nodeName."\n";
 
-
+                                                                                                                                                                                                                                                                                                                                                                
 
             foreach ($coaches_infos->childNodes as $node) {
                 print "\t\t\t".$node->nodeName."\n";
