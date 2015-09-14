@@ -1,0 +1,16 @@
+bbbl_league_manager_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: BBBLLeagueManagerBundle:Default:index }
+
+bbbl_league_manager_match_id:
+    path: /match/{id}
+    defaults: { _controller: BBBLLeagueManagerBundle:Match:show }
+    requirements:
+        id:   \d+
+
+bbbl_league_manager_match_xml:
+    path: /match/{format}/{id}
+    defaults: { _controller: BBBLLeagueManagerBundle:Match:show,format:xml }
+    requirements:
+        id:   \d+
+        _format: xml
