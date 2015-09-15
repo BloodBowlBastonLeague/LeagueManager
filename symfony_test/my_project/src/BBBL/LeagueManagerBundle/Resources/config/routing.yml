@@ -13,4 +13,10 @@ bbbl_league_manager_match_xml:
     defaults: { _controller: BBBLLeagueManagerBundle:Match:show,format:xml }
     requirements:
         id:   \d+
-        _format: xml
+        format: xml
+
+bbbl_league_manager_match_bbrz:
+    path: /match/{filename}.{format}
+    defaults: { _controller: BBBLLeagueManagerBundle:Match:show,format:bbrz }
+    requirements:
+        format: bbrz
