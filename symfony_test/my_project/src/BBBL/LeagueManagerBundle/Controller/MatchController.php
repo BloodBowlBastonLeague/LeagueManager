@@ -14,11 +14,7 @@ class MatchController extends Controller
     public function showAction($id = null,$format = null,$filename = null)
     {
         $uploaddir = './tmp/';
-        if (is_null($format)) {
-            $a = array('id' => $id,'pif','paf','pouff','melon');
-        } else {
-            $a = array('id' => $id,'pif','paf','pouff','pastèque');
-        }
+        
         if (!is_null($filename)) {
             $a['filename'] = $filename.'.'.$format;
             $a['path'] = $uploaddir.$filename.'.'.$format;

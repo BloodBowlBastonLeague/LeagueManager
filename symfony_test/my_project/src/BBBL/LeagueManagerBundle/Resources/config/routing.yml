@@ -1,3 +1,7 @@
+bbbl_league_manager_test:
+    path:     /test
+    defaults: { _controller: BBBLLeagueManagerBundle:Default:test01 }
+
 bbbl_league_manager_homepage:
     path:     /hello/{name}
     defaults: { _controller: BBBLLeagueManagerBundle:Default:index }
