@@ -1,9 +1,10 @@
-.standing { width:auto; margin:20px 5vw; padding:10px 1vw; background: rgba(0, 0, 0, 0.75);; border-radius: 3px; border-bottom: 2px solid #00558D; color:#0191FF; font-size: 14px;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
+.standing { width:auto; margin:20px 0 20px 5vw !important; padding:10px 1vw !important; background: rgba(0, 0, 0, 0.75);; border-radius: 3px 0 0 3px !important; border-left: 2px solid #00558D; color:#0191FF; font-size: 14px;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
 .standing > table { width: 100%; cursor: pointer; text-align: center}
-.standing > table > tbody > tr { height: 18px; border-top: 0.5px solid rgba(1, 155, 255, 0.5);; }
+.standing > table > tbody > tr { height: 18px; border-bottom: 1px solid rgba(1, 155, 255, 0.5); }
 
 article > p > img { width: 10vw;}
 #randomUne0 > img { width: 20vw;}
 
-#LM_logo { position: fixed; top: 10px; left: 3vw; cursor: pointer; height:250px; width: 14vw;transition: all .3s}
-.annonce { margin-top: 200px;}
+#LM_logo { position: fixed; top: 10px; left: 3vw; cursor: pointer; height:250px; width: 14vw; }
+.annonce { margin-top: 200px; }
+#LM_title { text-indent: 20vw; }

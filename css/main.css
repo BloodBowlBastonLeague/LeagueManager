@@ -22,6 +22,7 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	overflow: hidden;
+	border-color: inherit;
 }
 
 /* HTML5 display-role reset for older browsers */
@@ -49,29 +50,30 @@ table {
 	color: #ffffff;
 	font-family:'Hind';
 }
+form { font-family:'Hind'; }
 * { box-sizing: border-box; }
 
 /*--- Text ---*/
 h1 { font-family: 'Play'; font-size: 40px; line-height: 50px; font-weight: 700;
 color: #ffffff; margin:0;padding: 0;}
-h2 { font-family: 'Play'; font-size: 20px; line-height: 24px; font-weight: 400; color:#ffffff; text-align: center; cursor: pointer; border-top: 1px solid #0191FF;padding-top: 5px;}
+h2 { font-family: 'Play'; font-size: 20px; line-height: 24px; font-weight: 400; text-align: center; cursor: pointer; border-top: 1px solid #0191FF;padding-top: 5px;}
 h3 { font-family: 'Play'; font-size: 26px; line-height: 30px; font-weight: 700;}
 h4 { font-family: 'Play'; font-size: 36px; line-height: 46px; font-weight: 400;margin: 0 0 10px 0;color:#F68525;}
 h5 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; text-align: left;color: #0191FF ; cursor: pointer; padding: 0 0 5px;}
-h6 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; text-align: right;color: #0191FF ; cursor: pointer; margin-bottom: 10px;}
+h6 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; cursor: pointer; margin-bottom: 10px;}
 p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc;}
 
-#LM_logo { position:fixed; top:0px; left: 2vw; height: 90px; width: 90px; cursor: pointer; background: url(../resources/img/BBBL2.png) center center no-repeat; background-size:contain;transition: all .3s}
+#LM_logo { position:fixed; top:0px; left: 2vw; height: 90px; width: 90px; cursor: pointer; background: url(../resources/img/BBBL2.png) center center no-repeat; background-size:contain;}
 #LM_intro { position:relative; width:100vw; height:18px; background:#000000; font-size: 12px;box-sizing: border-box; line-height: 18px;text-align:center; font-family:'Hind'; font-size: 14	px;  color:#f1f1f1; z-index:2;}
 #LM_navbar { position:relative; top:0px; width:100vw; height:50px; line-height: 50px; color:#ffffff; z-index:2;
-	background: -webkit-linear-gradient(#0191FF,#000000); /* For Safari 5.1 to 6.0 */
-	background: -moz-linear-gradient(#0191FF,#000000); /* For Firefox 3.6 to 15 */
-	background: linear-gradient(#0191FF,#000000); /* Standard syntax */}
+	background: -webkit-linear-gradient(#0191FF,#000000); /
+	background: -moz-linear-gradient(#0191FF,#000000);
+	background: linear-gradient(#0191FF,#000000); }
 /*	#home { height: inherit; background: url('img/Home.png') center center no-repeat; background-size: 25px auto; cursor: pointer;}*/
-	#LM_title {height:inherit; }
+	#LM_title { height:inherit; text-indent: 120px; }
 	nav { height:inherit;}
 	nav > ul {height:inherit; line-height: 50px;}
-	nav > ul > li { font-family: 'Play'; height:50px; padding: 0 1vw; border-left: 1px solid #000000; display:inline-block; cursor: pointer;}
+	nav > ul > li { font-family: 'Play'; height:50px; padding: 0 1vw; border-left: 1px solid #000000 !important; display:inline-block; cursor: pointer;}
 	nav > ul > li > a { text-decoration: none; color: #ffffff;}
 
 @media screen and (min-width: 1025px) {
@@ -82,7 +84,15 @@ p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify;
 	nav > ul > li > a > span { height: 25px; width: auto; display: none;}
 }
 
-#main { position:relative; width:100vw; height:100vh;  z-index:0; display: table;}
+@media screen and (min-width: 1280px) {
+.min1280 { }
+
+}
+@media screen and (max-width: 1279px) {
+.min1280 { display:none; }
+}
+
+#main { position:relative; width:100vw; height:calc(100vh - 68px);  z-index:0; display: table;}
 .scroll {overflow: auto;}
 .link {cursor: pointer;}
 .panel {height: calc(100vh - 68px); margin: 0px 0px 50px; overflow-y: auto;}
@@ -94,32 +104,57 @@ p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify;
 .panel.center > article {margin-left: 2.5vw !important;margin-right: 2.5vw !important;}
 
 .annonce > h3 { color:#F68525; }
-article.random > h3 { color:#F68525 !important; }
-article.random > h6 { color:#F68525 !important; }
+
 
 	.title { margin:20px 5vw ; padding:10px 2vw; background: rgba(0, 0, 0, 0.75);  border: 1px solid #00558D; text-align: center; color: #0191FF;}
-	article { margin:20px 5vw; padding:10px 2vw; background: rgba(0, 0, 0, 0.75); border-radius: 3px; border-bottom: 2px solid #0191FF; box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
-	article > h3 {color: #0191FF; margin-bottom: 10px; }
-	article > h6 {color: #0191FF; cursor: pointer;}
+	article { margin:20px 5vw; padding:10px 2vw; background: rgba(0, 0, 0, 0.75); border-radius: 3px; border-bottom: 2px solid; border-color:inherit; box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
+	.panel > div { margin:20px 5vw; padding:10px 2vw; background: rgba(0, 0, 0, 0.75); border-radius: 3px; border-bottom: 2px solid inherit; box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
+
+	article > h3 { margin-bottom: 10px; }
+	article > h6 { cursor: pointer; text-align: right;}
+
+	/* Chatbox */
+		.chatbbbl { margin:20px 5vw; padding:10px 2vw; background: rgba(0, 0, 0, 0.75); border-radius: 3px; border-bottom: 2px solid #0191FF; box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9); color:#ffffff;}
+
+		.chatbox {
+	    font-family: Lato;
+	    width: 100%;
+	    height: 20em;
+	    margin-top: 6px;
+	    overflow: scroll;
+			color: #000000;
+	}
+	.well {
+	    min-height: 20px;
+	    padding: 19px;
+	    margin-bottom: 20px;
+	    background-color: #F5F5F5;
+	    border: 1px solid #E3E3E3;
+	    border-radius: 4px;
+	    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05) inset;
+	}
 
 
 /*--- Div ---*/
-.button { display: inline-block; background: #F68525; font-family:'Hind'; font-size: 26px; line-height: 28px; padding:5px 1.5vw; color:#f1f1f1;border-radius: 3px;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
+.button { display: inline-block; background: #F68525; font-family:'Hind'; font-size: 26px; line-height: 28px; padding:5px 1.5vw;  color:#f1f1f1; border-radius: 3px; box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9); cursor: pointer; border:0;}
+input[type='submit'] { display: inline-block; background: #F68525; font-family:'Hind'; font-size: 26px; line-height: 28px; padding:5px 1.5vw; margin-bottom: 15px !important; color:#f1f1f1; border-radius: 3px; box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9); cursor: pointer;}
 .button.small {font-size: 16px; line-height: 22px;}
 
-.random { background: rgba(50, 50, 50, 0.85); border-bottom: 2px solid #F68525; border-radius: 0 0 3px 3px;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
+.random { background: rgba(50, 50, 50, 0.85); border-bottom: 2px solid; border-radius: 0 0 3px 3px;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9);}
 .random.main { display:inline-block; height:auto;}
 .random.side { display:inline-block; height:240px;width: calc(100% - 60px); margin:20px; background: #333333; border-bottom: 2px solid #F68525; border-radius: 0 0 3px 3px; box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.9); cursor: pointer;}
 .random.side > .image { height: 120px; width: 100%;}
 .random.side > .text { height: 120px; width: 100%; padding:20px 2vw;}
 
-.random > h6 { color:#F68525; }
+.random > h6 { color:#F68525; text-align: right; }
 .random > p { color:#FFFFFF; }
 .annonce { display:inline-block; height:auto; margin:20px; padding:10px; background:transparent;}
 .annonce > p { font-size: 18px; line-height: 22px; margin:20px 0;}
 
+.carte { cursor: pointer; }
+
 .left { float: left; display:inline-block; padding-right:10px; }
-.tleft {text-align: left !important;}
+.tleft {padding-left: 5px; text-align: left !important;}
 .text-cutter { white-space: nowrap; text-overflow:ellipsis; overflow:hidden;  -ms-word-wrap: break-word; -webkit-word-wrap: break-word; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; }
 
 #bottom { width:100vw; height:168px; position:fixed; top:600px; left: 0px; }
@@ -187,8 +222,14 @@ article.random > h6 { color:#F68525 !important; }
 .hd-35 { width:35vw !important; display:table-cell;}
 .hd-40 { width:40vw !important; display:table-cell; }
 .hd-45 { width:45vw !important; display:table-cell;}
+.hd-45 > .panel > div {width:37.5vw;}
+.hd-45 > .panel > article {width:37.5vw;}
 .hd-50 { width:50vw !important; display:table-cell;}
+.hd-50 > .panel > div {width:42.5vw;}
+.hd-50 > .panel > article {width:42.5vw;}
 .hd-55 { width:55vw !important; display:table-cell;}
+.hd-55 > .panel > div {width:47.5vw;}
+.hd-55 > .panel > article {width:47.5vw;}
 .hd-60 { width:60vw !important; display:table-cell; }
 .hd-65 { width:65vw !important; display:table-cell; }
 .hd-70 { width:70vw !important; display:table-cell; }

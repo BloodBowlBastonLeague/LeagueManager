@@ -1,6 +1,10 @@
 LeagueManager.controller('EquipeCtrl', function($scope, $rootScope, $http, $timeout, Restangular, $routeParams) {
 	//LM_logo
-	$('#LM_logo').css({"width":"70px", "height":"70px", "top":"10px", "background": "url(resources/img/teams/team"+$routeParams.ID+".png) center center no-repeat", "background-size":"contain"})
+	$('#LM_logo').css({"background": "url(resources/img/teams/logo"+$routeParams.ID+".png) center center no-repeat", "background-size":"contain"})
+	$('#teamPhoto').css({"background": "url(resources/img/teams/photo"+$routeParams.ID+".png) center center no-repeat", "background-size":"cover"})
+	$scope.activePlayer = false;
+
+
 	//Récupération du classement en JSON (temporaire)
 	$http.get('resources/json/team.json').then(function(result){
 
@@ -8,10 +12,10 @@ LeagueManager.controller('EquipeCtrl', function($scope, $rootScope, $http, $time
 		//à supprimer et mettre dans le chemin de l'API
 		$scope.teamID = $scope.teams.map(function(e) { return e.teamID; }).indexOf($routeParams.ID);
 		$scope.team = $scope.teams[$scope.teamID];
-		$rootScope.subTitle = $scope.team.name;
+		$rootScope.title = $scope.team.name;
 		$scope.team.pop = [];
+    $rootScope.setColors($scope.team.color1,$scope.team.color1,$scope.team.color2);
 
-		//Fin de suppression
 		for(i=0;i<$scope.team.fame;i++){ $scope.team.pop.push(i); }
 
 		$scope.teamArticle();
@@ -29,6 +33,19 @@ LeagueManager.controller('EquipeCtrl', function($scope, $rootScope, $http, $time
 			}
 		}
 
+	};
+
+	$scope.showPlayer = function(id){
+		console.log(id)
+		if(id){
+			$scope.activePlayer = true;
+			id = $scope.team.players.map(function(e) { return e.number; }).indexOf(id);
+			$scope.player = $scope.team.players[id];
+		}
+		else{
+			$scope.activePlayer = false;
+
+		}
 	};
 
 });

@@ -1,4 +1,6 @@
 LeagueManager.controller('CompetitionCtrl', function($scope, $rootScope, $http, $timeout, Restangular, $routeParams) {
+	$rootScope.resetLogo();
+	$rootScope.setColors($rootScope.colorA,$rootScope.colorB,$rootScope.colorC);
 
 	//Récupération du classement en JSON (temporaire)
 	$http.get('resources/json/standing.json').then(function(result){
@@ -6,7 +8,7 @@ LeagueManager.controller('CompetitionCtrl', function($scope, $rootScope, $http, 
 		//à supprimer et mettre dans le chemin de l'API
 		$scope.division = $scope.standing.map(function(e) { return e.divisionID; }).indexOf($routeParams.ID);
 		$scope.random = $rootScope.randomArticle([$scope.standing[$scope.division].name]);
-		$rootScope.subTitle = "Division " + $scope.standing[$scope.division].name;
+		$rootScope.title = "Division " + $scope.standing[$scope.division].name;
 		$scope.standing = $scope.standing[$scope.division].standing;
 
 		//Fin de suppression
