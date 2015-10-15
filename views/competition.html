@@ -1,6 +1,6 @@
   <div class="hd-55 y-top">
     <div class="panel left">
-      <div class="standing">
+      <div class="standing" ng-style="color1">
         <h3>Classement</h3>
         <table>
           <thead>
@@ -19,7 +19,7 @@
           <tbody>
             <tr ng-repeat="(key,row) in standing" ng-class="{gold: key+1 == 1, silver: key+1 == 2, bronze: key+1 == 3, relegated: key+1 > 9}">
               <td>{{key+1}}</td>
-              <td class="tleft link" ng-click="goToPage('equipe/'+row.idteam)"><img class="teamLogo" src="resources/img/teams/team{{row.idteam}}.png"> {{row.Equipe}}</td>
+              <td class="tleft link" ng-click="goToPage('equipe/'+row.idteam)"><img class="teamLogo" src="resources/img/teams/minilogo{{row.idteam}}.png"> {{row.Equipe}}</td>
               <td class="tleft">{{row.Coach}}</td>
               <td>{{row.Pts}}</td>
               <td>{{row.V}}</td>
@@ -31,7 +31,7 @@
           </tbody>
         </table>
       </div>
-      <article id="random" class="random">
+      <article id="random" class="random" ng-style="color2">
         <h3 ng-bind-html="random.title"></h3>
         <p><img ng-if="random.image==1" class="left"  src="resources/img/articles/article_{{random.article_id}}.jpg"/>
         <span ng-bind-html="random.summary"></span></p>
@@ -46,10 +46,10 @@
         <h3>Journée {{day.journee}}</h3>
         <div class="match x-center">
           <div class="vs" ng-repeat="match in day.matchs">
-            <img class="teamLogo" src="resources/img/teams/team{{match.idteam1}}.png">
+            <img class="teamLogo" src="resources/img/teams/minilogo{{match.idteam1}}.png">
             <span ng-if="match.score1.length==0"> VS </span>
             <span ng-if="match.score1.length>0"> {{match.score1}} - {{match.score2}} </span>
-            <img class="teamLogo" src="resources/img/teams/team{{match.idteam2}}.png">
+            <img class="teamLogo" src="resources/img/teams/minilogo{{match.idteam2}}.png">
           </div>
         </div>
       </div>

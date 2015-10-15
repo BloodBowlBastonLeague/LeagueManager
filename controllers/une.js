@@ -1,6 +1,8 @@
 LeagueManager.controller('UneCtrl', function($scope, $rootScope, $http, $timeout, Restangular) {
+	$rootScope.resetLogo();
+	$rootScope.setColors($rootScope.colorA,$rootScope.colorB,$rootScope.colorC);
 
-	$rootScope.subTitle = "le mag de la BBBL";
+	$rootScope.title = "Tribunes - le mag de la BBBL";
 	//Récupération du classement en JSON (temporaire)
 	$http.get('resources/json/standing.json').then(function(result){
 		$scope.standing = result.data;

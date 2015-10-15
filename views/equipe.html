@@ -1,13 +1,13 @@
 <div class="hd-55 y-top">
   <div class="panel left">
-    <div class="players">
+    <div id="players" ng-style="color1">
       <h3>Joueurs</h3>
       <table>
         <thead>
           <tr>
             <th>N&#176;</th>
-            <th class="tleft hd-15">Joueur</th>
-            <th class="tleft hd-5">Position</th>
+            <th class="tleft hd-20">Joueur</th>
+            <th class="tleft min1280  position">Position</th>
             <th>M</th>
             <th>F</th>
             <th>Ag</th>
@@ -20,8 +20,8 @@
         <tbody>
           <tr ng-repeat="row in team.players">
             <td>{{row.number}}</td>
-            <td class="tleft text-cutter">{{row.name}}</td>
-            <td class="tleft text-cutter">{{row.title}}</td>
+            <td class="tleft text-cutter" ng-click="showPlayer(row.number)">{{row.name}}</td>
+            <td class="tleft min1280 text-cutter">{{row.title}}</td>
             <td>{{row.MA}}</td>
             <td>{{row.ST}}</td>
             <td>{{row.AG}}</td>
@@ -33,35 +33,40 @@
         </tbody>
       </table>
     </div>
-    <article id="profile" class="random">
-      <div id="fame" class="emphase" >
-            <div ng-repeat="i in team.pop" class="star">&#9733;</div><br/>
-            <h3>TV {{team.value}}</h3>
-          </div>
-      <h3>{{team.roster}}</h3>
-      <ul class="teamDetails">
-        <li>coaché par <span class="emphase">{{team.coach}}</span></li>
-        <li class="emphase" ng-click="goToPage('competition/0')">6e Division Espoir</li>
+    <article id="profile" class="random profile" ng-if="!activePlayer" ng-style="color2">
+
+        <div id="fame" ng-style="color2">
+          <div ng-repeat="i in team.pop" class="star">&#9733;</div><br/>
+          <h3>TV {{team.value}}</h3>
+          <h3>{{team.treasury}} PO</h3>
+
+        </div>
+        <h3 ng-style="color2">{{team.roster}}</h3>
+        <ul class="teamDetails">
+          <li>coaché par <span  ng-style="color2">{{team.coach}}</span></li>
+          <li  ng-style="color2" ng-click="goToPage('competition/0')">6e Division Espoir</li>
+        </ul>
         <br/>
-        <li ng-if="team.reroll>0">{{team.reroll}} relance<span ng-if="team.reroll>1">s</span></li>
-        <li ng-if="team.apothecary>0">{{team.apothecary}} apoticaire</li>
-        <li ng-if="team.cheerleader>0">{{team.cheerleader}} pom-pom girl<span ng-if="team.cheerleader>1">s</span></li>
-        <li ng-if="team.assistant>0">{{team.assistant}} assistant<span ng-if="team.cheerleader>1">s</span></li>
-      </ul>
-      <h6>"{{team.moto}}"</h6>
+        <ul class="teamDetails col2">
+          <li ng-if="team.reroll>0">{{team.reroll}} relance<span ng-if="team.reroll>1">s</span></li>
+          <li ng-if="team.apothecary>0">{{team.apothecary}} apoticaire</li>
+          <li ng-if="team.cheerleader>0">{{team.cheerleader}} pom-pom girl<span ng-if="team.cheerleader>1">s</span></li>
+          <li ng-if="team.assistant>0">{{team.assistant}} assistant<span ng-if="team.cheerleader>1">s</span></li>
+        </ul>
+        <h6 ng-style="color2">"{{team.moto}}"</h6>
+
+
+    </article>
+    <article id="playerProfile" class="random profile" ng-if="activePlayer" >
+      <div class=""><img src=""></div>
+      <h3 ng-style="color2" >{{player.name}}</h3>
     </article>
   </div>
 </div>
 <div class="hd-45 y-top">
   <div class="panel right scroll">
-    <article id="random" class="random">
-      <h3>Dernier match</h3>
-      <p></p>
-      <h6 ng-click="displayReader(random.article_id)">En savoir plus...</h6>
-      <h6 ng-click="displayReader(random.article_id)">Voir le calendrier</h6>
-
-    </article>
-    <article ng-repeat="article in team.articles | orderBy:'-publishedOn'" id="chapter{{day.journee}}" class="chapter">
+    <div id="teamPhoto" ng-style="color2"></div>
+    <article ng-repeat="article in team.articles | orderBy:'-publishedOn'" id="chapter{{day.journee}}" ng-style="color1">
       <div class="articleDate">{{article.publishedOn|date:'d MMM yyyy'}}</div>
       <h3 ng-bind-html="article.title"></h3>
         <p ng-bind-html="article.summary"></p>

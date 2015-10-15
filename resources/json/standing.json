@@ -5,15 +5,15 @@
     "name":"Elite",
     "standing":[
       {"idteam":"232","Equipe":"Les Miraculés","Coach":"Voodoo","Pts":"10","V":"3","N":"1","D":"1","TD":"5","S":"8"},
-      {"idteam":"176","Equipe":"Fluide Glacial BBClub","Coach":"RelaxMax","Pts":"9","V":"3","N":"0","D":"0","TD":"5","S":"3"},
+      {"idteam":"176","Equipe":"Unseen University Wizards","Coach":"RelaxMax","Pts":"9","V":"3","N":"0","D":"0","TD":"5","S":"3"},
       {"idteam":"233","Equipe":"Mercenaires de Daligar","Coach":"Rankstail","Pts":"8","V":"2","N":"2","D":"0","TD":"3","S":"-11"},
-      {"idteam":"238","Equipe":"Les Déplumeurs","Coach":"Ignatt","Pts":"7","V":"2","N":"1","D":"0","TD":"5","S":"13"},
+      {"idteam":"238","Equipe":"Les Cheatés","Coach":"Ignatt","Pts":"7","V":"2","N":"1","D":"0","TD":"5","S":"13"},
       {"idteam":"227","Equipe":"O.U.R.S.S.","Coach":"Marcus miragos","Pts":"7","V":"2","N":"1","D":"2","TD":"1","S":"-5"},
       {"idteam":"210","Equipe":"Les Sombréros de l'amer","Coach":"Ashrame","Pts":"7","V":"2","N":"1","D":"2","TD":"-1","S":"-4"},
       {"idteam":"223","Equipe":"Ah Push","Coach":"Ducky27","Pts":"6","V":"2","N":"0","D":"3","TD":"-2","S":"-12"},
       {"idteam":"219","Equipe":"Petits Sagouins Graisseux","Coach":"ZeCid","Pts":"5","V":"1","N":"2","D":"2","TD":"-2","S":"7"},
       {"idteam":"212","Equipe":"Orcs on the Rocs","Coach":"Unelegant Slayer","Pts":"4","V":"1","N":"1","D":"1","TD":"0","S":"2"},
-      {"idteam":"209","Equipe":"Les Bulles Doseurs","Coach":"Oligunar","Pts":"4","V":"1","N":"1","D":"2","TD":"-2","S":"11"},
+      {"idteam":"209","Equipe":"Skav 4 Ever","Coach":"Docteur Z","Pts":"4","V":"1","N":"1","D":"2","TD":"-2","S":"11"},
       {"idteam":"206","Equipe":"New-Orc Highlanders","Coach":"Elenalcar","Pts":"3","V":"1","N":"0","D":"4","TD":"-7","S":"-9"},
       {"idteam":"208","Equipe":"Pestes et choléra","Coach":"Elender","Pts":"2","V":"0","N":"2","D":"3","TD":"-5","S":"-3"}
     ]

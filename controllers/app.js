@@ -37,7 +37,7 @@ LeagueManager.config(function ($routeProvider, RestangularProvider) {
 });
 
 LeagueManager.run(function($rootScope, $http, $location, $timeout) {
-	$rootScope.subTitle = "le mag de la BBBL";
+	$rootScope.title = "le mag de la BBBL";
 
 	$http.get('resources/json/articles.json').then(function(result){
 		$rootScope.articles = result.data;
@@ -58,6 +58,19 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 			}
 		}
 		return selection[Math.floor(Math.random() * selection.length)];
+	};
+	$rootScope.resetLogo = function(){
+			$('#LM_logo').css({"background": "url(resources/img/BBBL2.png) center center no-repeat", "background-size":"contain"})
+	};
+
+	$rootScope.colorA = "#0191FF";
+	$rootScope.colorB = "#00558D";
+	$rootScope.colorC = "#F68525";
+	$rootScope.setColors = function(colorA,colorB,colorC){
+		$rootScope.color1 = { 'color': colorA, 'border-color':colorB } ;
+		$rootScope.color2 = { 'color': colorC, 'border-color':colorC } ;
+		$rootScope.color2bg = { 'background-color':colorC } ;
+		$('#LM_navbar').css({'background': '-webkit-linear-gradient('+colorA+',#000000)', 'background': '-moz-linear-gradient('+colorA+',#000000)', 'background': 'linear-gradient('+colorA+',#000000)' });
 	};
 
 });
