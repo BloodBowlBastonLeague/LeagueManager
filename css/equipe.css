@@ -1,0 +1,33 @@
+
+
+#players { max-height:479px; margin:20px 5vw; padding:10px 2vw; background: rgba(0, 0, 0, 0.75);; border-radius: 3px; border-bottom: 2px solid; border-color:inherit;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9); overflow-y: auto;}
+#players > table { width: 100%; color:#FFFFFF}
+#players > table > tbody > tr { height: 28px; border-top: 0.5px solid; border-color: inherit; color:inherit}
+#players > table > thead > tr > th { line-height: 28px;padding: 0 5px; text-align: center; color: inherit}
+#players > table > tbody > tr > td { line-height: 28px;padding: 0 5px; text-align: center; color: #FFFFFF;}
+
+.core { background: #ffffff;}
+
+
+#fame {float: right; display: inline-block; text-align: right;}
+#random > h6 {cursor: auto !important;}
+
+
+#profile {height:200px; color:#FFFFFF;}
+
+.star { font-size: 30px;  line-height: 30px;  display: inline-block;
+    -ms-transform: rotate(-10deg);
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg); }
+.teamDetails {color:#FFFFFF; padding-left:18px; overflow:hidden;}
+.teamDetails > li { line-height:24px; }
+.teamDetails.col2 { width:100%; }
+.teamDetails.col2 > li { width:40%; float:left; display:inline; }
+
+#playerProfile{}
+
+
+#teamPhoto { height:21.875vw; border-bottom: 2px solid;}
+
+.articleDate { float:right; display: inline-block; line-height: 40px;}
+#LM_logo { width:70px; height:70px; top:10px;}

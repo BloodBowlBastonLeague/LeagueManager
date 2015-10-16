@@ -1,0 +1,19 @@
+#veil{ position:fixed; background: rgba(0,0,0,0.9); width:100vw; height:calc(100vh - 50px); top:50px; z-index:4; overflow:none;}
+.container { position:fixed; margin:50px 10vw; padding:0 2vw; width:80vw; max-height:calc(100vh - 150px); top:50px; z-index:5; background: rgba(50,50,50,0.85); overflow:none; color: #F68525; border-radius: 5px;
+box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.75);
+padding: 1vh 2vw 0px;
+border-bottom: 2px solid #F68525; }
+
+.container > article { margin:0; padding:0; max-height:calc(100vh - 268px); background: none; border:none; overflow: auto; box-shadow: none;}
+.container > article > img { float:left; padding:0 20px 10px 0; }
+
+.container > footer > h2 { margin: 5px 0px; text-align: center; cursor: pointer; border-top: 1px solid #F68525; color:#F68525;}
+.container > .close { position: absolute; right: 2vw; cursor: pointer; }
+
+#newsfeed { width:100vw; height:50px; background: #000000;}
+
+#connect { width:20vw; min-width:216px; margin:50px 40vw; text-align: center !important; line-height: 30px; }
+#connect > form > .button { margin:10px 0; width:150px }
+#connect > form > input['text'] {  width:150px }
+
+.blur { color: transparent !important; text-shadow: 0 0 2px rgba(0,0,0,0.75); }
