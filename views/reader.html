@@ -1,0 +1,32 @@
+<div id="veil" ng-show="reader || connector" ng-click="displayOff()"></div>
+<div id="reader" class="container" ng-show="reader" ng-click="" ng-style="color2">
+  <div class="close" ng-click="displayReader()"><h3 ng-style="color2">X</h3></div>
+
+  <article ng-click="">
+    <h3 ng-bind-html="article.title" ng-style="color2"></h3>
+    <img ng-if="article.image == 1" src="resources/img/articles/article_{{article.article_id}}.jpg">
+    <p ng-bind-html="article.text"></p>
+  </article>
+
+  <footer>
+    <h2 ng-click="displayReader()" ng-style="color2">Fermer</h2>
+  </footer>
+</div>
+
+<div id="connect" class="container" ng-show="connector" ng-click="" ng-style="color2">
+  <header>
+    <h3 ng-style="color2">Connexion</h3>
+  </header>
+  <form id="forumConnect" action="Forum/ucp.php?mode=login" accept-charset='UTF-8' method='post' ng-style="color2">
+    Nom d'utilisateur<br/>
+    <input type="text" name="username"><br/>
+    Mot de passe<br/>
+    <input type="password" name="password"><br/>
+    <input type="checkbox" name="autologin" /> Se souvenir de moi<br/>
+    <input type="hidden" name="redirect" value="../index.php">
+    <input type="submit" name="login" value="Fu-sion" class="button small" ng-style="color2bg" ><br/>
+  </form>
+  <footer>
+    <!--<h6 ng-click="displayOff()" ng-style="color2">Fermer</h6>-->
+  </footer>
+</div>
