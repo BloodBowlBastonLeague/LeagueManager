@@ -1,0 +1,116 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Team</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>Idroster</th>
+                <td>{{ entity.idroster }}</td>
+            </tr>
+            <tr>
+                <th>Logo</th>
+                <td>{{ entity.logo }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ entity.url }}</td>
+            </tr>
+            <tr>
+                <th>Idteamserver</th>
+                <td>{{ entity.idteamserver }}</td>
+            </tr>
+            <tr>
+                <th>Prestige</th>
+                <td>{{ entity.prestige }}</td>
+            </tr>
+            <tr>
+                <th>Apo</th>
+                <td>{{ entity.apo }}</td>
+            </tr>
+            <tr>
+                <th>Assistant</th>
+                <td>{{ entity.assistant }}</td>
+            </tr>
+            <tr>
+                <th>Pompom</th>
+                <td>{{ entity.pompom }}</td>
+            </tr>
+            <tr>
+                <th>Tresor</th>
+                <td>{{ entity.tresor }}</td>
+            </tr>
+            <tr>
+                <th>Reroll</th>
+                <td>{{ entity.reroll }}</td>
+            </tr>
+            <tr>
+                <th>Popularite</th>
+                <td>{{ entity.popularite }}</td>
+            </tr>
+            <tr>
+                <th>Urlphoto</th>
+                <td>{{ entity.urlPhoto }}</td>
+            </tr>
+            <tr>
+                <th>Proprio</th>
+                <td>{{ entity.proprio }}</td>
+            </tr>
+            <tr>
+                <th>Domicile</th>
+                <td>{{ entity.domicile }}</td>
+            </tr>
+            <tr>
+                <th>Couleurs</th>
+                <td>{{ entity.couleurs }}</td>
+            </tr>
+            <tr>
+                <th>Sponsors</th>
+                <td>{{ entity.sponsors }}</td>
+            </tr>
+            <tr>
+                <th>Gloire</th>
+                <td>{{ entity.gloire }}</td>
+            </tr>
+            <tr>
+                <th>Datemodifgloire</th>
+                <td>{{ entity.dateModifGloire|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Background</th>
+                <td>{{ entity.background }}</td>
+            </tr>
+            <tr>
+                <th>Cri</th>
+                <td>{{ entity.cri }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{{ entity.actif }}</td>
+            </tr>
+            <tr>
+                <th>Idteam</th>
+                <td>{{ entity.idteam }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('team') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('team_edit', { 'id': entity.idteam }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}

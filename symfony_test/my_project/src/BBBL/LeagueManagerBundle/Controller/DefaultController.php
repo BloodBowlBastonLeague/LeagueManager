@@ -6,10 +6,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class DefaultController extends Controller
 {
-    public function indexAction($name)
+    public function indexAction()
     {
-        return $this->render('BBBLLeagueManagerBundle:Default:index.html.twig', array('name' => $name));
+        // die('pouet');
+        return $this->render('BBBLLeagueManagerBundle:Default:index.html.twig');
     }
+
+    // TEST
+
 
     public function test01Action() {
         // return $this->render('BBBLLeagueManagerBundle:Default:index.html.twig', array('name' => $name));
@@ -18,5 +22,10 @@ class DefaultController extends Controller
         $res = \Cdb::get('main')->selectListTab($query);
         print_r($res);
         die('pouet');
+    }
+    
+    public function test02Action($name)
+    {
+        return $this->render('BBBLLeagueManagerBundle:Default:name.html.twig', array('name' => $name));
     }
 }
