@@ -1,0 +1,79 @@
+BBBL\LeagueManagerBundle\Entity\Ligue:
+    type: entity
+    table: ligue
+    uniqueConstraints:
+        ordre:
+            columns:
+                - ordre
+    id:
+        idligue:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 100
+            fixed: false
+            comment: ''
+        ordre:
+            type: float
+            nullable: true
+            precision: 10
+            scale: 0
+            comment: ''
+        prestige:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            default: '1'
+        actif:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '1'
+        posTop:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+            column: pos_top
+        posLeft:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+            default: '0'
+            column: pos_left
+        description:
+            type: text
+            nullable: true
+            length: null
+            fixed: false
+            comment: ''
+    manyToMany:
+        idliguechild:
+            targetEntity: Ligue
+            cascade: {  }
+            mappedBy: null
+            inversedBy: idmetaligue
+            joinTable:
+                name: ligue_link
+                joinColumns:
+                    -
+                        name: idmetaligue
+                        referencedColumnName: idligue
+                inverseJoinColumns:
+                    -
+                        name: idliguechild
+                        referencedColumnName: idligue
+            orderBy: null
+    lifecycleCallbacks: {  }

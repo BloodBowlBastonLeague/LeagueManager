@@ -1,14 +1,64 @@
-bbbl_league_manager_test:
-    path:     /test
-    defaults: { _controller: BBBLLeagueManagerBundle:Default:test01 }
+bbbl_league_manager_saisonligue:
+    resource: "@BBBLLeagueManagerBundle/Resources/config/routing/saisonligue.yml"
+    prefix:   /saisonligue
 
-bbbl_league_manager_homepage:
-    path:     /hello/{name}
+bbbl_league_manager_ligue:
+    resource: "@BBBLLeagueManagerBundle/Resources/config/routing/ligue.yml"
+    prefix:   /ligue
+
+bbbl_league_manager_membre:
+    resource: "@BBBLLeagueManagerBundle/Resources/config/routing/membre.yml"
+    prefix:   /membre
+
+bbbl_league_manager_player:
+    resource: "@BBBLLeagueManagerBundle/Resources/config/routing/player.yml"
+    prefix:   /player
+
+bbbl_league_manager_matchs:
+    resource: "@BBBLLeagueManagerBundle/Resources/config/routing/matchs.yml"
+    prefix:   /matchs
+
+bbbl_league_manager_team:
+    resource: "@BBBLLeagueManagerBundle/Resources/config/routing/team.yml"
+    prefix:   /team
+
+bbbl_league_manager_default:
+    path:     /
     defaults: { _controller: BBBLLeagueManagerBundle:Default:index }
 
 bbbl_league_manager_match_id:
     path: /match/{id}
     defaults: { _controller: BBBLLeagueManagerBundle:Match:show }
+    requirements:
+        id:   \d+
+
+bbbl_league_manager_membre_id:
+    path: /membre/{id}
+    defaults: { _controller: BBBLLeagueManagerBundle:Membre:show }
+    requirements:
+        id:   \d+
+
+bbbl_league_manager_player_id:
+    path: /player/{id}
+    defaults: { _controller: BBBLLeagueManagerBundle:Player:show }
+    requirements:
+        id:   \d+
+
+bbbl_league_manager_team_id:
+    path: /team/{id}
+    defaults: { _controller: BBBLLeagueManagerBundle:Team:show }
+    requirements:
+        id:   \d+
+
+bbbl_league_manager_match_id:
+    path: /league/{id}
+    defaults: { _controller: BBBLLeagueManagerBundle:Ligue:show }
+    requirements:
+        id:   \d+
+
+bbbl_league_manager_saison_id:
+    path: /saison/{id}
+    defaults: { _controller: BBBLLeagueManagerBundle:SaisonLigue:show }
     requirements:
         id:   \d+
 
@@ -24,3 +74,11 @@ bbbl_league_manager_match_bbrz:
     defaults: { _controller: BBBLLeagueManagerBundle:Match:show,format:bbrz }
     requirements:
         format: bbrz
+
+bbbl_league_manager_test:
+    path:     /test
+    defaults: { _controller: BBBLLeagueManagerBundle:Default:test01 }
+
+bbbl_league_manager_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: BBBLLeagueManagerBundle:Default:test02 }
