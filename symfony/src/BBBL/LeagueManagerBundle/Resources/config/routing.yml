@@ -69,9 +69,17 @@ bbbl_league_manager_match_xml:
         id:   \d+
         format: xml
 
+bbbl_league_manager_match_upload:
+    path: /match/upload/
+    defaults: { _controller: BBBLLeagueManagerBundle:Match:upload }
+
+bbbl_league_manager_match_bbrz_save:
+    path: /match/save/
+    defaults: { _controller: BBBLLeagueManagerBundle:Match:save }
+
 bbbl_league_manager_match_bbrz:
-    path: /match/{filename}.{format}
-    defaults: { _controller: BBBLLeagueManagerBundle:Match:show,format:bbrz }
+    path: /match/{filename}.bbrz
+    defaults: { _controller: BBBLLeagueManagerBundle:Match:show }
     requirements:
         format: bbrz
 

@@ -3,6 +3,7 @@
 namespace BBBL\LeagueManagerBundle;
 
 class BB2XMLMatchReport {
+    public $bbrz_file;
     public $path;
     public $match;
     public $team_home;
@@ -38,10 +39,12 @@ class BB2XMLMatchReport {
         throw new Exception("function $name not exists");
     }
 
-    public function __construct($path,$idmatch = 0) {
+    public function __construct($path = null,$idmatch = 0) {
+
+        return true;
         $unzipdir = './tmp/';
         $unzippath = $unzipdir.basename($path,'.bbrz');
-        if (!$path || !is_file($path)) {throw new Exception("Fichier match report invalide : $path");}
+        if (!$path || !is_file($path)) {throw new \Exception("Fichier match report invalide : $path");}
 
         // Dezip
         $zip = new \ZipArchive;
