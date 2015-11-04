@@ -1,0 +1,227 @@
+BBBL\LeagueManagerBundle\Entity\Matchs:
+    type: entity
+    table: matchs
+    indexes:
+        idmatch2:
+            columns:
+                - idmatch2
+        idmatch1:
+            columns:
+                - idmatch1
+        idteam2:
+            columns:
+                - idteam2
+        idteam1:
+            columns:
+                - idteam1
+        idsaison_ligue:
+            columns:
+                - idsaison_ligue
+    id:
+        idmatch:
+            type: bigint
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        urltopic:
+            type: string
+            nullable: true
+            length: 250
+            fixed: false
+            comment: ''
+        journee:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+        datematch:
+            type: datetime
+            nullable: true
+            comment: ''
+        score1:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        score2:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        possession1:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        occupationOwn1:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: occupation_own1
+        occupationTheir1:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: occupation_their1
+        subSonne1:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: sub_sonne1
+        subKo1:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: sub_ko1
+        subBlesse1:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: sub_blesse1
+        subMort1:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: sub_mort1
+        possession2:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        occupationOwn2:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: occupation_own2
+        occupationTheir2:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: occupation_their2
+        subSonne2:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: sub_sonne2
+        subKo2:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: sub_ko2
+        subBlesse2:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: sub_blesse2
+        subMort2:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            column: sub_mort2
+        note:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        spectateur:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+        poule:
+            type: string
+            nullable: true
+            length: 11
+            fixed: false
+            comment: ''
+        modifGloire1:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            default: '0'
+            column: modif_gloire1
+        modifGloire2:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            default: '0'
+            column: modif_gloire2
+        malusGloire:
+            type: boolean
+            nullable: true
+            comment: ''
+            default: '0'
+            column: malus_gloire
+    manyToOne:
+        idsaisonLigue:
+            targetEntity: SaisonLigue
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idsaison_ligue:
+                    referencedColumnName: idsaison_ligue
+            orphanRemoval: false
+        idteam1:
+            targetEntity: Team
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idteam1:
+                    referencedColumnName: idteam
+            orphanRemoval: false
+        idteam2:
+            targetEntity: Team
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idteam2:
+                    referencedColumnName: idteam
+            orphanRemoval: false
+        idmatch1:
+            targetEntity: Matchs
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idmatch1:
+                    referencedColumnName: idmatch
+            orphanRemoval: false
+        idmatch2:
+            targetEntity: Matchs
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idmatch2:
+                    referencedColumnName: idmatch
+            orphanRemoval: false
+    manyToMany:
+        idplayer:
+            targetEntity: Player
+            cascade: {  }
+            mappedBy: idmatch
+            inversedBy: null
+            joinTable: null
+            orderBy: null
+    lifecycleCallbacks: {  }

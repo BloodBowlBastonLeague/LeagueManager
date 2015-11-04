@@ -1,0 +1,83 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Team list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Idroster</th>
+                <th>Logo</th>
+                <th>Url</th>
+                <th>Idteamserver</th>
+                <th>Prestige</th>
+                <th>Apo</th>
+                <th>Assistant</th>
+                <th>Pompom</th>
+                <th>Tresor</th>
+                <th>Reroll</th>
+                <th>Popularite</th>
+                <th>Urlphoto</th>
+                <th>Proprio</th>
+                <th>Domicile</th>
+                <th>Couleurs</th>
+                <th>Sponsors</th>
+                <th>Gloire</th>
+                <th>Datemodifgloire</th>
+                <th>Background</th>
+                <th>Cri</th>
+                <th>Actif</th>
+                <th>Idteam</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('team_show', { 'id': entity.idteam }) }}">{{ entity.name }}</a></td>
+                <td>{{ entity.idroster }}</td>
+                <td>{{ entity.logo }}</td>
+                <td>{{ entity.url }}</td>
+                <td>{{ entity.idteamserver }}</td>
+                <td>{{ entity.prestige }}</td>
+                <td>{{ entity.apo }}</td>
+                <td>{{ entity.assistant }}</td>
+                <td>{{ entity.pompom }}</td>
+                <td>{{ entity.tresor }}</td>
+                <td>{{ entity.reroll }}</td>
+                <td>{{ entity.popularite }}</td>
+                <td>{{ entity.urlPhoto }}</td>
+                <td>{{ entity.proprio }}</td>
+                <td>{{ entity.domicile }}</td>
+                <td>{{ entity.couleurs }}</td>
+                <td>{{ entity.sponsors }}</td>
+                <td>{{ entity.gloire }}</td>
+                <td>{% if entity.dateModifGloire %}{{ entity.dateModifGloire|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ entity.background }}</td>
+                <td>{{ entity.cri }}</td>
+                <td>{{ entity.actif }}</td>
+                <td>{{ entity.idteam }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('team_show', { 'id': entity.idteam }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('team_edit', { 'id': entity.idteam }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('team_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

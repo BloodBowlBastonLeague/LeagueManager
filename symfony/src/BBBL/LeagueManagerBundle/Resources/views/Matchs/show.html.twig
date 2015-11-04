@@ -1,0 +1,128 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Matchs</h1>
+
+    <table class="record_properties">
+        <tbody>
+            <tr>
+                <th>Urltopic</th>
+                <td>{{ entity.urltopic }}</td>
+            </tr>
+            <tr>
+                <th>Journee</th>
+                <td>{{ entity.journee }}</td>
+            </tr>
+            <tr>
+                <th>Datematch</th>
+                <td>{{ entity.datematch|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Score1</th>
+                <td>{{ entity.score1 }}</td>
+            </tr>
+            <tr>
+                <th>Score2</th>
+                <td>{{ entity.score2 }}</td>
+            </tr>
+            <tr>
+                <th>Possession1</th>
+                <td>{{ entity.possession1 }}</td>
+            </tr>
+            <tr>
+                <th>Occupationown1</th>
+                <td>{{ entity.occupationOwn1 }}</td>
+            </tr>
+            <tr>
+                <th>Occupationtheir1</th>
+                <td>{{ entity.occupationTheir1 }}</td>
+            </tr>
+            <tr>
+                <th>Subsonne1</th>
+                <td>{{ entity.subSonne1 }}</td>
+            </tr>
+            <tr>
+                <th>Subko1</th>
+                <td>{{ entity.subKo1 }}</td>
+            </tr>
+            <tr>
+                <th>Subblesse1</th>
+                <td>{{ entity.subBlesse1 }}</td>
+            </tr>
+            <tr>
+                <th>Submort1</th>
+                <td>{{ entity.subMort1 }}</td>
+            </tr>
+            <tr>
+                <th>Possession2</th>
+                <td>{{ entity.possession2 }}</td>
+            </tr>
+            <tr>
+                <th>Occupationown2</th>
+                <td>{{ entity.occupationOwn2 }}</td>
+            </tr>
+            <tr>
+                <th>Occupationtheir2</th>
+                <td>{{ entity.occupationTheir2 }}</td>
+            </tr>
+            <tr>
+                <th>Subsonne2</th>
+                <td>{{ entity.subSonne2 }}</td>
+            </tr>
+            <tr>
+                <th>Subko2</th>
+                <td>{{ entity.subKo2 }}</td>
+            </tr>
+            <tr>
+                <th>Subblesse2</th>
+                <td>{{ entity.subBlesse2 }}</td>
+            </tr>
+            <tr>
+                <th>Submort2</th>
+                <td>{{ entity.subMort2 }}</td>
+            </tr>
+            <tr>
+                <th>Note</th>
+                <td>{{ entity.note }}</td>
+            </tr>
+            <tr>
+                <th>Spectateur</th>
+                <td>{{ entity.spectateur }}</td>
+            </tr>
+            <tr>
+                <th>Poule</th>
+                <td>{{ entity.poule }}</td>
+            </tr>
+            <tr>
+                <th>Modifgloire1</th>
+                <td>{{ entity.modifGloire1 }}</td>
+            </tr>
+            <tr>
+                <th>Modifgloire2</th>
+                <td>{{ entity.modifGloire2 }}</td>
+            </tr>
+            <tr>
+                <th>Malusgloire</th>
+                <td>{{ entity.malusGloire }}</td>
+            </tr>
+            <tr>
+                <th>Idmatch</th>
+                <td>{{ entity.idmatch }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('matchs') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('matchs_edit', { 'id': entity.idmatch }) }}">
+            Edit
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
+{% endblock %}
