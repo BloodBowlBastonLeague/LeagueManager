@@ -9,30 +9,22 @@ LeagueManager.config(function (RestangularProvider) {
 LeagueManager.config(function ($routeProvider, RestangularProvider) {
 	$routeProvider
   .when("/competition/:ID", {
-		templateUrl: 'views/competition.html',
-		controller: 'CompetitionCtrl',
-		controllerUrl: 'controllers/competition',
-		css: 'css/competition.css'
+		template: '<competition></competition>'
+	})
+	.when("/match/:ID", {
+		templateUrl: '<match></match>'
 	})
 	.when("/presentation", {
-		templateUrl: 'views/presentation.html',
-		controller: 'PresentationCtrl',
-		controllerUrl: 'controllers/presentation'
+		template: '<presentation></presentation>'
 	})
 	.when("/equipe/:ID", {
-		templateUrl: 'views/equipe.html',
-		controller: 'EquipeCtrl',
-		controllerUrl: 'controllers/equipe',
-		css: 'css/equipe.css'
+		template: '<equipe></equipe>'
 	})
   .when("/forum", {
     templateUrl: '/Forum/index.php'
   })
   .when("/", {
-    templateUrl: 'views/une.html',
-		controller: 'UneCtrl',
-		controllerUrl: 'controllers/une',
-		css: {href:'css/une.css',preload: true}
+    template: '<une></une>'
   });
 });
 
@@ -63,9 +55,12 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 			$('#LM_logo').css({"background": "url(resources/img/BBBL2.png) center center no-repeat", "background-size":"contain"})
 	};
 
+	//Gestion des couleurs
+	//Couleurs de bases du site
 	$rootScope.colorA = "#0191FF";
 	$rootScope.colorB = "#00558D";
 	$rootScope.colorC = "#F68525";
+	//Mise à jours de couleurs (pour les équipes)
 	$rootScope.setColors = function(colorA,colorB,colorC){
 		$rootScope.color1 = { 'color': colorA, 'border-color':colorB } ;
 		$rootScope.color2 = { 'color': colorC, 'border-color':colorC } ;

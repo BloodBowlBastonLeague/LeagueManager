@@ -55,6 +55,7 @@ include('phpBB_Connect.php');
   <script src="controllers/une.js"></script>
   <script src="controllers/presentation.js"></script>
   <script src="controllers/competition.js"></script>
+  <script src="controllers/match.js"></script>
   <script src="controllers/equipe.js"></script>
   <script src="controllers/reader.js"></script>
 

@@ -45,7 +45,7 @@
       <div ng-repeat="day in calendar" id="day{{day.journee}}" ng-class="{hide: day.journee < displayDay, current: day.journee == currentDay }" class="day ">
         <h3>Journée {{day.journee}}</h3>
         <div class="match x-center">
-          <div class="vs" ng-repeat="match in day.matchs">
+          <div class="vs" ng-repeat="match in day.matchs" ng-click="goToPage('match/'+match.idmatch)">
             <img class="teamLogo" src="resources/img/teams/minilogo{{match.idteam1}}.png">
             <span ng-if="match.score1.length==0"> VS </span>
             <span ng-if="match.score1.length>0"> {{match.score1}} - {{match.score2}} </span>
