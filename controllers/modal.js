@@ -1,8 +1,7 @@
-LeagueManager.directive('articleReader', function(Restangular){
+LeagueManager.directive('modal', function(Restangular){
 	return {
 		restrict: 'E',
-		templateUrl: 'views/reader.html',
-		css: 'css/reader.css',
+		templateUrl: 'views/modal.html',
 		controller: function($rootScope, $scope, $http, $timeout) {
 			//Initialisation de la variable d'affichage de la liseuse
 			$scope.fullscreen = false;

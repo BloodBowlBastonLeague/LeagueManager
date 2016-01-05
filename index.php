@@ -15,34 +15,48 @@ include('phpBB_Connect.php');
   <meta name="description" content="Ligue francophone de Blood Bowl">
   <meta name="robots" content="index,follow" />
 
-  <link rel="stylesheet" href="css/main.css" type="text/css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="css/app.css" type="text/css">
+  <!--link rel="stylesheet" href="css/competition.css" type="text/css">
+  <link rel="stylesheet" href="css/equipe.css" type="text/css"-->
+
+  <link href='https://fonts.googleapis.com/css?family=Russo+One' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Hind' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
-  <div id="LM_intro" class="hd-100 x-center y-center">la Blood Bowl Baston League pr&eacute;sente</div>
-  <header id="LM_navbar">
-    <div id="LM_logo"  ng-click="goToPage('/')"></div>
-    <div id="LM_title" class="hd-70 y-center"><h1 class="text-cutter">{{title}}</h1></div>
-    <nav id="LM_navigation" class="hd-30 x-right y-center navmenu" >
-      <ul>
-        <li><a title="Forum" href="Forum"><img src="resources/img/LogoForum.svg"><span>Forum</span></a></li>
-        <li><a title="Lancer BloodBowl" href="steam://run/216890"><img src="resources/img/LogoSteam.svg"><span>Jouer</span></a></li>
-        <li><a title="Lancer Mumble" href="mumble://srv07.serveurmumble.com:50674/"><img src="resources/img/LogoMumble.svg"><span>Mumble</span></a></li>
-        <li ng-if="<?php echo $user->data['user_id'];?>===1" ng-click="displayConnector()"><a title="Connexion"><img src="resources/img/LogoConnect.svg"><span>Connexion</span></a></li>
-        <li ng-if="<?php echo $user->data['user_id'];?>!==1"><a title="Le vestiaire"><img src="resources/img/LogoConnect.svg"><span>Le vestiaire</span></a></li>
+  <header>
+    <div id="Intro" class="hd-100 x-center y-center">la Blood Bowl Baston League pr&eacute;sente</div>
+    <nav class="navbar">
+      <div id="Logo" ng-click="goToPage('/')"></div>
+      <div id="Logo1" ng-click="goToPage('/')"></div>
+      <div class="navbar-toggler hidden-md-up pull-right" type="button" data-toggle="collapse" data-target="#Menu">&#9776;</div>
+      <h1 class="navbar-brand inline">{{title}}</h1>
+      <ul class="nav navbar-nav  inline collapse navbar-toggleable-sm  pull-xs-right" id="Menu">
+        <li><a class="nav" href="Forum">Forum</a></li>
+        <li><a class="nav" href="steam://run/236690">Jouer</a></li>
+        <li><a class="nav" href="mumble://srv07.serveurmumble.com:50674/">Mumble</a></li>
+        <li ng-if="<?php echo $user->data['user_id'];?>===1" ng-click="displayConnector()"><a class="nav">Connexion</a></li>
+        <li ng-if="<?php echo $user->data['user_id'];?>!==1"><a class="nav" href="support.html">Vestiaire</a></li>
       </ul>
     </nav>
   </header>
-  <div id="main" ng-class="{ blur : reader }">
+
+
+
+  <div id="Main" class="container-fluid" ng-class="{ blur : reader }">
     <ng-view></ng-view>
     <!-- Articles plein écran -->
-    <article-reader></article-reader>
+    <modal></modal>
+
 
   </div>
 
-  <!-- Modules Angular -->
+  <!-- jquery -->
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
+  <!-- Bootstrap -->
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <!-- Angular -->
   <script src="bower_components/angular/angular.min.js"></script>
   <script src="bower_components/restangular/dist/restangular.min.js"></script>
   <script src="bower_components/angular-route/angular-route.min.js"></script>
@@ -57,7 +71,7 @@ include('phpBB_Connect.php');
   <script src="controllers/competition.js"></script>
   <script src="controllers/match.js"></script>
   <script src="controllers/equipe.js"></script>
-  <script src="controllers/reader.js"></script>
+  <script src="controllers/modal.js"></script>
 
 </body>
 </html>

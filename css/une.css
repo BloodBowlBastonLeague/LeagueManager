@@ -5,6 +5,6 @@
 article > p > img { width: 10vw;}
 #randomUne0 > img { width: 20vw;}
 
-#LM_logo { position: fixed; top: 10px; left: 3vw; cursor: pointer; height:250px; width: 14vw; }
+#Logo { position: fixed; top: 10px; left: 3vw; cursor: pointer; height:250px; width: 14vw; }
 .annonce { margin-top: 200px; }
 #LM_title { text-indent: 20vw; }
