@@ -1,6 +1,6 @@
 var LeagueManager = angular.module('LeagueManager', ['ngRoute','restangular','ngSanitize','ngCSS'])
 
-//API REST
+//API REST - Local DB
 LeagueManager.config(function (RestangularProvider) {
 	RestangularProvider.setBaseUrl('http://localhost:8888/');
 });
@@ -24,6 +24,7 @@ LeagueManager.config(function ($routeProvider, RestangularProvider) {
     templateUrl: '/Forum/index.php'
   })
   .when("/", {
+				css: {href:'css/une.css',preload: true},
     template: '<une></une>'
   });
 });
@@ -36,7 +37,7 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 	});
 
 	$rootScope.goToPage = function(page) {
-			$('#LM_logo').removeAttr( 'style' );
+			$('#Logo').removeAttr( 'style' );
 
     $location.path( page );
   };
@@ -65,7 +66,7 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 		$rootScope.color1 = { 'color': colorA, 'border-color':colorB } ;
 		$rootScope.color2 = { 'color': colorC, 'border-color':colorC } ;
 		$rootScope.color2bg = { 'background-color':colorC } ;
-		$('#LM_navbar').css({'background': '-webkit-linear-gradient('+colorA+',#000000)', 'background': '-moz-linear-gradient('+colorA+',#000000)', 'background': 'linear-gradient('+colorA+',#000000)' });
+		$('.navbar').css({'background': '-webkit-linear-gradient('+colorA+',#000000)', 'background': '-moz-linear-gradient('+colorA+',#000000)', 'background': 'linear-gradient('+colorA+',#000000)' });
 	};
 
 });

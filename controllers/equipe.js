@@ -6,7 +6,7 @@ LeagueManager.directive('equipe', function(Restangular){
 		controller: function($scope, $rootScope, $http, $timeout, Restangular, $routeParams) {
 
 			//LM_logo
-			$('#LM_logo').css({"background": "url(resources/img/teams/logo"+$routeParams.ID+".png) center center no-repeat", "background-size":"contain"})
+			$('#Logo').css({"background": "url(resources/img/teams/logo"+$routeParams.ID+".png) center center no-repeat", "background-size":"contain"})
 			$('#teamPhoto').css({"background": "url(resources/img/teams/photo"+$routeParams.ID+".png) center center no-repeat", "background-size":"cover"})
 			$scope.activePlayer = false;
 
@@ -44,7 +44,7 @@ LeagueManager.directive('equipe', function(Restangular){
 					$scope.activePlayer = false;
 				}
 			};
-			
+
 		}
 	}
 });

@@ -1,6 +1,6 @@
 
 
-#players { max-height:479px; margin:20px 5vw; padding:10px 2vw; background: rgba(0, 0, 0, 0.75);; border-radius: 3px; border-bottom: 2px solid; border-color:inherit;box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9); overflow-y: auto;}
+
 #players > table { width: 100%; color:#FFFFFF}
 #players > table > tbody > tr { height: 28px; border-top: 0.5px solid; border-color: inherit; color:inherit}
 #players > table > thead > tr > th { line-height: 28px;padding: 0 5px; text-align: center; color: inherit}

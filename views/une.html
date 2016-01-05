@@ -1,61 +1,51 @@
-<div class="hd-20 y-top">
-  <div class="x-center y-top annonce">
+<row>
+<div class="col-xl-3 hidden-lg-down">
+  <div class="plain seconde" ng-style="color2">
     <h3>Découvrez la BBBL</h3>
     <p>La Blood Bowl Baston League vous accueille quotidiennement dans ses locaux modernes de l'Administratorum, 1, place de l'Administratorum à Blood Bowl City.</p><p>Dans une ambiance chaleureuse et assainie de toute corruption, la BBBL vous offre le meilleur du BloodBowl dans le vieux monde. Dynamisme et modernité, sont les maitres mots du futur que nous vous offrons.</p>
-    <a href="#/presentation"><div class="button">En savoir plus</div></a>
+    <div class="spacer"></div>
+    <div class="button" ng-click="goToPage('presentation')">division Espoir</div>
   </div>
 </div>
-<div class="hd-60 y-top">
-  <div class="vd-auto">
-    <div class="hd-60 y-top panel center">
-      <article id="randomUne0"  ng-style="color1">
-        <h3 ng-bind-html="randomElite.title"></h3>
+<div class="col-lg-9 col-xl-6">
+  <div class="col-md-12">
+      <article id="randomUne0" class="plain prime" ng-style="color1">
+        <h2 ng-style="color1" ng-click="displayReader(randomElite.article_id)" ng-bind-html="randomElite.title"></h2>
         <p><img ng-if="randomElite.image==1" class="left" ng-click="displayReader(randomElite.article_id)" src="resources/img/articles/article_{{randomElite.article_id}}.jpg"/>
-        <span ng-bind-html="randomElite.summary">Les gobelins pédalent</span></p>
-        <h6 ng-click="displayReader(randomElite.article_id)">En savoir plus...</h6>
-        <h2 ng-click="goToPage('competition/0')">Accèdez à la division Elite</h2>
+        <span ng-bind-html="randomElite.summary">Les gobelins pédalent</span> <a ng-style="color1" ng-click="displayReader(randomElite.article_id)">En savoir plus</a></p>
+        <div class="spacer"></div>
+        <div class="button" ng-click="goToPage('competition/0')">division Elite</div>
       </article>
     </div>
-  </div>
-  <div class="vd-auto">
-    <div class="hd-30 y-top panel center">
-      <article id="randomUne1" ng-style="color1">
-        <h3 ng-bind-html="randomEspoir.title"></h3>
+    <div class="col-md-6">
+      <article id="randomUne1" class="plain prime" ng-style="color1">
+        <h2 ng-style="color1" ng-click="displayReader(randomEspoir.article_id)" ng-bind-html="randomEspoir.title"></h2>
         <p><img ng-if="randomEspoir.image==1" class="left" src="resources/img/articles/article_{{randomEspoir.article_id}}.jpg"/>
-        <span ng-bind-html="randomEspoir.summary"></span></p>
-        <h6 ng-click="displayReader(randomEspoir.article_id)">En savoir plus...</h6>
-        <h2 ng-click="goToPage('competition/1')">Accèdez à la division Espoir</h2>
+        <span ng-bind-html="randomEspoir.summary"></span> <a ng-style="color1" ng-click="displayReader(randomEspoir.article_id)">En savoir plus</a></p>
+        <div class="spacer"></div>
+        <div class="button" ng-click="goToPage('competition/1')">division Espoir</div>
       </article>
     </div>
-    <div class="hd-30 y-top panel center">
-      <article id="randomUne2" class="random" ng-style="color2">
-        <h3 ng-bind-html="random3.title"></h3>
+    <div class="col-md-6">
+      <article id="randomUne2" class="plain seconde" ng-style="color2">
+        <h2 ng-style="color2" ng-click="displayReader(random3.article_id)" ng-bind-html="random3.title"></h2>
         <p><img ng-if="random3.image==1" class="left"  src="resources/img/articles/article_{{random3.article_id}}.jpg"/>
-        <span ng-bind-html="random3.summary"></span></p>
-        <h6 ng-click="displayReader(random3.article_id)">En savoir plus...</h6>
+        <span ng-bind-html="random3.summary"></span> <a ng-style="color2" ng-click="displayReader(random3.article_id)">En savoir plus</a></p>
       </article>
     </div>
-  </div>
 </div>
-<div class="hd-20 y-top panel right">
-    <div class="standing" ng-repeat="division in standing" ng-click="goToPage('competition/'+division.ID)" ng-style="color1">
+<div class="col-lg-3 hidden-md-down stick-right">
+    <div class="plain prime" ng-repeat="division in standing" ng-click="goToPage('competition/'+division.ID)" ng-style="color1">
       <h5>Division {{division.name}}</h5>
       <table>
-        <!--<thead>
-          <tr>
-            <th></th>
-            <th class="tleft">Equipe</th>
-            <th>Pts</th>
-          </tr>
-        </thead>-->
         <tbody>
           <tr ng-repeat="(key,row) in division.standing" ng-class="{gold: key+1 == 1, silver: key+1 == 2, bronze: key+1 == 3, relegated: key+1 > 9}">
             <td>{{key+1}}</td>
-            <td class="tleft">{{row.Equipe}}</td>
+            <td class="text-left">{{row.Equipe}}</td>
             <td>{{row.Pts}}</td>
           </tr>
         </tbody>
       </table>
     </div>
-
 </div>
+</row>

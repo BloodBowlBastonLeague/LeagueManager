@@ -1,0 +1,182 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	overflow: hidden;
+	border-color: inherit;
+}
+body {
+	line-height: 1; background: url('../resources/img/bg.png'); overflow: hidden;
+}
+h1 { font-family: 'Play'; font-weight: 700; font-size: 40px; line-height: 50px;  color: #ffffff; }
+h2 { font-family: 'Play'; font-weight: 700; font-size: 24px; line-height: 1; }
+
+p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc; display:inline-block; }
+a { cursor: pointer; }
+
+input[type='submit'] { border:0;}
+
+/* HEADER */
+#Intro { position:relative; width:100vw; height:18px; background:#000000; font-size: 12px;box-sizing: border-box; line-height: 18px;text-align:center; font-family:'Hind'; font-size: 14	px;  color:#f1f1f1; z-index:2;}
+#Logo { position:fixed; top:0px; left: 2vw; height: 90px; width: 90px; cursor: pointer; background: url(../resources/img/BBBL2.png) center center no-repeat; background-size:contain; z-index:100;}
+/* Navbar */
+.navbar { color:#ffffff;  height:50px; margin:0; padding: 0 0 0 calc(4vw + 90px); border-radius: 0;
+	background: -webkit-linear-gradient(#0191FF,#000000);
+	background: linear-gradient(#0191FF,#000000);}
+	.navbar-brand { padding:0; margin:0; font-size: 36px; }
+  #Menu { float:right;}
+#Main { height: calc(100vh - 68px); width:100%; overflow-y: auto; padding: 0 !important; }
+
+.collapse.in { width: 100vw; background: #000000; padding: 5px 5px 5px 110px;}
+nav > ul > li {
+    font-family: "Play";
+    height: 50px;
+    margin: 0 0 0 -5px;
+    padding: 0px 1vw;
+    border-left: 1px solid #000 !important;
+    display: inline-block;
+    cursor: pointer;
+    line-height:50px;
+}
+nav > ul > li:hover { background: linear-gradient(to right, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0) 5%);}
+
+nav > ul > li:active { background: transparent; box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);}
+
+nav > ul > li > a { text-decoration: none; color: #FFFFFF; line-height:50px;}
+nav > ul > li:hover > a { text-decoration: none; color: #FFFFFF;}
+
+/* BODY */
+
+.plain {  position:relative;
+					margin:20px 10px;
+					padding:10px 20px;
+					border-radius: 0 0 3px 3px;
+					border-bottom: 2px solid;
+					border-color:inherit;
+					box-shadow: 0px 5px 10px rgba(0,0,0,0.9);
+				}
+
+.prime {  background: rgba(0, 0, 0, 0.75); }
+.seconde { background: rgba(50, 50, 50, 0.85); }
+
+.stick-left { padding-left : 0; }
+
+.stick-right { padding-right : 0;  }
+.stick-right > .plain { margin-right:0;	border-bottom: 0; border-left: 2px solid; border-radius: 3px 0 0 3px; }
+
+article img { max-width:150px; max-height:150px; float:left; margin:0 5px 0 0; }
+
+.scroll {overflow-y: auto; height:100%;}
+.spacer { display:inline-block; height:1px; width:200px;}
+.button { position:absolute; right:0; bottom:0; height:30px; width:200px; padding: 7px 15px 7px 30px; text-align: center; color: #ffffff; font-family: "Play"; font-size: 16px; font-style: oblique; text-transform: uppercase; line-height:20px; cursor: pointer;}
+.prime .button { background: url(../resources/img/Button_Prime.png); }
+.seconde .button { background: url(../resources/img/Button_Seconde.png); }
+
+
+.plain > table { width: 100%; cursor: pointer; text-align: center}
+.plain > table > tbody > tr { height: 20px; font-size:14px; border-bottom: 1px solid rgba(1, 155, 255, 0.5); color:#ffffff }
+.td-left { text-align: left; padding-left: 10px; text-align: center }
+tbody.table-hover tr:hover { background-color:transparent; background: #000000; }
+/* READER */
+#veil{ position:fixed; background: rgba(0,0,0,0.9); width:100vw; height:calc(100vh - 68px); top:68px; z-index:4; overflow:none;}
+.container { position:fixed; margin:50px 10vw; padding:0 2vw; width:80vw; max-height:calc(100vh - 150px); top:50px; z-index:5; background: rgba(50,50,50,0.85); overflow:none; color: #F68525; border-radius: 5px;
+box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.75);
+padding: 1vh 2vw 0px;
+border-bottom: 2px solid #F68525; }
+
+.container > article { margin:0; padding:0; max-height:calc(100vh - 268px); background: none; border:none; overflow: auto; box-shadow: none;}
+.container > article > img { float:left; padding:0 20px 10px 0; }
+
+.container > footer > h2 { margin: 5px 0px; text-align: center; cursor: pointer; border-top: 1px solid #F68525; color:#F68525;}
+.container > .close { position: absolute; right: 2vw; cursor: pointer; }
+
+#newsfeed { width:100vw; height:50px; background: #000000;}
+
+#connect { width:20vw; min-width:216px; margin:50px 40vw; text-align: center !important; line-height: 30px; }
+
+#connect > form > input['text'] {  width:150px }
+
+.blur { color: transparent !important; text-shadow: 0 0 2px rgba(0,0,0,0.75); }
+
+
+/* COMPETITION */
+.standing > table { width: 100%;}
+.standing > table > tbody > tr { height: 28px; border-top: 1px solid rgba(1, 155, 255, 0.5); }
+.standing > table > thead > tr > th { line-height: 28px; padding: 0 5px; }
+.standing > table > tbody > tr > td { line-height: 28px; padding: 0 5px; }
+
+.day { -webkit-transition: all linear 0.5s;  transition: height linear 0.5s; }
+.day.hide {display: none; height:0px; padding:10px 1vw -webkit-transition: all linear 0.5s;  transition: height linear 0.5s; }
+
+.current { border-bottom: 3px solid #000000; background: rgba(0, 100, 240, 0.75) !important; color: #000000 !important;}
+
+
+.match {display: table; vertical-align: middle; width:100%;}
+.vs { display: inline-block; font-family: 'Hind'; font-size: 20px; line-height: 24px; font-weight: 400; color:#0191FF; vertical-align: middle; text-align: center; margin: 10px 0 0; cursor:pointer;}
+.vs:hover { background: #000000; color:#ffffff }
+.current > div > .vs > span { color: #000000; }
+.teamLogo {width: 35px; height: 35px; display: inline; vertical-align: middle;}
+td > .teamLogo {width: 20px; height: 20px; display: inline; padding-right: 2px;}
+.gold {
+	background: -webkit-linear-gradient( rgba(255,215,0,0.1),rgba(255,215,0,0.75), rgba(255,215,0,0.1));
+	background: linear-gradient(to left, rgba(255,215,0,0.1),rgba(255,215,0,0.75), rgba(255,215,0,0.1)); }
+.silver {
+	background: -webkit-linear-gradient(left, rgba(192,192,192,0.1),rgba(192,192,192,0.75), rgba(192,192,192,0.1));
+	background: linear-gradient(to left, rgba(192,192,192,0.1),rgba(192,192,192,0.75), rgba(192,192,192,0.1)); }
+.bronze {
+	background: -webkit-linear-gradient(rgba(205,127,50,0.1),rgba(205,127,50,0.75), rgba(205,127,50,0.1));
+	background: linear-gradient(to left, rgba(205,127,50,0.1),rgba(205,127,50,0.75), rgba(205,127,50,0.1)); }
+.relegated {
+	background: -webkit-linear-gradient(rgba(208,2,27,0.1),rgba(208,2,27,0.5), rgba(208,2,27,0.1));
+	background: linear-gradient(to left, rgba(208,2,27,0.1),rgba(208,2,27,0.5), rgba(208,2,27,0.1)); }
+
+
+/* TEAM */
+#players > table { width: 100%; color:#FFFFFF}
+#players > table > tbody > tr { height: 28px; border-top: 0.5px solid; border-color: inherit; color:inherit}
+#players > table > thead > tr > th { line-height: 28px;padding: 0 5px; color: inherit}
+#players > table > tbody > tr > td { line-height: 28px;padding: 0 5px; color: #FFFFFF;}
+
+.core { background: #ffffff;}
+
+
+#fame {float: right; display: inline-block; text-align: right;}
+#random > h6 {cursor: auto !important;}
+
+
+#profile {height:200px; color:#FFFFFF;}
+
+.star { font-size: 30px;  line-height: 30px;  display: inline-block;
+    -ms-transform: rotate(-10deg);
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg); }
+.teamDetails {color:#FFFFFF; padding-left:18px; overflow:hidden;}
+.teamDetails > li { line-height:24px; }
+.teamDetails.col2 { width:100%; }
+.teamDetails.col2 > li { width:40%; float:left; display:inline; }
+
+#playerProfile{}
+
+
+#teamPhoto { height:21.875vw; border-bottom: 2px solid;}
+
+.articleDate { float:right; display: inline-block; line-height: 40px;}
