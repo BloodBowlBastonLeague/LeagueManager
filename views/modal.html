@@ -1,8 +1,8 @@
 <div id="veil" ng-show="reader || connector" ng-click="displayOff()"></div>
 
-<div id="reader" class="container seconde" ng-show="reader" ng-click="" ng-style="color2">
+<div id="reader" class="container seconde" ng-show="reader" ng-click="" ng-style="color2border">
   <article ng-click="">
-    <h2 ng-bind-html="article.title" ng-style="color2"></h2>
+    <h2 ng-bind-html="article.title" ng-style="color2border"></h2>
     <p><img ng-if="article.image == 1" src="resources/img/articles/article_{{article.article_id}}.jpg">
     <span ng-bind-html="article.text"></span></p>
   </article>
@@ -10,8 +10,8 @@
   <div class="button" ng-click="displayReader()">fermer</div>
 </div>
 
-<div id="connect" class="container seconde" ng-show="connector" ng-click="" ng-style="color2">
-  <form id="forumConnect" name="forumConnect" action="./Forum/ucp.php?mode=login" accept-charset='UTF-8' method='post' ng-style="color2">
+<div id="connect" class="container seconde" ng-show="connector" ng-click="" ng-style="color2border">
+  <form id="forumConnect" name="forumConnect" action="./Forum/ucp.php?mode=login" accept-charset='UTF-8' method='post' ng-style="color2border">
     Nom d'utilisateur<br/>
     <input type="text" name="username"><br/>
     Mot de passe<br/>

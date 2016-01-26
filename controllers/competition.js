@@ -2,7 +2,7 @@ LeagueManager.directive('competition', function(Restangular){
 	return {
 		restrict: 'E',
 		templateUrl: 'views/competition.html',
-		css: 'css/competition.css',
+
 		controller: function($scope, $rootScope, $http, $timeout, Restangular, $routeParams) {
 			$rootScope.resetLogo();
 			$rootScope.setColors($rootScope.colorA,$rootScope.colorB,$rootScope.colorC);

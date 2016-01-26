@@ -22,16 +22,18 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	overflow: hidden;
-	border-color: inherit;
+
 }
 body {
-	line-height: 1; background: url('../resources/img/bg.png'); overflow: hidden;
+	line-height: 1; background: url('../resources/img/papel2.jpg'); background-size: auto 100%; overflow: hidden;
 }
 h1 { font-family: 'Play'; font-weight: 700; font-size: 40px; line-height: 50px;  color: #ffffff; }
-h2 { font-family: 'Play'; font-weight: 700; font-size: 24px; line-height: 1; }
+h2 { font-family: 'Play'; font-weight: 700; font-size: 24px; line-height: 1; margin:0 0 10px}
 
 p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc; display:inline-block; }
 a { cursor: pointer; }
+
+th {text-transform: uppercase;}
 
 input[type='submit'] { border:0;}
 
@@ -87,13 +89,11 @@ article img { max-width:150px; max-height:150px; float:left; margin:0 5px 0 0; }
 
 .scroll {overflow-y: auto; height:100%;}
 .spacer { display:inline-block; height:1px; width:200px;}
-.button { position:absolute; right:0; bottom:0; height:30px; width:200px; padding: 7px 15px 7px 30px; text-align: center; color: #ffffff; font-family: "Play"; font-size: 16px; font-style: oblique; text-transform: uppercase; line-height:20px; cursor: pointer;}
-.prime .button { background: url(../resources/img/Button_Prime.png); }
-.seconde .button { background: url(../resources/img/Button_Seconde.png); }
+.button { position:absolute; right:0; bottom:0; height:30px; width:200px; text-align: center;  cursor: pointer;}
+.button .label { position: absolute; top: 5px; left: 40px; width: 150px; color: #ffffff; font-family: "Play"; font-size: 16px; font-style: oblique; text-transform: uppercase; }
 
-
-.plain > table { width: 100%; cursor: pointer; text-align: center}
-.plain > table > tbody > tr { height: 20px; font-size:14px; border-bottom: 1px solid rgba(1, 155, 255, 0.5); color:#ffffff }
+.plain > table { width: 100%; color:#FFFFFF; cursor: pointer; text-align: center}
+.plain > table > tbody > tr { height: 20px !important; font-size:14px; border-bottom: 1px solid;}
 .td-left { text-align: left; padding-left: 10px; text-align: center }
 tbody.table-hover tr:hover { background-color:transparent; background: #000000; }
 /* READER */
@@ -119,10 +119,10 @@ border-bottom: 2px solid #F68525; }
 
 
 /* COMPETITION */
-.standing > table { width: 100%;}
-.standing > table > tbody > tr { height: 28px; border-top: 1px solid rgba(1, 155, 255, 0.5); }
-.standing > table > thead > tr > th { line-height: 28px; padding: 0 5px; }
-.standing > table > tbody > tr > td { line-height: 28px; padding: 0 5px; }
+.main > table { width: 100%; color:#FFFFFF; margin:0 0 10px;}
+.main > table > tbody > tr { height: 28px; border-bottom: 1px solid; }
+.main > table > thead > tr > th { line-height: 28px; padding: 0 5px; }
+.main > table > tbody > tr > td { line-height: 28px; padding: 0 5px; }
 
 .day { -webkit-transition: all linear 0.5s;  transition: height linear 0.5s; }
 .day.hide {display: none; height:0px; padding:10px 1vw -webkit-transition: all linear 0.5s;  transition: height linear 0.5s; }
@@ -151,24 +151,36 @@ td > .teamLogo {width: 20px; height: 20px; display: inline; padding-right: 2px;}
 
 
 /* TEAM */
-#players > table { width: 100%; color:#FFFFFF}
-#players > table > tbody > tr { height: 28px; border-top: 0.5px solid; border-color: inherit; color:inherit}
-#players > table > thead > tr > th { line-height: 28px;padding: 0 5px; color: inherit}
-#players > table > tbody > tr > td { line-height: 28px;padding: 0 5px; color: #FFFFFF;}
-
 .core { background: #ffffff;}
-
 
 #fame {float: right; display: inline-block; text-align: right;}
 #random > h6 {cursor: auto !important;}
 
+@media screen and (min-width: 545px) {
+#profile { padding-left: 200px; top:15px;}
+#helmet { position:absolute; z-index:2; left:10px; width:200px; height:200px; -webkit-perspective: 150px;
+    perspective: 150px;  }
+	#helmet .logo { position: absolute; left: 15px; top: 30px; width: 70px; height: 70px;
+		-ms-transform: rotateY(-15deg) rotate(-10deg);
+		-webkit-transform: rotateY(-15deg) rotate(-10deg);
+		transform: rotateY(-15deg) rotate(-10deg);}
+}
+@media screen and (max-width: 544px) {
 
-#profile {height:200px; color:#FFFFFF;}
+	#helmet { text-align:center; height:200px; -webkit-perspective: 150px;
+	    perspective: 150px;  }
+	#helmet > div { position:absolute; left:calc(50% - 100px);}
 
+			#helmet .logo { position: absolute; left: 15px; top: 30px; width: 70px; height: 70px;
+				-ms-transform: rotateY(-15deg) rotate(-10deg);
+				-webkit-transform: rotateY(-15deg) rotate(-10deg);
+				transform: rotateY(-15deg) rotate(-10deg);}
+}
 .star { font-size: 30px;  line-height: 30px;  display: inline-block;
     -ms-transform: rotate(-10deg);
     -webkit-transform: rotate(-10deg);
     transform: rotate(-10deg); }
+
 .teamDetails {color:#FFFFFF; padding-left:18px; overflow:hidden;}
 .teamDetails > li { line-height:24px; }
 .teamDetails.col2 { width:100%; }
@@ -177,6 +189,7 @@ td > .teamLogo {width: 20px; height: 20px; display: inline; padding-right: 2px;}
 #playerProfile{}
 
 
-#teamPhoto { height:21.875vw; border-bottom: 2px solid;}
+#teamPhoto { padding:0;}
+#teamPhoto img { width:100%; height:auto;}
 
 .articleDate { float:right; display: inline-block; line-height: 40px;}
