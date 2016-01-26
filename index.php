@@ -28,7 +28,7 @@ include('phpBB_Connect.php');
   <header>
     <div id="Intro" class="hd-100 x-center y-center">la Blood Bowl Baston League pr&eacute;sente</div>
     <nav class="navbar">
-      <div id="Logo" ng-click="goToPage('/')"></div>
+      <div id="Logo" class="logo" ng-click="goToPage('/')"></div>
       <div id="Logo1" ng-click="goToPage('/')"></div>
       <div class="navbar-toggler hidden-md-up pull-right" type="button" data-toggle="collapse" data-target="#Menu">&#9776;</div>
       <h1 class="navbar-brand inline">{{title}}</h1>
@@ -57,7 +57,8 @@ include('phpBB_Connect.php');
   <!-- Bootstrap -->
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- Angular -->
-  <script src="bower_components/angular/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+  <!--<script src="bower_components/angular/angular.min.js"></script>-->
   <script src="bower_components/restangular/dist/restangular.min.js"></script>
   <script src="bower_components/angular-route/angular-route.min.js"></script>
   <script src="bower_components/lodash/lodash.min.js"></script>

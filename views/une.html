@@ -1,6 +1,6 @@
 <row>
 <div class="col-xl-3 hidden-lg-down">
-  <div class="plain seconde" ng-style="color2">
+  <div class="plain seconde" ng-style="color2border">
     <h3>Découvrez la BBBL</h3>
     <p>La Blood Bowl Baston League vous accueille quotidiennement dans ses locaux modernes de l'Administratorum, 1, place de l'Administratorum à Blood Bowl City.</p><p>Dans une ambiance chaleureuse et assainie de toute corruption, la BBBL vous offre le meilleur du BloodBowl dans le vieux monde. Dynamisme et modernité, sont les maitres mots du futur que nous vous offrons.</p>
     <div class="spacer"></div>
@@ -9,7 +9,7 @@
 </div>
 <div class="col-lg-9 col-xl-6">
   <div class="col-md-12">
-      <article id="randomUne0" class="plain prime" ng-style="color1">
+      <article id="randomUne0" class="plain prime" ng-style="color1border">
         <h2 ng-style="color1" ng-click="displayReader(randomElite.article_id)" ng-bind-html="randomElite.title"></h2>
         <p><img ng-if="randomElite.image==1" class="left" ng-click="displayReader(randomElite.article_id)" src="resources/img/articles/article_{{randomElite.article_id}}.jpg"/>
         <span ng-bind-html="randomElite.summary">Les gobelins pédalent</span> <a ng-style="color1" ng-click="displayReader(randomElite.article_id)">En savoir plus</a></p>
@@ -18,7 +18,7 @@
       </article>
     </div>
     <div class="col-md-6">
-      <article id="randomUne1" class="plain prime" ng-style="color1">
+      <article id="randomUne1" class="plain prime" ng-style="color1border">
         <h2 ng-style="color1" ng-click="displayReader(randomEspoir.article_id)" ng-bind-html="randomEspoir.title"></h2>
         <p><img ng-if="randomEspoir.image==1" class="left" src="resources/img/articles/article_{{randomEspoir.article_id}}.jpg"/>
         <span ng-bind-html="randomEspoir.summary"></span> <a ng-style="color1" ng-click="displayReader(randomEspoir.article_id)">En savoir plus</a></p>
@@ -27,7 +27,7 @@
       </article>
     </div>
     <div class="col-md-6">
-      <article id="randomUne2" class="plain seconde" ng-style="color2">
+      <article id="randomUne2" class="plain seconde" ng-style="color2border">
         <h2 ng-style="color2" ng-click="displayReader(random3.article_id)" ng-bind-html="random3.title"></h2>
         <p><img ng-if="random3.image==1" class="left"  src="resources/img/articles/article_{{random3.article_id}}.jpg"/>
         <span ng-bind-html="random3.summary"></span> <a ng-style="color2" ng-click="displayReader(random3.article_id)">En savoir plus</a></p>
@@ -35,7 +35,7 @@
     </div>
 </div>
 <div class="col-lg-3 hidden-md-down stick-right">
-    <div class="plain prime" ng-repeat="division in standing" ng-click="goToPage('competition/'+division.ID)" ng-style="color1">
+    <div class="plain prime side" ng-repeat="division in standing" ng-click="goToPage('competition/'+division.ID)" ng-style="color1border">
       <h5>Division {{division.name}}</h5>
       <table>
         <tbody>

@@ -58,15 +58,24 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 
 	//Gestion des couleurs
 	//Couleurs de bases du site
-	$rootScope.colorA = "#0191FF";
-	$rootScope.colorB = "#00558D";
-	$rootScope.colorC = "#F68525";
+	$rootScope.colorA = "#00558D";
+	$rootScope.colorB = "#F68525";
 	//Mise à jours de couleurs (pour les équipes)
-	$rootScope.setColors = function(colorA,colorB,colorC){
-		$rootScope.color1 = { 'color': colorA, 'border-color':colorB } ;
-		$rootScope.color2 = { 'color': colorC, 'border-color':colorC } ;
-		$rootScope.color2bg = { 'background-color':colorC } ;
+	$rootScope.setColors = function(colorA,colorB){
+		$rootScope.color1 = colorA;
+		$rootScope.color1border = { 'color': colorA, 'border-color':colorA } ;
+		$rootScope.color1bg = { 'background-color':colorA } ;
+		$rootScope.color2 = colorB;
+		$rootScope.color2border = { 'color': colorB, 'border-color':colorB } ;
+		$('svg .colour1').css({"fill":colorA });
+		$rootScope.color1Svg = { 'fill': colorA };
+		$rootScope.color1Svg = { 'fill': colorA };
+		$rootScope.color2Svg = { 'fill': colorB, 'stroke': '#000000' };
+		$rootScope.color2bisSvg = { 'fill': colorB };
+		$rootScope.color2bg = { 'background-color':colorB } ;
 		$('.navbar').css({'background': '-webkit-linear-gradient('+colorA+',#000000)', 'background': '-moz-linear-gradient('+colorA+',#000000)', 'background': 'linear-gradient('+colorA+',#000000)' });
 	};
+
+
 
 });
