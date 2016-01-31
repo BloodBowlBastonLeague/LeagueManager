@@ -1,11 +1,9 @@
-LeagueManager.directive('presentation', function(Restangular){
+LeagueManager.directive('league', function(Restangular){
 	return {
 		restrict: 'E',
-		templateUrl: 'views/presentation.html',
-		css: 'css/presentation.css',
+		templateUrl: 'views/league.html',
 		controller: function($scope, $rootScope, $timeout, Restangular) {
-      $rootScope.resetLogo();
-      $rootScope.setColors($rootScope.colorA,$rootScope.colorB,$rootScope.colorC);
+      $rootScope.setColours($rootScope.colourA,$rootScope.colourB);
 
       $rootScope.title = "Tout sur la BBBL";
       //Alimentation de l'article aléatoire

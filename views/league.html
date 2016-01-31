@@ -1,6 +1,6 @@
 
       <div class="hd-70 y-top panel left">
-        <article ng-repeat="article in articles | orderBy: 'order'"  ng-if="article.category=='presentation' && article.random == 0"  ng-style="color1border">
+        <article ng-repeat="article in articles | orderBy: 'order'"  ng-if="article.category=='presentation' && article.random == 0"  ng-style="colours[0].border">
           <h3 ng-bind-html="article.title"></h3>
           <p ng-bind-html="article.summary"></p>
           <h6 ng-click="displayReader(article.article_id)">En savoir plus...</h6>
@@ -8,7 +8,7 @@
 
       </div>
       <div class="hd-30 y-center panel center">
-        <div id="randomPresentation1" class="random side" ng-click="displayReader(randomSide.article_id)"  ng-style="color2border">
+        <div id="randomPresentation1" class="random side" ng-click="displayReader(randomSide.article_id)"  ng-style="colours[1].border">
           <div class="image"></div>
           <div class="text"><h4 ng-bind-html="randomSide.title"></h4></div>
         </div>

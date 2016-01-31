@@ -1,9 +1,102 @@
-<div class="hd-100 y-top">
-  <div class="vd-30 panel center y-center">
-    <div>
-      <img class="teamLogo" src="resources/img/teams/minilogo{{match.idteam1}}.png">
-      <span ng-if="match.score1.length>0"> {{match.score1}} - {{match.score2}} </span>
-      <img class="teamLogo" src="resources/img/teams/minilogo{{match.idteam2}}.png">
+<div class="row">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="plain header seconde text-center" ng-style="colours[0].border">
+      <h4>{{match.leagueName}}</h4>
+      <h3>{{match.competitionName}}</h3>
+    </div>
+  </div>
+  <div class="col-md-3"></div>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <div id="HelmetLeft">
+      <div>
+        <div class="helmet" ng-include="'../resources/img/HelmetLeft.svg'"></div>
+        <div id="LogoLeft"></div>
+      </div>
+    </div>
+    <div class="plain prime content noselect text-right" ng-if="!activePlayer" ng-style="colours[2].border">
+      <h2 ng-style="colours[2].color">{{match.teams[0].teamName}}</h2>
+      <div id="ScoreLeft" class="score" ng-style="colours[2].color">{{match.teams[0].Score}}</div>
+      <h3>coaché par <span ng-style="colours[2].color">{{match.coaches[0].coachName}}</span></h3>
+      <div ng-repeat="i in match.teams[0].Fame" class="star">&#9733;</div><br/>
+      <h3 class="noselect">TV <span ng-style="colours[2].color">{{match.teams[0].Value}}</span></h3>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div id="HelmetRight">
+      <div>
+        <div class="helmet" ng-include="'../resources/img/HelmetRight.svg'"></div>
+        <div id="LogoRight"></div>
+      </div>
+    </div>
+    <div class="plain prime content noselect text-left" ng-if="!activePlayer" ng-style="colours[4].border">
+      <h2 ng-style="colours[4].color">{{match.teams[1].teamName}}</h2>
+      <div id="ScoreRight" class="score" ng-style="colours[4].color">{{match.teams[1].Score}}</div>
+      <h3>coaché par <span ng-style="colours[4].color">{{match.coaches[1].coachName}}</span></h3>
+      <div ng-repeat="i in match.teams[1].Fame" class="star">&#9733;</div><br/>
+      <h3 class="noselect">TV <span ng-style="colours[4].color">{{match.teams[1].Value}}</span></h3>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4">
+    <div class="plain prime text-center" ng-style="colours[2].border">
+      <h3 ng-style="colours[2].color">Statistiques</h3>
+      <ul class=" stats list-unstyled">
+        <li>Possession : <span ng-style="colours[2].color">{{match.teams[0].PossessionBall}} %</span></li>
+        <li>Occupation propre : <span ng-style="colours[2].color">{{match.teams[0].OccupationOwn}} %</span></li>
+        <li>Occupation adverse : <span ng-style="colours[2].color">{{match.teams[0].OccupationTheir}} %</span></li>
+        <li>Passes : <span ng-style="colours[2].color">{{match.teams[0].InflictedPasses}} </span></li>
+        <li>Réceptions : <span ng-style="colours[2].color">{{match.teams[0].InflictedCatches}} </span></li>
+        <li>Yards en passe : <span ng-style="colours[2].color">{{match.teams[0].InflictedMetersPassing}} </span></li>
+        <li>Yards en course : <span ng-style="colours[2].color">{{match.teams[0].InflictedMetersRunning}} </span></li>
+
+        <li>Tackles : <span ng-style="colours[2].color">{{match.teams[0].InflictedTackles}} </span></li>
+        <li>Sonnés : <span ng-style="colours[2].color">{{match.teams[0].InflictedCasualties}} </span></li>
+        <li>KO : <span ng-style="colours[2].color">{{match.teams[0].InflictedKO}} </span></li>
+        <li>Blessures : <span ng-style="colours[2].color">{{match.teams[0].InflictedInjuries}} </span></li>
+        <li>Mort : <span ng-style="colours[2].color">{{match.teams[0].InflictedDead}} </span></li>
+        <li>Offrande au public : <span ng-style="colours[2].color">{{match.teams[0].InflictedPushOuts}} </span></li>
+        <li>Expulsions : <span ng-style="colours[2].color">{{match.teams[0].SustainedExpulsions}} </span></li>
+
+      </ul>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="plain seconde text-center" ng-style="colours[0].border">
+      <h3>{{match.started|date:'d MMM yyyy HH'}}H</h3><br/>
+      <h4>Stade</h4>
+      <h3>{{match.stadium}}</h3><br/>
+      <h4>Arbitre</h4>
+      <h3>M. Squig</h3><br/>
+      <h4>Supporters</h4>
+      <h3>{{match.teams[0].NbSupporters--match.teams[1].NbSupporters | number:0}}</h3><br/>
+
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="plain prime text-center" ng-style="colours[4].border">
+      <h3 ng-style="colours[4].color">Statistiques</h3>
+      <ul class="stats list-unstyled">
+        <li>Possession : <span ng-style="colours[4].color">{{match.teams[1].PossessionBall}} %</span></li>
+        <li>Occupation propre : <span ng-style="colours[4].color">{{match.teams[1].OccupationOwn}} %</span></li>
+        <li>Occupation adverse : <span ng-style="colours[4].color">{{match.teams[1].OccupationTheir}} %</span></li>
+        <li>Passes : <span ng-style="colours[4].color">{{match.teams[1].InflictedPasses}} </span></li>
+        <li>Réceptions : <span ng-style="colours[4].color">{{match.teams[1].InflictedCatches}} </span></li>
+        <li>Yards en passe : <span ng-style="colours[4].color">{{match.teams[1].InflictedMetersPassing}} </span></li>
+        <li>Yards en course : <span ng-style="colours[4].color">{{match.teams[1].InflictedMetersRunning}} </span></li>
+        <li>Tackles : <span ng-style="colours[4].color">{{match.teams[1].InflictedTackles}} </span></li>
+        <li>Sonnés : <span ng-style="colours[4].color">{{match.teams[1].InflictedCasualties}} </span></li>
+        <li>KO : <span ng-style="colours[4].color">{{match.teams[1].InflictedKO}} </span></li>
+        <li>Blessures : <span ng-style="colours[4].color">{{match.teams[1].InflictedInjuries}} </span></li>
+        <li>Mort : <span ng-style="colours[4].color">{{match.teams[1].InflictedDead}} </span></li>
+        <li>Offrande au public : <span ng-style="colours[4].color">{{match.teams[1].InflictedPushOuts}} </span></li>
+        <li>Expulsions : <span ng-style="colours[4].color">{{match.teams[1].SustainedExpulsions}} </span></li>
+
+      </ul>
     </div>
   </div>
 </div>

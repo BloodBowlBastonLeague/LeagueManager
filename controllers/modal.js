@@ -34,7 +34,7 @@ LeagueManager.directive('modal', function(Restangular){
 				$scope.connector = !$scope.connector;
 			};
 
-			$scope.forumConnect = function(){
+			$scope.forumLogin = function(){
 				document.forms['forumConnect'].submit();
 			};
 

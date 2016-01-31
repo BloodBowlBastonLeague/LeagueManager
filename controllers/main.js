@@ -1,10 +1,12 @@
-LeagueManager.directive('une', function(Restangular){
+LeagueManager.directive('main', function(Restangular){
 	return {
 		restrict: 'E',
-		templateUrl: 'views/une.html',
+		templateUrl: 'views/main.html',
 		controller: function($scope, $rootScope, $http, $timeout, Restangular) {
-			$rootScope.resetLogo();
-			$rootScope.setColors($rootScope.colorA,$rootScope.colorB,$rootScope.colorC);
+
+					$('#Logo').css({"display":"none"})
+
+			$rootScope.setColours([$rootScope.colourA,$rootScope.colourB]);
 
 			$rootScope.title = "Tribunes - le mag de la BBBL";
 			//Récupération du classement en JSON (temporaire)

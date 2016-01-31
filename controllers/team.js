@@ -1,11 +1,9 @@
-LeagueManager.directive('equipe', function(Restangular){
+LeagueManager.directive('team', function(Restangular){
 	return {
 		restrict: 'E',
-		templateUrl: 'views/equipe.html',
+		templateUrl: 'views/team.html',
 		controller: function($scope, $rootScope, $http, $timeout, Restangular, $routeParams) {
 			$scope.teamID = $routeParams.ID;
-			console.log($scope.teamID);
-
 			$scope.activePlayer = false;
 
 			//Récupération du classement en JSON (temporaire)
@@ -16,9 +14,9 @@ LeagueManager.directive('equipe', function(Restangular){
 				$scope.team = $scope.teams[$scope.teamIdx];
 				$rootScope.title = $scope.team.name;
 				$scope.team.pop = [];
-		    $rootScope.setColors($scope.team.color1,$scope.team.color2);
+		    $rootScope.setColours([$scope.team.color1,$scope.team.color2]);
 				//Team Images
-				$('.logo').css({"background": "url(resources/img/teams/logo"+$routeParams.ID+".png) center center no-repeat", "background-size":"contain"});
+				$('#LogoLeft').css({"background": "url(resources/img/teams/logo"+$routeParams.ID+".png) center center no-repeat", "background-size":"contain"});
 
 
 				for(i=0;i<$scope.team.fame;i++){ $scope.team.pop.push(i); }
