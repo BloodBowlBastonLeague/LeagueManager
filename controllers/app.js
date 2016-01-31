@@ -11,21 +11,20 @@ LeagueManager.config(function ($routeProvider, RestangularProvider) {
   .when("/competition/:ID", {
 		template: '<competition></competition>'
 	})
+	.when("/league", {
+		template: '<league></league>'
+	})
+	.when("/team/:ID", {
+		template: '<team></team>'
+	})
 	.when("/match/:ID", {
-		templateUrl: '<match></match>'
-	})
-	.when("/presentation", {
-		template: '<presentation></presentation>'
-	})
-	.when("/equipe/:ID", {
-		template: '<equipe></equipe>'
+		template: '<match></match>'
 	})
   .when("/forum", {
     templateUrl: '/Forum/index.php'
   })
   .when("/", {
-				css: {href:'css/une.css',preload: true},
-    template: '<une></une>'
+    template: '<main></main>'
   });
 });
 
@@ -52,30 +51,24 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 		}
 		return selection[Math.floor(Math.random() * selection.length)];
 	};
-	$rootScope.resetLogo = function(){
-			$('#LM_logo').css({"background": "url(resources/img/BBBL2.png) center center no-repeat", "background-size":"contain"})
-	};
 
 	//Gestion des couleurs
 	//Couleurs de bases du site
-	$rootScope.colorA = "#00558D";
-	$rootScope.colorB = "#F68525";
+	$rootScope.colours = [];
+	$rootScope.colourA = "#00558D";
+	$rootScope.colourB = "#F68525";
 	//Mise à jours de couleurs (pour les équipes)
-	$rootScope.setColors = function(colorA,colorB){
-		$rootScope.color1 = colorA;
-		$rootScope.color1border = { 'color': colorA, 'border-color':colorA } ;
-		$rootScope.color1bg = { 'background-color':colorA } ;
-		$rootScope.color2 = colorB;
-		$rootScope.color2border = { 'color': colorB, 'border-color':colorB } ;
-		$('svg .colour1').css({"fill":colorA });
-		$rootScope.color1Svg = { 'fill': colorA };
-		$rootScope.color1Svg = { 'fill': colorA };
-		$rootScope.color2Svg = { 'fill': colorB, 'stroke': '#000000' };
-		$rootScope.color2bisSvg = { 'fill': colorB };
-		$rootScope.color2bg = { 'background-color':colorB } ;
-		$('.navbar').css({'background': '-webkit-linear-gradient('+colorA+',#000000)', 'background': '-moz-linear-gradient('+colorA+',#000000)', 'background': 'linear-gradient('+colorA+',#000000)' });
+	$rootScope.setColours = function(args){
+		for(i=0; i < args.length; i++){
+				$rootScope.colours[i] = {};
+				$rootScope.colours[i].hexa = args[i];
+				$rootScope.colours[i].color = { 'color': args[i] };
+				$rootScope.colours[i].border = { 'border-color':args[i] };
+				$rootScope.colours[i].background = { 'background-color':args[i] };
+				$rootScope.colours[i].fill = { 'fill': args[i] };
+		}
+		$('.navbar').css({'background': '-webkit-linear-gradient('+args[0]+','+args[0]+',#000000)', 'background': '-moz-linear-gradient('+args[0]+','+args[0]+',#000000)', 'background': 'linear-gradient('+args[0]+','+args[0]+',#000000)' });
 	};
-
 
 
 });

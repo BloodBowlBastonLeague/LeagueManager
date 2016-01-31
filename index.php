@@ -17,12 +17,8 @@ include('phpBB_Connect.php');
 
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="css/app.css" type="text/css">
-  <!--link rel="stylesheet" href="css/competition.css" type="text/css">
-  <link rel="stylesheet" href="css/equipe.css" type="text/css"-->
+  <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 
-  <link href='https://fonts.googleapis.com/css?family=Russo+One' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Hind' rel='stylesheet' type='text/css'>
-  <link href='http://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
   <header>
@@ -67,11 +63,11 @@ include('phpBB_Connect.php');
 
   <!-- Module BBBL -->
   <script src="controllers/app.js"></script>
-  <script src="controllers/une.js"></script>
-  <script src="controllers/presentation.js"></script>
+  <script src="controllers/main.js"></script>
+  <script src="controllers/league.js"></script>
   <script src="controllers/competition.js"></script>
   <script src="controllers/match.js"></script>
-  <script src="controllers/equipe.js"></script>
+  <script src="controllers/team.js"></script>
   <script src="controllers/modal.js"></script>
 
 </body>

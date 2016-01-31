@@ -4,8 +4,8 @@ LeagueManager.directive('competition', function(Restangular){
 		templateUrl: 'views/competition.html',
 
 		controller: function($scope, $rootScope, $http, $timeout, Restangular, $routeParams) {
-			$rootScope.resetLogo();
-			$rootScope.setColors($rootScope.colorA,$rootScope.colorB,$rootScope.colorC);
+
+			$rootScope.setColours([$rootScope.colourA,$rootScope.colourB]);
 			//Récupération du classement en JSON (temporaire)
 			$http.get('resources/json/standing.json').then(function(result){
 				$scope.standing = result.data;
@@ -14,9 +14,7 @@ LeagueManager.directive('competition', function(Restangular){
 				$scope.random = $rootScope.randomArticle([$scope.standing[$scope.division].name]);
 				$rootScope.title = "Division " + $scope.standing[$scope.division].name;
 				$scope.standing = $scope.standing[$scope.division].standing;
-
 				//Fin de suppression
-
 
 			});
 

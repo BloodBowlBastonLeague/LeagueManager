@@ -1,0 +1,115 @@
+{
+  "match": {
+    "ID": "953397",
+    "leagueName": "BBBL BOB 2",
+    "competitionName": "La Cramponnie",
+    "stadium": "Ankh-Morpork Stadium",
+    "levelStadium": "1",
+    "structStadium": "",
+    "started": "2015-11-15 20:33:47",
+    "finished": "2015-11-15 21:51:42",
+    "coaches": [
+      {
+        "idCoach": "77963",
+        "coachName": "Le Lapin Troll",
+        "CoachCyanEarned": "0",
+        "CoachXpEarned": "0"
+      },
+      {
+        "idCoach": "10424",
+        "coachName": "Cordell",
+        "CoachCyanEarned": "0",
+        "CoachXpEarned": "0"
+      }
+    ],
+    "teams": [
+      {
+        "idTeamListing": "176",
+        "teamName": "Unseen University Wizards",
+        "teamLogo": "Chaos_09",
+        "Value": "1080",
+        "Score": "2",
+        "CashBeforeMatch": "50000",
+        "PopularityBeforeMatch": "1",
+        "PopularityGain": "1",
+        "CashSpentInducements": "0",
+        "CashEarned": "40000",
+        "CashEarnedBeforeConcession": "40000",
+        "WinningsDice": "3",
+        "SpirallingExpenses": "0",
+        "NbSupporters": "5000",
+        "PossessionBall": "43",
+        "OccupationOwn": "18",
+        "OccupationTheir": "25",
+        "MVP": "1",
+        "InflictedPasses": "0",
+        "InflictedCatches": "0",
+        "InflictedInterceptions": "0",
+        "InflictedTouchdowns": "2",
+        "InflictedCasualties": "2",
+        "InflictedTackles": "38",
+        "InflictedKO": "2",
+        "InflictedInjuries": "10",
+        "InflictedDead": "0",
+        "InflictedMetersRunning": "62",
+        "InflictedMetersPassing": "4",
+        "InflictedPushOuts": "0",
+        "SustainedExpulsions": "0",
+        "SustainedCasualties": "1",
+        "SustainedKO": "5",
+        "SustainedInjuries": "10",
+        "SustainedDead": "0"
+      },
+      {
+        "idTeamListing": "209",
+        "teamName": "Skav4Ever",
+        "teamLogo": "Skaven_19",
+        "Value": "1060",
+        "Score": "2",
+        "CashBeforeMatch": "20000",
+        "PopularityBeforeMatch": "2",
+        "PopularityGain": "1",
+        "CashSpentInducements": "0",
+        "CashEarned": "80000",
+        "CashEarnedBeforeConcession": "80000",
+        "WinningsDice": "5",
+        "SpirallingExpenses": "0",
+        "NbSupporters": "12000",
+        "PossessionBall": "12",
+        "OccupationOwn": "0",
+        "OccupationTheir": "12",
+        "MVP": "1",
+        "InflictedPasses": "2",
+        "InflictedCatches": "2",
+        "InflictedInterceptions": "0",
+        "InflictedTouchdowns": "2",
+        "InflictedCasualties": "1",
+        "InflictedTackles": "24",
+        "InflictedKO": "4",
+        "InflictedInjuries": "9",
+        "InflictedDead": "0",
+        "InflictedMetersRunning": "80",
+        "InflictedMetersPassing": "10",
+        "InflictedPushOuts": "0",
+        "SustainedExpulsions": "0",
+        "SustainedCasualties": "3",
+        "SustainedKO": "4",
+        "SustainedInjuries": "17",
+        "SustainedDead": "1"
+      }
+    ]
+  },
+  "urls":
+    {
+      "images": {
+        "logos": "http:\/\/images.bb2.cyanide-studio.com\/logos",
+        "races": "http:\/\/images.bb2.cyanide-studio.com\/races",
+        "portraits": "http:\/\/images.bb2.cyanide-studio.com\/portraits"
+      },
+      "rss": {
+        "league": "http:\/\/web.cyanide-studio.com\/rss\/bb2\/?league_name=BBBL BOB 2"
+      }
+    },
+  "from": "Blood Bowl Baston League Web Admin",
+  "uuid": "10000E8C35"
+}
