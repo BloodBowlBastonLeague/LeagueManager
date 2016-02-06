@@ -2,7 +2,18 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-
+/*
+Extra small <544px
+Small ≥544px
+Medium ≥768px
+Large ≥992px
+Extra large ≥1200px
+*/
+@media (min-width: 62em) {
+  .navbar-toggleable-md {
+    display: block !important;
+  }
+}
 @font-face {
     font-family: Play;
     src: url(Akashi.ttf);
@@ -28,7 +39,17 @@ time, mark, audio, video {
 	font: inherit;
 }
 
-body { line-height: 1; background: url('../resources/img/background.jpg'); background-size: 100% auto; overflow: hidden; }
+@media all and (orientation:landscape  ) {
+  body { line-height: 1; background: url('../resources/img/background.jpg'); background-size: 100% auto; overflow: hidden; }
+}
+@media all and ( max-height:1200px ) {
+  body { line-height: 1; background: url('../resources/img/background.jpg'); background-size: auto 1200px; overflow: hidden; }
+ }
+@media all and (orientation:portrait) {
+  body { line-height: 1; background: url('../resources/img/background.jpg'); background-size: auto 100%; overflow: hidden; }
+ }
+
+
 h1 { font-family: 'Play';  font-size: 40px; line-height: 50px;  color: #ffffff; }
 h2 { font-family: 'Play';  font-size: 30px; line-height: 1; margin:0 0 10px; }
 h3 { font-family: 'Play';  font-size: 24px; line-height: 1; margin:0 0 10px; color: #ffffff; }
@@ -40,27 +61,36 @@ table { font-family:'Muli'; font-size: 14px; line-height: 18px; }
 th {text-transform: uppercase;}
 ul { font-family:'Muli'; font-family:'Muli'; font-size: 14px; line-height: 18px; text-align: justify; color:#cccccc;}
 
-#Main { height: calc(100vh - 68px); max-height:calc(100vh - 68px); width:100%; padding: 0  0.9375rem !important; }
-.row { overflow: hidden;}
+#Main { height: calc(100vh - 68px); max-height:calc(100vh - 68px); width:100%; padding: 0  0.9375rem !important; overflow : auto }
+.row { overflow: hidden; height:100%;}
 /* UTILITIES */
+.text-cutter { white-space: nowrap; text-overflow:ellipsis; overflow:hidden;  -ms-word-wrap: break-word; -webkit-word-wrap: break-word; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; }
 .noselect { -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; }
 .zelda { cursor:pointer; }
-.scroll { overflow-y: auto; height:100%; }
 .spacer { display:inline-block; height:1px; width:200px; }
-
+@media screen and (min-width: 992px) {
+    #Menu { float:right;}
+  .row { overflow: hidden; height:100%;}
+  .scroll { overflow-y: auto; height:100%; }
+}
+@media screen and (max-width: 991px) {
+  .row { overflow-y: auto; height:100%;}
+  #Menu { position: absolute;top: 50px;left: 0px;z-index: 1;}
+}
+.row.adapt {height:auto;}
 /* HEADER */
 #Intro { position:relative; width:100vw; height:18px; background:#000000; font-size: 12px;box-sizing: border-box; line-height: 18px;text-align:center; font-family:'Muli'; font-size: 14	px;  color:#f1f1f1; z-index:2;}
-#Logo { position:fixed; top:0px; left: 2vw; height: 90px; width: 90px; cursor: pointer; background: url(../resources/img/BBBL2.png) center center no-repeat; background-size:contain; z-index:100;}
+#Logo { position:fixed; top:0px; left:0; margin:0 10px; height: 90px; width: 90px; cursor: pointer; background: url(../resources/img/BBBL2.png) center center no-repeat; background-size:contain; z-index:100;}
 /* Navbar */
-.navbar { color:#ffffff;  height:50px; margin:0; padding: 0 0 0 calc(4vw + 90px); border-radius: 0;
+.navbar { color:#ffffff;  height:50px; margin:0; padding: 0 0 0 110px; border-radius: 0;
 	background: -webkit-linear-gradient(#00558D,#000000);
 	background: linear-gradient(#00558D,#000000);}
-	.navbar-brand { padding:0; margin:0; font-size: 36px; }
-  #Menu { float:right;}
+	.navbar-brand { padding:0; margin:0; font-size: 36px; max-width:calc(100vw - 160px);}
+
 
 
 .collapse.in { width: 100vw; background: #000000; padding: 5px 5px 5px 110px;}
-nav > ul > li { font-family: "Play"; height: 50px; margin: 0 0 0 -5px; padding: 0px 1vw; border-left: 1px solid #000 !important; display: inline-block; cursor: pointer; line-height:50px; }
+nav > ul > li { font-family: "Play"; height: 50px; margin: 0 0 0 -5px; padding: 0px 10px; border-left: 1px solid #000 !important; display: inline-block; cursor: pointer; line-height:50px; }
 nav > ul > li:hover { background: linear-gradient(to left, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 5%);}
 nav > ul > li:active { background: transparent; box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);}
 nav > ul > li > a { text-decoration: none; color: #FFFFFF; line-height:50px; font-weight: 400;}
@@ -95,7 +125,7 @@ article img { float:left; }
 tbody.table-hover tr:hover { background-color:transparent; background: #000000; }
 
 /* READER */
-#veil{ position:fixed; background: rgba(0,0,0,0.9); width:100vw; height:calc(100vh - 68px); top:68px; z-index:4; overflow:none;}
+#veil{ position:fixed; background: rgba(0,0,0,0.9); margin: 0 -0.9375rem; width:100vw; height:calc(100vh - 68px); top:68px; z-index:4; overflow:none;}
 .container { position:fixed; margin:50px 10vw; padding: 1vh 2vw 0px; width:80vw; max-height:calc(100vh - 150px); top:50px; z-index:5; background: rgba(50,50,50,0.85); overflow:none;
 box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.75);
 border-radius: 5px; border-bottom: 2px solid; }
@@ -147,31 +177,37 @@ td > .teamLogo {width: 20px; height: 20px; display: inline; padding-right: 2px;}
 
 #fame {float: right; display: inline-block; text-align: right;}
 #random > h6 {cursor: auto !important;}
-
-@media screen and (min-width: 545px) {
-  #HelmetLeft { position:absolute; z-index:2; left:10px; width:200px; height:200px; -webkit-perspective: 150px;
-      perspective: 150px;  }
-    #HelmetLeft + .content { padding-left: 180px; top:15px; min-height:170px;}
-  #HelmetRight { position:absolute; z-index:2; right:10px; width:200px; height:200px; -webkit-perspective: 150px;
-      perspective: 150px; transform:rotateY(180deg); }
-  	#LogoRight, #LogoLeft { position: absolute; left: 15px; top: 30px; width: 70px; height: 70px;
-  		-ms-transform: rotateY(-15deg) rotate(-10deg);
-  		-webkit-transform: rotateY(-15deg) rotate(-10deg);
-  		transform: rotateY(-15deg) rotate(-10deg);}
-    #HelmetRight + .content { padding-right: 180px; top:15px; min-height:170px;}
-  }
-}
 @media screen and (max-width: 544px) {
-
-	#Helmet { text-align:center; height:200px; -webkit-perspective: 150px;
-	    perspective: 150px;  }
-	#Helmet > div { position:absolute; left:calc(50% - 100px);}
-
-			#Helmet .logo { position: absolute; left: 15px; top: 30px; width: 70px; height: 70px;
+	#HelmetTeam, #HelmetLeft, #HelmetRight { text-align:center; height:200px; -webkit-perspective: 150px; perspective: 150px; padding-top: 20px}
+	#HelmetTeam > div , #HelmetLeft > div, #HelmetRight > div { position:absolute; left:calc(50% - 100px); }
+	#HelmetTeam .logo, #HelmetLeft .logo, #HelmetRight .logo { position: absolute; left: 15px; top: 30px; width: 70px; height: 70px;
 				-ms-transform: rotateY(-15deg) rotate(-10deg);
 				-webkit-transform: rotateY(-15deg) rotate(-10deg);
 				transform: rotateY(-15deg) rotate(-10deg);}
+        #HelmetRight {  transform:rotateY(180deg); }
 }
+@media screen and (min-width: 545px) {
+
+  #HelmetTeam { position:absolute; z-index:2; left:10px; width:200px; height:200px; -webkit-perspective: 150px;
+      perspective: 150px;  }
+    #HelmetTeam + .content { padding-left: 180px; top: 15px; min-height:195px;}
+
+  #HelmetLeft { position:absolute; z-index:2; top:60px; left:10px; width:200px; height:200px; -webkit-perspective: 150px;
+      perspective: 150px;  }
+    #HelmetLeft + .content { min-height:195px;}
+    #HelmetLeft + .content .teamBoard { padding-left: 170px; }
+  #HelmetRight { position:absolute; z-index:2; top:60px; right:10px; width:200px; height:200px; -webkit-perspective: 150px;
+      perspective: 150px; transform:rotateY(180deg); }
+  #HelmetTeam .logo, #HelmetLeft .logo, #HelmetRight .logo { position: absolute; left: 15px; top: 30px; width: 70px; height: 70px;
+  		-ms-transform: rotateY(-15deg) rotate(-10deg);
+  		-webkit-transform: rotateY(-15deg) rotate(-10deg);
+  		transform: rotateY(-15deg) rotate(-10deg);}
+    #HelmetRight + .content { min-height:195px;}
+    #HelmetRight .teamBoard { padding-right: 170px;}
+
+}
+
+
 .star { font-size: 30px;  line-height: 30px;  display: inline-block;
     -ms-transform: rotate(-10deg);
     -webkit-transform: rotate(-10deg);

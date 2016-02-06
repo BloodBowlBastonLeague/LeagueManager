@@ -1,4 +1,4 @@
-<div class="row">
+<div class="row adapt">
   <div class="col-md-3"></div>
   <div class="col-md-6">
     <div class="plain header seconde text-center" ng-style="colours[0].border">
@@ -8,40 +8,42 @@
   </div>
   <div class="col-md-3"></div>
 </div>
-<div class="row">
+<div class="row adapt">
   <div class="col-md-6">
     <div id="HelmetLeft">
       <div>
-        <div class="helmet" ng-include="'../resources/img/HelmetLeft.svg'"></div>
-        <div id="LogoLeft"></div>
+        <div class="helmet" ng-include="'resources/img/HelmetLeft.svg'"></div>
+        <div id="LogoLeft" class="logo"></div>
       </div>
     </div>
     <div class="plain prime content noselect text-right" ng-if="!activePlayer" ng-style="colours[2].border">
-      <h2 ng-style="colours[2].color">{{match.teams[0].teamName}}</h2>
+      <h2 class="zelda" ng-style="colours[2].color" ng-click="goToPage('team/' + match.teams[0].idTeamListing )">{{match.teams[0].teamName}}</h2>
       <div id="ScoreLeft" class="score" ng-style="colours[2].color">{{match.teams[0].Score}}</div>
-      <h3>coaché par <span ng-style="colours[2].color">{{match.coaches[0].coachName}}</span></h3>
-      <div ng-repeat="i in match.teams[0].Fame" class="star">&#9733;</div><br/>
-      <h3 class="noselect">TV <span ng-style="colours[2].color">{{match.teams[0].Value}}</span></h3>
+      <div class="teamBoard">
+        <h3>coaché par <span ng-style="colours[2].color">{{match.coaches[0].coachName}}</span></h3>
+        <h3>TV <span ng-style="colours[2].color">{{match.teams[0].Value}}</span></h3>
+        <h3><div ng-repeat="i in match.teams[0].pop" class="star" ng-style="colours[2].color">&#9733;</div><span ng-if="match.teams[0].newPop.length > 0"> + <div ng-repeat="i in match.teams[0].pop" class="star">&#9733;</div></span></h3>
+      </div>
     </div>
   </div>
   <div class="col-md-6">
     <div id="HelmetRight">
       <div>
-        <div class="helmet" ng-include="'../resources/img/HelmetRight.svg'"></div>
-        <div id="LogoRight"></div>
+        <div class="helmet" ng-include="'resources/img/HelmetRight.svg'"></div>
+        <div id="LogoRight" class="logo"></div>
       </div>
     </div>
     <div class="plain prime content noselect text-left" ng-if="!activePlayer" ng-style="colours[4].border">
-      <h2 ng-style="colours[4].color">{{match.teams[1].teamName}}</h2>
+      <h2 class="zelda" ng-style="colours[4].color" ng-click="goToPage('team/' + match.teams[1].idTeamListing )">{{match.teams[1].teamName}}</h2>
       <div id="ScoreRight" class="score" ng-style="colours[4].color">{{match.teams[1].Score}}</div>
       <h3>coaché par <span ng-style="colours[4].color">{{match.coaches[1].coachName}}</span></h3>
-      <div ng-repeat="i in match.teams[1].Fame" class="star">&#9733;</div><br/>
       <h3 class="noselect">TV <span ng-style="colours[4].color">{{match.teams[1].Value}}</span></h3>
+      <h3><div ng-repeat="i in match.teams[1].pop" class="star" ng-style="colours[4].color">&#9733;</div><span ng-if="match.teams[1].newPop.length > 0"> + <div ng-repeat="i in match.teams[1].pop" class="star">&#9733;</div></span></h3>
       </ul>
     </div>
   </div>
 </div>
-<div class="row">
+<div class="row adapt">
   <div class="col-md-4">
     <div class="plain prime text-center" ng-style="colours[2].border">
       <h3 ng-style="colours[2].color">Statistiques</h3>

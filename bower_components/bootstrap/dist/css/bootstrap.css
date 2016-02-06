@@ -3790,6 +3790,12 @@ input[type="button"].btn-block {
   }
 }
 
+@media (min-width: 62em) {
+  .navbar-toggleable-md {
+    display: block !important;
+  }
+}
+
 .navbar-nav .nav-item {
   float: left;
 }

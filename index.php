@@ -25,16 +25,15 @@ include('phpBB_Connect.php');
     <div id="Intro" class="hd-100 x-center y-center">la Blood Bowl Baston League pr&eacute;sente</div>
     <nav class="navbar">
       <div id="Logo" class="logo" ng-click="goToPage('/')"></div>
-      <div id="Logo1" ng-click="goToPage('/')"></div>
-      <div class="navbar-toggler hidden-md-up pull-right" type="button" data-toggle="collapse" data-target="#Menu">&#9776;</div>
-      <h1 class="navbar-brand inline">{{title}}</h1>
-      <ul class="nav navbar-nav  inline collapse navbar-toggleable-sm  pull-xs-right" id="Menu">
+      <h1 class="navbar-brand inline text-cutter">{{title}}</h1>
+      <ul class="nav navbar-nav  inline collapse navbar-toggleable-md pull-xs-right" id="Menu">
         <li><a class="nav" href="Forum">Forum</a></li>
-        <li><a class="nav" href="steam://run/236690">Jouer</a></li>
-        <li><a class="nav" href="mumble://srv07.serveurmumble.com:50674/">Mumble</a></li>
+        <li class="hidden-sm-down"><a class="nav" href="steam://run/236690">Jouer</a></li>
+        <li class="hidden-sm-down"><a class="nav" href="mumble://srv07.serveurmumble.com:50674/">Mumble</a></li>
         <li ng-if="<?php echo $user->data['user_id'];?>===1" ng-click="displayConnector()"><a class="nav">Connexion</a></li>
         <li ng-if="<?php echo $user->data['user_id'];?>!==1"><a class="nav" href="support.html">Vestiaire</a></li>
       </ul>
+      <div class="navbar-toggler hidden-lg-up pull-right" type="button" data-toggle="collapse" data-target="#Menu">&#9776;</div>
     </nav>
   </header>
 
