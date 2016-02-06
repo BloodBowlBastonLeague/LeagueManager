@@ -9,11 +9,17 @@ LeagueManager.directive('match', function(Restangular){
 
 				$http.get('resources/json/match.json').then(function(result){
 					$scope.match = result.data.match;
+
 					//Récupération des couleurs - Fetching colours
 					for(i=0; i < $scope.match.teams.length; i++){
 						$scope.teamIdx = $scope.teams.map(function(e) { return e.teamID; }).indexOf($scope.match.teams[i].idTeamListing);
 						$scope.match.teams[i].color1 = $scope.teams[$scope.teamIdx].color1;
 						$scope.match.teams[i].color2 = $scope.teams[$scope.teamIdx].color2;
+						$scope.match.teams[i].pop =[];
+						$scope.match.teams[i].newPop =[];
+						for(j=0;j<$scope.match.teams[i].PopularityBeforeMatch;j++){ $scope.match.teams[i].pop.push(j); }
+						for(k=0;k<$scope.match.teams[i].PopularityGain;k++){ $scope.match.teams[i].newPop.push(k); }
+
 					}
 					$scope.match.started = $scope.match.started.replace(/-/g,"").replace(/ /g,"T")+"Z";
 

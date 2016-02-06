@@ -16,7 +16,8 @@ LeagueManager.directive('team', function(Restangular){
 				$scope.team.pop = [];
 		    $rootScope.setColours([$scope.team.color1,$scope.team.color2]);
 				//Team Images
-				$('#LogoLeft').css({"background": "url(resources/img/teams/logo"+$routeParams.ID+".png) center center no-repeat", "background-size":"contain"});
+				$('.logo').css({"background": "url(resources/img/teams/logo"+$routeParams.ID+".png) center center no-repeat", "background-size":"contain"});
+
 
 
 				for(i=0;i<$scope.team.fame;i++){ $scope.team.pop.push(i); }
