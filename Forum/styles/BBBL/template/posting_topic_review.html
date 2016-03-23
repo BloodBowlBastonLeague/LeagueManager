@@ -25,22 +25,22 @@
 			<h3><a href="#pr{topic_review_row.POST_ID}">{topic_review_row.POST_SUBJECT}</a></h3>
 
 			<!-- IF (topic_review_row.POSTER_QUOTE and topic_review_row.DECODED_MESSAGE) or topic_review_row.U_MCP_DETAILS -->
-			<ul class="post-buttons">
+			<div class="post-buttons">
 			<!-- IF topic_review_row.U_MCP_DETAILS -->
-				<li>
-					<a href="{topic_review_row.U_MCP_DETAILS}" title="{L_POST_DETAILS}" class="button icon-button info-icon">
+				<div>
+					<a href="{topic_review_row.U_MCP_DETAILS}" title="{L_POST_DETAILS}" class="button button2 icon-button info-icon">
 						<span>{L_POST_DETAILS}</span>
 					</a>
-				<li>
+				</div>
 			<!-- ENDIF -->
 			<!-- IF topic_review_row.POSTER_QUOTE and topic_review_row.DECODED_MESSAGE -->
-				<li>
+				<div>
 					<a href="#postingbox" onclick="addquote({topic_review_row.POST_ID}, '{topic_review_row.POSTER_QUOTE}', '{LA_WROTE}');" title="{L_QUOTE} {topic_review_row.POST_AUTHOR}" class="button icon-button quote-icon">
-						<span>{L_QUOTE} {topic_review_row.POST_AUTHOR}</span>
+						<span>{L_QUOTE}</span>
 					</a>
-				</li>
+				</div>
 			<!-- ENDIF -->
-			</ul>
+		</div>
 			<!-- ENDIF -->
 
 			<p class="author"><!-- IF S_IS_BOT -->{topic_review_row.MINI_POST_IMG}<!-- ELSE --><a href="{topic_review_row.U_MINI_POST}">{topic_review_row.MINI_POST_IMG}</a><!-- ENDIF --> {L_POST_BY_AUTHOR} <strong>{topic_review_row.POST_AUTHOR_FULL}</strong> &raquo; {topic_review_row.POST_DATE}  </p>

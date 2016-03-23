@@ -128,7 +128,7 @@
 	<div id="p{postrow.POST_ID}" class="post has-profile <!-- IF postrow.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- IF postrow.S_UNREAD_POST --> unreadpost<!-- ENDIF --><!-- IF postrow.S_POST_REPORTED --> reported<!-- ENDIF --><!-- IF postrow.S_POST_DELETED --> deleted<!-- ENDIF --><!-- IF postrow.S_ONLINE and not postrow.S_POST_HIDDEN --> online<!-- ENDIF --><!-- IF postrow.POSTER_WARNINGS --> warned<!-- ENDIF -->">
 		<div class="inner">
 
-		<dl class="postprofile" id="profile{postrow.POST_ID}"<!-- IF postrow.S_POST_HIDDEN --> style="display: none;"<!-- ENDIF -->>
+		<dl class="postprofile-{postrow.RANK_TITLE}" id="profile{postrow.POST_ID}"<!-- IF postrow.S_POST_HIDDEN --> style="display: none;"<!-- ENDIF -->>
 			<dt class="<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG -->has-profile-rank<!-- ELSE -->no-profile-rank<!-- ENDIF --> <!-- IF postrow.POSTER_AVATAR -->has-avatar<!-- ELSE -->no-avatar<!-- ENDIF -->">
 				<div class="avatar-container">
 					<!-- EVENT viewtopic_body_avatar_before -->
@@ -142,15 +142,16 @@
 				<!-- EVENT viewtopic_body_post_author_after -->
 			</dt>
 
-			<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG --><dd class="profile-rank">{postrow.RANK_TITLE}<!-- IF postrow.RANK_TITLE and postrow.RANK_IMG --><br /><!-- ENDIF -->{postrow.RANK_IMG}</dd><!-- ENDIF -->
+			<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG --><dd class="profile-rank"><!-- IF postrow.RANK_TITLE and postrow.RANK_IMG --><!-- ENDIF -->{postrow.RANK_IMG}</dd><!-- ENDIF -->
+						<br />
+						<dd class="profile-champ-{postrow.POST_AUTHOR}"><br /></dd>
+						<dd class="profile-stars-{postrow.POST_AUTHOR}"><br /></dd>
 
-		<!-- IF postrow.POSTER_POSTS != '' --><dd class="profile-posts"><strong>{L_POSTS}{L_COLON}</strong> <!-- IF postrow.U_SEARCH !== '' --><a href="{postrow.U_SEARCH}"><!-- ENDIF -->{postrow.POSTER_POSTS}<!-- IF postrow.U_SEARCH !== '' --></a><!-- ENDIF --></dd><!-- ENDIF -->
-		<!-- IF postrow.POSTER_JOINED --><dd class="profile-joined"><strong>{L_JOINED}{L_COLON}</strong> {postrow.POSTER_JOINED}</dd><!-- ENDIF -->
 		<!-- IF postrow.POSTER_WARNINGS --><dd class="profile-warnings"><strong>{L_WARNINGS}{L_COLON}</strong> {postrow.POSTER_WARNINGS}</dd><!-- ENDIF -->
 
 		<!-- IF postrow.S_PROFILE_FIELD1 -->
 			<!-- Use a construct like this to include admin defined profile fields. Replace FIELD1 with the name of your field. -->
-			<dd><strong>{postrow.PROFILE_FIELD1_NAME}{L_COLON}</strong> {postrow.PROFILE_FIELD1_VALUE}</dd>
+			<dd><strong>{postrow.PROFILE_FIELD1_NAME}{L_COLON}ass</strong> {postrow.PROFILE_FIELD1_VALUE}</dd>
 		<!-- ENDIF -->
 
 		<!-- EVENT viewtopic_body_postrow_custom_fields_before -->
@@ -209,47 +210,6 @@
 			<div id="post_content{postrow.POST_ID}"<!-- IF postrow.S_POST_HIDDEN --> style="display: none;"<!-- ENDIF -->>
 
 			<h3 <!-- IF postrow.S_FIRST_ROW -->class="first"<!-- ENDIF -->><!-- IF postrow.POST_ICON_IMG --><img src="{T_ICONS_PATH}{postrow.POST_ICON_IMG}" width="{postrow.POST_ICON_IMG_WIDTH}" height="{postrow.POST_ICON_IMG_HEIGHT}" alt="" /> <!-- ENDIF --><a href="#p{postrow.POST_ID}">{postrow.POST_SUBJECT}</a></h3>
-
-		<!-- EVENT viewtopic_body_post_buttons_list_before -->
-		<!-- IF not S_IS_BOT -->
-			<!-- IF postrow.U_EDIT or postrow.U_DELETE or postrow.U_REPORT or postrow.U_WARN or postrow.U_INFO or postrow.U_QUOTE -->
-				<ul class="post-buttons">
-					<!-- EVENT viewtopic_body_post_buttons_before -->
-					<!-- IF postrow.U_EDIT -->
-						<li>
-							<a href="{postrow.U_EDIT}" title="{L_EDIT_POST}" class="button icon-button edit-icon"><span>{L_BUTTON_EDIT}</span></a>
-						</li>
-					<!-- ENDIF -->
-					<!-- IF postrow.U_DELETE -->
-						<li>
-							<a href="{postrow.U_DELETE}" title="{L_DELETE_POST}" class="button icon-button delete-icon"><span>{L_DELETE_POST}</span></a>
-						</li>
-					<!-- ENDIF -->
-					<!-- IF postrow.U_REPORT -->
-						<li>
-							<a href="{postrow.U_REPORT}" title="{L_REPORT_POST}" class="button icon-button report-icon"><span>{L_REPORT_POST}</span></a>
-						</li>
-					<!-- ENDIF -->
-					<!-- IF postrow.U_WARN -->
-						<li>
-							<a href="{postrow.U_WARN}" title="{L_WARN_USER}" class="button icon-button warn-icon"><span>{L_WARN_USER}</span></a>
-						</li>
-					<!-- ENDIF -->
-					<!-- IF postrow.U_INFO -->
-						<li>
-							<a href="{postrow.U_INFO}" title="{L_INFORMATION}" class="button icon-button info-icon"><span>{L_INFORMATION}</span></a>
-						</li>
-					<!-- ENDIF -->
-					<!-- IF postrow.U_QUOTE -->
-						<li>
-							<a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}" class="button icon-button quote-icon"><span>{L_QUOTE}</span></a>
-						</li>
-					<!-- ENDIF -->
-					<!-- EVENT viewtopic_body_post_buttons_after -->
-				</ul>
-			<!-- ENDIF -->
-		<!-- ENDIF -->
-		<!-- EVENT viewtopic_body_post_buttons_list_after -->
 
 			<!-- EVENT viewtopic_body_postrow_post_details_before -->
 			<p class="author"><!-- IF S_IS_BOT -->{postrow.MINI_POST_IMG}<!-- ELSE --><a href="{postrow.U_MINI_POST}">{postrow.MINI_POST_IMG}</a><!-- ENDIF --><span class="responsive-hide">{L_POST_BY_AUTHOR} <strong>{postrow.POST_AUTHOR_FULL}</strong> &raquo; </span>{postrow.POST_DATE} </p>
@@ -318,7 +278,31 @@
 			</div>
 
 		</div>
-
+		<!-- EVENT viewtopic_body_post_buttons_list_before -->
+		<!-- IF not S_IS_BOT -->
+			<!-- IF postrow.U_EDIT or postrow.U_DELETE or postrow.U_REPORT or postrow.U_WARN or postrow.U_INFO or postrow.U_QUOTE -->
+				<div class="post-buttons">
+					<!-- EVENT viewtopic_body_post_buttons_before -->
+					<!-- IF postrow.U_EDIT -->
+						<div>
+							<a href="{postrow.U_EDIT}" title="{L_EDIT_POST}" class="button icon-button edit-icon"><span>{L_BUTTON_EDIT}</span></a>
+						</div>
+					<!-- ENDIF -->
+					<!-- IF postrow.U_DELETE -->
+						<div>
+							<a href="{postrow.U_DELETE}" title="{L_DELETE_POST}" class="button icon-button delete-icon"><span>{L_DELETE_POST}</span></a>
+						</div>
+					<!-- ENDIF -->
+					<!-- IF postrow.U_QUOTE -->
+						<div>
+							<a href="{postrow.U_QUOTE}" title="{L_REPLY_WITH_QUOTE}" class="button icon-button quote-icon"><span>{L_QUOTE}</span></a>
+						</div>
+					<!-- ENDIF -->
+					<!-- EVENT viewtopic_body_post_buttons_after -->
+				</div>
+			<!-- ENDIF -->
+		<!-- ENDIF -->
+		<!-- EVENT viewtopic_body_post_buttons_list_after -->
 		<div class="back2top"><a href="#top" class="top" title="{L_BACK_TO_TOP}">{L_BACK_TO_TOP}</a></div>
 
 		</div>

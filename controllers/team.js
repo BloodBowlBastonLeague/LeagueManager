@@ -7,8 +7,8 @@ LeagueManager.directive('team', function(Restangular){
 			$scope.activePlayer = false;
 
 			//Récupération du classement en JSON (temporaire)
-			$http.get('resources/json/team.json').then(function(result){
-				$scope.teams = result.data;
+			$http.get('resources/json/team.json').success(function(result){
+				$scope.teams = result;
 				//à supprimer et mettre dans le chemin de l'API
 				$scope.teamIdx = $scope.teams.map(function(e) { return e.teamID; }).indexOf($routeParams.ID);
 				$scope.team = $scope.teams[$scope.teamIdx];

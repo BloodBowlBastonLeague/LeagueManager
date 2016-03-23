@@ -1,8 +1,4 @@
 <!DOCTYPE html>
-<?php
-//PHPBB connection / Connexion à phpBB
-include('phpBB_Connect.php');
-?>
 
 <html  ng-app="LeagueManager">
 <head>
@@ -29,11 +25,10 @@ include('phpBB_Connect.php');
       <ul class="nav navbar-nav  inline collapse navbar-toggleable-md pull-xs-right" id="Menu">
         <li><a class="nav" href="Forum">Forum</a></li>
         <li class="hidden-sm-down"><a class="nav" href="steam://run/236690">Jouer</a></li>
-        <li class="hidden-sm-down"><a class="nav" href="mumble://srv07.serveurmumble.com:50674/">Mumble</a></li>
-        <li ng-if="<?php echo $user->data['user_id'];?>===1" ng-click="displayConnector()"><a class="nav">Connexion</a></li>
-        <li ng-if="<?php echo $user->data['user_id'];?>!==1"><a class="nav" href="support.html">Vestiaire</a></li>
+        <li class="hidden-sm-down"><a class="nav" href="razercomms://">Vocal</a></li>
+        <li ng-click="displayConnector()"><a class="nav">Connexion</a></li>
       </ul>
-      <div class="navbar-toggler hidden-lg-up pull-right" type="button" data-toggle="collapse" data-target="#Menu">&#9776;</div>
+      <div class="navbar-toggler hidden-lg-up pull-right zelda" type="button" data-toggle="collapse" data-target="#Menu">&#9776;</div>
     </nav>
   </header>
 

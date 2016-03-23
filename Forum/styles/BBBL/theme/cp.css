@@ -16,17 +16,25 @@
 	width: 81%;
 }
 
+#cp-main .panel {
+	background: transparent;
+	border: none;
+	margin: 0;
+	box-shadow: none;
+	margin-bottom: 30px;
+}
+
 #cp-main .content {
 	padding: 0;
 }
 
 .panel-container .panel p {
-	font-size: 1.1em;
+	font-size: 1em;
 }
 
 .panel-container .panel ol {
 	margin-left: 2em;
-	font-size: 1.1em;
+	font-size: 1em;
 }
 
 .panel-container .panel li.row {
@@ -115,6 +123,7 @@ ul.cplist {
 	font-size: 1em;
 	font-weight: bold;
 	line-height: 14px;
+	padding: 0 5px;
 }
 
 #tabs .tab > a, #minitabs .tab > a {

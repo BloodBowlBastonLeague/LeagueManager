@@ -53,7 +53,7 @@ html {
 }
 
 body {
-	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-family: "Muli";
 	font-size: 10px;
 	line-height: normal;
 	margin: 0;
@@ -69,6 +69,7 @@ h1 {
 	margin-top: 15px;
 	font-weight: bold;
 	font-size: 2em;
+	float: left;
 }
 
 h2 {
@@ -77,6 +78,28 @@ h2 {
 	font-weight: normal;
 	font-size: 2em;
 	margin: 0.8em 0 0.2em 0;
+	border:0;
+}
+
+#viewtopic {
+	margin-top: 20px;
+}
+
+/* NORMAL */
+.topic-title {
+	text-align: left;
+	border-top: 0;
+	font-size: 26px;
+	margin: 30px 30px 0;
+	padding: 20px;
+}
+
+.topic-title a {
+	color:#FFFFFF;
+}
+
+.topic-title a:hover {
+  color: #FB7728;
 }
 
 h2.solo {
@@ -113,9 +136,8 @@ img {
 
 hr {
 	border: 0 solid transparent;
-	border-top-width: 1px;
-	height: 1px;
-	margin: 5px 0;
+	height: 0;
+	margin: 0;
 	display: block;
 	clear: both;
 }
@@ -134,7 +156,7 @@ p.right {
 }
 
 p.jumpbox-return {
-	margin-top: 1em;
+	display:none;
 }
 
 b, strong {
@@ -146,7 +168,6 @@ i, em {
 }
 
 u {
-	text-decoration: underline;
 }
 
 ul {
@@ -181,6 +202,7 @@ ol ol ul, ol ul ul, ul ol ul, ul ul ul {
 	min-width: 625px;
 	padding: 15px;
 	overflow: auto;
+	height: calc(100vh - 68px);
 }
 
 @media only screen and (max-width: 1220px), only screen and (max-device-width: 1220px) {
@@ -190,16 +212,28 @@ ol ol ul, ol ul ul, ul ol ul, ul ul ul {
 }
 
 #page-body {
-	margin: 4px 0;
+	margin: 0;
 	clear: both;
 }
 
 #page-footer {
 	clear: both;
+	background: #000000;
+
 }
 
 #page-footer h3 {
 	margin-top: 20px;
+}
+
+#page-header {
+	margin-right: 10px;
+	margin-bottom: 10px;
+	background-color: transparent;
+	background-image: url("./images/fond_black_transp.png");
+	background-repeat: repeat;
+	border-radius: 10px;
+	box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.9);
 }
 
 .logo {
@@ -226,9 +260,7 @@ ol ol ul, ol ul ul, ul ol ul, ul ul ul {
 ---------------------------------------- */
 .headerbar {
 	background: transparent none repeat-x 0 0;
-	margin-bottom: 4px;
-	padding: 5px;
-	border-radius: 7px;
+	height:0px;
 }
 
 .navbar {
@@ -243,6 +275,14 @@ ol ol ul, ol ul ul, ul ol ul, ul ul ul {
 	clear: both;
 	border-radius: 7px;
 }
+.forabg .inner{
+    background-repeat: repeat;
+		border-radius: 10px;
+		padding: 5px 10px 10px 10px;
+		margin-right: 10px;
+    margin-top: 30px;
+		box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.9);
+}
 
 .forumbg {
 	background: transparent none repeat-x 0 0;
@@ -250,12 +290,45 @@ ol ol ul, ol ul ul, ul ol ul, ul ul ul {
 	padding: 5px;
 	clear: both;
 	border-radius: 7px;
+	box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.9);
+  margin-right: 10px;
+}
+
+.forum-title, .posting-title {
+	text-align: left;
+	border-top: 0;
+	font-size: 26px;
+	margin: 30px 30px 0;
+	padding: 20px;
+	}
+.forum-title a {
+
 }
 
 .panel {
 	margin-bottom: 4px;
 	padding: 5px 10px;
 	border-radius: 7px;
+	height:auto;
+}
+
+#postingbox {
+		height:auto;
+		margin-top: 0;
+		border: none;
+		border-radius: 0;
+		box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.9);
+}
+
+#postingbox + div { margin: -30px 30px 30px; padding: 0 !important; }
+
+.posting-title {
+border-bottom: 2px solid;
+border-radius: 0 0 5px 5px;
+}
+
+.posting-title a{
+
 }
 
 .post {
@@ -275,6 +348,7 @@ ol ol ul, ol ul ul, ul ol ul, ul ul ul {
 ----------------------------------------*/
 .navbar ul.linklist {
 	padding: 2px 0;
+	height: auto;
 }
 
 ul.linklist {
@@ -284,12 +358,13 @@ ul.linklist {
 
 #cp-main .panel {
 	padding: 5px 10px;
+		height:auto;
 }
 
 ul.linklist > li {
 	float: left;
 	font-size: 1.1em;
-	line-height: 2.2em;
+	line-height: 1.4em;
 	list-style-type: none;
 	margin-right: 7px;
 	padding-top: 1px;
@@ -301,6 +376,7 @@ ul.linklist > li.rightside, p.rightside, a.rightside {
 	margin-right: 0;
 	margin-left: 7px;
 	text-align: right;
+	color: #CCC;
 }
 
 ul.navlinks {
@@ -356,11 +432,13 @@ ul.linklist li.responsive-menu a.responsive-menu-link:before {
 }
 
 li.responsive-menu.dropdown-right .dropdown {
-	left: -9px;
+position: fixed;
 }
+
 
 li.responsive-menu.dropdown-left .dropdown {
 	right: -6px;
+	position: fixed;
 }
 
 ul.linklist .dropdown {
@@ -399,6 +477,7 @@ ul.linklist.bulletin > li.no-bulletin:before {
 .header-profile {
 	display: inline-block;
 	vertical-align: top;
+	right: 0px;
 }
 
 .header-avatar:hover {
@@ -407,7 +486,7 @@ ul.linklist.bulletin > li.no-bulletin:before {
 
 .header-avatar img {
 	margin-bottom: 2px;
-	max-height: 20px;
+	max-height: 30px;
 	vertical-align: middle;
 	width: auto;
 }
@@ -424,7 +503,7 @@ ul.linklist.bulletin > li.no-bulletin:before {
 /* Dropdown menu
 ----------------------------------------*/
 .dropdown-container {
-	position: relative;
+
 }
 
 .dropdown-container-right {
@@ -440,7 +519,7 @@ ul.linklist.bulletin > li.no-bulletin:before {
 }
 
 .dropdown {
-	position: absolute;
+	position: fixed;
 	left: 0;
 	top: 1.2em;
 	z-index: 2;
@@ -457,6 +536,10 @@ ul.linklist.bulletin > li.no-bulletin:before {
 .dropdown-container.topic-tools {
 	float: left;
 }
+.action-bar.top .dropdown-container.topic-tools {
+	position: absolute;
+right: 0px;
+top: -35px;}
 
 .dropdown-up .dropdown {
 	top: auto;
@@ -498,10 +581,12 @@ ul.linklist.bulletin > li.no-bulletin:before {
 }
 
 .dropdown .pointer {
+	display:none;
 	right: auto;
 	left: 10px;
 	top: 0;
 	z-index: 3;
+	margin-top: 90px;
 }
 
 .dropdown-up .pointer {
@@ -511,7 +596,8 @@ ul.linklist.bulletin > li.no-bulletin:before {
 
 .dropdown-left .dropdown .pointer, .nojs .rightside .dropdown .pointer {
 	left: auto;
-	right: 10px;
+	right: 40px;
+	margin-top: 90px;
 }
 
 .dropdown .pointer-inner {
@@ -802,7 +888,13 @@ fieldset.fields1 dl.pmlist dd.recipients {
 ---------------------------------------- */
 .action-bar {
 	font-size: 11px;
-	margin: 4px 0;
+	margin: 0 30px;
+	padding: 0 20px;
+	color:#FFFFFF;
+}
+
+.action-bar.compact {
+height:auto;
 }
 
 .forabg + .action-bar {
@@ -812,7 +904,7 @@ fieldset.fields1 dl.pmlist dd.recipients {
 /* Pagination
 ---------------------------------------- */
 .pagination {
-	float: right;
+	float: left;
 	font-size: 11px;
 	margin-top: 3px;
 	text-align: right;
@@ -904,10 +996,9 @@ fieldset.fields1 dl.pmlist dd.recipients {
 /* jQuery popups
 ---------------------------------------- */
 .phpbb_alert {
-	border: 1px solid transparent;
 	display: none;
 	left: 0;
-	padding: 0 25px 20px 25px;
+	margin:20px 10px;	padding:10px 20px; border-radius: 0 0 5px 5px; border-bottom: 2px solid; border-color:inherit;	box-shadow: 0px 5px 10px rgba(0,0,0,0.9);
 	position: fixed;
 	right: 0;
 	top: 150px;
@@ -1057,11 +1148,74 @@ form > p.post-notice strong {
 }
 
 #jumpbox {
-	margin: 5px 0;
+	display: none;
 }
 
 .stat-block {
 	clear: both;
+	background-image: url("./images/fond_black_transp.png");
+background-repeat: repeat;
+border-radius: 10px;
+margin: 10px 15px 20px 10px;
+padding: 5px;
+box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.9);
+}
+
+.stat-block a {
+	color:#FFFFFF;
+}
+
+.dropdown-trigger.button.icon-button.modtools-icon.dropdown-select.dropdown-toggle {
+	background-color:transparent;
+}
+
+.dropdown-trigger.button.dropdown-select.dropdown-toggle{
+	background-color:transparent;
+}
+
+.button.icon-button.tools-icon.dropdown-trigger.dropdown-select.dropdown-toggle{
+  background-color:transparent;
+}
+
+.button.icon-button.search-adv-icon{
+  background-color:transparent;
+}
+
+.button.icon-button.search-icon{
+
+}
+
+.button.icon-button.edit-icon{
+	opacity:0.75;
+	position: absolute;
+	right: 70px;
+	width: 160px
+}
+
+.button.icon-button.delete-icon{
+		opacity:0.5;
+		position: absolute;
+		right: 175px;
+}
+
+.button.icon-button.report-icon{
+		background-color:transparent;
+}
+
+.button.icon-button.info-icon{
+right: 74px;
+}
+
+.button.icon-button.quote-icon{
+		text-indent: 25px;
+	width:120px;
+}
+.button.icon-button.search-icon {
+			background-color:#FFFFFF;
+}
+
+.button.icon-button.search-adv-icon{
+			background-color:transparent;
 }
 
 #top {
@@ -1105,8 +1259,9 @@ ul.linklist:after,
 
 .member-search {
 	float: left;
-	margin: 0;
-	padding: 6px 10px;
+	background: transparent;
+	border: medium none;
+	box-shadow: none;
 }
 
 .member-search strong {
@@ -1251,6 +1406,8 @@ ul.linklist:after,
 
 #quick-links {
 	margin: 0 7px 0 0;
+	position:relative;
+	left: 0px;
 }
 
 #quick-links a.responsive-menu-link {
@@ -1258,7 +1415,8 @@ ul.linklist:after,
 	font-size: inherit;
 	line-height: inherit;
 	margin: 0;
-	width: auto;
+	width: 100px;
+  height:30px
 }
 
 #quick-links a.responsive-menu-link:before {
@@ -1266,6 +1424,79 @@ ul.linklist:after,
 	line-height: 16.5px;
 }
 
+/* Menu raccourcis */
+#quick-links .dropdown-contents {
+	margin-top:105px;
+	margin-left:40px;
+}
+
+/* Menu utilisateur */
+#username_logged_in .dropdown-nonscroll {
+	margin-top: 105px;
+	margin-right: 60px;
+}
+#username_logged_in .pointer {
+	margin-top: 90px;
+	margin-right: 40px;
+}
+
+/* Outils HAUT */
+.action-bar.top .dropdown-nonscroll {
+	margin-left:40px;
+	margin-top: 320px;
+	width: 250px;
+}
+.action-bar.top .pointer {
+	margin-top: 320px;
+	margin-left: 220px;
+}
+
+/* Outils BAS */
+.action-bar.bottom .dropdown-nonscroll {
+	margin-left:40px;
+	margin-top: 370px;
+	width: 250px;
+}
+.action-bar.bottom .pointer {
+	margin-top: 370px;
+	margin-left: 220px;
+}
+
+/* Outils modération */
+#quickmod .dropdown-nonscroll {
+	margin-top: 300px;
+	margin-left: 40px;
+}
+
+/* Outils jumpbox */
+#jumpbox .dropdown-contents {
+	margin-right: 40px;
+	margin-bottom: 220px;
+}
+#jumpbox .pointer {
+	margin-right: 0px;
+	margin-bottom: 220px;
+}
+
+#topic-search{
+	margin-left:20px;
+}
+
+#nav-main {
+	height:auto;
+}
+
+#username_logged_in {
+	position: relative;
+}
+
+#nav-breadcrumbs {
+	height:auto;
+}
+
+ul.linklist.bulletin > li::before {
+    content: "";
+}
 .compact #quick-links a.responsive-menu-link {
 	font-size: 0;
 }
@@ -1279,7 +1510,7 @@ ul.linklist:after,
 }
 
 .dropdown-page-jump .dropdown {
-	top: 20px;
+
 }
 
 .dropdown-page-jump.dropdown-up .dropdown {
@@ -1296,4 +1527,12 @@ ul.linklist:after,
 
 .dropdown .clone.hidden + li {
 	border-top: none;
+}
+
+.haut_cat {
+
+}
+
+.milieu_cat {
+border-radius: 5px;
 }

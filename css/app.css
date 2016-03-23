@@ -15,8 +15,20 @@ Extra large ≥1200px
   }
 }
 @font-face {
-    font-family: Play;
+    font-family: "Akashi";
     src: url(Akashi.ttf);
+}
+@font-face {
+    font-family: "Muli";
+    src: url(Muli.ttf);
+}
+@font-face {
+    font-family: "MuliSemiBold";
+    src: url(Muli-SemiBold.ttf);
+}
+@font-face {
+    font-family: "MuliBold";
+    src: url(Muli-Bold.ttf);
 }
 
 html, body, div, span, applet, object, iframe,
@@ -50,16 +62,18 @@ time, mark, audio, video {
  }
 
 
-h1 { font-family: 'Play';  font-size: 40px; line-height: 50px;  color: #ffffff; }
-h2 { font-family: 'Play';  font-size: 30px; line-height: 1; margin:0 0 10px; }
-h3 { font-family: 'Play';  font-size: 24px; line-height: 1; margin:0 0 10px; color: #ffffff; }
-h4 { font-family: 'Play';  font-size: 18px; line-height: 1; margin:0 0 10px; color: #ffffff; }
+h1 { font-family: 'Akashi';  font-size: 40px; line-height: 50px;  color: #ffffff; }
+h2 { font-family: 'Akashi';  font-size: 30px; line-height: 1; margin:0 0 10px; }
+h3 { font-family: 'Akashi';  font-size: 24px; line-height: 1; margin:0 0 10px; color: #ffffff; }
+h4 { font-family: 'Akashi';  font-size: 18px; line-height: 1; margin:0 0 10px; color: #ffffff; }
 
 p { font-family:'Muli'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc; display:inline-block; }
 a { font-weight: 500; cursor: pointer; }
 table { font-family:'Muli'; font-size: 14px; line-height: 18px; }
 th {text-transform: uppercase;}
 ul { font-family:'Muli'; font-family:'Muli'; font-size: 14px; line-height: 18px; text-align: justify; color:#cccccc;}
+ul.hallOfFame {  font-family:'MuliBold';font-size: 20px; line-height: 1.2; margin:0 0 10px; color: #ffffff; text-indent: 10px;text-transform: uppercase;}
+li > h3 { display:inline; }
 
 #Main { height: calc(100vh - 68px); max-height:calc(100vh - 68px); width:100%; padding: 0  0.9375rem !important; overflow : auto }
 .row { overflow: hidden; height:100%;}
@@ -67,7 +81,7 @@ ul { font-family:'Muli'; font-family:'Muli'; font-size: 14px; line-height: 18px;
 .text-cutter { white-space: nowrap; text-overflow:ellipsis; overflow:hidden;  -ms-word-wrap: break-word; -webkit-word-wrap: break-word; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; }
 .noselect { -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; }
 .zelda { cursor:pointer; }
-.spacer { display:inline-block; height:1px; width:200px; }
+.spacer { display:inline-block; height:20px; width:200px; }
 @media screen and (min-width: 992px) {
     #Menu { float:right;}
   .row { overflow: hidden; height:100%;}
@@ -85,27 +99,30 @@ ul { font-family:'Muli'; font-family:'Muli'; font-size: 14px; line-height: 18px;
 .navbar { color:#ffffff;  height:50px; margin:0; padding: 0 0 0 110px; border-radius: 0;
 	background: -webkit-linear-gradient(#00558D,#000000);
 	background: linear-gradient(#00558D,#000000);}
-	.navbar-brand { padding:0; margin:0; font-size: 36px; max-width:calc(100vw - 160px);}
+.navbar-brand { padding:0; margin:0; font-size: 36px; max-width:calc(100vw - 160px);}
 
 
 
 .collapse.in { width: 100vw; background: #000000; padding: 5px 5px 5px 110px;}
-nav > ul > li { font-family: "Play"; height: 50px; margin: 0 0 0 -5px; padding: 0px 10px; border-left: 1px solid #000 !important; display: inline-block; cursor: pointer; line-height:50px; }
+nav > ul > li { font-family: "Akashi"; height: 50px; margin: 0 0 0 -5px; padding: 0px 10px; border-left: 1px solid #000 !important; display: inline-block; cursor: pointer; line-height:50px; }
 nav > ul > li:hover { background: linear-gradient(to left, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 5%);}
 nav > ul > li:active { background: transparent; box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);}
 nav > ul > li > a { text-decoration: none; color: #FFFFFF; line-height:50px; font-weight: 400;}
 nav > ul > li:hover > a { text-decoration: none; color: #FFFFFF;}
+nav > ul > li > a:active { text-decoration: none; color: #FFFFFF;}
+nav > ul > li > a:visited { text-decoration: none; color: #FFFFFF;}
+
 
 /* BODY */
 
-.plain { position:relative; margin:20px 10px;	padding:10px 20px; border-radius: 0 0 5px 5px; border-bottom: 2px solid; border-color:inherit;	box-shadow: 0px 5px 10px rgba(0,0,0,0.9); }
+.plain, .forabg > .inner, .stat-block, .panel, .forumbg, .post, .action-bar, .headerspace, #review, .solo, .toolbar,.dropdown .dropdown-contents, .ucp-title, #tabs, .memberlist-title { position:relative; margin:20px 10px;	padding:10px 20px; border-radius: 0 0 5px 5px; border-bottom: 2px solid; border-color:inherit;	box-shadow: 0px 5px 10px rgba(0,0,0,0.9); }
 .header { margin: 20px 10px 0 10px;}
 .image { position:relative; margin:20px 0px; text-align: center;}
 .image > img { width:90%; height:auto; }
 
 
-.prime {  background: rgba(0, 0, 0, 0.75); }
-.seconde { background: rgba(50, 50, 50, 0.85); }
+.prime, .forabg > .inner, .panel, .forumbg, .phpbb_alert, .action-bar, .forum-title, .topic-title, .posting-title, .post, .headerspace, #review, .solo, .ucp-title, #tabs, .memberlist-title {  background: rgba(0, 0, 0, 0.80); }
+.seconde, .stat-block, .toolbar { background: rgba(50, 50, 50, 0.85); }
 
 .stick-left { padding-left: 0; }
 .stick-right { padding-right: 0; }
@@ -114,9 +131,9 @@ nav > ul > li:hover > a { text-decoration: none; color: #FFFFFF;}
 article img { float:left; }
 
 
-.button { position:absolute; right:0; bottom:0; height:30px; width:200px; text-align: center;  cursor: pointer; }
+.button { position:absolute; right:0; bottom:0; height:29px; width:200px; line-height: 29px; text-align: center;  cursor: pointer; color: #ffffff; }
 .topright { top:0; }
-.button .label { position: absolute; top: 5px; left: 40px; width: 150px; color: #ffffff; font-family: "Play"; font-size: 16px; font-weight:400; font-style: italic; text-transform: capitalize; }
+.button .label { position: absolute; top: 5px; left: 40px; width: 150px; color: #ffffff; font-family: "Akashi"; font-size: 16px; font-weight:400; font-style: italic; text-transform: capitalize; }
 .topright .label { top: 2px; left: 25px; width: 180px; color: #999999;font-family: "Muli";font-size: 14px }
 
 .plain > table { width: 100%; color:#FFFFFF; cursor: pointer; text-align: center; }
@@ -178,7 +195,7 @@ td > .teamLogo {width: 20px; height: 20px; display: inline; padding-right: 2px;}
 #fame {float: right; display: inline-block; text-align: right;}
 #random > h6 {cursor: auto !important;}
 @media screen and (max-width: 544px) {
-	#HelmetTeam, #HelmetLeft, #HelmetRight { text-align:center; height:200px; -webkit-perspective: 150px; perspective: 150px; padding-top: 20px}
+	#HelmetTeam, #HelmetLeft, #HelmetRight { text-align:center; height:200px; -webkit-perspective: 150px; perspective: 150px; padding-top: 20px; }
 	#HelmetTeam > div , #HelmetLeft > div, #HelmetRight > div { position:absolute; left:calc(50% - 100px); }
 	#HelmetTeam .logo, #HelmetLeft .logo, #HelmetRight .logo { position: absolute; left: 15px; top: 30px; width: 70px; height: 70px;
 				-ms-transform: rotateY(-15deg) rotate(-10deg);
@@ -224,8 +241,10 @@ td > .teamLogo {width: 20px; height: 20px; display: inline; padding-right: 2px;}
 .articleDate { float:right; display: inline-block; line-height: 18px;}
 
 /* MATCH */
-.score {  font-family: 'Play';  font-size: 120px; }
+.score {  font-family: 'Akashi';  font-size: 120px; }
 #ScoreLeft { float: right; padding-left: 20px;}
 #ScoreRight { float: left; padding-right: 20px}
 
-.stats > li > span { font-weight: 500;}
+.stats > li > span { font-family: 'MuliBold';}
+.teamBoard h3 { font-family: 'MuliBold';}
+.teamBoard h3 > span { font-family: 'Akashi';}
