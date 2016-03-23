@@ -41,11 +41,11 @@ select optgroup option {
 }
 
 textarea {
-	font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
+	font-family: "Muli";
 	width: 60%;
 	padding: 2px;
 	font-size: 1em;
-	line-height: 1.4em;
+	line-height: 1.2em;
 }
 
 label {
@@ -69,30 +69,30 @@ fieldset dl {
 
 fieldset dt {
 	float: left;
-	width: 40%;
 	text-align: left;
 	display: block;
+	margin-right: 10px
 }
 
 fieldset dd {
-	margin-left: 41%;
+	margin-left: 10px;
 	vertical-align: top;
 	margin-bottom: 3px;
 }
 
 /* Specific layout 1 */
 fieldset.fields1 dt {
-	width: 15em;
+
 	border-right-width: 0;
 }
 
 fieldset.fields1 dd {
-	margin-left: 15em;
+
 	border-left-width: 0;
 }
 
 fieldset.fields1 div {
-	margin-bottom: 3px;
+	
 }
 
 /* Set it back to 0px for the reCaptcha divs: PHPBB3-9587 */
@@ -145,10 +145,10 @@ dd textarea {
 /* Quick-login on index page */
 fieldset.quick-login {
 	margin-top: 5px;
+	line-height: 30px;
 }
 
 fieldset.quick-login input {
-	width: auto;
 }
 
 fieldset.quick-login input.inputbox {
@@ -165,7 +165,8 @@ fieldset.quick-login label {
 /* Display options on viewtopic/viewforum pages  */
 fieldset.display-options {
 	text-align: center;
-	margin: 3px 0 5px 0;
+	margin: 10px 0 5px 0;
+	display:none
 }
 
 fieldset.display-options label {
@@ -183,6 +184,7 @@ fieldset.display-actions {
 	line-height: 2em;
 	white-space: nowrap;
 	padding-right: 1em;
+	margin-top: -30px;
 }
 
 fieldset.display-actions label {
@@ -209,7 +211,11 @@ fieldset.forum-selection2 {
 fieldset.submit-buttons {
 	text-align: center;
 	vertical-align: middle;
-	margin: 5px 0;
+
+	position: absolute;
+right: 0px;
+bottom: 0px;
+}
 }
 
 fieldset.submit-buttons input {
@@ -232,24 +238,13 @@ fieldset.submit-buttons input {
 
 /* Main message box */
 #message-box {
-	width: 80%;
+	width: 100%;
 }
 
 #message-box textarea {
-	font-family: "Trebuchet MS", Verdana, Helvetica, Arial, sans-serif;
-	width: 450px;
-	height: 270px;
-	min-width: 100%;
-	max-width: 100%;
-	font-size: 1.2em;
+	width:calc(100% - 4px);
 	resize: vertical;
 	outline: 3px dashed transparent;
-	outline-offset: -4px;
-	-webkit-transition: all .5s ease;
-	-moz-transition: all .5s ease;
-	-ms-transition: all .5s ease;
-	-o-transition: all .5s ease;
-	transition: all .5s ease;
 }
 
 /* Emoticons panel */
@@ -311,16 +306,17 @@ input.button1, input.button2 {
 }
 
 a.button1, input.button1, input.button3, a.button2, input.button2 {
-	width: auto !important;
-	padding-top: 1px;
-	padding-bottom: 1px;
-	font-family: "Lucida Grande", Verdana, Helvetica, Arial, sans-serif;
-	background: transparent none repeat-x top left;
+
 }
 
-a.button1, input.button1 {
-	font-weight: bold;
-	border: 1px solid transparent;
+a.button1, input.button1, input.button2 {
+	position:absolute;
+	border: none;
+	right: 0;
+	bottom: 0;
+	height:29px;
+	width:200px;
+	text-indent: 25px;
 }
 
 input.button3 {
@@ -337,8 +333,10 @@ input[type="button"], input[type="submit"], input[type="reset"], input[type="che
 }
 
 /* Alternative button */
-a.button2, input.button2, input.button3 {
-	border: 1px solid transparent;
+a.button2, input.button2 {
+ right:154px;
+ text-indent: 0px;
+ opacity:0.75;
 }
 
 /* <a> button in the style of the form buttons */
@@ -352,8 +350,7 @@ a.button1, a.button1:link, a.button1:visited, a.button1:active, a.button2, a.but
 
 /* Hover states */
 a.button1:hover, input.button1:hover, a.button2:hover, input.button2:hover, input.button3:hover {
-	border: 1px solid transparent;
-	background-position: 0 100%;
+	color: #FB7728;
 }
 
 input.disabled {
@@ -366,7 +363,9 @@ input.button1:focus, input.button2:focus, input.button3:focus {
 }
 
 /* Topic and forum Search */
+/* A editer */
 .search-box {
+	display:none;
 	float: left;
 }
 
@@ -391,7 +390,7 @@ input.button1:focus, input.button2:focus, input.button3:focus {
 	font-size: 0;
 	height: 24px;
 	margin: 0;
-	padding: 3px 5px;
+	padding: 0;
 }
 
 .search-box a.button {

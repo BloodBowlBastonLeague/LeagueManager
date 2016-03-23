@@ -1,36 +1,26 @@
 /* Button Styles
 ---------------------------------------- */
 
-.button {
-	cursor: pointer;
-	display: inline-block;
-	height: 18px;
-	line-height: 18px;
-	font-size: 13px;
-	white-space: nowrap;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	background: transparent none 0 0 repeat-x;
-	padding: 2px 8px;
-	font-family: "Open Sans", "Droid Sans", Verdana, Arial, Helvetica;
-	position: relative;
-	text-decoration: none !important;
-	outline-style: none !important;
-	vertical-align: bottom;
+.button { border:none;
+
+}
+
+.buttons .button {
+
+}
+
+.buttons .button:hover {
+
 }
 
 .dropdown-select {
 	padding-right: 24px;
 }
 
+.search-icon { position:relative !important; width:175px padding:0; background-color: transparent;}
+.search-adv-icon {display: none;}
 .icon-button:before {
-	background: transparent 0 0 no-repeat;
-	content: '';
-	display: inline-block;
-	float: right;
-	height: 12px;
-	margin: 3px 0 0 2px;
-	width: 12px;
+ display:none;
 }
 
 .dropdown-select.icon-button:before {
@@ -39,7 +29,7 @@
 
 .dropdown-select:after {
 	background-position: -103px 10px;
-	border-left: 1px solid;
+	border-left: none;
 	content: '';
 	position: absolute;
 	top: 0;
@@ -57,7 +47,7 @@
 }
 
 .buttons .button, .dropdown-select {
-	margin-right: 5px;
+
 }
 
 #jumpbox .dropdown-select {
@@ -122,6 +112,12 @@ ul.linklist.bulletin > li.small-icon:before {
 
 .dropdown .small-icon > a {
 	display: block;
+	color:#000000;
+}
+
+.dropdown .small-icon > a:hover {
+	display: block;
+	color:#FB7728;
 }
 
 /* Poster contact icons
@@ -176,26 +172,19 @@ ul.linklist.bulletin > li.small-icon:before {
 /* Post control buttons
 --------------------------------------------- */
 .post-buttons {
-	float: right;
-	list-style: none;
-	margin-top: 2px;
-}
-
-.has-profile .post-buttons {
 	float: none;
 	position: absolute;
 	margin: 0;
-	right: 0;
-	top: 5px;
+	right: 0px;
+  bottom: 0px;
 }
 
 .post-buttons > li {
-	float: left;
-	margin-right: 3px;
+
 }
 
 .post-buttons .icon-button {
-	padding: 0 5px;
+
 }
 
 .hastouch .post-buttons .icon-button {
@@ -204,10 +193,10 @@ ul.linklist.bulletin > li.small-icon:before {
 
 .post-buttons .icon-button span {
 	display: block;
-	height: 0;
 	overflow: hidden;
 	position: absolute;
-	width: 1px;
+	width: 100%;
+	line-height: 29px
 }
 
 .post-buttons .icon-button:before {

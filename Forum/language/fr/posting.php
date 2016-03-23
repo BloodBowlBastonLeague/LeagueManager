@@ -86,7 +86,7 @@ $lang = array_merge($lang, array(
 	'CURRENT_TOPIC'				=> 'Sujet actuel',
 
 	'DELETE_FILE'				=> 'Supprimer le fichier',
-	'DELETE_MESSAGE'			=> 'Supprimer le message',
+	'DELETE_MESSAGE'			=> 'Supprimer',
 	'DELETE_MESSAGE_CONFIRM'	=> 'Êtes-vous sûr(e) de vouloir supprimer ce message ?',
 	'DELETE_OWN_POSTS'			=> 'Vous ne pouvez supprimer que vos propres messages.',
 	'DELETE_PERMANENTLY'		=> 'Supprimer définitivement',
@@ -230,7 +230,7 @@ $lang = array_merge($lang, array(
 	'REMOTE_UPLOAD_TIMEOUT'		=> 'Le fichier que vous avez spécifié n’a pu être transféré car la requête a expiré.',
 	'SAVE'						=> 'Enregistrer',
 	'SAVE_DATE'					=> 'Enregistré le',
-	'SAVE_DRAFT'				=> 'Enregistrer comme brouillon',
+	'SAVE_DRAFT'				=> 'Brouillon',
 	'SAVE_DRAFT_CONFIRM'		=> 'Veuillez noter que les messages enregistrés comme brouillons enregistrés n’incluent que le sujet et le texte du message, tout autre élément sera supprimé. Souhaitez-vous enregistrer votre message comme brouillon dès à présent ?',
 	'SMILIES'					=> 'Émoticônes',
 	'SMILIES_ARE_OFF'			=> 'Les émoticônes sont <em>désactivées</em>',

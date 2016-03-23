@@ -158,8 +158,8 @@ $help = array(
 		1 => 'Si l’administrateur du forum a activé cette fonctionnalité, un bouton dédié devrait être affiché à côté du message que vous souhaitez rapporter. En cliquant sur celui-ci, vous trouverez toutes les étapes nécessaires afin de rapporter le message.'
 	),
 	array(
-		0 => 'À quoi sert le bouton « Enregistrer comme brouillon » affiché lors de la rédaction d’un sujet ?',
-		1 => 'Il vous permet d’enregistrer comme brouillons les messages que vous souhaitez finaliser et publier ultérieurement. Vous pouvez reprendre les messages enregistrés comme brouillons depuis le panneau de contrôle de l’utilisateur.'
+		0 => 'À quoi sert le bouton « Brouillon » affiché lors de la rédaction d’un sujet ?',
+		1 => 'Il vous permet d’Brouillons les messages que vous souhaitez finaliser et publier ultérieurement. Vous pouvez reprendre les messages enregistrés comme brouillons depuis le panneau de contrôle de l’utilisateur.'
 	),
 	array(
 		0 => 'Pourquoi mon message a-t-il besoin d’être approuvé ?',

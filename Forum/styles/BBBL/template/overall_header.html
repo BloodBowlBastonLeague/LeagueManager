@@ -64,67 +64,34 @@
 {$STYLESHEETS}
 
 <!-- EVENT overall_header_stylesheets_after -->
-<link rel="stylesheet" href="../css/main.css" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Hind' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Play:400,700' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="../css/app.css" type="text/css">
+  <link rel="stylesheet" href="../css/forum.css" type="text/css">
 </head>
 
 <body id="phpbb" class="nojs notouch section-{SCRIPT_NAME} {S_CONTENT_DIRECTION} {BODY_CLASS}">
-
-	<div id="LM_intro" class="hd-100 x-center y-center"></div>
-	<header id="LM_navbar">
-		<img id="LM_logo" src="../resources/img/BBBL2.png" >
-
-		<div id="LM_home" class="hd-5 x-left" ></div>
-		<div id="LM_title" class="hd-65 x-center y-center"><h1>Blood Bowl Baston League</h1></div>
-		<nav id="LM_navigation" class="hd-30 x-right y-center navmenu" >
-			<ul>
-				<li><a title="Tribunes" href="../"><img src="../resources/img/LogoForum.svg"><span>Site</span></a></li>
-				<li><a title="Lancer BloodBowl" href="steam://run/216890"><img src="../resources/img/LogoSteam.svg"><span>Jouer</span></a></li>
-				<li><a title="Lancer Mumble" href="mumble://srv07.serveurmumble.com:50674/"><img src="../resources/img/LogoMumble.svg"><span>Mumble</span></a></li>
-				<li><a title="Connexion" href="Connect"><img src="../resources/img/LogoConnect.svg"><span>Connexion</span></a></li>
-			</ul>
+	<header>
+    <div id="Intro" class="hd-100 x-center y-center">la Blood Bowl Baston League pr&eacute;sente</div>
+		<nav class="navbar">
+			<a id="Logo" class="logo" href="{U_INDEX}"></a>
+			<h1 class="navbar-brand inline text-cutter">BBBL Le forum</h1>
+      <ul class="nav navbar-nav  inline collapse navbar-toggleable-md pull-xs-right" id="Menu">
+        <li><a class="nav" href="../">Site</a></li>
+        <li class="hidden-sm-down"><a class="nav" href="steam://run/236690">Jouer</a></li>
+        <li class="hidden-sm-down"><a class="nav" href="razercomms://">Vocal</a></li>
+				<li data-skip-responsive="true"><a href="{U_LOGIN_LOGOUT}" title="{L_LOGIN_LOGOUT}" accesskey="x" role="menuitem">{L_LOGIN_LOGOUT}</a></li>
+      </ul>
 		</nav>
-	</header>
+  </header>
+
 
 
 <!-- EVENT overall_header_body_before -->
 
 <div id="wrap">
 	<a id="top" class="anchor" accesskey="t"></a>
-	<div id="page-header">
-		<div class="headerbar" role="banner">
-			<div class="inner">
-
-			<div id="site-description">
-				<a id="logo" class="logo" href="<!-- IF U_SITE_HOME -->{U_SITE_HOME}<!-- ELSE -->{U_INDEX}<!-- ENDIF -->" title="<!-- IF U_SITE_HOME -->{L_SITE_HOME}<!-- ELSE -->{L_INDEX}<!-- ENDIF -->">{SITE_LOGO_IMG}</a>
-				<h1>{SITENAME}</h1>
-				<p>{SITE_DESCRIPTION}</p>
-				<p class="skiplink"><a href="#start_here">{L_SKIP}</a></p>
-			</div>
-
-			<!-- EVENT overall_header_searchbox_before -->
-			<!-- IF S_DISPLAY_SEARCH and not S_IN_SEARCH -->
-			<div id="search-box" class="search-box search-header" role="search">
-				<form action="{U_SEARCH}" method="get" id="search">
-				<fieldset>
-					<input name="keywords" id="keywords" type="search" maxlength="128" title="{L_SEARCH_KEYWORDS}" class="inputbox search tiny" size="20" value="{SEARCH_WORDS}" placeholder="{L_SEARCH_MINI}" />
-					<button class="button icon-button search-icon" type="submit" title="{L_SEARCH}">{L_SEARCH}</button>
-					<a href="{U_SEARCH}" class="button icon-button search-adv-icon" title="{L_SEARCH_ADV}">{L_SEARCH_ADV}</a>
-					{S_SEARCH_HIDDEN_FIELDS}
-				</fieldset>
-				</form>
-			</div>
-			<!-- ENDIF -->
-
-			</div>
-		</div>
-		<!-- EVENT overall_header_navbar_before -->
-		<!-- INCLUDE navbar_header.html -->
-	</div>
 
 	<!-- EVENT overall_header_page_body_before -->
-
+<!-- INCLUDE navbar_header.html -->
 	<a id="start_here" class="anchor"></a>
 	<div id="page-body" role="main">
 		<!-- IF S_BOARD_DISABLED and S_USER_LOGGED_IN and (U_MCP or U_ACP) -->

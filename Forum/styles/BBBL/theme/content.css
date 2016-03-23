@@ -1,5 +1,8 @@
 /* Content Styles
 ---------------------------------------- */
+.content td {
+	color:#000000;
+}
 
 ul.topiclist {
 	display: block;
@@ -15,6 +18,11 @@ ul.topiclist li {
 	display: block;
 	list-style-type: none;
 	margin: 0;
+  padding-top:5px;
+}
+
+ul.topiclist .header {
+  padding: 10px;
 }
 
 ul.topiclist dl {
@@ -52,6 +60,8 @@ ul.topiclist dt .list-inner {
 	margin-right: 440px;
 	padding-left: 5px;
 	padding-right: 5px;
+	font-size: 14px;
+	line-height: 18px;
 }
 
 ul.topiclist.missing-column dt .list-inner {
@@ -139,8 +149,10 @@ li.header dl.icon dt, li.header dl.icon dd {
 
 li.header dl.icon dt .list-inner {
 	/* Tweak for headers alignment when folder icon used */
-	padding-left: 0;
+	padding-left: 15px;
 	padding-right: 50px;
+	font-size: 14px;
+	line-height: 18px;
 }
 
 /* Forum list column styles */
@@ -155,7 +167,7 @@ dl.icon dt {
 }
 
 dl.icon dt .list-inner {
-	padding-left: 45px;					/* Space for folder icon */
+	padding-left: 55px;					/* Space for folder icon */
 }
 
 dl.icon dt, dl.icon dd {
@@ -269,7 +281,7 @@ dd.option {
 }
 
 .postbody .content {
-	font-size: 1.3em;
+	font-size: 1em;
 	overflow-x: auto;
 }
 
@@ -349,14 +361,14 @@ dd.option {
 }
 
 .panel p {
-	font-size: 1.2em;
+	font-size: 1em;
 	margin-bottom: 1em;
 	line-height: 1.4em;
 }
 
 .content p {
 	font-family: "Lucida Grande", "Trebuchet MS", Verdana, Helvetica, Arial, sans-serif;
-	font-size: 1.2em;
+	font-size: 1em;
 	margin-bottom: 1em;
 	line-height: 1.4em;
 }
@@ -700,9 +712,126 @@ fieldset.polls dd div {
 	display: inline;
 }
 
+/* profile admin */
+.postprofile-Admin {
+	margin: 5px 0 10px 0;
+	min-height: 80px;
+	border: 1px solid transparent;
+	border-width: 0 0 0 1px;
+	width: 22%;
+	float: right;
+	display: inline;
+	background-image: url("./images/pro_admin.png");
+	background-repeat: no-repeat;
+	background-position: right;
+}
+
+/* profile commi */
+.postprofile-Commi {
+	margin: 5px 0 10px 0;
+	min-height: 80px;
+	border: 1px solid transparent;
+	border-width: 0 0 0 1px;
+	width: 22%;
+	float: right;
+	display: inline;
+	background-image: url("./images/pro_commi.png");
+	background-repeat: no-repeat;
+	background-position: right;
+}
+
+/* profile coach */
+.postprofile-Coach{
+	margin: 5px 0 10px 0;
+	min-height: 80px;
+	border: 1px solid transparent;
+	border-width: 0 0 0 1px;
+	width: 22%;
+	float: right;
+	display: inline;
+	background-image: url("./images/pro_coach.png");
+	background-repeat: no-repeat;
+	background-position: right;
+}
+
+/* profile coach élite */
+.postprofile-Elite{
+	margin: 5px 0 10px 0;
+	min-height: 80px;
+	border: 1px solid transparent;
+	border-width: 0 0 0 1px;
+	width: 22%;
+	float: right;
+	display: inline;
+	background-image: url("./images/pro_elite.png");
+	background-repeat: no-repeat;
+	background-position: right;
+}
+
+/* profile par défaut */
+.postprofile-Défaut {
+	margin: 5px 0 10px 0;
+	min-height: 80px;
+	border: 1px solid transparent;
+	border-width: 0 0 0 1px;
+	width: 22%;
+	float: right;
+	display: inline;
+}
+
+/* profile thalar */
+.profile-champ-Thalar {
+	background-image: url("./images/champion.png");
+	background-repeat: no-repeat;
+	background-position: left;
+}
+.profile-stars-Thalar {
+	background-image: url("./images/5e.png");
+	background-repeat: no-repeat;
+	background-position: left;
+}
+/* profile Ashrame */
+.profile-stars-Ashrame {
+	background-image: url("./images/2e.png");
+	background-repeat: no-repeat;
+	background-position: left;
+}
+/* profile Ashrame */
+.profile-stars-Obsidian {
+	background-image: url("./images/2e.png");
+	background-repeat: no-repeat;
+	background-position: left;
+}
+
 .postprofile dd, .postprofile dt {
 	line-height: 1.2em;
 	margin-left: 8px;
+	color:#000000;
+}
+.postprofile-Admin dd, .postprofile-Admin dt {
+	line-height: 1.2em;
+	margin-left: 8px;
+	color:#000000;
+}
+.postprofile-Commi dd, .postprofile-Commi dt {
+	line-height: 1.2em;
+	margin-left: 8px;
+	color:#000000;
+}
+.postprofile-Coach dd, .postprofile-Coach dt {
+	line-height: 1.2em;
+	margin-left: 8px;
+	color:#000000;
+}
+.postprofile-Défaut dd, .postprofile-Défaut dt {
+	line-height: 1.2em;
+	margin-left: 8px;
+	color:#000000;
+}
+.postprofileElite dd, .postprofileElite dt {
+	line-height: 1.2em;
+	margin-left: 8px;
+	color:#000000;
 }
 
 .postprofile dd {

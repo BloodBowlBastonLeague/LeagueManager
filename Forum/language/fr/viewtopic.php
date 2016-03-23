@@ -67,7 +67,7 @@ $lang = array_merge($lang, array(
 
 	'FILE_NOT_FOUND_404'	=> 'Le fichier <strong>%s</strong> n’existe pas.',
 	'FORK_TOPIC'			=> 'Copier le sujet',
-	'FULL_EDITOR'			=> 'Éditeur avancé et prévisualisation',
+	'FULL_EDITOR'			=> 'Éditeur avancé',
 
 	'LINKAGE_FORBIDDEN'		=> 'Vous ne pouvez pas consulter, télécharger ou insérer de lien vers ce site.',
 	'LOGIN_NOTIFY_TOPIC'	=> 'Vous avez reçu une notification concernant un message de ce sujet. Veuillez vous connecter afin de consulter ce dernier.',
@@ -97,7 +97,7 @@ $lang = array_merge($lang, array(
 	'POST_DELETED_RESTORE'	=> 'Le message a été supprimé. Il peut être restauré.',
 	'PRINT_TOPIC'			=> 'Aperçu avant impression',
 
-	'QUICK_MOD'				=> 'Outils de modération rapide',
+	'QUICK_MOD'				=> 'Modération',
 	'QUICKREPLY'			=> 'Réponse rapide',
 	'QUOTE'					=> 'Citer',
 

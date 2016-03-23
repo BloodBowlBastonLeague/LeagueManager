@@ -31,15 +31,25 @@ LeagueManager.config(function ($routeProvider, RestangularProvider) {
 LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 	$rootScope.title = "le mag de la BBBL";
 
-	$http.get('resources/json/articles.json').then(function(result){
-		$rootScope.articles = result.data;
+	$http.get('resources/json/articles.json').success(function(result){
+		$rootScope.articles = result;
 	});
 
 	$rootScope.goToPage = function(page) {
-			$('#Logo').removeAttr( 'style' );
-
+		$('#Logo').removeAttr( 'style' );
     $location.path( page );
   };
+
+	$rootScope.history = [];
+
+	$rootScope.$on('$routeChangeSuccess', function() {
+		$rootScope.history.push($location.$$path);
+	});
+
+		$rootScope.previousPage = function () {
+			var prevUrl = $rootScope.history.length > 1 ? $rootScope.history.splice(-2)[0] : "/";
+			$location.path(prevUrl);
+		};
 
 	$rootScope.randomArticle = function(categories){
 		//Récupération des articles en JSON (temporaire)

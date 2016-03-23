@@ -7,8 +7,8 @@ LeagueManager.directive('competition', function(Restangular){
 
 			$rootScope.setColours([$rootScope.colourA,$rootScope.colourB]);
 			//Récupération du classement en JSON (temporaire)
-			$http.get('resources/json/standing.json').then(function(result){
-				$scope.standing = result.data;
+			$http.get('resources/json/standing.json').success(function(result){
+				$scope.standing = result;
 				//à supprimer et mettre dans le chemin de l'API
 				$scope.division = $scope.standing.map(function(e) { return e.divisionID; }).indexOf($routeParams.ID);
 				$scope.random = $rootScope.randomArticle([$scope.standing[$scope.division].name]);
@@ -19,8 +19,8 @@ LeagueManager.directive('competition', function(Restangular){
 			});
 
 			//Récupération de l'agenda en JSON (temporaire)
-			$http.get('resources/json/calendar.json').then(function(result){
-				$scope.calendar = result.data;
+			$http.get('resources/json/calendar.json').success(function(result){
+				$scope.calendar = result;
 				//à supprimer et mettre dans le chemin de l'API
 				$scope.division = $scope.calendar.map(function(e) { return e.divisionID; }).indexOf($routeParams.ID);
 				$scope.calendar = $scope.calendar[$scope.division].calendar;
