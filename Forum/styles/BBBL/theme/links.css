@@ -16,6 +16,7 @@ a:hover	{  }
 	display: inline !important;
 	padding: 0 !important;
 	vertical-align: top;
+	text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;
 }
 
 /* Links on gradient backgrounds */
@@ -63,6 +64,7 @@ a.forumtitle {
 	font-family: "Muli";
 	font-size: 20px;
 	text-decoration: none;
+	font-weight: 600;
 }
 
 a.forumtitle:hover {
@@ -70,9 +72,9 @@ a.forumtitle:hover {
 }
 
 a.topictitle {
-	font-family: "Trebuchet MS", Helvetica, Arial, Sans-serif;
+	font-family: "Muli", Helvetica, Arial, Sans-serif;
 	font-size: 1.2em;
-	font-weight: bold;
+	font-weight: 600;
 	text-decoration: none;
 }
 
@@ -109,10 +111,12 @@ a.lastsubject:hover {
 .postprofile a, .postprofile dt.author a {
 	font-weight: bold;
 	text-decoration: none;
+	font-size: 14px;
+	text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;
 }
 
-.postprofile a:hover, .postprofile dt.author a:hover {
-
+.postprofile dt.author a {
+	font-size: 16px;
 }
 
 /* Profile searchresults */

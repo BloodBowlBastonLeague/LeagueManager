@@ -4,12 +4,6 @@
 <!-- NOTE: remove the style="display: none" when you want to have the forum description on the topic body -->
 <!-- IF FORUM_DESC --><div style="display: none !important;">{FORUM_DESC}<br /></div><!-- ENDIF -->
 
-<!-- IF MODERATORS -->
-<p>
-	<strong><!-- IF S_SINGLE_MODERATOR -->{L_MODERATOR}<!-- ELSE -->{L_MODERATORS}<!-- ENDIF -->{L_COLON}</strong> {MODERATORS}
-</p>
-<!-- ENDIF -->
-
 <!-- IF S_FORUM_RULES -->
 	<div class="rules<!-- IF U_FORUM_RULES --> rules-link<!-- ENDIF -->">
 		<div class="inner">
@@ -127,8 +121,15 @@
 	<!-- ENDIF -->
 	<div id="p{postrow.POST_ID}" class="post has-profile <!-- IF postrow.S_ROW_COUNT is odd -->bg1<!-- ELSE -->bg2<!-- ENDIF --><!-- IF postrow.S_UNREAD_POST --> unreadpost<!-- ENDIF --><!-- IF postrow.S_POST_REPORTED --> reported<!-- ENDIF --><!-- IF postrow.S_POST_DELETED --> deleted<!-- ENDIF --><!-- IF postrow.S_ONLINE and not postrow.S_POST_HIDDEN --> online<!-- ENDIF --><!-- IF postrow.POSTER_WARNINGS --> warned<!-- ENDIF -->">
 		<div class="inner">
+			<!-- BEGIN custom_fields -->
+			<!-- IF postrow.custom_fields.PROFILE_FIELD_NAME eq "Champion" --><div class="avatar-champ-back-{postrow.custom_fields.PROFILE_FIELD_VALUE}"></div><!-- ENDIF -->
+			<!-- IF postrow.custom_fields.PROFILE_FIELD_NAME eq "Champion" --><div class="avatar-champ-front-{postrow.custom_fields.PROFILE_FIELD_VALUE}"></div><!-- ENDIF -->
+			<!-- IF postrow.custom_fields.PROFILE_FIELD_NAME eq "Guilde" --><div class="avatar-guilde-{postrow.custom_fields.PROFILE_FIELD_VALUE}"></div><!-- ENDIF -->
+			<!-- END custom_fields -->
+    <div class="avatar-rank-{postrow.RANK_TITLE}"></div>
+		<div class="avatar-group-{postrow.POSTER_GROUP}"></div>
 
-		<dl class="postprofile-{postrow.RANK_TITLE}" id="profile{postrow.POST_ID}"<!-- IF postrow.S_POST_HIDDEN --> style="display: none;"<!-- ENDIF -->>
+		<dl class="postprofile" id="profile{postrow.POST_ID}"<!-- IF postrow.S_POST_HIDDEN --> style="display: none;"<!-- ENDIF -->>
 			<dt class="<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG -->has-profile-rank<!-- ELSE -->no-profile-rank<!-- ENDIF --> <!-- IF postrow.POSTER_AVATAR -->has-avatar<!-- ELSE -->no-avatar<!-- ENDIF -->">
 				<div class="avatar-container">
 					<!-- EVENT viewtopic_body_avatar_before -->
@@ -142,10 +143,9 @@
 				<!-- EVENT viewtopic_body_post_author_after -->
 			</dt>
 
-			<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG --><dd class="profile-rank"><!-- IF postrow.RANK_TITLE and postrow.RANK_IMG --><!-- ENDIF -->{postrow.RANK_IMG}</dd><!-- ENDIF -->
-						<br />
-						<dd class="profile-champ-{postrow.POST_AUTHOR}"><br /></dd>
-						<dd class="profile-stars-{postrow.POST_AUTHOR}"><br /></dd>
+			<!-- IF postrow.RANK_TITLE or postrow.RANK_IMG --><!--<dd class="profile-rank">--><!-- IF postrow.RANK_TITLE and postrow.RANK_IMG --><!-- ENDIF --><!--{postrow.RANK_IMG}</dd>--><!-- ENDIF -->
+						<dd class="profile-stars-{postrow.POST_AUTHOR}"></dd>
+						<dd class="profile-estars-{postrow.POST_AUTHOR}"></dd>
 
 		<!-- IF postrow.POSTER_WARNINGS --><dd class="profile-warnings"><strong>{L_WARNINGS}{L_COLON}</strong> {postrow.POSTER_WARNINGS}</dd><!-- ENDIF -->
 

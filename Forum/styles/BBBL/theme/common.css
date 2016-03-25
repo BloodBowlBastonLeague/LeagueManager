@@ -49,7 +49,7 @@ table {
 html {
 	font-size: 100%;
 	/* Always show a scrollbar for short pages - stops the jump when the scrollbar appears. non-IE browsers */
-	height: 101%;
+	height: 100%;
 }
 
 body {
@@ -300,9 +300,10 @@ ol ol ul, ol ul ul, ul ol ul, ul ul ul {
 	font-size: 26px;
 	margin: 30px 30px 0;
 	padding: 20px;
+	text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;
 	}
 .forum-title a {
-
+  text-shadow: #000000 1px 1px, #000000 -1px 1px, #000000 -1px -1px, #000000 1px -1px;
 }
 
 .panel {
@@ -373,7 +374,7 @@ ul.linklist > li {
 
 ul.linklist > li.rightside, p.rightside, a.rightside {
 	float: right;
-	margin-right: 0;
+	margin-right: 17px;
 	margin-left: 7px;
 	text-align: right;
 	color: #CCC;
@@ -926,7 +927,8 @@ height:auto;
 	padding: 0;
 	font-size: 100%;
 	line-height: normal;
-	vertical-align: middle;
+	vertical-align: top;
+	padding-top:0 !important;
 }
 
 .pagination li a, .pagination li span {
@@ -937,7 +939,7 @@ height:auto;
 	font-weight: normal;
 	line-height: 13px;
 	min-width: 10px;
-	padding: 3px;
+	padding: 1px;
 	text-align: center;
 	text-decoration: none;
 }
@@ -977,9 +979,10 @@ height:auto;
 
 /* Pagination in viewforum for multipage topics */
 .row .pagination {
+	float:right;
 	display: block;
 	margin-top: 0;
-	padding: 1px 0 1px 15px;
+	padding: 0 0 0 15px;
 	font-size: 0.9em;
 	background: none 0 50% no-repeat;
 }
@@ -989,8 +992,7 @@ height:auto;
 }
 
 .row .pagination li a, .row .pagination li span {
-	border-radius: 1px;
-	padding: 1px;
+	text-decoration: underline;
 }
 
 /* jQuery popups
@@ -1163,6 +1165,11 @@ box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.9);
 
 .stat-block a {
 	color:#FFFFFF;
+}
+
+.stat-block p a:link {
+	color:#FFFFFF;
+text-shadow: 1px 1px #000, -1px 1px #000, -1px -1px #000, 1px -1px #000;
 }
 
 .dropdown-trigger.button.icon-button.modtools-icon.dropdown-select.dropdown-toggle {
@@ -1530,9 +1537,16 @@ ul.linklist.bulletin > li::before {
 }
 
 .haut_cat {
-
+	background-image: url("./images/fond_cat.png");
+	background-repeat: no-repeat;
 }
 
 .milieu_cat {
 border-radius: 5px;
+}
+
+.forabg .stat-block.online-list {
+	background-image: url("./images/fond-stats.png");
+	background-repeat: no-repeat;
+	padding-left:110px;
 }

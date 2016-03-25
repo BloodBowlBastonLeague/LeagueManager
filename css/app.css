@@ -52,13 +52,13 @@ time, mark, audio, video {
 }
 
 @media all and (orientation:landscape  ) {
-  body { line-height: 1; background: url('../resources/img/background.jpg'); background-size: 100% auto; overflow: hidden; }
+  body { line-height: 1; background:#000000 url('../resources/img/background.jpg'); background-size: 100% auto; overflow: hidden; }
 }
 @media all and ( max-height:1200px ) {
-  body { line-height: 1; background: url('../resources/img/background.jpg'); background-size: auto 1200px; overflow: hidden; }
+  body { line-height: 1; background:#000000 url('../resources/img/background.jpg'); background-size: auto 1200px; overflow: hidden; }
  }
 @media all and (orientation:portrait) {
-  body { line-height: 1; background: url('../resources/img/background.jpg'); background-size: auto 100%; overflow: hidden; }
+  body { line-height: 1; background:#000000 url('../resources/img/background.jpg'); background-size: auto 100%; overflow: hidden; }
  }
 
 
@@ -93,10 +93,10 @@ li > h3 { display:inline; }
 }
 .row.adapt {height:auto;}
 /* HEADER */
-#Intro { position:relative; width:100vw; height:18px; background:#000000; font-size: 12px;box-sizing: border-box; line-height: 18px;text-align:center; font-family:'Muli'; font-size: 14	px;  color:#f1f1f1; z-index:2;}
-#Logo { position:fixed; top:0px; left:0; margin:0 10px; height: 90px; width: 90px; cursor: pointer; background: url(../resources/img/BBBL2.png) center center no-repeat; background-size:contain; z-index:100;}
+#Intro { position:relative; width:100vw; height:18px; background:#000000; font-size: 12px;box-sizing: border-box; line-height: 18px;text-align:center; font-family:'Muli'; color:#f1f1f1; z-index:2;}
+#Logo { position:fixed; top:0px; left:0; margin:0 10px; height: 90px; width: 90px; cursor: pointer; background: url(../resources/img/BBBL2.png) no-repeat; background-position: center 2pxcla; background-size:contain; z-index:100;}
 /* Navbar */
-.navbar { color:#ffffff;  height:50px; margin:0; padding: 0 0 0 110px; border-radius: 0;
+.navbar { color:#ffffff;  height:50px; margin:0; padding: 0 0 0 130px; border-radius: 0;
 	background: -webkit-linear-gradient(#00558D,#000000);
 	background: linear-gradient(#00558D,#000000);}
 .navbar-brand { padding:0; margin:0; font-size: 36px; max-width:calc(100vw - 160px);}
