@@ -22,7 +22,8 @@ ul.topiclist li {
 }
 
 ul.topiclist .header {
-  padding: 10px;
+	padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 ul.topiclist dl {
@@ -167,7 +168,7 @@ dl.icon dt {
 }
 
 dl.icon dt .list-inner {
-	padding-left: 55px;					/* Space for folder icon */
+	padding-left: 65px;					/* Space for folder icon */
 }
 
 dl.icon dt, dl.icon dd {
@@ -186,13 +187,14 @@ dl a.icon-link {						/* topic row icon links */
 	margin-left: 9px;
 }
 
-dd.posts, dd.topics, dd.views, dd.extra, dd.mark {
+dd.posts, dd.topics, dd.views, dd.extra, dd.mark{
 	width: 80px;
 	text-align: center;
 	line-height: 2.2em;
 	font-size: 1.2em;
+	float:right !important;
 }
-
+ dd.lastpost {	float:right !important; }
 dd.posts, dd.topics, dd.views {
 	width: 95px;
 }
@@ -210,7 +212,7 @@ dl.icon dt li {
 }
 
 dd.lastpost, dd.redirect, dd.moderation, dd.time, dd.info {
-	width: 250px;
+	width: 200px;
 	font-size: 1.1em;
 }
 
@@ -418,7 +420,7 @@ p.author {
 	margin-top: 1.5em;
 	padding-top: 0.2em;
 	font-size: 1.1em;
-	border-top: 1px solid transparent;
+	border-top: 1px solid #646464;
 	clear: left;
 	line-height: 140%;
 	overflow: hidden;
@@ -474,7 +476,7 @@ blockquote {
 	font-size: 0.95em;
 	margin: 0.5em 1px 0 25px;
 	overflow: hidden;
-	padding: 5px;
+	padding: 5px !important;
 }
 
 blockquote blockquote {
@@ -710,125 +712,154 @@ fieldset.polls dd div {
 	width: 22%;
 	float: right;
 	display: inline;
+	min-height:180px;
+	min-width:200px;
 }
 
-/* profile admin */
-.postprofile-Admin {
-	margin: 5px 0 10px 0;
-	min-height: 80px;
-	border: 1px solid transparent;
-	border-width: 0 0 0 1px;
-	width: 22%;
-	float: right;
-	display: inline;
-	background-image: url("./images/pro_admin.png");
+
+.avatar-guilde-Skulls {
+	background-image: url("./images/guilde-skulls.png");
 	background-repeat: no-repeat;
-	background-position: right;
+	background-position: 110px 110px;
+	z-index:3;
+	position:absolute;
+	height:180px;
+	width:200px;
+}
+.avatar-champ-back-oui {
+	background-image: url("./images/fondavatar-champion_back.png");
+	background-repeat: no-repeat;
+	background-position: 110px 110px;
+	z-index:5;
+	position:absolute;
+	height:180px;
+	width:200px;
+}
+.avatar-champ-back-non {
+	background-image: url("./images/fondavatar-champion_front.png");
+	background-repeat: no-repeat;
+	background-position: 110px 110px;
+	z-index:1;
+	position:absolute;
+	height:180px;
+	width:200px;
+}
+.avatar-rank-Elite {
+	background-image: url("./images/fondavatar-elite.png");
+	background-repeat: no-repeat;
+	background-position: 110px 110px;
+	z-index:4;
+	position:absolute;
+	height:180px;
+	width:200px;
+}
+.avatar-rank-Prestige {
+	background-image: url("./images/fondavatar-prestige.png");
+	background-repeat: no-repeat;
+	background-position: 110px 110px;
+	z-index:4;
+	position:absolute;
+	height:180px;
+	width:200px;
+}
+.avatar-rank-Espoir {
+	background-image: url("./images/fondavatar-espoir.png");
+	background-repeat: no-repeat;
+	background-position: 110px 110px;
+	z-index:4;
+	position:absolute;
+	height:180px;
+	width:200px;
+}
+.avatar-rank-Retraite {
+	background-image: url("./images/fondavatar-norank.png");
+	background-repeat: no-repeat;
+	background-position: 110px 110px;
+	z-index:4;
+	position:absolute;
+	height:180px;
+	width:200px;
+}
+.avatar-group-Grands.Architectes {
+	background-image: url("./images/fondavatar-admin.png");
+	background-repeat: no-repeat;
+	background-position: 110px 110px;
+	z-index:2;
+	position:absolute;
+	height:180px;
+	width:200px;
+}
+.avatar-group-Arbitrators {
+	background-image: url("./images/fondavatar-commi.png");
+	background-repeat: no-repeat;
+	background-position: 110px 110px;
+	z-index:2;
+	position:absolute;
+	height:180px;
+	width:200px;
+}
+.avatar-group-Coachs {
+	background-image: url("./images/fondavatar-coach.png");
+	background-repeat: no-repeat;
+	background-position: 110px 110px;
+	z-index:2;
+	position:absolute;
+	height:180px;
+	width:200px;
 }
 
-/* profile commi */
-.postprofile-Commi {
-	margin: 5px 0 10px 0;
-	min-height: 80px;
-	border: 1px solid transparent;
-	border-width: 0 0 0 1px;
-	width: 22%;
-	float: right;
-	display: inline;
-	background-image: url("./images/pro_commi.png");
-	background-repeat: no-repeat;
-	background-position: right;
-}
-
-/* profile coach */
-.postprofile-Coach{
-	margin: 5px 0 10px 0;
-	min-height: 80px;
-	border: 1px solid transparent;
-	border-width: 0 0 0 1px;
-	width: 22%;
-	float: right;
-	display: inline;
-	background-image: url("./images/pro_coach.png");
-	background-repeat: no-repeat;
-	background-position: right;
-}
-
-/* profile coach élite */
-.postprofile-Elite{
-	margin: 5px 0 10px 0;
-	min-height: 80px;
-	border: 1px solid transparent;
-	border-width: 0 0 0 1px;
-	width: 22%;
-	float: right;
-	display: inline;
-	background-image: url("./images/pro_elite.png");
-	background-repeat: no-repeat;
-	background-position: right;
-}
-
-/* profile par défaut */
-.postprofile-Défaut {
-	margin: 5px 0 10px 0;
-	min-height: 80px;
-	border: 1px solid transparent;
-	border-width: 0 0 0 1px;
-	width: 22%;
-	float: right;
-	display: inline;
-}
-
-/* profile thalar */
-.profile-champ-Thalar {
-	background-image: url("./images/champion.png");
-	background-repeat: no-repeat;
-	background-position: left;
-}
-.profile-stars-Thalar {
-	background-image: url("./images/5e.png");
-	background-repeat: no-repeat;
-	background-position: left;
-}
-/* profile Ashrame */
+/* profile Champions */
 .profile-stars-Ashrame {
-	background-image: url("./images/2e.png");
+	background-image: url("./images/3e.png");
 	background-repeat: no-repeat;
-	background-position: left;
+  background-position: left;
+	height:20px;
+	width:140px;
 }
-/* profile Ashrame */
 .profile-stars-Obsidian {
 	background-image: url("./images/2e.png");
 	background-repeat: no-repeat;
-	background-position: left;
+  background-position: left;
+	height:20px;
+	width:140px;
+}
+.profile-stars-Voodoo {
+	background-image: url("./images/5e.png");
+	background-repeat: no-repeat;
+  background-position: left;
+	height:20px;
+	width:140px;
+}
+.profile-stars-Relaxmax {
+	background-image: url("./images/3e.png");
+	background-repeat: no-repeat;
+  background-position: left;
+	height:20px;
+	width:140px;
+}
+.profile-stars-Jahstrad {
+	background-image: url("./images/4e.png");
+	background-repeat: no-repeat;
+  background-position: left;
+	height:20px;
+	width:140px;
+}
+.profile-stars-Cuivenen {
+	background-image: url("./images/2e.png");
+	background-repeat: no-repeat;
+  background-position: left;
+	height:20px;
+	width:140px;
+}
+.profile-stars-Zongo {
+	background-image: url("./images/1e.png");
+	background-repeat: no-repeat;
+  background-position: left;
+	height:20px;
+	width:140px;
 }
 
 .postprofile dd, .postprofile dt {
-	line-height: 1.2em;
-	margin-left: 8px;
-	color:#000000;
-}
-.postprofile-Admin dd, .postprofile-Admin dt {
-	line-height: 1.2em;
-	margin-left: 8px;
-	color:#000000;
-}
-.postprofile-Commi dd, .postprofile-Commi dt {
-	line-height: 1.2em;
-	margin-left: 8px;
-	color:#000000;
-}
-.postprofile-Coach dd, .postprofile-Coach dt {
-	line-height: 1.2em;
-	margin-left: 8px;
-	color:#000000;
-}
-.postprofile-Défaut dd, .postprofile-Défaut dt {
-	line-height: 1.2em;
-	margin-left: 8px;
-	color:#000000;
-}
-.postprofileElite dd, .postprofileElite dt {
 	line-height: 1.2em;
 	margin-left: 8px;
 	color:#000000;

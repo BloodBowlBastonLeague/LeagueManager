@@ -17,7 +17,7 @@ background-repeat: no-repeat; margin:0; padding:0 !important;  font-family: "Aka
 .page-body > .panel, .forumbg, .post, #review { margin: 0 30px; }
 .forum-title, .topic-title, .posting-title, h2 { color:#00558D !important; }
 .post > div > dl { width:160px; float:left; }
-.postbody { width:calc(100% - 182px); float:left; padding-left:20px; color:#FFFFFF; border-left: solid 1px #646464; margin-bottom: 30px; }
+.postbody { width:calc(100% - 222px); float:left; padding-left:20px; color:#FFFFFF; margin-bottom: 30px; }
 .post { padding-bottom:0; }
 .post .inner { margin-bottom: 10px;}
 .postbody > div > h3 { display: none;}
