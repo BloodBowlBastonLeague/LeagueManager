@@ -424,7 +424,8 @@ p.author {
 	clear: left;
 	line-height: 140%;
 	overflow: hidden;
-	width: 100%;
+	width: auto;
+	display: inline-block;
 }
 
 .signature.standalone {
