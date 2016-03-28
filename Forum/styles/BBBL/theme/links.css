@@ -36,19 +36,10 @@ li.breadcrumbs span:first-child > a {
 
 /* Notification mark read link */
 .dropdown-extended a.mark_read {
-	background-position: center center;
-	background-repeat: no-repeat;
-	border-radius: 3px 0 0 3px;
 	display: none;
-	margin-top: -20px;
 	z-index: 2;
 	right: 0;
 	top: 50%;
-	width: 30px;
-	height: 40px;
-	-webkit-box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	box-sizing: border-box;
 }
 
 .dropdown-extended li:hover a.mark_read {
@@ -56,7 +47,6 @@ li.breadcrumbs span:first-child > a {
 }
 
 .dropdown-extended a.mark_read:hover {
-	width: 40px;
 }
 
 /* Links for forum/topic lists */
@@ -83,7 +73,8 @@ a.topictitle:hover {
 }
 
 a.lastsubject {
-	font-weight: bold;
+	font-size: 14px;
+	font-weight: 600;
 	text-decoration: none;
 }
 

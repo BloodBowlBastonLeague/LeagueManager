@@ -1,1 +1,3 @@
-Forum/cache/*
+/Forum/cache/*
+/Forum/images/avatars/*
+*.ini

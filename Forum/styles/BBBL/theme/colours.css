@@ -199,11 +199,11 @@ table.table1 thead th {
 }
 
 table.table1 tbody tr {
-	border-color: #BFC1CF;
+	border-color: #FFFFFF;
 }
 
 table.table1 tbody tr:hover, table.table1 tbody tr.hover {
-	background-color: #CFE1F6;
+	background-color: rgba(255,255,255,0.25);
 	color: #000;
 }
 
@@ -336,7 +336,7 @@ th a { font-size: 14px;}
 
 /* Notification mark read link */
 .dropdown-extended a.mark_read {
-	background-color: #FFFFFF;
+
 }
 
 /* Post body links */
@@ -420,11 +420,12 @@ li.row {
 }
 
 li.row strong {
-	color: #000000;
+	color: #FFFFFF;
 }
 
 li.row:hover {
 		background-repeat:no-repeat;
+		background: linear-gradient(to left,rgba(255,255,255,0) 0%, rgba(255,255,255,0.5) 50%, rgba(255,255,255,0) 100%);
 }
 
 li.row:hover dd {
@@ -923,12 +924,12 @@ color: #F68525;
 }
 
 #cp-main .pm {
-	background-color: #FFFFFF;
+	background-color: transparent;
 }
 
 /* Friends list */
 .cp-mini {
-	background-color: #eef5f9;
+	background-color: transparent;
 }
 
 dl.mini dt {
@@ -1133,13 +1134,11 @@ input.disabled {
 }
 
 .dropdown-extended ul li:hover {
-	background-color: #CFE1F6;
 	color: #000000;
 }
 
 .dropdown-extended .header, .dropdown-extended .footer {
-	border-color: #B9B9B9;
-	color: #000000;
+	color: #FFFFFF;
 }
 
 .dropdown-extended .footer {
@@ -1147,13 +1146,7 @@ input.disabled {
 }
 
 .dropdown-extended .header {
-	background: #F1F8FF;
-	background: -moz-linear-gradient(top, #F1F8FF 0%, #CADCEB 100%);
-	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #F1F8FF), color-stop(100%, #CADCEB));
-	background: -webkit-linear-gradient(top, #F1F8FF 0%, #CADCEB 100%);
-	background: -o-linear-gradient(top, #F1F8FF 0%, #CADCEB 100%);
-	background: -ms-linear-gradient(top, #F1F8FF 0%, #CADCEB 100%);
-	background: linear-gradient(to bottom, #F1F8FF 0%, #CADCEB 100%);
+
 }
 
 .dropdown .pointer {
@@ -1187,11 +1180,11 @@ ul.linklist li.responsive-menu a.responsive-menu-link:hover:before, ul.linklist 
 }
 
 .dropdown li, .dropdown li li {
-	border-color: #DCDCDC;
+	border-color: #646464;
 }
 
 .dropdown li.separator {
-	border-color: #DCDCDC;
+	border-color: #646464;
 }
 
 /* Notifications

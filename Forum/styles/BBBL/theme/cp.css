@@ -83,11 +83,12 @@ ul.cplist {
 }
 
 .panel-container .postbody p.author {
-	font-size: 1.1em;
+	margin-left: 10px;
 }
 
 #cp-main .buttons {
 	margin-left: 0;
+	float: right;
 }
 
 #cp-main ul.linklist {
