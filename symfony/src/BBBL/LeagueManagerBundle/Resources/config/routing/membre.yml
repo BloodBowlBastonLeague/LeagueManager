@@ -3,8 +3,9 @@ membre:
     defaults: { _controller: "BBBLLeagueManagerBundle:Membre:index" }
 
 membre_show:
-    path:     /{id}/show
-    defaults: { _controller: "BBBLLeagueManagerBundle:Membre:show" }
+    path:     /{id}/show/{_format}
+    defaults: { _controller: "BBBLLeagueManagerBundle:Membre:show", _format: twig }
+    requirements: { _format: twig|html|json }
 
 membre_new:
     path:     /new

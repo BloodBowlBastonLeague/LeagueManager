@@ -2,9 +2,9 @@ BBBL\LeagueManagerBundle\Entity\Player:
     type: entity
     table: player
     indexes:
-        idteam:
+        idteamlcl:
             columns:
-                - idteam
+                - idteamlcl
     id:
         idplayer:
             type: bigint
@@ -61,14 +61,14 @@ BBBL\LeagueManagerBundle\Entity\Player:
             comment: ''
             default: '0'
     manyToOne:
-        idteam:
+        idteamlcl:
             targetEntity: Team
             cascade: {  }
             mappedBy: null
             inversedBy: null
             joinColumns:
-                idteam:
-                    referencedColumnName: idteamserver
+                idteamlcl:
+                    referencedColumnName: idteam
             orphanRemoval: false
     manyToMany:
         idmatch:

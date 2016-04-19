@@ -2,7 +2,7 @@
 <doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
   <entity name="BBBL\LeagueManagerBundle\Entity\Player" table="player">
     <indexes>
-      <index name="idteam" columns="idteam"/>
+      <index name="idteamlcl" columns="idteamlcl"/>
     </indexes>
     <id name="idplayer" type="bigint" column="idplayer">
       <generator strategy="IDENTITY"/>
@@ -15,9 +15,9 @@
     <field name="blesse" type="boolean" column="blesse" nullable="true"/>
     <field name="num" type="integer" column="num" nullable="true"/>
     <field name="xp" type="integer" column="xp" nullable="true"/>
-    <many-to-one field="idteam" target-entity="Team">
+    <many-to-one field="idteamlcl" target-entity="Team">
       <join-columns>
-        <join-column name="idteam" referenced-column-name="idteamserver"/>
+        <join-column name="idteamlcl" referenced-column-name="idteam"/>
       </join-columns>
     </many-to-one>
     <many-to-many field="idmatch" target-entity="Matchs" inversed-by="idplayer">

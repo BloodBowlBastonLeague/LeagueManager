@@ -3,8 +3,9 @@ team:
     defaults: { _controller: "BBBLLeagueManagerBundle:Team:index" }
 
 team_show:
-    path:     /{id}/show
-    defaults: { _controller: "BBBLLeagueManagerBundle:Team:show" }
+    path:     /{id}/show/{_format}
+    defaults: { _controller: "BBBLLeagueManagerBundle:Team:show", _format: twig }
+    requirements: { _format: twig|html|json }
 
 team_new:
     path:     /new

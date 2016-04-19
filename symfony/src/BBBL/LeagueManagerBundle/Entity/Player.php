@@ -57,7 +57,7 @@ class Player
     /**
      * @var \BBBL\LeagueManagerBundle\Entity\Team
      */
-    private $idteam;
+    private $idteamlcl;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -272,9 +272,9 @@ class Player
      * @param \BBBL\LeagueManagerBundle\Entity\Team $idteam
      * @return Player
      */
-    public function setIdteam(\BBBL\LeagueManagerBundle\Entity\Team $idteam = null)
+    public function setIdteamlcl(\BBBL\LeagueManagerBundle\Entity\Team $idteam = null)
     {
-        $this->idteam = $idteam;
+        $this->idteamlcl = $idteam;
 
         return $this;
     }
@@ -284,9 +284,9 @@ class Player
      *
      * @return \BBBL\LeagueManagerBundle\Entity\Team 
      */
-    public function getIdteam()
+    public function getIdteamlcl()
     {
-        return $this->idteam;
+        return $this->idteamlcl;
     }
 
     /**
