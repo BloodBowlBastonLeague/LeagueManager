@@ -64,6 +64,10 @@ class Membre
      */
     private $idmembre;
 
+    public function __toString() {
+        return $this->getPseudo();
+    }
+
 
     /**
      * Set pseudo

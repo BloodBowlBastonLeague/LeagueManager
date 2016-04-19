@@ -4,6 +4,8 @@ namespace BBBL\LeagueManagerBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use BBBL\LeagueManagerBundle\Entity\Ligue;
 use BBBL\LeagueManagerBundle\Form\LigueType;
@@ -91,7 +93,7 @@ class LigueController extends Controller
      * Finds and displays a Ligue entity.
      *
      */
-    public function showAction($id)
+    public function showAction($id,$_format)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -100,13 +102,18 @@ class LigueController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Ligue entity.');
         }
+        if ('twig' == $_format) {
+            $deleteForm = $this->createDeleteForm($id);
 
-        $deleteForm = $this->createDeleteForm($id);
+            return $this->render('BBBLLeagueManagerBundle:Ligue:show.html.twig', array(
+                'entity'      => $entity,
+                'delete_form' => $deleteForm->createView(),
+            ));
+         }
 
-        return $this->render('BBBLLeagueManagerBundle:Ligue:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        ));
+        $serializer = $this->container->get('serializer');
+        $reports = $serializer->serialize($entity, $_format);
+        return new Response($reports);
     }
 
     /**

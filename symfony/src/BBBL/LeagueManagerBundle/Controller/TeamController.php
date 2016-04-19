@@ -4,6 +4,8 @@ namespace BBBL\LeagueManagerBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use BBBL\LeagueManagerBundle\Entity\Team;
 use BBBL\LeagueManagerBundle\Form\TeamType;
@@ -91,7 +93,8 @@ class TeamController extends Controller
      * Finds and displays a Team entity.
      *
      */
-    public function showAction($id)
+    // public function showAction($id,$format)
+    public function showAction($id,$_format)
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -101,12 +104,20 @@ class TeamController extends Controller
             throw $this->createNotFoundException('Unable to find Team entity.');
         }
 
-        $deleteForm = $this->createDeleteForm($id);
 
-        return $this->render('BBBLLeagueManagerBundle:Team:show.html.twig', array(
-            'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),
-        ));
+        if ('twig' == $_format) {
+            $deleteForm = $this->createDeleteForm($id);
+
+            return $this->render('BBBLLeagueManagerBundle:Team:show.html.twig', array(
+                'entity'      => $entity,
+                'delete_form' => $deleteForm->createView(),
+            ));
+            
+        }
+
+        $serializer = $this->container->get('serializer');
+        $reports = $serializer->serialize($entity, $_format);
+        return new Response($reports);
     }
 
     /**
@@ -143,8 +154,8 @@ class TeamController extends Controller
     private function createEditForm(Team $entity)
     {
         $form = $this->createForm(new TeamType(), $entity, array(
-            'action' => $this->generateUrl('team_update', array('id' => $entity->getId())),
-            'method' => 'PUT',
+            'action' => $this->generateUrl('team_update', array('id' => $entity->getIdteam())),
+            'method' => 'PUT'
         ));
 
         $form->add('submit', 'submit', array('label' => 'Update'));

@@ -3,8 +3,9 @@ player:
     defaults: { _controller: "BBBLLeagueManagerBundle:Player:index" }
 
 player_show:
-    path:     /{id}/show
-    defaults: { _controller: "BBBLLeagueManagerBundle:Player:show" }
+    path:     /{id}/show/{_format}
+    defaults: { _controller: "BBBLLeagueManagerBundle:Player:show", _format: twig }
+    requirements: { _format: twig|html|json }
 
 player_new:
     path:     /new

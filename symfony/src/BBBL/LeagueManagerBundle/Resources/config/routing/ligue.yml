@@ -3,8 +3,9 @@ ligue:
     defaults: { _controller: "BBBLLeagueManagerBundle:Ligue:index" }
 
 ligue_show:
-    path:     /{id}/show
-    defaults: { _controller: "BBBLLeagueManagerBundle:Ligue:show" }
+    path:     /{id}/show/{_format}
+    defaults: { _controller: "BBBLLeagueManagerBundle:Ligue:show", _format: twig }
+    requirements: { _format: twig|html|json }
 
 ligue_new:
     path:     /new
