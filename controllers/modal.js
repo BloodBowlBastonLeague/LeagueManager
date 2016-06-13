@@ -4,25 +4,17 @@ LeagueManager.directive('modal', function(Restangular){
 		templateUrl: 'views/modal.html',
 		controller: function($rootScope, $scope, $http, $timeout) {
 			//Initialisation de la variable d'affichage de la liseuse
-			$scope.fullscreen = false;
-			$scope.reader = false;
-			$scope.connector = false;
-			$scope.modalTeam = false;
+			$scope.modal={};
+			$scope.cyanideId='';
 
 			//masquage de la fenetre
 			$scope.displayOff = function(){
-				$scope.fullscreen = !$scope.fullscreen;
-				$scope.reader = false;
-				$scope.connector = false;
-				$scope.modalTeam = false;
+				$scope.modal={};
 			};
 
 			//Affichage/masquage des articles
-			$scope.displayReader = function(articleID){
-				//Récupération de l'article via l'API REST (à venir)
-				if( typeof articleID !== 'undefined' ){
-					$scope.article = $rootScope.articles[articleID];
-				}
+			$scope.displayReader = function(article){
+				$scope.article = article;
 				//Affichage/masquage de la liseuse
 				$scope.modal.subject = 'reader';
 			};
@@ -33,11 +25,17 @@ LeagueManager.directive('modal', function(Restangular){
 				$scope.modal.subject = 'connector';
 			};
 
+			$scope.displayMatchForm =function(id,team1,team2){
+				$scope.modal.subject = 'match';
+				$scope.matchToSave = id;
+				$scope.teams = [team1,team2];
+			};
+
 			$scope.forumLogin = function(){
 				document.forms['forumConnect'].submit();
 			};
 
-			//Affichage/masquage des articles
+			//Affichage/masquage des équipes
 			$scope.displayTeam = function(teamIdx,colour){
 				$scope.modal = $rootScope.colours[colour];
 				$scope.modal.teamIdx = teamIdx;
@@ -45,7 +43,88 @@ LeagueManager.directive('modal', function(Restangular){
 				$scope.modal.subject = 'team';
 			};
 
+			$scope.updateCompetition = function(id,cyanideId,forumUrl){
+				$scope.displayOff();
+				//Call Cyanide API
+				$http.get('http://web.cyanide-studio.com/ws/bb2/match/?key=' + window.Cyanide_Key + '&uuid=' + cyanideId ).success(function(result){
+					//Save Match
+					$http.post('Backend/match_save.php',{
+						Id : id,
+						cyanide_Id : cyanideId,
+						started : result.match.started,
+						score_1 : result.match.teams[0].score,
+						nbsupporters_1 : result.match.teams[0].nbsupporters,
+						possessionball_1 : result.match.teams[0].possessionball,
+						occupationown_1 : result.match.teams[0].occupationown,
+						occupationtheir_1 : result.match.teams[0].occupationtheir,
+						sustainedcasualties_1 : result.match.teams[1].inflictedcasualties,
+						sustainedko_1 : result.match.teams[1].inflictedko,
+						sustainedinjuries_1 : result.match.teams[1].inflictedinjuries,
+						sustaineddead_1 : result.match.teams[1].inflicteddead,
+						score_2 : result.match.teams[1].score,
+						nbsupporters_2 : result.match.teams[1].nbsupporters,
+						possessionball_2 : result.match.teams[1].possessionball,
+						occupationown_2 : result.match.teams[1].occupationown,
+						occupationtheir_2 : result.match.teams[1].occupationtheir,
+						sustainedcasualties_2 : result.match.teams[0].inflictedcasualties,
+						sustainedko_2 : result.match.teams[0].inflictedko,
+						sustainedinjuries_2 : result.match.teams[0].inflictedinjuries,
+						sustaineddead_2 : result.match.teams[0].inflicteddead,
+						forum_url : forumUrl,
+						json : JSON.stringify(result)
+					} ).then( function(result){
+						$rootScope.calendarUpdate();
+					});
 
+						//Save Players
+						//loop through teams
+						for(t=0; t<2; t++){
+							var roster = result.match.teams[t].roster;
+							var team = $scope.teams[t]
+
+							//loop through players
+							for(p=0; p<roster.length; p++){
+
+								$http.post('Backend/player_save.php',{
+									team_id : team,
+									type : roster[p].type,
+									name : roster[p].name,
+									level : roster[p].level,
+									xp : roster[p].xp,
+									xp_gain : roster[p].xp_gain,
+									matchplayed : roster[p].matchplayed,
+									mvp : roster[p].mvp,
+									attributes : JSON.stringify(roster[p].attributes),
+									skills : JSON.stringify(roster[p].skills),
+									dead : roster[p].stats.sustaineddead,
+									injured : roster[p].stats.sustainedcasualties,
+									match_id : id,
+									inflictedpasses :	roster[p].stats.inflictedpasses,
+									inflictedcatches : roster[p].stats.inflictedcatches,
+									inflictedinterceptions : roster[p].stats.inflictedinterceptions,
+									inflictedtouchdowns : roster[p].stats.inflictedtouchdowns,
+									inflictedcasualties : roster[p].stats.inflictedcasualties,
+									inflictedstuns : roster[p].stats.inflictedstuns,
+									inflictedko : roster[p].stats.inflictedko,
+									inflictedinjuries : roster[p].stats.inflictedinjuries,
+									inflicteddead : roster[p].stats.inflicteddead,
+									inflictedtackles : roster[p].stats.inflictedtackles,
+									inflictedmeterspassing : roster[p].stats.inflictedmeterspassing,
+									inflictedmetersrunning : roster[p].stats.inflictedmetersrunning,
+									sustainedinterceptions : roster[p].stats.sustainedinterceptions,
+									sustainedcasualties : roster[p].stats.sustainedcasualties,
+									sustainedstuns : roster[p].stats.sustainedstuns,
+									sustainedko : roster[p].stats.sustainedko,
+									sustainedinjuries : roster[p].stats.sustainedinjuries,
+									sustainedtackles : roster[p].stats.sustainedtackles,
+									sustaineddead : roster[p].stats.sustaineddead
+								} ).then( function(result){
+										console.log(result)
+									});
+							}
+						}
+				})
+			};
     }
   }
 });

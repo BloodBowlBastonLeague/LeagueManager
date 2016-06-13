@@ -58,7 +58,7 @@ h1 { font-family: 'Russo One'; font-size: 40px; line-height: 50px; font-weight: 
 color: #ffffff; margin:0;padding: 0;}
 h2 { font-family: 'Play'; font-size: 20px; line-height: 24px; font-weight: 400;}
 h3 { font-family: 'Play'; font-size: 26px; line-height: 30px; font-weight: 700;}
-h4 { font-family: 'Play'; font-size: 36px; line-height: 46px; font-weight: 400;margin: 0 0 10px 0;color:#F68525;}
+h4 { font-family: 'Play'; font-size: 36px; line-height: 46px; font-weight: 400;margin: 0 0 10px 0;color:#DD7C00;}
 h5 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; text-align: left;color: #0191FF ; cursor: pointer; padding: 0 0 5px;}
 h6 { font-family: 'Play'; font-size: 16px; line-height: 20px; font-weight: 400; cursor: pointer; margin-bottom: 10px;}
 p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc; display:inline; }
@@ -75,7 +75,7 @@ p { font-family:'Hind'; font-size: 14px; line-height: 18px; text-align: justify;
 .scroll { overflow-y: auto; height: calc(100vh - 68px);}
 .link { cursor: pointer; color:inherit; }
 
-.annonce > h3 { color:#F68525; }
+.annonce > h3 { color:#DD7C00; }
 
 .plain {  position:relative;
 					margin:20px 10px;
@@ -130,17 +130,17 @@ article img { max-width:15vw; max-height:20vh; }
 
 
 /*--- Div ---*/
-.button { display: inline-block; background: #F68525; font-family:'Hind'; font-size: 26px; line-height: 28px; padding:5px 1.5vw;  color:#f1f1f1; border-radius: 3px; box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9); cursor: pointer; border:0;}
-input[type='submit'] { display: inline-block; background: #F68525; font-family:'Hind'; font-size: 26px; line-height: 28px; padding:5px 1.5vw; margin-bottom: 15px !important; color:#f1f1f1; border-radius: 3px; box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9); cursor: pointer;}
+.button { display: inline-block; background: #DD7C00; font-family:'Hind'; font-size: 26px; line-height: 28px; padding:5px 1.5vw;  color:#f1f1f1; border-radius: 3px; box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9); cursor: pointer; border:0;}
+input[type='submit'] { display: inline-block; background: #DD7C00; font-family:'Hind'; font-size: 26px; line-height: 28px; padding:5px 1.5vw; margin-bottom: 15px !important; color:#f1f1f1; border-radius: 3px; box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.9); cursor: pointer;}
 .button.small {font-size: 16px; line-height: 22px;}
 
 
 .random.main { display:inline-block; height:auto;}
-.random.side { display:inline-block; height:240px;width: calc(100% - 60px); margin:20px; background: #333333; border-bottom: 2px solid #F68525; border-radius: 0 0 3px 3px; box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.9); cursor: pointer;}
+.random.side { display:inline-block; height:240px;width: calc(100% - 60px); margin:20px; background: #333333; border-bottom: 2px solid #DD7C00; border-radius: 0 0 3px 3px; box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.9); cursor: pointer;}
 .random.side > .image { height: 120px; width: 100%;}
 .random.side > .text { height: 120px; width: 100%; padding:20px 2vw;}
 
-.random > h6 { color:#F68525; text-align: right; }
+.random > h6 { color:#DD7C00; text-align: right; }
 .random > p { color:#FFFFFF; }
 
 .annonce > p { font-size: 18px; line-height: 22px; }

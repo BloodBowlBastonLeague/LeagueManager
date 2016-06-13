@@ -4,34 +4,56 @@ LeagueManager.directive('competition', function(Restangular){
 		templateUrl: 'views/competition.html',
 
 		controller: function($scope, $rootScope, $http, $timeout, Restangular, $routeParams) {
-
+			$scope.competition={};
 			$rootScope.setColours([$rootScope.colourA,$rootScope.colourB]);
-			//Récupération du classement en JSON (temporaire)
-			$http.get('resources/json/standing.json').success(function(result){
-				$scope.standing = result;
-				//à supprimer et mettre dans le chemin de l'API
-				$scope.division = $scope.standing.map(function(e) { return e.divisionID; }).indexOf($routeParams.ID);
-				$scope.random = $rootScope.randomArticle([$scope.standing[$scope.division].name]);
-				$rootScope.title = "Division " + $scope.standing[$scope.division].name;
-				$scope.standing = $scope.standing[$scope.division].standing;
-				//Fin de suppression
-
-			});
-
-			//Récupération de l'agenda en JSON (temporaire)
-			$http.get('resources/json/calendar.json').success(function(result){
-				$scope.calendar = result;
-				//à supprimer et mettre dans le chemin de l'API
-				$scope.division = $scope.calendar.map(function(e) { return e.divisionID; }).indexOf($routeParams.ID);
-				$scope.calendar = $scope.calendar[$scope.division].calendar;
-				//Fin de suppression
-			});
-
-			$scope.currentDay = 5;
-			$scope.displayDay = 5;
-
-			$scope.showPreviousDays = function(i){
+			$scope.competitionId = $routeParams.ID;
+			$rootScope.orderFilter = 'day';
+			$rootScope.reverse = true;
+			$scope.showNextDays = function(i){
 				$scope.displayDay = 0;
+			};
+
+			$scope.competitionBuild = function(){
+				var idx = $rootScope.competitions.map(function(e) { return e.id; }).indexOf($routeParams.ID);
+				$scope.competition = $rootScope.competitions[idx];
+				$rootScope.title = $scope.competition.league + ' - Joute de ' + $scope.competition.site_name;
+			};
+
+			if($rootScope.competitionsFetched == 1){
+				$scope.competitionBuild();
+			}
+			$rootScope.$on('articlesFetched',  function(){
+				$scope.competitionBuild();
+			});
+
+			$http.get('Backend/calendar.php?id='+$routeParams.ID).success(function(result){
+				$scope.calendar = result;
+				$scope.currentDay = $scope.calendar[0].currentDay;
+				if($scope.calendar.length < 6){
+					$scope.displayDay = 0;
+				}
+				else{
+					$scope.displayDay = $scope.currentDay;
+				}
+			});
+
+			$scope.matchDetail = function(id,played,team1,team2){
+
+				if(played){
+					$scope.goToPage('match/'+id)
+				}
+				else{
+					if($rootScope.admin==1){
+						$scope.displayMatchForm(id,team1,team2);
+					}
+				}
+			};
+
+			$rootScope.calendarUpdate = function(){
+				$http.get('Backend/calendar.php?id='+$routeParams.ID).success(function(result){
+					$scope.calendar = result;
+					$scope.currentDay = $scope.calendar[0].currentDay;
+				});
 			};
 
 		}

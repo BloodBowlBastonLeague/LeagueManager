@@ -5,33 +5,30 @@ LeagueManager.directive('team', function(Restangular){
 		controller: function($scope, $rootScope, $http, $timeout, Restangular, $routeParams) {
 			$scope.teamID = $routeParams.ID;
 			$scope.activePlayer = false;
+			$rootScope.orderFilter = 'position';
+			$rootScope.reverse = false;
 
 			//Récupération du classement en JSON (temporaire)
-			$http.get('resources/json/team.json').success(function(result){
-				$scope.teams = result;
-				//à supprimer et mettre dans le chemin de l'API
-				$scope.teamIdx = $scope.teams.map(function(e) { return e.teamID; }).indexOf($routeParams.ID);
-				$scope.team = $scope.teams[$scope.teamIdx];
+			$http.get('Backend/team.php?id='+$scope.teamID).success(function(result){
+				$scope.team = result;
+
+				for(p=0; p<result.players.length; p++){
+					$scope.team.players[p].attributes = JSON.parse(result.players[p].attributes);
+					$scope.team.players[p].skills = JSON.parse(result.players[p].skills);
+				}
 				$rootScope.title = $scope.team.name;
 				$scope.team.pop = [];
-		    $rootScope.setColours([$scope.team.color1,$scope.team.color2]);
+		    $rootScope.setColours([$scope.team.color_1,$scope.team.color_2]);
 				//Team Images
-				$('.logo').css({"background": "url(resources/img/teams/logo"+$routeParams.ID+".png) center center no-repeat", "background-size":"contain"});
-
-
-
-				for(i=0;i<$scope.team.fame;i++){ $scope.team.pop.push(i); }
+				$('.logo').css({"background": "url(resources/logo/Logo_"+$scope.team.teamlogo+".png) center center no-repeat", "background-size":"contain"});
+				for(i=0;i<$scope.team.popularite;i++){ $scope.team.pop.push(i); }
 				$scope.teamArticle();
 			});
 
 			//Gestion du RP
 			$scope.teamArticle = function(categories){
-				$scope.team.articles = [];
-				for(i=0;i<$rootScope.articles.length;i++){
-					if($scope.team.teamID === $rootScope.articles[i].teamID){
-						$rootScope.articles[i].summary = $rootScope.articles[i].text.substr(0, $rootScope.articles[i].text.indexOf('<br/><br/>'))
-						$scope.team.articles.push($rootScope.articles[i]);
-					}
+				for(i=0;i<$scope.team.articles.length;i++){
+					$scope.team.articles[i].summary = $scope.team.articles[i].text.substr(0, $scope.team.articles[i].text.indexOf('<br/><br/>'))
 				}
 			};
 

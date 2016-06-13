@@ -4,7 +4,7 @@
 
 .forabg { padding:0; margin:0;}
 .forabg > .inner, .stat-block, .panel, .forumbg, .headerspace, .solo, .toolbar  { margin:30px; }
-.stat-block, .toolbar { border-color:#F68525; }
+.stat-block, .toolbar { border-color:#DD7C00; }
 #wrap { margin:0; padding:0 !important; border:0 }
 #page-footer .navbar { background: transparent; padding:0; height:40px}
 .permissions { display: none; }
@@ -50,9 +50,7 @@ ul { text-align: left; }
 #topicreview > .post > .inner > .postbody > .post-buttons { margin: 0px -20px -10px 0px; }
 #options-panel, .fields1 {margin-bottom: 30px;}
 .dropdown .dropdown-contents { background: #323232;}
-#quickmod .dropdown { position:absolute; display: none;
-left: -200px;
-bottom: 2px;}
+#quickmod .dropdown { position:absolute; display: none; left: -200px; bottom: 2px;}
 #quickmod .dropdown .dropdown-contents { background: #000000; }
 #viewfolder .display-actions { margin-top: 0;}
 #viewfolder .display-actions .button1 { margin: 0px -20px -40px; }
@@ -73,3 +71,5 @@ bottom: 2px;}
 .clone > a { background: transparent; background-image: none;}
 .postbody .current { background: transparent !important;}
 .tinypic { position:relative; width:200px; height: 30px; display:block;}
+
+#smiley-box > a > img { max-height:40px; width:auto !important; }
