@@ -2,7 +2,7 @@ var LeagueManager = angular.module('LeagueManager', ['ngRoute','restangular','ng
 
 //API REST - Local DB
 LeagueManager.config(function (RestangularProvider) {
-	RestangularProvider.setBaseUrl('http://localhost:8888/');
+	RestangularProvider.setBaseUrl('http://www.bbbl.fr/Backend');
 });
 
 //Routage
@@ -10,6 +10,9 @@ LeagueManager.config(function ($routeProvider, RestangularProvider) {
 	$routeProvider
   .when("/competition/:ID", {
 		template: '<competition></competition>'
+	})
+	.when("/competition2/:ID", {
+		template: '<competition2></competition2>'
 	})
 	.when("/league", {
 		template: '<league></league>'
@@ -29,32 +32,55 @@ LeagueManager.config(function ($routeProvider, RestangularProvider) {
 });
 
 LeagueManager.run(function($rootScope, $http, $location, $timeout) {
-	$rootScope.title = "le mag de la BBBL";
-
-	$http.get('resources/json/articles.json').success(function(result){
+	$rootScope.user = window.User;
+	$rootScope.admin = ['9','10','11','12'].indexOf(window.Group)>-1 ? 1 : 0;
+	$rootScope.title = "Tribunes - le mag de la BBBL";
+	$rootScope.competitions = [];
+	//Récupération des articles
+	$http.get('Backend/articles.php').success(function(result){
 		$rootScope.articles = result;
+
+		for(i=0;i<$rootScope.articles.length;i++){
+			$rootScope.articles[i].summary = $rootScope.articles[i].text.substr(0, $rootScope.articles[i].text.indexOf('<br/><br/>'))
+		}
+		//Récupération des compétitions
+		$http.get('Backend/competitions.php').success(function(result){
+			$rootScope.competitions = result;
+			for(j=0;j<$rootScope.competitions.length;j++){
+				for(k=0;k<Object.keys($rootScope.articles).length;k++){
+					if($rootScope.articles[k].competition_id == $rootScope.competitions[j].id){
+						$rootScope.competitions[j].article=$rootScope.articles[k];
+					}
+				}
+			}
+			$rootScope.competitionsFetched = 1;
+			$rootScope.$broadcast('articlesFetched');
+		});
 	});
 
 	$rootScope.goToPage = function(page) {
 		$('#Logo').removeAttr( 'style' );
+		$rootScope.$broadcast('routeChangeSuccess');
     $location.path( page );
   };
 
+	//Gestion de l'historique
 	$rootScope.history = [];
-
-	$rootScope.$on('$routeChangeSuccess', function() {
-		$rootScope.history.push($location.$$path);
+	$rootScope.$on('routeChangeSuccess', function() {
+				$rootScope.history.push($location.$$path);	console.log($rootScope.history);
 	});
 
-		$rootScope.previousPage = function () {
-			var prevUrl = $rootScope.history.length > 1 ? $rootScope.history.splice(-2)[0] : "/";
-			$location.path(prevUrl);
-		};
+	$rootScope.previousPage = function () {
+		$('#Logo').removeAttr( 'style' );
+		var prevUrl = $rootScope.history.length > 0 ? $rootScope.history.splice(-1)[0] : "/";
+		console.log(prevUrl);
+		$location.path(prevUrl);
+	};
 
 	$rootScope.randomArticle = function(categories){
 		//Récupération des articles en JSON (temporaire)
 		var selection = [];
-		for(i=0;i<$rootScope.articles.length;i++){
+		for(i=0;i<Object.keys($rootScope.articles).length;i++){
 			if($rootScope.articles[i].random == 1 && categories.indexOf($rootScope.articles[i].category) != -1){
 				selection.push($rootScope.articles[i]);
 			}
@@ -66,7 +92,7 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 	//Couleurs de bases du site
 	$rootScope.colours = [];
 	$rootScope.colourA = "#00558D";
-	$rootScope.colourB = "#F68525";
+	$rootScope.colourB = "#DD7C00";
 	//Mise à jours de couleurs (pour les équipes)
 	$rootScope.setColours = function(args){
 		for(i=0; i < args.length; i++){
@@ -77,8 +103,12 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 				$rootScope.colours[i].background = { 'background-color':args[i] };
 				$rootScope.colours[i].fill = { 'fill': args[i] };
 		}
-		$('.navbar').css({'background': '-webkit-linear-gradient('+args[0]+','+args[0]+',#000000)', 'background': '-moz-linear-gradient('+args[0]+','+args[0]+',#000000)', 'background': 'linear-gradient('+args[0]+','+args[0]+',#000000)' });
+			$rootScope.navbarColour ={'background': '-webkit-linear-gradient('+args[0]+',#000000)', 'background': '-moz-linear-gradient('+args[0]+',#000000)', 'background': 'linear-gradient('+args[0]+',#000000)' };
 	};
-
+	//Tri des listes
+	$rootScope.sortBy = function(orderFilter) {
+		$rootScope.reverse = ($rootScope.orderFilter === orderFilter) ? !$rootScope.reverse : false;
+		$rootScope.orderFilter = orderFilter;
+	};
 
 });

@@ -1,61 +1,41 @@
 <div class="row">
 <div class="col-xl-3 hidden-lg-down">
   <div class="image">
-    <img src="resources/img/BBBL2.png">
+    <img src="resources/img/BBBL2_5x.png">
   </div>
   <div class="plain seconde" ng-style="colours[1].border">
     <h3 ng-style="colours[1].color">Découvrez la BBBL</h3>
     <p>La Blood Bowl Baston League vous accueille quotidiennement dans ses locaux modernes de l'Administratorum, 1, place de l'Administratorum à Blood Bowl City.</p><p>Dans une ambiance chaleureuse et assainie de toute corruption, la BBBL vous offre le meilleur du BloodBowl dans le vieux monde. Dynamisme et modernité, sont les maitres mots du futur que nous vous offrons.</p>
-    <div class="spacer"></div>
+    <!--div class="spacer"></div>
         <div class="button" ng-click="goToPage('league')">
           <div ng-include="'resources/img/Button_1.svg'"></div>
           <div class="label">Découvrir</div>
-        </div>
+        </div-->
   </div>
 </div>
 <div class="col-lg-9 col-xl-6">
-  <div class="col-md-12">
-      <article id="randomUne0" class="plain prime" ng-style="colours[0].border">
-        <h3 ng-style="colours[0].color" ng-click="displayReader(randomElite.article_id)" ng-bind-html="randomElite.title"></h3>
-        <p><img ng-if="randomElite.image==1" class="col-xs-4  left" ng-click="displayReader(randomElite.article_id)" src="resources/img/articles/article_{{randomElite.article_id}}.jpg"/>
-        <span ng-bind-html="randomElite.summary">Les gobelins pédalent</span> <a ng-style="colours[0].color" ng-click="displayReader(randomElite.article_id)">En savoir plus</a></p>
-        <div class="spacer"></div>
-            <div class="button" ng-click="goToPage('competition/0')">
-              <div ng-include="'resources/img/Button_0.svg'"></div>
-              <div class="label">division Elite</div>
-            </div>
-      </article>
-    </div>
-    <div class="col-md-6">
-      <article id="randomUne1" class="plain prime" ng-style="colours[0].border">
-        <h3 ng-style="colours[0].color" ng-click="displayReader(randomEspoir.article_id)" ng-bind-html="randomEspoir.title"></h3>
-        <p><img ng-if="randomEspoir.image==1" class="col-xs-4 left" src="resources/img/articles/article_{{randomEspoir.article_id}}.jpg"/>
-        <span ng-bind-html="randomEspoir.summary"></span> <a ng-style="colours[0].color" ng-click="displayReader(randomEspoir.article_id)">En savoir plus</a></p>
-        <div class="spacer"></div>
-            <div class="button" ng-click="goToPage('competition/0')">
-              <div ng-include="'resources/img/Button_0.svg'"></div>
-              <div class="label">division Espoir</div>
-            </div>
-
-      </article>
-    </div>
-    <div class="col-md-6">
-      <article id="randomUne2" class="plain seconde" ng-style="colours[1].border">
-        <h3 ng-style="colours[1].color" ng-click="displayReader(random3.article_id)" ng-bind-html="random3.title"></h3>
-        <p><img ng-if="random3.image==1" class="col-xs-12 left"  src="resources/img/articles/article_{{random3.article_id}}.jpg"/>
-        <span ng-bind-html="random3.summary"></span> <a ng-style="colours[1].color" ng-click="displayReader(random3.article_id)">En savoir plus</a></p>
-      </article>
-    </div>
+  <div ng-repeat="competition in competitions | orderBy: site_order" ng-class="{'col-md-6': competition.site_order!=0, 'col-md-12': competition.site_order==0}" class="spHeight">
+    <article id="randomUne{{$index}}" class="plain prime" ng-style="colours[0].border">
+      <h3 ng-style="colours[0].color" ng-click="displayReader(competition.article.article_id)" ng-bind-html="competition.article.title">{{competition.league}}</h3>
+      <p><img ng-if="competition.article.image" class="col-xs-4 left" ng-click="displayReader(competition.article.article_id)" src="resources/img/articles/article_{{competition.article.id}}.jpg"/>
+      <span ng-bind-html="competition.article.summary">Les gobelins pédalent</span> <a ng-style="colours[0].color" ng-click="displayReader(competition.article)">En savoir plus</a></p>
+      <div class="spacer"></div>
+      <div class="button" ng-click="goToPage('competition/'+competition.id)">
+        <div ng-include="'resources/img/Button_0.svg'"></div>
+        <div class="label">{{competition.league}} {{competition.pool}}</div>
+      </div>
+    </article>
+  </div>
 </div>
 <div class="col-lg-3 hidden-md-down stick-right">
-    <div class="plain prime side clic" ng-repeat="division in standing" ng-click="goToPage('competition/'+division.ID)" ng-style="colours[0].border">
-      <h3 ng-style="colours[0].color">Division {{division.name}}</h3>
+    <div class="plain prime side zelda" ng-repeat="competition in competitions" ng-click="goToPage('competition/'+competition.id)" ng-style="colours[0].border">
+      <h3 ng-style="colours[0].color">{{competition.league}} {{competition.pool}} {{competition.site_name}}</h3>
       <table>
         <tbody>
-          <tr ng-repeat="(key,row) in division.standing" ng-class="{gold: key+1 == 1, silver: key+1 == 2, bronze: key+1 == 3, relegated: key+1 > 9}" ng-style="colours[0].border">
-            <td>{{key+1}}</td>
-            <td class="text-left">{{row.Equipe}}</td>
-            <td>{{row.Pts}}</td>
+          <tr ng-repeat="team in competition.json | orderBy:'standing'" ng-class="{gold: $index+1 == 1 && competition.pool!='B', silver: $index+1 == 2 && competition.pool!='B', bronze: $index+1 == 3 && competition.pool!='B', relegated : $index+1 > competition.json.length-3 && competition.pool=='B'}" ng-style="colours[0].border">
+            <td>{{$index+1}}</td>
+            <td class="text-left">{{team.team}}</td>
+            <td>{{team.Pts}}</td>
           </tr>
         </tbody>
       </table>

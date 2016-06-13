@@ -1,3 +1,8 @@
+
+<div class="row tabRow">
+  <div class="col-lg-4 firstTab"></div>
+  <div class="col-lg-2 tab" ng-if="tab.id != competition.id" ng-repeat="tab in competitions" ng-click="goToPage('competition/'+tab.id)" >{{tab.league}} {{tab.pool}} {{tab.site_name}}</div>
+</div>
 <div class="row">
   <div class="col-lg-7 scroll">
     <div class="plain prime main" ng-style="colours[0].border">
@@ -17,45 +22,48 @@
           </tr>
         </thead>
         <tbody class="table-hover">
-          <tr ng-repeat="(key,row) in standing" ng-class="{gold: key+1 == 1, silver: key+1 == 2, bronze: key+1 == 3, relegated: key+1 > 9}"  ng-style="colours[0].border">
-            <td class="text-center">{{key+1}}</td>
-            <td class="text-left link" ng-click="goToPage('team/' + row.idteam)"><img class="teamLogo" src="resources/img/teams/minilogo{{row.idteam}}.png"> {{row.Equipe}}</td>
-            <td class="text-left hidden-sm-down">{{row.Coach}}</td>
-            <td class="text-center">{{row.Pts}}</td>
-            <td class="text-center hidden-xs-down">{{row.V}}</td>
-            <td class="text-center hidden-xs-down">{{row.N}}</td>
-            <td class="text-center hidden-xs-down">{{row.D}}</td>
-            <td class="text-center hidden-sm-down">{{row.TD}}</td>
-            <td class="text-center hidden-sm-down">{{row.S}}</td>
+          <tr ng-repeat="team in competition.json | orderBy:'standing'" ng-class="{gold: $index+1 == 1 && competition.pool!='B', silver: $index+1 == 2 && competition.pool!='B', bronze: $index+1 == 3 && competition.pool!='B', relegated : $index+1 > competition.json.length-3 && competition.pool=='B'}" class="link" ng-click="goToPage('team/' + team.id)"  ng-style="colours[0].border">
+            <td class="text-center">{{$index+1}}</td>
+            <td class="text-left"><img class="teamLogo" src="resources/logo/Logo_{{team.logo}}.png"> {{team.team}}</td>
+            <td class="text-left hidden-sm-down">{{team.coach}}</td>
+            <td class="text-center">{{team.Pts}}</td>
+            <td class="text-center hidden-xs-down">{{team.V}}</td>
+            <td class="text-center hidden-xs-down">{{team.N}}</td>
+            <td class="text-center hidden-xs-down">{{team.D}}</td>
+            <td class="text-center hidden-sm-down">{{team.TD}}</td>
+            <td class="text-center hidden-sm-down">{{team.S}}</td>
           </tr>
         </tbody>
       </table>
     </div>
-    <article id="random" class="plain seconde" ng-style="colours[1].border">
-      <h2 ng-style="colours[1].color" ng-click="displayReader(random.article_id)" ng-bind-html="random.title"></h2>
-      <div class="row"><img ng-if="random.image==1" class="col-xs-4 left"  src="resources/img/articles/article_{{random.article_id}}.jpg"/>
-      <div class="col-xs-8">
-        <p><span ng-bind-html="random.summary"></span> <a ng-style="colours[1].color" ng-click="displayReader(random.article_id)">En savoir plus</a></p>
+    <article class="plain seconde" ng-style="colours[1].border">
+      <h2 ng-style="colours[1].color" ng-bind-html="competition.article.title"></h2>
+      <div class="row"><img ng-if="competition.article.image" class="col-xs-4 left"  src="resources/img/articles/article_{{competition.article.id}}.jpg"/>
+      <div class="col-xs-8" ng-class="{col-xs-12: competition.article.image}">
+        <p><span ng-bind-html="competition.article.summary"></span> <a ng-style="colours[1].color" ng-click="displayReader(competition.article)">En savoir plus</a></p>
       </div>
       </div>
     </article>
   </div>
   <div class="col-lg-5 scroll">
-    <div ng-repeat="day in calendar" id="day{{day.journee}}" ng-class="{hide: day.journee < displayDay, current: day.journee == currentDay }" class="plain prime" ng-style="colours[0].border">
-      <div  ng-if="day.journee == currentDay && displayDay != 0" class="button topright" ng-click="showPreviousDays()">
+    <div ng-repeat="matchDay in calendar | orderBy:orderFilter:reverse" id="day{{matchDay.day}}" ng-class="{current: matchDay.day == currentDay }" class="plain prime" ng-style="colours[0].border" ng-show="matchDay.day <= displayDay || displayDay==0" >
+      <div  ng-if="matchDay.day == currentDay && displayDay != 0" class="button topright" ng-click="showNextDays()">
         <img src="resources/img/Button_TopRight.png">
-        <div class="label">Journées précédentes</div>
+        <div class="label">Calendrier complet</div>
       </div>
-      <h3 ng-if="day.journee == currentDay">Journée {{day.journee}}</h3>
-      <h3 ng-if="day.journee != currentDay" ng-style="colours[0].color">Journée {{day.journee}}</h3>
+      <h3 ng-if="matchDay.day == currentDay" ng-click="sortBy('day')" class="zelda">Journée {{matchDay.day}} <div class="triangle" ng-class="{down: reverse}"></div></h3>
+      <h3 ng-if="matchDay.day != currentDay" ng-style="colours[0].color" ng-click="sortBy('day')" class="zelda">Journée {{matchDay.day}} <div class="triangle" ng-class="{down: reverse}" ng-style="colours[0].border"></div></h3>
       <div class="match x-center">
-        <div class="vs col-xs-4" ng-repeat="match in day.matchs" ng-click="goToPage('match/1000152A33')">
-          <img class="teamLogo" src="resources/img/teams/minilogo{{match.idteam1}}.png">
-          <span ng-if="match.score1.length==0 && day.journee == currentDay"> VS </span>
-          <span ng-if="match.score1.length==0 && day.journee != currentDay" ng-style="colours[0].color"> VS </span>
-          <span ng-if="match.score1.length>0"> {{match.score1}} - {{match.score2}} </span>
-          <img class="teamLogo" src="resources/img/teams/minilogo{{match.idteam2}}.png">
+        <div class="vs col-xs-4" ng-class="{zelda:match.id}" ng-repeat="match in matchDay.matchs">
+          <div ng-click="matchDetail(match.id,match.started,match.team_id_1,match.team_id_2)">
+            <img class="teamLogo" src="resources/logo/Logo_{{match.logo_1}}.png">
+            <span ng-if="!match.started && matchDay.day == currentDay"> VS </span>
+            <span ng-if="!match.started && matchDay.day != currentDay" ng-style="colours[0].color"> VS </span>
+            <span ng-if="match.started.length>0"> {{match.score_1}} - {{match.score_2}} </span>
+            <img class="teamLogo" src="resources/logo/Logo_{{match.logo_2}}.png">
+          </div>
         </div>
+
       </div>
     </div>
   </div>
