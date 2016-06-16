@@ -89,7 +89,7 @@ h1 { font-family: 'Akashi';  font-size: 40px; line-height: 50px;  color: #ffffff
 h2 { font-family: 'Akashi';  font-size: 30px; line-height: 1; margin:0 0 10px; }
 h3 { font-family: 'Akashi';  font-size: 24px; line-height: 1; margin:0 0 10px; color: #ffffff; }
 h4 { font-family: 'Akashi';  font-size: 18px; line-height: 1; margin:0 0 10px; color: #ffffff; }
-h6 { font-family:'Muli';}
+h6 { font-family:'Muli'; font-weight:700;}
 p { font-family:'Muli'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc; display:inline-block; }
 a { font-weight: 500; cursor: pointer; }
 table { font-family:'Muli'; font-size: 14px; line-height: 18px; }
@@ -227,7 +227,7 @@ td > .teamLogo {width: 20px; height: 20px; display: inline; padding-right: 2px;}
 
 .playerSkills { display:none; }
 .playerDetails:hover + .playerSkills { display:table-row;}
-
+th.attributes { max-width:45px; width:45px; }
 #fame {float: right; display: inline-block; text-align: right;}
 #random > h6 {cursor: auto !important;}
 @media screen and (max-width: 544px) {
