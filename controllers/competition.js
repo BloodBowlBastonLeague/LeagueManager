@@ -6,7 +6,7 @@ LeagueManager.directive('competition', function(Restangular){
 		controller: function($scope, $rootScope, $http, $timeout, Restangular, $routeParams) {
 			$scope.competition={};
 			$rootScope.setColours([$rootScope.colourA,$rootScope.colourB]);
-			$scope.competitionId = $routeParams.ID;
+			$rootScope.competitionId = $routeParams.ID;
 			$rootScope.orderFilter = 'day';
 			$rootScope.reverse = true;
 			$scope.showNextDays = function(i){

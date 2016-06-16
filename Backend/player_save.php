@@ -37,7 +37,7 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
         $con->query($sql2);
       }
     }
-    echo $sql2;
+    echo $request->name.$sql;
 
 
     die();

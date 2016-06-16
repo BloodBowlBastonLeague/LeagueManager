@@ -43,10 +43,11 @@ LeagueManager.directive('modal', function(Restangular){
 				$scope.modal.subject = 'team';
 			};
 
-			$scope.updateCompetition = function(id,cyanideId,forumUrl){
+			$scope.saveMatch = function(id,cyanideId,forumUrl){
 				$scope.displayOff();
 				//Call Cyanide API
 				$http.get('http://web.cyanide-studio.com/ws/bb2/match/?key=' + window.Cyanide_Key + '&uuid=' + cyanideId ).success(function(result){
+
 					//Save Match
 					$http.post('Backend/match_save.php',{
 						Id : id,
@@ -72,58 +73,84 @@ LeagueManager.directive('modal', function(Restangular){
 						sustaineddead_2 : result.match.teams[0].inflicteddead,
 						forum_url : forumUrl,
 						json : JSON.stringify(result)
-					} ).then( function(result){
-						$rootScope.calendarUpdate();
-					});
+					}).then( function(result){console.log("Match saved");});
 
-						//Save Players
+						$rootScope.calendarUpdate();
+						//$rootScope.competitionUpdate();
+
 						//loop through teams
 						for(t=0; t<2; t++){
 							var roster = result.match.teams[t].roster;
-							var team = $scope.teams[t]
+							var team = result.teams[t];
+							var team_id = $scope.teams[t];
+							console.log(roster);
+							//Save team
+							$http.post('Backend/team_save.php',{
+								id : team_id,
+								name : team.name,
+								cyanide_id : team.id,
+								coach_id : team.idcoach,
+								race_id : team.idraces,
+								apothecary : team.apothecary,
+								assistantcoaches : team.assistantcoaches,
+								cheerleaders : team.cheerleaders,
+								cash : team.cash,
+								rerolls : team.rerolls,
+								popularity : team.popularity,
+								value : team.value,
+								stadiumname : team.stadiumname,
+								leitmotiv : team.leitmotiv,
+								logo : team.logo,
+								json : JSON.stringify(team)
+							}).then( function(result){
+								console.log("Team saved");
+							});
+								//loop through players
+								for(p=0; p<roster.length; p++){
+									//Save player
+									$http.post('Backend/player_save.php',{
+										team_id : team_id,
+										type : roster[p].type,
+										name : roster[p].name,
+										level : roster[p].level,
+										xp : roster[p].xp,
+										xp_gain : roster[p].xp_gain,
+										matchplayed : roster[p].matchplayed,
+										mvp : roster[p].mvp,
+										attributes : JSON.stringify(roster[p].attributes),
+										skills : JSON.stringify(roster[p].skills),
+										dead : roster[p].stats.sustaineddead,
+										injured : roster[p].stats.sustainedcasualties,
+										match_id : id,
+										inflictedpasses :	roster[p].stats.inflictedpasses,
+										inflictedcatches : roster[p].stats.inflictedcatches,
+										inflictedinterceptions : roster[p].stats.inflictedinterceptions,
+										inflictedtouchdowns : roster[p].stats.inflictedtouchdowns,
+										inflictedcasualties : roster[p].stats.inflictedcasualties,
+										inflictedstuns : roster[p].stats.inflictedstuns,
+										inflictedko : roster[p].stats.inflictedko,
+										inflictedinjuries : roster[p].stats.inflictedinjuries,
+										inflicteddead : roster[p].stats.inflicteddead,
+										inflictedtackles : roster[p].stats.inflictedtackles,
+										inflictedmeterspassing : roster[p].stats.inflictedmeterspassing,
+										inflictedmetersrunning : roster[p].stats.inflictedmetersrunning,
+										sustainedinterceptions : roster[p].stats.sustainedinterceptions,
+										sustainedcasualties : roster[p].stats.sustainedcasualties,
+										sustainedstuns : roster[p].stats.sustainedstuns,
+										sustainedko : roster[p].stats.sustainedko,
+										sustainedinjuries : roster[p].stats.sustainedinjuries,
+										sustainedtackles : roster[p].stats.sustainedtackles,
+										sustaineddead : roster[p].stats.sustaineddead
+									} ).then( function(result){ console.log("player saved",result) });
+								}
+								//END players loop
 
-							//loop through players
-							for(p=0; p<roster.length; p++){
 
-								$http.post('Backend/player_save.php',{
-									team_id : team,
-									type : roster[p].type,
-									name : roster[p].name,
-									level : roster[p].level,
-									xp : roster[p].xp,
-									xp_gain : roster[p].xp_gain,
-									matchplayed : roster[p].matchplayed,
-									mvp : roster[p].mvp,
-									attributes : JSON.stringify(roster[p].attributes),
-									skills : JSON.stringify(roster[p].skills),
-									dead : roster[p].stats.sustaineddead,
-									injured : roster[p].stats.sustainedcasualties,
-									match_id : id,
-									inflictedpasses :	roster[p].stats.inflictedpasses,
-									inflictedcatches : roster[p].stats.inflictedcatches,
-									inflictedinterceptions : roster[p].stats.inflictedinterceptions,
-									inflictedtouchdowns : roster[p].stats.inflictedtouchdowns,
-									inflictedcasualties : roster[p].stats.inflictedcasualties,
-									inflictedstuns : roster[p].stats.inflictedstuns,
-									inflictedko : roster[p].stats.inflictedko,
-									inflictedinjuries : roster[p].stats.inflictedinjuries,
-									inflicteddead : roster[p].stats.inflicteddead,
-									inflictedtackles : roster[p].stats.inflictedtackles,
-									inflictedmeterspassing : roster[p].stats.inflictedmeterspassing,
-									inflictedmetersrunning : roster[p].stats.inflictedmetersrunning,
-									sustainedinterceptions : roster[p].stats.sustainedinterceptions,
-									sustainedcasualties : roster[p].stats.sustainedcasualties,
-									sustainedstuns : roster[p].stats.sustainedstuns,
-									sustainedko : roster[p].stats.sustainedko,
-									sustainedinjuries : roster[p].stats.sustainedinjuries,
-									sustainedtackles : roster[p].stats.sustainedtackles,
-									sustaineddead : roster[p].stats.sustaineddead
-								} ).then( function(result){
-										console.log(result)
-									});
-							}
 						}
-				})
+						//END teams loop
+
+				});
+
 			};
     }
   }

@@ -14,15 +14,19 @@ LeagueManager.directive('team', function(Restangular){
 
 				for(p=0; p<result.players.length; p++){
 					$scope.team.players[p].attributes = JSON.parse(result.players[p].attributes);
-					$scope.team.players[p].skills = JSON.parse(result.players[p].skills);
+					$scope.team.players[p].skills = result.players[p].skills.length > 0 ? JSON.parse(result.players[p].skills) : [];
 				}
 				$rootScope.title = $scope.team.name;
 				$scope.team.pop = [];
 		    $rootScope.setColours([$scope.team.color_1,$scope.team.color_2]);
 				//Team Images
-				$('.logo').css({"background": "url(resources/logo/Logo_"+$scope.team.teamlogo+".png) center center no-repeat", "background-size":"contain"});
+				$('.logo').css({"background": "url(resources/logo/Logo_"+$scope.team.logo+".png) center center no-repeat", "background-size":"contain"});
 				for(i=0;i<$scope.team.popularite;i++){ $scope.team.pop.push(i); }
 				$scope.teamArticle();
+				//Classement
+				var idx = $rootScope.competitions.map(function(e) { return e.id; }).indexOf($rootScope.competitionId);
+				$scope.competition = $rootScope.competitions[idx].site_name;
+				$scope.ranking = $rootScope.competitions[idx].json.map(function(e) { return e.id; }).indexOf($scope.team.id);
 			});
 
 			//Gestion du RP
