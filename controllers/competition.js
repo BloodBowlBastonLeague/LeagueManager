@@ -12,18 +12,21 @@ LeagueManager.directive('competition', function(Restangular){
 			$scope.showNextDays = function(i){
 				$scope.displayDay = 0;
 			};
-
-			$scope.competitionBuild = function(){
-				var idx = $rootScope.competitions.map(function(e) { return e.id; }).indexOf($routeParams.ID);
-				$scope.competition = $rootScope.competitions[idx];
+			$http.get('Backend/competition.php?id='+$rootScope.competitionId).success(function(result){
+				$scope.competition = result;
 				$rootScope.title = $scope.competition.league + ' - Joute de ' + $scope.competition.site_name;
+			});
+
+			$scope.competitionArticles = function(){
+				var idx = $rootScope.competitions.map(function(e) { return e.id; }).indexOf($routeParams.ID);
+				$scope.competition.article = $rootScope.competitions[idx].article;
 			};
 
 			if($rootScope.competitionsFetched == 1){
-				$scope.competitionBuild();
+				$scope.competitionArticles();
 			}
 			$rootScope.$on('articlesFetched',  function(){
-				$scope.competitionBuild();
+				$scope.competitionArticles();
 			});
 
 			$http.get('Backend/calendar.php?id='+$routeParams.ID).success(function(result){

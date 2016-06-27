@@ -160,9 +160,10 @@ article img { float:left; }
 
 /*p {white-space: pre-line;} */
 
-.button { position:absolute; right:0; bottom:0; height:29px; width:200px; line-height: 29px; text-align: center;  cursor: pointer; color: #ffffff; }
+.button { position:absolute; right:0; bottom:0; height:29px; width:200px; line-height: 29px; text-align: center; cursor: pointer; color: #ffffff; }
 .topright { top:0; }
 .button .label { position: absolute; top: 5px; left: 40px; width: 150px; color: #ffffff; font-family: "Akashi"; font-size: 16px; font-weight:400; font-style: italic; text-transform: capitalize; }
+.b2 { right:154px; opacity:0.75; padding-right: 50px;}
 .topright .label { top: 2px; left: 25px; width: 180px; color: #999999;font-family: "Muli";font-size: 14px }
 
 .plain > table { width: 100%; color:#FFFFFF; cursor: pointer; text-align: center; }
@@ -200,7 +201,7 @@ border-radius: 5px; border-bottom: 2px solid; }
 .main > table > tbody > tr > td { line-height: 28px; padding: 0 5px; }
 
 .match { display: table; vertical-align: middle; width:100%; }
-.vs { display: inline-block; font-family: 'Muli'; font-size: 20px; line-height: 24px; font-weight: 400; color:#0191FF; vertical-align: middle; text-align: center; margin: 10px 0 0; border-radius: 5px}
+.vs { display: inline-block; font-family: 'Muli'; font-size: 20px; line-height: 24px; font-weight: 400; vertical-align: middle; text-align: center; margin: 10px 0 0; border-radius: 5px}
 .vs:hover { background: #000000; color:#ffffff }
 .hide {display: none; height:0px; padding:10px 1vw -webkit-transition: all linear 0.5s;  transition: height linear 0.5s; }
 
@@ -217,10 +218,12 @@ td > .teamLogo {width: 20px; height: 20px; display: inline; padding-right: 2px;}
 .bronze {
 	background: linear-gradient(to left, rgba(205,127,50,0.1),rgba(205,127,50,0.75), rgba(205,127,50,0.1));
   background: -webkit-linear-gradient(-90deg, rgba(205,127,50,0),rgba(205,127,50,0.5), rgba(205,127,50,0.75)); }
-.relegated {
+.relegated, .injured {
 	background: linear-gradient(to left, rgba(208,2,27,0.1),rgba(208,2,27,0.5), rgba(208,2,27,0.1));
 	background: -webkit-linear-gradient(-90deg, rgba(208,2,27,0),rgba(208,2,27,0.25), rgba(208,2,27,0.5)); }
-
+.dead {
+	background: linear-gradient(to left, rgba(0,0,0,0.1),rgba(0,0,0,0.5), rgba(0,0,0,0.1));
+	background: -webkit-linear-gradient(-90deg, rgba(0,0,0,0),rgba(0,0,0,0.25), rgba(0,0,0,0.5)); }
 
 /* TEAM */
 .core { background: #ffffff;}
@@ -228,6 +231,7 @@ td > .teamLogo {width: 20px; height: 20px; display: inline; padding-right: 2px;}
 .playerSkills { display:none; }
 .playerDetails:hover + .playerSkills { display:table-row;}
 th.attributes { max-width:45px; width:45px; }
+td img { max-height: 20px; max-width: 20px; }
 #fame {float: right; display: inline-block; text-align: right;}
 #random > h6 {cursor: auto !important;}
 @media screen and (max-width: 544px) {
