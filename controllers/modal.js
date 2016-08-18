@@ -75,18 +75,16 @@ LeagueManager.directive('modal', function(Restangular){
 						json : JSON.stringify(result)
 					}).then( function(result){console.log("Match saved");});
 
-						$rootScope.calendarUpdate();
-						//$rootScope.competitionUpdate();
-
 						//loop through teams
 						for(t=0; t<2; t++){
+							console.log(result);
 							var roster = result.match.teams[t].roster;
 							var team = result.teams[t];
-							var team_id = $scope.teams[t];
+
 
 							//Save team
 							$http.post('Backend/team_save.php',{
-								id : team_id,
+								id : team.idteamlisting,
 								name : team.name,
 								cyanide_id : team.id,
 								coach_id : team.idcoach,
@@ -108,9 +106,11 @@ LeagueManager.directive('modal', function(Restangular){
 								//loop through players
 								for(p=0; p<roster.length; p++){
 									//Save player
+
 									if(roster[p].name.indexOf("PLAYER_NAMES_CHAMPION")==-1 && JSON.stringify(roster[p].skills) != '["Loner"]'){
 										$http.post('Backend/player_save.php',{
-											team_id : team_id,
+											team_id : team.id,
+											match_id : cyanideId,
 											type : roster[p].type,
 											name : roster[p].name,
 											level : roster[p].level,
@@ -122,7 +122,6 @@ LeagueManager.directive('modal', function(Restangular){
 											skills : JSON.stringify(roster[p].skills),
 											dead : roster[p].stats.sustaineddead,
 											injured : roster[p].stats.sustainedcasualties,
-											match_id : id,
 											inflictedpasses :	roster[p].stats.inflictedpasses,
 											inflictedcatches : roster[p].stats.inflictedcatches,
 											inflictedinterceptions : roster[p].stats.inflictedinterceptions,

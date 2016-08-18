@@ -33,13 +33,13 @@
 <div id="match" class="container seconde" ng-if="modal.subject==='match'" ng-style="colours[1].border">
   <form id="matchSave" name="matchSave" ng-style="colours[1].color">
     ID du match<br/>
-    <input type="text" ng-model="cyanideId"><br/>
+    <input type="text" ng-model="match.cyanide_id"><br/>
     URL forum<br/>
-    <input type="text" ng-model="forumUrl"><br/>
+    <input type="text" ng-model="match.discussion"><br/>
 
   </form>
   <div class="spacer"></div>
-  <div class="button" ng-click="saveMatch(matchToSave,cyanideId,forumUrl)">
+  <div class="button" ng-click="saveMatch(matchToSave,match.cyanide_id,match.discussion)">
     <div ng-include="'resources/img/Button_1.svg'"></div>
     <div class="label">Enregistrer</div>
   </div>

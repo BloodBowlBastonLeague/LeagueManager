@@ -24,7 +24,7 @@
 
 		<!-- IF S_PRIVMSGS -->
 			<!-- BEGIN t_block2 -->
-				<!-- IF S_PRIVMSGS and not t_block2.S_LAST_ROW -->
+				<!-- IF S_PRIVMSGS and not t_block2.S_LAST_ROW and t_block2.L_TITLE != "Gérer les brouillons de MP" -->
 				<ul>
 					<!-- IF t_block2.S_SELECTED -->
 						<li id="active-subsection"><a href="{t_block2.U_TITLE}"><span>{t_block2.L_TITLE}</span></a></li>
@@ -50,7 +50,7 @@
 
 			<ul>
 		<!-- BEGIN t_block2 -->
-			<!-- IF (S_PRIVMSGS and t_block2.S_LAST_ROW) or not S_PRIVMSGS -->
+			<!-- IF (S_PRIVMSGS and t_block2.S_LAST_ROW) or (not S_PRIVMSGS  and t_block2.L_TITLE != "Gérer les brouillons" and t_block2.L_TITLE != "Gérer les pièces jointes") -->
 				<!-- IF t_block2.S_SELECTED -->
 					<li id="active-subsection"><a href="{t_block2.U_TITLE}"><span>{t_block2.L_TITLE}</span></a></li>
 				<!-- ELSE -->

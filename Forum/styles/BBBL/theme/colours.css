@@ -3,11 +3,11 @@
 Colours and backgrounds for common.css
 -------------------------------------------------------------- */
 .p {
-color: #646464;
+color: #FFFFFF;
 }
 
 p.author{
-color: #646464;
+color: #FFFFFF;
 }
 
 a.mark {
@@ -134,11 +134,10 @@ hr {
 
 .forabg .inner{
 	background-color: transparent;
-	background-image: url("./images/fond_black_transp.png");
 }
 .forumbg {
 	background-color: transparent;
-	background-image: url("./images/fond_black_transp.png");
+
 	background-repeat: repeat;
 	border-radius: 10px;
   padding: 0px 10px 10px 10px;
@@ -252,11 +251,11 @@ dl.details dd {
 }
 
 .pagination li.active span {
-	color: #F68525;
+	color: #DD7C00;
 }
 
 .pagination li a:hover, .pagination .dropdown-visible a.dropdown-trigger, .nojs .pagination .dropdown-container:hover a.dropdown-trigger {
-	color: #F68525;
+	color: #DD7C00;
 }
 
 .pagination li.next a, .pagination li.previous a, .pagination li.page-jump a {
@@ -318,7 +317,7 @@ Colours and backgrounds for links.css
 -------------------------------------------------------------- */
 
 a { color: #00558D; }
-a:hover	{ color: #FB7728; }
+a:hover	{ color: #DD7C00 !important; }
 
 /* Links on gradient backgrounds */
 .forumbg .header a, .forabg .header a, th a {
@@ -331,7 +330,7 @@ a:hover	{ color: #FB7728; }
 th a { font-size: 14px;}
 
 .forumbg .header a:hover, .forabg .header a:hover, th a:hover {
-	color: #FB7728;
+	color: #DD7C00;
 }
 
 /* Notification mark read link */
@@ -484,25 +483,16 @@ dl.faq dt {
 ----------------------------------------*/
 /* Quote block */
 blockquote {
-	background-color: #BAB8B8;
+	background-color: rgba(255,255,255,0.5);
 	background-image: url("./images/quote.gif");
 	border-color:#DBDBCE;
 	border-radius: 5px;
 	color:#000000;
 }
+blockquote a { color:#00558D !important; border-bottom-color:#00558D !important; }
 
 .rtl blockquote {
 	background-image: url("./images/quote_rtl.gif");
-}
-
-blockquote blockquote {
-	/* Nested quotes */
-	background-color:#938F8F;
-}
-
-blockquote blockquote blockquote {
-	/* Nested quotes */
-	background-color: #878787;
 }
 
 /* Code block */
@@ -581,11 +571,11 @@ dl.thumbnail dt a:hover img {
 
 fieldset.polls dl {
 	border: 0;
-	color: #666666;
+	color: #999999;
 }
 
 fieldset.polls dl.voted {
-	color: #000000;
+	color: #FFFFFF;
 }
 
 fieldset.polls dd div {
@@ -809,7 +799,7 @@ Colours and backgrounds for cp.css
 
 .panel-container .panel li.row {
 	border-bottom-color: #B5C1CB;
-	border: 0;
+
 }
 
 ul.cplist {
@@ -839,7 +829,7 @@ ul.cplist {
 }
 
 #tabs .tab > a:hover {
-	color: #FB7728;
+	color: #DD7C00;
 }
 
 #tabs .activetab > a,
@@ -850,7 +840,7 @@ color: #FFFFFF;
 }
 
 #tabs .activetab > a:hover {
-color: #F68525;
+color: #DD7C00;
 }
 
 /* Mini tabbed menu used in MCP
@@ -872,7 +862,7 @@ color: #F68525;
 }
 
 .responsive-tab .responsive-tab-link:hover:before {
-	border-color: #F68525;
+	border-color: #DD7C00;
 }
 
 /* UCP navigation menu
@@ -893,7 +883,7 @@ color: #F68525;
 
 #navigation a:hover {
 	background: transparent;
-	color: #F68525;
+	color: #DD7C00;
 	filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
 }
 
@@ -904,7 +894,7 @@ color: #F68525;
 }
 
 #navigation #active-subsection a:hover {
-	color: #F68525;
+	color: #DD7C00;
 }
 
 @media only screen and (max-width: 900px), only screen and (max-device-width: 900px)
@@ -950,19 +940,19 @@ dl.mini dt {
 }
 
 .pmlist li.pm_marked_colour, .pm_marked_colour {
-	border-color: #FF6600;
+	border-left: 5px solid #DD7C00;
 }
 
 .pmlist li.pm_replied_colour, .pm_replied_colour {
-	border-color: #A9B8C2;
+	border-left: 5px solid #00558D;
 }
 
 .pmlist li.pm_friend_colour, .pm_friend_colour {
-	border-color: #5D8FBD;
+	border-left: 5px solid #5D8FBD;
 }
 
 .pmlist li.pm_foe_colour, .pm_foe_colour {
-	border-color: #000000;
+	border-left: 5px solid #000000;
 }
 
 /* Avatar gallery */
@@ -1166,7 +1156,7 @@ ul.linklist li.responsive-menu a.responsive-menu-link:before {
 }
 
 ul.linklist li.responsive-menu a.responsive-menu-link:hover:before, ul.linklist li.responsive-menu.visible a.responsive-menu-link:before {
-	border-color: #F68525;
+	border-color: #DD7C00;
 }
 
 .dropdown .dropdown-contents {

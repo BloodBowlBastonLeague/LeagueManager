@@ -1,0 +1,51 @@
+{
+	"services": [{
+		"game": "bb2",
+		"method": "coaches",
+		"url": "http://web.cyanide-studio.com/ws/bb2/coaches/?key=b20b49cf35dce68418a4c375bf4e3cd3",
+		"doc": {
+			"league": "League name (default league/competiton = Cabalvision Official League / Free Ladder)",
+			"competition": "Competition name (default league/competiton = Cabalvision Official League / Free Ladder)",
+			"limit": "Max amount of coach results (default = 100)"
+		}
+	}, {
+		"game": "bb2",
+		"method": "matches",
+		"url": "http://web.cyanide-studio.com/ws/bb2/matches/?key=b20b49cf35dce68418a4c375bf4e3cd3",
+		"doc": {
+			"league": "League name (default = Cabalvision Official League)",
+			"limit": "Max amount of match results (default = 100)",
+			"start": "start date (default = 20 days ago)",
+			"end": "end date (default = today)"
+		}
+	}, {
+		"game": "bb2",
+		"method": "teams",
+		"url": "http://web.cyanide-studio.com/ws/bb2/teams/?key=b20b49cf35dce68418a4c375bf4e3cd3",
+		"doc": {
+			"league": "League name (default = Cabalvision Official League)",
+			"competition": "Competition name (default = all competitions from given league)",
+			"limit": "Max amount of team results (default = 100)"
+		}
+	}, {
+		"game": "bb2",
+		"method": "ladder",
+		"url": "http://web.cyanide-studio.com/ws/bb2/ladder/?key=b20b49cf35dce68418a4c375bf4e3cd3",
+		"doc": {
+			"ladder_size": "Ladder size [0,+oo[",
+			"league": "League name (default : Cabalvision Official League)",
+			"competition": "Competition name (default : Free Ladder)"
+		}
+	}, {
+		"game": "bb2",
+		"method": "match",
+		"url": "http://web.cyanide-studio.com/ws/bb2/match/?key=b20b49cf35dce68418a4c375bf4e3cd3",
+		"doc": {
+			"uuid": "Match UUID"
+		}
+	}],
+	"meta": {
+		"user": "Blood Bowl Baston League Web Admin",
+		"method": "ws"
+	}
+}

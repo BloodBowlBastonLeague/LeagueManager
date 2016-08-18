@@ -13,7 +13,7 @@ $con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
 if (!$con) { die('Could not connect: ' . mysqli_error()); }
   mysqli_set_charset($con,'utf8');
 
-	$sql = "SELECT c.id, l.name AS league, c.pool, c.site_name, c.site_order, c.json  FROM site_competitions AS c INNER JOIN site_leagues AS l ON l.id=c.league_id WHERE c.id = ".$id;
+	$sql = "SELECT c.id, l.name AS league, l.game AS game, c.pool, c.site_name, c.site_order, c.season, c.json, c.active, c.competition_mode, c.game_name  FROM site_competitions AS c INNER JOIN site_leagues AS l ON l.id=c.league_id WHERE c.id = ".$id;
 	$result = mysqli_query($con, $sql);
 	$data = mysqli_fetch_object($result);
 
@@ -36,16 +36,43 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
           SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.logo AS logo, site_teams.name AS team, site_coachs.name AS coach, score_1, score_2, sustainedcasualties_1, sustainedcasualties_2, sustaineddead_1, sustaineddead_2 FROM site_matchs
           LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_1
           INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
-          WHERE competition_id = '.$id.' AND site_matchs.json IS NOT NULL
+          WHERE competition_id = '.$id.' AND site_matchs.started IS NOT NULL
           UNION
           SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.logo AS logo, site_teams.name AS team, site_coachs.name AS coach, score_2, score_1, sustainedcasualties_2, sustainedcasualties_1, sustaineddead_2, sustaineddead_1 FROM site_matchs
           LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_2
           INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
-          WHERE competition_id='.$id.' AND site_matchs.json IS NOT NULL
+          WHERE competition_id='.$id.' AND site_matchs.started IS NOT NULL
           ) AS a
           GROUP BY id
           ORDER BY Pts DESC, TD DESC, TDfor DESC, S DESC';
     $result2 = mysqli_query($con, $sql2);
+
+    if ($result2->num_rows==0) {
+      $sql2 = 'SELECT
+          id,
+          logo,
+          team,
+          coach,
+          0 AS V,
+          0 AS N,
+          0 AS D,
+          0 AS TDfor,
+          0 AS TD,
+          0 AS S,
+          0 AS Pts
+          FROM (
+          SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.logo AS logo, site_teams.name AS team, site_coachs.name AS coach  FROM site_matchs
+          LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_1
+          INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
+          WHERE competition_id = '.$id.'
+          UNION
+          SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.logo AS logo, site_teams.name AS team, site_coachs.name AS coach  FROM site_matchs
+          LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_2
+          INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
+          WHERE competition_id='.$id.'
+          ) AS a
+          GROUP BY id';
+      $result2 = mysqli_query($con, $sql2);}
     while($data2 = mysqli_fetch_array($result2,MYSQL_ASSOC)) {
       array_push($var2, $data2);
     }

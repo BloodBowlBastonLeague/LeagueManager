@@ -1,4 +1,4 @@
 <?php exit; ?>
-1490292389
-236
-a:5:{s:32:"a76be804c6035745e8963ed211ca6398";a:0:{}s:32:"396e044a3e75030936344264523b97b4";a:0:{}s:32:"af0c8f6bab559396b5ddb9b237f25576";a:0:{}s:32:"afd7a25343fe05d9cda26ebd06287c1b";a:0:{}s:32:"2e6818198afc65e40a8ae153e9c9f7ed";a:0:{}}
+1493449255
+817
+a:10:{s:32:"79307f8fe11fc96a819069f32d74af81";a:0:{}s:32:"6104785a952db1fd61c2847bdda38b7d";a:0:{}s:32:"32bfa0ee0ca886beae5ea5ab37503dfb";a:0:{}s:32:"df467813d6cd920dd003a884f7152a74";a:0:{}s:32:"b2912592d91c2725da0d3f5209403ace";a:0:{}s:32:"17ee21fabbc9282a1dd59f46783fa7d7";a:0:{}s:32:"ae55e1aab44f29d3dcf39c31902702a4";a:0:{}s:32:"68133225ba15b48d49c5b4eac2bb9869";a:0:{}s:32:"92bdbba7c9a3ccb9eec7d9f5584c9bd3";a:1:{i:0;a:4:{s:10:"named_path";s:37:"language/en/acp/permissions_phpbb.php";s:8:"ext_name";s:1:"/";s:4:"path";s:16:"language/en/acp/";s:8:"filename";s:21:"permissions_phpbb.php";}}s:32:"f02d3225c5df1cba332b602973213800";a:1:{i:0;a:4:{s:10:"named_path";s:37:"language/fr/acp/permissions_phpbb.php";s:8:"ext_name";s:1:"/";s:4:"path";s:16:"language/fr/acp/";s:8:"filename";s:21:"permissions_phpbb.php";}}}

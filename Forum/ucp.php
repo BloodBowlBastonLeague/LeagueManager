@@ -25,8 +25,6 @@ require($phpbb_root_path . 'includes/functions_module.' . $phpEx);
 $id 	= request_var('i', '');
 $mode	= request_var('mode', '');
 
-$redirect = request_var('redirect', '{$phpbb_root_path}index.$phpEx');
-
 if (in_array($mode, array('login', 'login_link', 'logout', 'confirm', 'sendpassword', 'activate')))
 {
 	define('IN_LOGIN', true);
@@ -80,7 +78,7 @@ switch ($mode)
 	case 'login':
 		if ($user->data['is_registered'])
 		{
-			redirect(append_sid("$redirect"));
+			redirect(append_sid("{$phpbb_root_path}index.$phpEx"));
 		}
 
 		login_box(request_var('redirect', "index.$phpEx"));

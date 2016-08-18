@@ -202,7 +202,7 @@ $lang = array_merge($lang, array(
 		2	=> 'Téléchargé %d fois',
 	),
 
-	'EDIT_POST'							=> 'Éditer le message',
+	'EDIT_POST'							=> 'Éditer',
 	'ELLIPSIS'							=>	'…',
 	'EMAIL'								=> 'Courrier électronique', // Short form for EMAIL_ADDRESS
 	'EMAIL_ADDRESS'						=> 'Adresse de courrier électronique',
@@ -395,7 +395,7 @@ $lang = array_merge($lang, array(
 	'MIB'					=> 'Mio',
 	'MCP'					=> 'Panneau de contrôle du modérateur',
 	'MCP_SHORT'				=> 'PCM',
-	'MEMBERLIST'			=> 'Membres',
+	'MEMBERLIST'			=> 'Liste des membres',
 	'MEMBERLIST_EXPLAIN'	=> 'Consulter la liste complète des membres',
 	'MERGE'					=> 'Fusionner',
 	'MERGE_POSTS'			=> 'Déplacer les messages',

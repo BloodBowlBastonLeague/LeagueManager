@@ -65,7 +65,7 @@
   <script>
     var Cyanide_Key = "<?=$Cyanide_Key?>";
     var User = "<?=$user->data['username'];?>";
-    var Group = "<?=$user->data['group_id'];?>";
+    var Group = "9";
   </script>
   <!-- jquery -->
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -83,6 +83,7 @@
   <!-- Module BBBL -->
   <script src="controllers/app.js"></script>
   <script src="controllers/main.js"></script>
+  <script src="controllers/archives.js"></script>
   <script src="controllers/league.js"></script>
   <script src="controllers/competition.js"></script>
   <script src="controllers/competition2.js"></script>

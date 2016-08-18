@@ -8,6 +8,9 @@ LeagueManager.config(function (RestangularProvider) {
 //Routage
 LeagueManager.config(function ($routeProvider, RestangularProvider) {
 	$routeProvider
+	.when("/archives", {
+		template: '<archives></archives>'
+	})
   .when("/competition/:ID", {
 		template: '<competition></competition>'
 	})
@@ -36,6 +39,7 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 	$rootScope.admin = ['9','10','11','12'].indexOf(window.Group)>-1 ? 1 : 0;
 	$rootScope.title = "Tribunes - le mag de la BBBL";
 	$rootScope.competitions = [];
+	$rootScope.eliminations = ['32emes de finales','16emes de finales','8emes de finales','Quart de finales','Demi-Finales','Finale'];
 	//Récupération des articles
 	$http.get('Backend/articles.php').success(function(result){
 		$rootScope.articles = result;
@@ -44,16 +48,19 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 			$rootScope.articles[i].summary = $rootScope.articles[i].text.substr(0, $rootScope.articles[i].text.indexOf('<br/><br/>'))
 		}
 		//Récupération des compétitions
-		$http.get('Backend/competitions.php').success(function(result){
+		$http.get('Backend/competitions.php?active=1').success(function(result){
 			$rootScope.competitions = result;
-			console.log(result);
+
 			for(j=0;j<$rootScope.competitions.length;j++){
+
 				for(k=0;k<Object.keys($rootScope.articles).length;k++){
 					if($rootScope.articles[k].competition_id == $rootScope.competitions[j].id){
 						$rootScope.competitions[j].article=$rootScope.articles[k];
 					}
 				}
+
 			}
+
 			$rootScope.competitionsFetched = 1;
 			$rootScope.$broadcast('articlesFetched');
 		});
@@ -68,7 +75,7 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 	//Gestion de l'historique
 	$rootScope.history = [];
 	$rootScope.$on('routeChangeSuccess', function() {
-				$rootScope.history.push($location.$$path);	console.log($rootScope.history);
+				$rootScope.history.push($location.$$path);
 	});
 
 	$rootScope.previousPage = function () {

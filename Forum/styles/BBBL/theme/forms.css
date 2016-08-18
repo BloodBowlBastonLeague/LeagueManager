@@ -5,7 +5,7 @@
 ----------------------------------------*/
 fieldset {
 	border-width: 0;
-	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-family: Muli;
 	font-size: 1.1em;
 }
 
@@ -14,11 +14,11 @@ input {
 	vertical-align: middle;
 	padding: 0 3px;
 	font-size: 1em;
-	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-family: Muli;
 }
 
 select {
-	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-family: Muli;
 	font-weight: normal;
 	cursor: pointer;
 	vertical-align: middle;
@@ -37,7 +37,7 @@ option {
 
 select optgroup option {
 	padding-right: 1em;
-	font-family: Verdana, Helvetica, Arial, sans-serif;
+	font-family: Muli;
 }
 
 textarea {
@@ -71,7 +71,8 @@ fieldset dt {
 	float: left;
 	text-align: left;
 	display: block;
-	margin-right: 10px
+	margin-right: 10px;
+	width: 100%;
 }
 
 fieldset dd {
@@ -102,10 +103,12 @@ fieldset.fields1 #recaptcha_widget_div div, fieldset.fields1 .live-search div {
 
 /* Specific layout 2 */
 fieldset.fields2 dt {
+	width: 15em;
 	border-right-width: 0;
 }
 
 fieldset.fields2 dd {
+	margin-left: 16em;
 	border-left-width: 0;
 }
 
@@ -314,7 +317,6 @@ a.button1, input.button1, input.button2 {
 	bottom: 0;
 	height:29px;
 	width:200px;
-	text-indent: 25px;
 }
 
 input.button3 {
@@ -348,7 +350,7 @@ a.button1, a.button1:link, a.button1:visited, a.button1:active, a.button2, a.but
 
 /* Hover states */
 a.button1:hover, input.button1:hover, a.button2:hover, input.button2:hover, input.button3:hover {
-	color: #FB7728;
+	color: #DD7C00;
 }
 
 input.disabled {

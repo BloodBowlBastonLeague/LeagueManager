@@ -266,7 +266,7 @@ fieldset dt, fieldset.fields1 dt, fieldset.fields2 dt {
 }
 
 fieldset dd, fieldset.fields1 dd, fieldset.fields2 dd {
-	margin-left: 20px;
+	margin-left: 0px;
 }
 
 textarea, dd textarea, #message-box textarea {
@@ -572,3 +572,13 @@ fieldset.display-actions {
 		width: 100%;
 	}
 }
+/* BBBL stuff */
+.signature, .non-responsive,.delete-icon, .topic-tools, #quickmod, #review, #topicreview, #Menu  { display:none; }
+.action-bar {padding-bottom: 30px !important; }
+.postprofile, .postbody { width: auto !important;}
+.post-buttons { right:0 !important; }
+.button1.default-submit-action { width:120px !important; }
+.button2 { right:74px !important;}
+ul.linklist li.responsive-menu a.responsive-menu-link { padding-left: 16px; width: auto !important;}
+.navbar { padding:0 15px !important; }
+.navbar-brand { max-width:100vw !important;}
