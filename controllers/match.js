@@ -17,6 +17,7 @@ LeagueManager.directive('match', function(Restangular){
 				var data = JSON.parse(result.json);
 
 				$rootScope.match = data.match;
+				$rootScope.match.cyanide_id = result.cyanide_id;
 				$rootScope.title = $rootScope.match.competitionname;
 				$scope.stadium = data.teams[0].stadiumname;
 				$scope.teams = $rootScope.match.teams;
@@ -59,6 +60,12 @@ LeagueManager.directive('match', function(Restangular){
 					$('#LogoRight').css({"background": "url(resources/logo/Logo_" + $scope.teams[1].teamlogo + ".png) center center no-repeat", "background-size":"contain"});
 				});
 
+				$scope.matchRefresh = function(){
+						if($rootScope.admin==1){
+							$scope.displayMatchForm($scope.matchID,$scope.teams[0].id,$scope.teams[1].id);
+						}
+
+				};
 		}
 	}
 

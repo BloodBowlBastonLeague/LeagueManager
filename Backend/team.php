@@ -19,7 +19,7 @@ include($phpbb_root_path . 'config.' . $phpEx);
 	$result = mysqli_query($con, $sql);
 	$team = mysqli_fetch_object($result);
 
-  $sqlCompetition = "SELECT MAX(m.competition_id) AS id, c.site_name FROM site_matchs AS m INNER JOIN site_competitions AS c ON c.id = m.competition_id WHERE c.active=1 AND (m.team_id_1=".$id." OR m.team_id_2=".$id.")";
+  $sqlCompetition = "SELECT MAX(m.competition_id) AS id, c.game_name AS name FROM site_matchs AS m INNER JOIN site_competitions AS c ON c.id = m.competition_id WHERE (m.team_id_1=".$id." OR m.team_id_2=".$id.") LIMIT 1";
   $resultCompetition = mysqli_query($con, $sqlCompetition);
   $Competition = mysqli_fetch_object($resultCompetition);
   $team->competition = $Competition;

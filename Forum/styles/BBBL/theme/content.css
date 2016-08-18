@@ -472,12 +472,12 @@ ul.searchresults {
 ----------------------------------------*/
 /* Quote block */
 blockquote {
-	background: transparent none 6px 8px no-repeat;
+	background: transparent none 2px 2px no-repeat;
 	border: 1px solid transparent;
 	font-size: 0.95em;
 	margin: 0.5em 1px 0 25px;
 	overflow: hidden;
-	padding: 5px !important;
+	padding: 7px 7px 7px 15px !important;
 }
 
 blockquote blockquote {
@@ -668,7 +668,7 @@ fieldset.polls dt {
 
 fieldset.polls dd {
 	float: left;
-	width: 10%;
+	width: 15%;
 	border-left: none;
 	padding: 0 5px;
 	margin-left: 0;
@@ -676,11 +676,11 @@ fieldset.polls dd {
 }
 
 fieldset.polls dd.resultbar {
-	width: 50%;
+	width: 45%;
 }
 
 fieldset.polls dd input {
-	margin: 2px 0;
+
 }
 
 fieldset.polls dd div {
@@ -713,100 +713,910 @@ fieldset.polls dd div {
 	width: 22%;
 	float: right;
 	display: inline;
-	min-height:180px;
-	min-width:200px;
+	min-height:90px;
+	min-width:180px;
 }
 
-
-.avatar-guilde-Skulls {
-	background-image: url("./images/guilde-skulls.png");
+/* Guildes
+----------------------------------------*/
+.avatar-guilde2-Compagnie.du.Lait {
+	background-image: url("./images/CLait.png");
 	background-repeat: no-repeat;
-	background-position: 110px 110px;
-	z-index:3;
+	background-position: top right;
+	z-index:0;
 	position:absolute;
-	height:180px;
-	width:200px;
+	height: calc(100% - 10px);
+	width: calc(100% - 20px);
+	opacity:0.8;
 }
+.avatar-guilde2-Gentlemans.Cabrioleurs {
+	background-image: url("./images/Gentle.png");
+	background-repeat: no-repeat;
+	background-position: top right;
+	z-index:0;
+	position:absolute;
+	height: calc(100% - 10px);
+	width: calc(100% - 20px);
+	opacity:0.8;
+}
+.avatar-guilde2-Old.School.Rules {
+	background-image: url("./images/OSR.png");
+	background-repeat: no-repeat;
+	background-position: top right;
+	z-index:0;
+	position:absolute;
+	height: calc(100% - 10px);
+	width: calc(100% - 20px);
+	opacity:0.8;
+}
+.avatar-guilde2-Comite.Contre.les.Nains {
+	background-image: url("./images/CCN.png");
+	background-repeat: no-repeat;
+	background-position: top right;
+	z-index:0;
+	position:absolute;
+	height: calc(100% - 10px);
+	width: calc(100% - 20px);
+	opacity:0.8;
+}
+.avatar-guilde2-Association.de.Gens.Normals {
+	background-image: url("./images/AGN.png");
+	background-repeat: no-repeat;
+	background-position: top right;
+	z-index:0;
+	position:absolute;
+	height: calc(100% - 10px);
+	width: calc(100% - 20px);
+	opacity:0.8;
+}
+
+/* Casques base
+----------------------------------------*/
 .avatar-champ-back-oui {
 	background-image: url("./images/fondavatar-champion_back.png");
 	background-repeat: no-repeat;
-	background-position: 110px 110px;
-	z-index:5;
-	position:absolute;
-	height:180px;
-	width:200px;
-}
-.avatar-champ-back-non {
-	background-image: url("./images/fondavatar-champion_front.png");
-	background-repeat: no-repeat;
-	background-position: 110px 110px;
+	background-position: bottom right;
 	z-index:1;
 	position:absolute;
-	height:180px;
-	width:200px;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-champ-front-oui {
+	background-image: url("./images/fondavatar-champion_front.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:5;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
 }
 .avatar-rank-Elite {
 	background-image: url("./images/fondavatar-elite.png");
 	background-repeat: no-repeat;
-	background-position: 110px 110px;
+	background-position: bottom right;
 	z-index:4;
 	position:absolute;
-	height:180px;
-	width:200px;
+	height:90px;
+	width:90px; bottom:0px; right:0;
 }
 .avatar-rank-Prestige {
 	background-image: url("./images/fondavatar-prestige.png");
 	background-repeat: no-repeat;
-	background-position: 110px 110px;
+	background-position: bottom right;
 	z-index:4;
 	position:absolute;
-	height:180px;
-	width:200px;
+	height:90px;
+	width:90px; bottom:0px; right:0;
 }
 .avatar-rank-Espoir {
 	background-image: url("./images/fondavatar-espoir.png");
 	background-repeat: no-repeat;
-	background-position: 110px 110px;
+	background-position: bottom right;
 	z-index:4;
 	position:absolute;
-	height:180px;
-	width:200px;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-rank-Reporter {
+	background-image: url("./images/fondavatar-reporter.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:4;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
 }
 .avatar-rank-Retraite {
-	background-image: url("./images/fondavatar-norank.png");
+	background-image: url("./images/fondavatar-none.png");
 	background-repeat: no-repeat;
-	background-position: 110px 110px;
+	background-position: bottom right;
 	z-index:4;
 	position:absolute;
-	height:180px;
-	width:200px;
+	height:90px;
+	width:90px; bottom:0px; right:0;
 }
-.avatar-group-Grands.Architectes {
-	background-image: url("./images/fondavatar-admin.png");
+
+/* Casques equipe
+----------------------------------------*/
+.avatar-equipe-Canards.Pastafariens {
+	background-image: url("./images/equipe/Canards Pastafariens.png");
 	background-repeat: no-repeat;
-	background-position: 110px 110px;
-	z-index:2;
+	background-position: bottom right;
+	z-index:3;
 	position:absolute;
-	height:180px;
-	width:200px;
+	height:90px;
+	width:90px; bottom:0px; right:0;
 }
-.avatar-group-Arbitrators {
-	background-image: url("./images/fondavatar-commi.png");
+.avatar-equipe-Psychos.Totems {
+	background-image: url("./images/equipe/Psychos Totems.png");
 	background-repeat: no-repeat;
-	background-position: 110px 110px;
-	z-index:2;
+	background-position: bottom right;
+	z-index:3;
 	position:absolute;
-	height:180px;
-	width:200px;
+	height:90px;
+	width:90px; bottom:0px; right:0;
 }
-.avatar-group-Coachs {
-	background-image: url("./images/fondavatar-coach.png");
+.avatar-equipe-Black.Berrurier {
+	background-image: url("./images/equipe/Black Berrurier.png");
 	background-repeat: no-repeat;
-	background-position: 110px 110px;
-	z-index:2;
+	background-position: bottom right;
+	z-index:3;
 	position:absolute;
-	height:180px;
-	width:200px;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Nobilis.Gloria {
+	background-image: url("./images/equipe/Nobilis Gloria.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Compagnie.Torniole {
+	background-image: url("./images/equipe/Compagnie Torniole.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Granit.Smiths {
+	background-image: url("./images/equipe/Granit Smiths.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Songs.of.Anarchy {
+	background-image: url("./images/equipe/Songs of Anarchy.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Enfants.d.Itarillie {
+	background-image: url("./images/equipe/Enfants d Itarillie.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Kings.of.the.Whip {
+	background-image: url("./images/equipe/Kings of the Whip");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Tenoch.titz.Slann {
+	background-image: url("./images/equipe/Tenoch titz Slann.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Atomic.Kaiju.Alpha {
+	background-image: url("./images/equipe/Atomic Kaiju Alpha.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Brasseurs.d.Ubersreik {
+	background-image: url("./images/equipe/Brasseurs d Ubersreik.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Dieux.de.l.Arene {
+	background-image: url("./images/equipe/Dieux de l Arene.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Beholders {
+	background-image: url("./images/equipe/Beholders.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Breles.Toniques {
+	background-image: url("./images/equipe/Breles Toniques.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Total-Elf {
+	background-image: url("./images/equipe/Total-Elf.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Plague.Carriers.Rats {
+	background-image: url("./images/equipe/Plague Carriers Rats.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Skies.of.Arcadia {
+	background-image: url("./images/equipe/Skies of Arcadia.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Felons {
+	background-image: url("./images/equipe/Felons.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Elves.Darkside {
+	background-image: url("./images/equipe/Elves Darkside.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Couuuik {
+	background-image: url("./images/equipe/Couuuik.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-L.Gest.eud.KraBouiLerZ.RedZ {
+	background-image: url("./images/equipe/L Gest eud KraBouiLerZ RedZ.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Princes.de.la.Mer.Rouge {
+	background-image: url("./images/equipe/Princes de la Mer Rouge.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Forbes.Challengers {
+	background-image: url("./images/equipe/Forbes Challengers.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-CDD {
+	background-image: url("./images/equipe/CDD.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-King.Slayer {
+	background-image: url("./images/equipe/King Slayer.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Bande.a.Pratchett {
+	background-image: url("./images/equipe/Bande a Pratchett.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Wallygator.s.Fan.Club {
+	background-image: url("./images/equipe/Wallygator s Fan Club.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-MEDEF {
+	background-image: url("./images/equipe/MEDEF.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Olympika.Massalia {
+	background-image: url("./images/equipe/Olympika Massalia.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Granny.Awards {
+	background-image: url("./images/equipe/Granny Awards.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Mithril.Little.Golems {
+	background-image: url("./images/equipe/Mithril Little Golems.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Skavenish.Inquisition {
+	background-image: url("./images/equipe/Skavenish Inquisition.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Revanyars {
+	background-image: url("./images/equipe/Revanyars.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Les.Gaulix {
+	background-image: url("./images/equipe/Les Gaulix.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Nibelheim.Persecutors {
+	background-image: url("./images/equipe/Nibelheim Persecutors.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Spiritueux.Oublies {
+	background-image: url("./images/equipe/Spiritueux Oublies.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-The_Expendables {
+	background-image: url("./images/equipe/The_Expendables.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-Lustria.Bootleggers {
+	background-image: url("./images/equipe/Lustria Bootleggers.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+.avatar-equipe-ia.Shub.Niggurath {
+	background-image: url("./images/equipe/ia Shub Niggurath.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+}
+
+/* Logos equipe
+----------------------------------------*/
+.avatar-logo-Canards.Pastafariens {
+	background-image: url("./images/logos/Canards Pastafariens.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Psychos.Totems {
+	background-image: url("./images/logos/Psychos Totems.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Black.Berrurier {
+	background-image: url("./images/logos/Black Berrurier.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Nobilis.Gloria {
+	background-image: url("./images/logos/Nobilis Gloria.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Compagnie.Torniole {
+	background-image: url("./images/logos/Compagnie Torniole.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Granit.Smiths {
+	background-image: url("./images/logos/Granit Smiths.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Songs.of.Anarchy {
+	background-image: url("./images/logos/Songs of Anarchy.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Enfants.d.Itarillie {
+	background-image: url("./images/logos/Enfants d Itarillie.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Kings.of.the.Whip {
+	background-image: url("./images/logos/Kings of the Whip.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Tenoch.titz.Slann {
+	background-image: url("./images/logos/Tenoch titz Slann.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Atomic.Kaiju.Alpha {
+	background-image: url("./images/logos/Atomic Kaiju Alpha.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Brasseurs.d.Ubersreik {
+	background-image: url("./images/logos/Brasseurs d Ubersreik.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Dieux.de.l.Arene {
+	background-image: url("./images/logos/Dieux de l Arene.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Beholders {
+	background-image: url("./images/logos/Beholders.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Breles.Toniques {
+	background-image: url("./images/logos/Breles Toniques.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Total-Elf {
+	background-image: url("./images/logos/Total-Elf.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Plague.Carriers.Rats {
+	background-image: url("./images/logos/Plague Carriers Rats.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Skies.of.Arcadia {
+	background-image: url("./images/logos/Skies of Arcadia.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Felons {
+	background-image: url("./images/logos/Felons.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Elves.Darkside {
+	background-image: url("./images/logos/Elves Darkside.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Couuuik {
+	background-image: url("./images/logos/Couuuik.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-L.Gest.eud.KraBouiLerZ.RedZ {
+	background-image: url("./images/logos/L Gest eud KraBouiLerZ RedZ.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Princes.de.la.Mer.Rouge {
+	background-image: url("./images/logos/Princes de la Mer Rouge.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Forbes.Challengers {
+	background-image: url("./images/logos/Forbes Challengers.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-CDD {
+	background-image: url("./images/logos/CDD.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-King.Slayer {
+	background-image: url("./images/logos/King Slayer.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Bande.a.Pratchett {
+	background-image: url("./images/logos/Bande a Pratchett.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Wallygator.s.Fan.Club {
+	background-image: url("./images/logos/Wallygator s Fan Club.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-MEDEF {
+	background-image: url("./images/logos/MEDEF.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Olympika.Massalia {
+	background-image: url("./images/logos/Olympika Massalia.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Granny.Awards {
+	background-image: url("./images/logos/Granny Awards.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Mithril.Little.Golems {
+	background-image: url("./images/logos/Mithril Little Golems.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+.avatar-logo-Skavenish.Inquisition {
+	background-image: url("./images/logos/Skavenish Inquisition.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+    margin-top: 5px
+}
+.avatar-logo-Revanyars {
+	background-image: url("./images/logos/Revanyars.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+
+.avatar-logo-ia.Shub.Niggurath {
+	background-image: url("./images/logos/ia Shub Niggurath.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+
+.avatar-logo-Nibelheim.Persecutors {
+	background-image: url("./images/logos/Nibelheim Persecutors.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+
+.avatar-logo-Spiritueux.Oublies {
+	background-image: url("./images/logos/Spiritueux Oublies.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+
+.avatar-logo-The_Expendables {
+	background-image: url("./images/logos/The_Expendables.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+
+.avatar-logo-Les.Gaulix {
+	background-image: url("./images/logos/Les Gaulix.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+
+.avatar-logo-Lustria.Bootleggers {
+	background-image: url("./images/logos/Lustria Bootleggers.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
+}
+
+.avatar-logo-ia.Shub.Niggurath {
+	background-image: url("./images/logos/ia Shub Niggurath.png");
+	background-repeat: no-repeat;
+	background-position: bottom right;
+	z-index:3;
+	position:absolute;
+	height:90px;
+	width:90px; bottom:0px; right:0;
+	margin-top: 5px
 }
 
 /* profile Champions */
@@ -831,8 +1641,8 @@ fieldset.polls dd div {
 	height:20px;
 	width:140px;
 }
-.profile-stars-Relaxmax {
-	background-image: url("./images/3e.png");
+.profile-stars-RelaxMax {
+	background-image: url("./images/4e.png");
 	background-repeat: no-repeat;
   background-position: left;
 	height:20px;
@@ -860,44 +1670,88 @@ fieldset.polls dd div {
 	width:140px;
 }
 
-.postprofile dd, .postprofile dt {
+/* profile Guildes Champions */
+.profile-estars-Kien {
+	background-image: url("./images/1es.png");
+	background-repeat: no-repeat;
+  background-position: left;
+	height:20px;
+	width:140px;
+}
+.profile-estars-Cysterion {
+	background-image: url("./images/1es.png");
+	background-repeat: no-repeat;
+  background-position: left;
+	height:20px;
+	width:140px;
+}
+.profile-estars-Wallygator {
+	background-image: url("./images/1es.png");
+	background-repeat: no-repeat;
+  background-position: left;
+	height:20px;
+	width:140px;
+}
+.profile-estars-Sitasan {
+	background-image: url("./images/1es.png");
+	background-repeat: no-repeat;
+  background-position: left;
+	height:20px;
+	width:140px;
+}
+.profile-estars-Lamenoire_1 {
+	background-image: url("./images/1es.png");
+	background-repeat: no-repeat;
+  background-position: left;
+	height:20px;
+	width:140px;
+}
+
+
+
+. dd, . dt {
 	line-height: 1.2em;
 	margin-left: 8px;
 	color:#000000;
 }
 
-.postprofile dd {
+. dd {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
-.postprofile strong {
+. strong {
 	font-weight: normal;
 }
 
-.postprofile dt.no-profile-rank, .postprofile dd.profile-rank, .postprofile .search-result-date {
+. dt.no-profile-rank, . dd.profile-rank, . .search-result-date {
 	margin-bottom: 10px;
 }
 
 /* Post-profile avatars */
-.postprofile .has-avatar .avatar-container {
+.has-avatar .avatar-container {
 	margin-bottom: 3px;
 	overflow: hidden;
+	position:relative;
+	padding-bottom: 10px;
+}
+.postprofile dd {
+	position: relative;
 }
 
-.postprofile .avatar {
+ .avatar {
 	display: block;
 	float: left;
 	max-width: 100%;
 }
 
-.postprofile .avatar img {
+ .avatar img {
 	display: block;
 	height: auto !important;
 	max-width: 100%;
 }
 
-.postprofile .profile-posts a {
+ .profile-posts a {
 	font-weight: normal;
 }
 
@@ -928,7 +1782,7 @@ dd.profile-contact {
 }
 
 /* Poster profile used by search*/
-.search .postprofile {
+.search . {
 	width: 30%;
 }
 

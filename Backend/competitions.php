@@ -1,4 +1,5 @@
 <?php
+$active = $_GET['active'];
 define('IN_PHPBB', true);
 $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './../Forum/';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
@@ -12,11 +13,11 @@ $con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
 if (!$con) { die('Could not connect: ' . mysqli_error()); }
   mysqli_set_charset($con,'utf8');
   $var = [];
-	$sql = "SELECT c.id, l.name AS league, c.pool, c.site_name, c.site_order, c.json  FROM site_competitions AS c INNER JOIN site_leagues AS l ON l.id=c.league_id WHERE c.active=1 ORDER BY site_order";
+	$sql = "SELECT c.id, l.name AS league, l.site_order AS league_order, l.game AS game, c.pool, c.season, c.game_name AS name, c.site_order, c.competition_mode, c.started, c.site_name FROM site_competitions AS c INNER JOIN site_leagues AS l ON l.id=c.league_id WHERE c.active>=".$active;
 	$result = mysqli_query($con, $sql);
 	while($data = mysqli_fetch_array($result,MYSQL_ASSOC)) {
 
-    $data[json] = json_decode($data[json]);
+    //$data[json] = json_decode($data[json]);
     $var2 = [];
     $sql2 = 'SELECT
         id,
@@ -36,21 +37,74 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
         SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.logo AS logo, site_teams.name AS team, site_coachs.name AS coach, score_1, score_2, sustainedcasualties_1, sustainedcasualties_2, sustaineddead_1, sustaineddead_2 FROM site_matchs
         LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_1
         INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
-        WHERE competition_id = '.$data[id].' AND site_matchs.json IS NOT NULL
+        WHERE competition_id = '.$data[id].' AND site_matchs.started IS NOT NULL
         UNION
         SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.logo AS logo, site_teams.name AS team, site_coachs.name AS coach, score_2, score_1, sustainedcasualties_2, sustainedcasualties_1, sustaineddead_2, sustaineddead_1 FROM site_matchs
         LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_2
         INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
-        WHERE competition_id='.$data[id].' AND site_matchs.json IS NOT NULL
+        WHERE competition_id='.$data[id].' AND site_matchs.started IS NOT NULL
         ) AS a
         GROUP BY id
         ORDER BY Pts DESC, TD DESC, TDfor DESC, S DESC';
     $result2 = mysqli_query($con, $sql2);
+
+    if ($result2->num_rows==0) {
+      $sql2 = 'SELECT
+          id,
+          logo,
+          team,
+          coach,
+          0 AS V,
+          0 AS N,
+          0 AS D,
+          0 AS TDfor,
+          0 AS TD,
+          0 AS S,
+          0 AS Pts
+          FROM (
+          SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.logo AS logo, site_teams.name AS team, site_coachs.name AS coach  FROM site_matchs
+          LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_1
+          INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
+          WHERE competition_id = '.$data[id].'
+          UNION
+          SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.logo AS logo, site_teams.name AS team, site_coachs.name AS coach  FROM site_matchs
+          LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_2
+          INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
+          WHERE competition_id='.$data[id].'
+          ) AS a
+          GROUP BY id';
+      $result2 = mysqli_query($con, $sql2);}
     while($data2 = mysqli_fetch_array($result2,MYSQL_ASSOC)) {
       array_push($var2, $data2);
     }
 
-    $data[json] = $var2;
+    $data[standing] = $var2;
+
+    $var3 = [];
+    $sql3 = 'SELECT DISTINCT(round)
+      FROM site_matchs
+      WHERE competition_id='.$data[id];
+    $result3 = mysqli_query($con, $sql3);
+    while($data3 = mysqli_fetch_array($result3,MYSQL_ASSOC)){
+      $var4 = [];
+      $sql4 = 'SELECT site_matchs.id, site_matchs.started, round,
+        team_id_1, t1.logo as logo_1, score_1,
+        team_id_2, t2.logo as logo_2, score_2
+        FROM site_matchs
+        LEFT JOIN site_teams as t1 ON t1.id=site_matchs.team_id_1
+        LEFT JOIN site_teams as t2 ON t2.id=site_matchs.team_id_2
+        WHERE competition_id='.$data[id].' AND round='.$data3[round];
+      $result4 = mysqli_query($con, $sql4);
+      while($data4 = mysqli_fetch_array($result4,MYSQL_ASSOC)) {
+        array_push($var4, $data4);
+      }
+      $data3[matchs] = $var4;
+
+      array_push($var3, $data3);
+    }
+
+    $data[calendar] = $var3;
+
     array_push($var, $data);
 	}
 

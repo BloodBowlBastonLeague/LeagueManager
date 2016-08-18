@@ -37,6 +37,20 @@
 <!-- IF S_DISPLAY_POST_INFO or .pagination or TOTAL_POSTS or TOTAL_TOPICS -->
 	<div class="action-bar top">
 
+	<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
+		<div class="buttons">
+			<!-- EVENT viewforum_buttons_top_before -->
+
+		<a href="{U_POST_NEW_TOPIC}" class="button icon-button <!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->post-icon<!-- ENDIF -->" title="<!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED}<!-- ELSE -->{L_POST_TOPIC}<!-- ENDIF -->">
+				<!-- IF S_IS_LOCKED -->{L_BUTTON_FORUM_LOCKED}<!-- ELSE -->{L_BUTTON_NEW_TOPIC}<!-- ENDIF -->
+
+		</a>
+
+
+			<!-- EVENT viewforum_buttons_top_after -->
+		</div>
+	<!-- ENDIF -->
+
 	<!-- IF S_DISPLAY_SEARCHBOX -->
 		<div class="search-box" role="search">
 			<form method="get" id="forum-search" action="{S_SEARCHBOX_ACTION}">
@@ -139,7 +153,7 @@
 					<!-- IF topicrow.S_UNREAD_TOPIC and not S_IS_BOT --><a href="{topicrow.U_NEWEST_POST}" class="icon-link"></a><!-- ENDIF -->
 					<div class="list-inner">
 						<!-- EVENT topiclist_row_prepend -->
-						<a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a>
+						<!-- IF topicrow.S_UNREAD_TOPIC and not S_IS_BOT --><a href="{topicrow.U_NEWEST_POST}">{NEWEST_POST_IMG}</a> <!-- ENDIF --><a href="{topicrow.U_VIEW_TOPIC}" class="topictitle">{topicrow.TOPIC_TITLE}</a>
 						<!-- IF topicrow.S_TOPIC_UNAPPROVED or topicrow.S_POSTS_UNAPPROVED --><a href="{topicrow.U_MCP_QUEUE}">{topicrow.UNAPPROVED_IMG}</a> <!-- ENDIF -->
 						<!-- IF topicrow.S_TOPIC_DELETED --><a href="{topicrow.U_MCP_QUEUE}">{DELETED_IMG}</a> <!-- ENDIF -->
 						<!-- IF topicrow.S_TOPIC_REPORTED --><a href="{topicrow.U_MCP_REPORT}">{REPORTED_IMG}</a><!-- ENDIF --><br />
@@ -170,7 +184,7 @@
 						<div class="responsive-hide">
 							<!-- IF topicrow.S_HAS_POLL -->{POLL_IMG} <!-- ENDIF -->
 							<!-- IF topicrow.ATTACH_ICON_IMG -->{topicrow.ATTACH_ICON_IMG} <!-- ENDIF -->
-							{L_POST_BY_AUTHOR} {topicrow.TOPIC_AUTHOR_FULL}
+							{L_POST_BY_AUTHOR} {topicrow.TOPIC_AUTHOR_FULL} &raquo; {topicrow.FIRST_POST_TIME}
 							<!-- IF topicrow.S_POST_GLOBAL and FORUM_ID != topicrow.FORUM_ID --> &raquo; {L_IN} <a href="{topicrow.U_VIEW_FORUM}">{topicrow.FORUM_NAME}</a><!-- ENDIF -->
 						</div>
 
@@ -188,20 +202,6 @@
 	<!-- IF topicrow.S_LAST_ROW -->
 			</ul>
 		</div>
-		<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
-			<div class="buttons">
-				<!-- EVENT viewforum_buttons_top_before -->
-
-			<a href="{U_POST_NEW_TOPIC}" class="button icon-button <!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->post-icon<!-- ENDIF -->" title="<!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED}<!-- ELSE -->{L_POST_TOPIC}<!-- ENDIF -->"><div class="label">
-					<!-- IF S_IS_LOCKED -->{L_BUTTON_FORUM_LOCKED}<!-- ELSE -->{L_BUTTON_NEW_TOPIC}<!-- ENDIF --></div>
-
-			</a>
-
-
-				<!-- EVENT viewforum_buttons_top_after -->
-			</div>
-		<!-- ENDIF -->
-
 	</div>
 	<!-- ENDIF -->
 
@@ -211,20 +211,6 @@
 		<div class="inner">
 		<strong>{L_NO_TOPICS}</strong>
 		</div>
-		<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
-			<div class="buttons">
-				<!-- EVENT viewforum_buttons_top_before -->
-
-			<a href="{U_POST_NEW_TOPIC}" class="button icon-button <!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->post-icon<!-- ENDIF -->" title="<!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED}<!-- ELSE -->{L_POST_TOPIC}<!-- ENDIF -->"><div class="label">
-					<!-- IF S_IS_LOCKED -->{L_BUTTON_FORUM_LOCKED}<!-- ELSE -->{L_BUTTON_NEW_TOPIC}<!-- ENDIF --></div>
-
-			</a>
-
-
-				<!-- EVENT viewforum_buttons_top_after -->
-			</div>
-		<!-- ENDIF -->
-
 	</div>
 	<!-- ENDIF -->
 <!-- END topicrow -->
@@ -243,9 +229,32 @@
 	<hr />
 <!-- ENDIF -->
 
+<!-- IF .topicrow and not S_DISPLAY_ACTIVE -->
+	<div class="action-bar bottom">
+		<!-- IF not S_IS_BOT and S_DISPLAY_POST_INFO -->
+			<div class="buttons">
+				<!-- EVENT viewforum_buttons_bottom_before -->
+				<a href="{U_POST_NEW_TOPIC}" class="button icon-button <!-- IF S_IS_LOCKED -->locked-icon<!-- ELSE -->post-icon<!-- ENDIF -->" title="<!-- IF S_IS_LOCKED -->{L_FORUM_LOCKED}<!-- ELSE -->{L_POST_TOPIC}<!-- ENDIF -->">
+						<!-- IF S_IS_LOCKED -->{L_BUTTON_FORUM_LOCKED}<!-- ELSE -->{L_BUTTON_NEW_TOPIC}<!-- ENDIF -->
+				</a>
+				<!-- EVENT viewforum_buttons_bottom_after -->
+			</div>
+		<!-- ENDIF -->
 
+		<div class="pagination">
+			<!-- IF not S_IS_BOT and U_MARK_TOPICS and .topicrow --><a href="{U_MARK_TOPICS}" data-ajax="mark_topics_read">{L_MARK_TOPICS_READ}</a> &bull; <!-- ENDIF -->
+			{TOTAL_TOPICS}
+			<!-- IF .pagination -->
+				<!-- INCLUDE pagination.html -->
+			<!-- ELSE -->
+				 &bull; {PAGE_NUMBER}
+			<!-- ENDIF -->
+		</div>
+	</div>
+<!-- ENDIF -->
 
 <!-- INCLUDE jumpbox.html -->
+<!-- INCLUDE navbar_footer.html -->
 
 <!-- IF S_DISPLAY_ONLINE_LIST -->
 	<div class="stat-block online-list">
@@ -260,5 +269,4 @@
 		<p><!-- BEGIN rules -->{rules.RULE}<br /><!-- END rules --></p>
 	</div>
 <!-- ENDIF -->
-
 <!-- INCLUDE overall_footer.html -->

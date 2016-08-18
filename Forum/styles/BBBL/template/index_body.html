@@ -30,6 +30,7 @@
 <!-- ENDIF -->
 
 <!-- EVENT index_body_stat_blocks_before -->
+<!-- INCLUDE navbar_footer.html -->
 
 <!-- IF S_DISPLAY_ONLINE_LIST -->
 	<div class="stat-block online-list">
@@ -37,7 +38,7 @@
 		<p>
 			<!-- EVENT index_body_block_online_prepend -->
 			{TOTAL_USERS_ONLINE} ({L_ONLINE_EXPLAIN})<br />{RECORD_USERS}<br /> <br />{LOGGED_IN_USER_LIST}
-			<!-- IF LEGEND --><br /><em>{L_LEGEND}{L_COLON} {LEGEND}</em><!-- ENDIF -->
+			<!-- IF LEGEND --><br /><em>{L_LEGEND} {L_COLON} <span class="bordered">{LEGEND}</span></em><!-- ENDIF -->
 			<!-- EVENT index_body_block_online_append -->
 		</p>
 	</div>

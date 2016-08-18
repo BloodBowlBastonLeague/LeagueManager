@@ -15,7 +15,7 @@ LeagueManager.directive('team', function(Restangular){
 			$http.get('Backend/team.php?id='+$scope.teamID).success(function(result){
 				$scope.team = result;
 				for(p=0; p<result.players.length; p++){
-					$scope.team.players[p].attributes = JSON.parse(result.players[p].attributes);
+					$scope.team.players[p].attributes =  result.players[p].attributes.length > 0 ? JSON.parse(result.players[p].attributes) : [];
 					$scope.team.players[p].skills = result.players[p].skills.length > 0 ? JSON.parse(result.players[p].skills) : [];
 				}
 				$rootScope.title = $scope.team.name;
@@ -26,6 +26,7 @@ LeagueManager.directive('team', function(Restangular){
 				$scope.teamBG = { 'position': 'absolute', 'width': '100%', 'height': '100%', 'background': 'url(resources/logo/Logo_'+$scope.team.logo+'.png) center center no-repeat', 'background-size': '30% auto', 'z-index': '-1'}
 				for(i=0;i<$scope.team.popularite;i++){ $scope.team.pop.push(i); }
 				$scope.teamArticle();
+				console.log($scope.team);
 				//Classement
 				$http.get('Backend/competition.php?id='+$scope.team.competition.id).success(function(result){
 					$scope.standing = result.standing;

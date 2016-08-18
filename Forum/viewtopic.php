@@ -588,6 +588,33 @@ $quickmod_array = array(
 	'topic_logs'			=> array('VIEW_TOPIC_LOGS', $auth->acl_get('m_', $forum_id)),
 );
 
+/**
+* Event to modify data in the quickmod_array before it gets sent to the
+* phpbb_add_quickmod_option function.
+*
+* @event core.viewtopic_add_quickmod_option_before
+* @var	int				forum_id				Forum ID
+* @var	int				post_id					Post ID
+* @var	array			quickmod_array			Array with quick moderation options data
+* @var	array			topic_data				Array with topic data
+* @var	int				topic_id				Topic ID
+* @var	array			topic_tracking_info		Array with topic tracking data
+* @var	string			viewtopic_url			URL to the topic page
+* @var	bool			allow_change_type		Topic change permissions check
+* @since 3.1.9-RC1
+*/
+$vars = array(
+	'forum_id',
+	'post_id',
+	'quickmod_array',
+	'topic_data',
+	'topic_id',
+	'topic_tracking_info',
+	'viewtopic_url',
+	'allow_change_type',
+);
+extract($phpbb_dispatcher->trigger_event('core.viewtopic_add_quickmod_option_before', compact($vars)));
+
 foreach ($quickmod_array as $option => $qm_ary)
 {
 	if (!empty($qm_ary[1]))
@@ -1276,6 +1303,7 @@ while ($row = $db->sql_fetchrow($result))
 
 				'username'			=> $row['username'],
 				'user_colour'		=> $row['user_colour'],
+				'group_id'            => '',
 				'contact_user'		=> '',
 
 				'warnings'			=> 0,
@@ -1336,6 +1364,7 @@ while ($row = $db->sql_fetchrow($result))
 				'rank_image_src'	=> '',
 
 				'username'			=> $row['username'],
+			  'group_id'            => $row['group_id'],
 				'user_colour'		=> $row['user_colour'],
 				'contact_user' 		=> $user->lang('CONTACT_USER', get_username_string('username', $poster_id, $row['username'], $row['user_colour'], $row['username'])),
 
@@ -1452,7 +1481,7 @@ if (sizeof($attach_list))
 			FROM ' . ATTACHMENTS_TABLE . '
 			WHERE ' . $db->sql_in_set('post_msg_id', $attach_list) . '
 				AND in_message = 0
-			ORDER BY filetime DESC, post_msg_id ASC';
+			ORDER BY attach_id DESC, post_msg_id ASC';
 		$result = $db->sql_query($sql);
 
 		while ($row = $db->sql_fetchrow($result))
@@ -1577,6 +1606,16 @@ extract($phpbb_dispatcher->trigger_event('core.viewtopic_modify_post_data', comp
 
 // Output the posts
 $first_unread = $post_unread = false;
+// Get groups name on the board
+$sql = 'SELECT group_id, group_name, group_type
+	 FROM ' . GROUPS_TABLE . '
+	 WHERE group_type <> ' . GROUP_HIDDEN;
+$result = $db->sql_query($sql);
+while ($row = $db->sql_fetchrow($result))
+{
+	 $groups_name[$row['group_id']] = ($row['group_type'] == GROUP_SPECIAL) ? $user->lang['G_' . $row['group_name']] : $row['group_name'];
+}
+$db->sql_freeresult($result);
 for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 {
 	// A non-existing rowset only happens if there was no user present for the entered poster_id
@@ -1875,6 +1914,7 @@ for ($i = 0, $end = sizeof($post_list); $i < $end; ++$i)
 		'POSTER_AVATAR'		=> $user_cache[$poster_id]['avatar'],
 		'POSTER_WARNINGS'	=> $auth->acl_get('m_warn') ? $user_cache[$poster_id]['warnings'] : '',
 		'POSTER_AGE'		=> $user_cache[$poster_id]['age'],
+		'POSTER_GROUP'    => $groups_name[$user_cache[$poster_id]['group_id']],
 		'CONTACT_USER'		=> $user_cache[$poster_id]['contact_user'],
 
 		'POST_DATE'			=> $user->format_date($row['post_time'], false, ($view == 'print') ? true : false),

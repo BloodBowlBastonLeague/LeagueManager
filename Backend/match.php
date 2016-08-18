@@ -13,7 +13,8 @@ include($phpbb_root_path . 'config.' . $phpEx);
 if (!$con) { die('Could not connect: ' . mysqli_error()); }
   mysqli_set_charset($con,'utf8');
 
-	$sql = 'SELECT site_matchs.forum_url,
+	$sql = 'SELECT site_matchs.cyanide_id,
+          site_matchs.forum_url,
           site_matchs.stadium,
           site_matchs.json,
           site_matchs.team_id_1,

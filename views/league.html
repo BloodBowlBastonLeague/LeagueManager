@@ -14,11 +14,14 @@
       <p>Mais toi le visiteur, toi le coach, toi le paria, toi aussi tu peux venir cramponner dans nos rangs.</p>
       <p>Il te suffit de t'inscrire sur notre forum et de remplir le formulaire 22X47B, ainsi que l'appendice 42 et verser les 51 pièces d'or nécessaires au gobelin comptable de permanence.</p>
       <div class="spacer"></div>
-      <div class="button" ng-click="goToPage('league')">
+      <!--div class="button" ng-click="goToPage('league')"-->
+      <div class="button" ng-click="seasonUpdate('BBBL','La Mini Cup')">
         <div ng-include="'resources/img/Button_1.svg'"></div>
         <div class="label">Nous rejoindre</div>
       </div>
     </div>
+
+
     <div id="randomPresentation1" class="plain seconde" ng-click="displayReader(randomSide.article_id)"  ng-style="colours[1].border">
       <div class="image"></div>
       <div class="text"><h4 ng-bind-html="randomSide.title"></h4></div>

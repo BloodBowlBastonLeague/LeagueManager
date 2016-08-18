@@ -13,31 +13,34 @@ include($phpbb_root_path . 'config.' . $phpEx);
 if (!$con) { die('Could not connect: ' . mysqli_error()); }
     mysqli_set_charset($con,'utf8');
 
-    $row = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM site_players WHERE name='".str_replace("'","\'",$request->name)."'"));
+    $match = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM site_matchs WHERE cyanide_id = '".$request->match_id."'"));
+    $team = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM site_teams WHERE cyanide_id = '".$request->team_id."'"));
+    $row = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM site_players WHERE name='".str_replace("'","\'",$request->name)."' AND dead !=1 AND  team_id = ".$team[0] ));
+
     //Update
     if ( $row[0] > 0){
-	    $sql = "UPDATE site_players SET team_id = ".$request->team_id.",
+	    $sql = "UPDATE site_players SET team_id = ".$team[0].",
           level = ".$request->level.",
           xp = ".$request->xp.",
           attributes = '".$request->attributes."',
           skills = '".$request->skills."',
           dead = ".$request->dead.",
           injured = ".$request->injured."
-          WHERE name='".str_replace("'","\'",$request->name)."'";
+          WHERE name='".str_replace("'","\'",$request->name)."' AND  team_id = ".$request->team_id;
 	    $result = mysqli_query($con, $sql);
-      $sql2 = "INSERT INTO site_players_stats (player_id, match_id, matchplayed, mvp, inflictedpasses, inflictedcatches, inflictedinterceptions, inflictedtouchdowns, inflictedcasualties, inflictedstuns, inflictedko, inflictedinjuries, inflicteddead, inflictedtackles, inflictedmeterspassing, inflictedmetersrunning, sustainedinterceptions, sustainedcasualties, sustainedstuns, sustainedko, sustainedinjuries, sustainedtackles, sustaineddead)
-      VALUES (".$row[0].",".$request->match_id.",".$request->matchplayed.",".$request->mvp.",".$request->inflictedpasses.",".$request->inflictedcatches.",".$request->inflictedinterceptions.",".$request->inflictedtouchdowns.",".$request->inflictedcasualties.",".$request->inflictedstuns.",".$request->inflictedko.",".$request->inflictedinjuries.",".$request->inflicteddead.",".$request->inflictedtackles.",".$request->inflictedmeterspassing.",".$request->inflictedmetersrunning.",".$request->sustainedinterceptions.",".$request->sustainedcasualties.",".$request->sustainedstuns.",".$request->sustainedko.",".$request->sustainedinjuries.",".$request->sustainedtackles.",".$request->sustaineddead.")";
-      $con->query($sql2);
+      $player = $row[0];
     }
     else{
-      $sql = "INSERT INTO site_players (team_id, param_name_type, name, level, xp, attributes, skills, dead, injured) VALUES (   ".$request->team_id.",'".$request->type."','".str_replace("'","\'",$request->name)."',".$request->level.",".$request->xp.",'".$request->attributes."','".$request->skills."',".$request->dead.",".$request->injured.")";
-      if ($con->query($sql) === TRUE) {
-        $sql2 = "INSERT INTO site_players_stats (player_id, match_id, matchplayed, mvp, inflictedpasses, inflictedcatches, inflictedinterceptions, inflictedtouchdowns, inflictedcasualties, inflictedstuns, inflictedko, inflictedinjuries, inflicteddead, inflictedtackles, inflictedmeterspassing, inflictedmetersrunning, sustainedinterceptions, sustainedcasualties, sustainedstuns, sustainedko, sustainedinjuries, sustainedtackles, sustaineddead)
-        VALUES (".$con->insert_id.",".$request->match_id.",".$request->matchplayed.",".$request->mvp.",".$request->inflictedpasses.",".$request->inflictedcatches.",".$request->inflictedinterceptions.",".$request->inflictedtouchdowns.",".$request->inflictedcasualties.",".$request->inflictedstuns.",".$request->inflictedko.",".$request->inflictedinjuries.",".$request->inflicteddead.",".$request->inflictedtackles.",".$request->inflictedmeterspassing.",".$request->inflictedmetersrunning.",".$request->sustainedinterceptions.",".$request->sustainedcasualties.",".$request->sustainedstuns.",".$request->sustainedko.",".$request->sustainedinjuries.",".$request->sustainedtackles.",".$request->sustaineddead.")";
-        $con->query($sql2);
-      }
+      $sql = "INSERT INTO site_players (team_id, param_name_type, name, level, xp, attributes, skills, dead, injured) VALUES (   ".$team[0].",'".$request->type."','".str_replace("'","\'",$request->name)."',".$request->level.",".$request->xp.",'".$request->attributes."','".$request->skills."',".$request->dead.",".$request->injured.")";
+      $con->query($sql);
+      $player = $con->insert_id;
     }
-    echo $request->name.$sql;
+
+    $sql2 = "INSERT INTO site_players_stats (player_id, match_id, matchplayed, mvp, inflictedpasses, inflictedcatches, inflictedinterceptions, inflictedtouchdowns, inflictedcasualties, inflictedstuns, inflictedko, inflictedinjuries, inflicteddead, inflictedtackles, inflictedmeterspassing, inflictedmetersrunning, sustainedinterceptions, sustainedcasualties, sustainedstuns, sustainedko, sustainedinjuries, sustainedtackles, sustaineddead)
+    VALUES (".$player.",".$match[0].",".$request->matchplayed.",".$request->mvp.",".$request->inflictedpasses.",".$request->inflictedcatches.",".$request->inflictedinterceptions.",".$request->inflictedtouchdowns.",".$request->inflictedcasualties.",".$request->inflictedstuns.",".$request->inflictedko.",".$request->inflictedinjuries.",".$request->inflicteddead.",".$request->inflictedtackles.",".$request->inflictedmeterspassing.",".$request->inflictedmetersrunning.",".$request->sustainedinterceptions.",".$request->sustainedcasualties.",".$request->sustainedstuns.",".$request->sustainedko.",".$request->sustainedinjuries.",".$request->sustainedtackles.",".$request->sustaineddead.")";
+    $con->query($sql2);
+
+    echo $sql2;
 
 
     die();

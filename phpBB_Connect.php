@@ -39,4 +39,5 @@ $con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
 if (!$con) { die('Could not connect: ' . mysqli_error()); }
 mysqli_set_charset($con,'utf8');
 
+$Cyanide_Key = 'b20b49cf35dce68418a4c375bf4e3cd3';
 ?>

@@ -67,7 +67,6 @@ h1 {
 	font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
 	margin-right: 200px;
 	margin-top: 15px;
-	font-weight: bold;
 	font-size: 2em;
 	float: left;
 }
@@ -82,7 +81,7 @@ h2 {
 }
 
 #viewtopic {
-	margin-top: 20px;
+
 }
 
 /* NORMAL */
@@ -91,7 +90,7 @@ h2 {
 	border-top: 0;
 	font-size: 26px;
 	margin: 30px 30px 0;
-	padding: 20px;
+	padding: 20px 20px 0;
 }
 
 .topic-title a {
@@ -99,7 +98,7 @@ h2 {
 }
 
 .topic-title a:hover {
-  color: #FB7728;
+  color: #DD7C00;
 }
 
 h2.solo {
@@ -109,7 +108,6 @@ h2.solo {
 h3 {
 	/* Sub-headers (also used as post headers, but defined later) */
 	font-family: Arial, Helvetica, sans-serif;
-	font-weight: bold;
 	text-transform: uppercase;
 	border-bottom: 1px solid transparent;
 	margin-bottom: 3px;
@@ -171,7 +169,7 @@ u {
 }
 
 ul {
-	list-style-type: disc;
+	list-style-type: none;
 }
 
 ol {
@@ -230,7 +228,6 @@ ol ol ul, ol ul ul, ul ol ul, ul ul ul {
 	margin-right: 10px;
 	margin-bottom: 10px;
 	background-color: transparent;
-	background-image: url("./images/fond_black_transp.png");
 	background-repeat: repeat;
 	border-radius: 10px;
 	box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.9);
@@ -873,6 +870,7 @@ fieldset.fields1 ul.recipients  input.button2{
 	font-size: 0.8em;
 	margin-right: 0;
 	padding: 0;
+	font-family: Akashi;
 }
 
 fieldset.fields1 dl.pmlist > dt {
@@ -1040,12 +1038,14 @@ height:auto;
 	padding-bottom: 8px;
 }
 
+.phpbb_alert div.alert_text { margin-bottom: 30px; }
+
 .phpbb_alert div.alert_text > p,
 .phpbb_alert div.alert_text > label,
 .phpbb_alert div.alert_text > select,
 .phpbb_alert div.alert_text > textarea,
 .phpbb_alert div.alert_text > input {
-	font-size: 1.1em;
+	font-size: 1.1em; line-height: 1.3em;
 }
 
 #darkenwrapper {
@@ -1153,7 +1153,6 @@ form > p.post-notice strong {
 
 .stat-block {
 	clear: both;
-	background-image: url("./images/fond_black_transp.png");
 background-repeat: repeat;
 border-radius: 10px;
 margin: 10px 15px 20px 10px;
@@ -1166,8 +1165,7 @@ box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.9);
 }
 
 .stat-block p a:link {
-	color:#FFFFFF;
-text-shadow: 1px 1px #000, -1px 1px #000, -1px -1px #000, 1px -1px #000;
+
 }
 
 .dropdown-trigger.button.icon-button.modtools-icon.dropdown-select.dropdown-toggle {
@@ -1190,17 +1188,29 @@ text-shadow: 1px 1px #000, -1px 1px #000, -1px -1px #000, 1px -1px #000;
 
 }
 
-.button.icon-button.edit-icon{
+.button.icon-button.edit-icon,.button2float{
 	opacity:0.75;
 	position: absolute;
 	right: 70px;
 	width: 160px
 }
 
-.button.icon-button.delete-icon{
+#cp-main .button.icon-button.edit-icon,.button2float{
+	opacity: 0.5;
+	position: absolute;
+	right: 289px;
+	width: 200px;
+}
+
+.button.icon-button.delete-icon, .button3float{
 		opacity:0.5;
 		position: absolute;
 		right: 175px;
+}
+#cp-main .button.icon-button.delete-icon {
+		opacity:0.75;
+		position: absolute;
+		right: 144px;
 }
 
 .button.icon-button.report-icon{
@@ -1215,6 +1225,12 @@ right: 74px;
 		text-indent: 25px;
 	width:120px;
 }
+#cp-main .button.icon-button.quote-icon{
+	text-indent: 0;
+	width:200px;
+}
+
+
 .button.icon-button.search-icon {
 			background-color:#FFFFFF;
 }
