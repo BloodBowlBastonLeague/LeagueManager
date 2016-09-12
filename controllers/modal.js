@@ -1,4 +1,4 @@
-LeagueManager.directive('modal', function(Restangular){
+LeagueManager.directive('modal', function(){
 	return {
 		restrict: 'E',
 		templateUrl: 'views/modal.html',

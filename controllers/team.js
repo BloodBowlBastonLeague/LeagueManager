@@ -1,8 +1,8 @@
-LeagueManager.directive('team', function(Restangular){
+LeagueManager.directive('team', function(){
 	return {
 		restrict: 'E',
 		templateUrl: 'views/team.html',
-		controller: function($scope, $rootScope, $http, $timeout, Restangular, $routeParams) {
+		controller: function($scope, $rootScope, $http, $timeout,  $routeParams) {
 			$scope.team = {};
 			$scope.teamID = $routeParams.ID;
 			$scope.activePlayer = false;

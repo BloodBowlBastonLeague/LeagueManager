@@ -85,8 +85,8 @@ time, mark, audio, video {
  }
 
 
-h1 { font-family: 'Akashi';  font-size: 40px; line-height: 50px;  color: #ffffff; }
-h2 { font-family: 'Akashi';  font-size: 30px; line-height: 1; margin:0 0 10px; }
+h1 { font-family: 'Akashi';  font-size: 40px; line-height: 50px; color: #ffffff; }
+h2 { font-family: 'Akashi';  font-size: 30px; line-height: 1; margin:0 0 10px; color: #ffffff; }
 h3 { font-family: 'Akashi';  font-size: 24px; line-height: 1; margin:0 0 10px; color: #ffffff; }
 h4 { font-family: 'Akashi';  font-size: 18px; line-height: 1; margin:0 0 10px; color: #ffffff; }
 h6 { font-family:'Muli'; font-weight:700;}
@@ -100,6 +100,7 @@ li > h3 { display:inline; }
 
 #Main { height: calc(100vh - 68px); max-height:calc(100vh - 68px); width:100%; padding: 0  0.9375rem !important; overflow : auto }
 .row { overflow: hidden; height:100%;}
+.affiche { text-align:center;}
 /* UTILITIES */
 .text-cutter { white-space: nowrap; text-overflow:ellipsis; overflow:hidden;  -ms-word-wrap: break-word; -webkit-word-wrap: break-word; word-wrap: break-word; -webkit-hyphens: auto; -moz-hyphens: auto; hyphens: auto; }
 .noselect { -webkit-touch-callout: none; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; }
@@ -295,3 +296,46 @@ td img { max-height: 20px; max-width: 20px; }
 .spHeight { float: initial; display: inline-block; vertical-align: top; }
 #Reader img,p { margin-right: 10px;}
 .stadium h3,h4 { text-shadow: 0 2px 5px #000000;}
+
+/* ARCHIVES */
+.searchBox { max-height: calc(100vh - 108px); }
+.searchBox .searchResult { overflow-y: auto; height: calc(100vh - 199px); margin-right: -20px;}
+
+/* AFFICHE */
+#Versus { display: inline-block; height:100%; min-height:200px; width:128px; background: url(../resources/img/VS.png) center center no-repeat;}
+#HelmetLeft.affiche, #HelmetRight.affiche {display: inline-block; position:relative !important; top:0 !important; left:0 !important;}
+#HelmetLeft.affiche .logo, #HelmetRight.affiche .logo { position: absolute; left: 0px; top: 20px; width: 90px; height: 90px;
+   -ms-transform: rotateY(-15deg) rotate(-10deg);
+   -webkit-transform: rotateY(-15deg) rotate(-10deg);
+   transform: rotateY(-15deg) rotate(-10deg);}
+.affiche hr { margin:5px 0 20px; border-top:1px  solid  #ffffff;}
+
+/* CHAMPION */
+.champion h1 { font-family: 'Akashi';  font-size: 70px; line-height: 70px;  color: #ffffff; text-align:center; }
+.champion h2 { font-family: 'Akashi';  font-size: 50px; line-height: 60px;  color: #ffffff; text-align:center; }
+.champion h3 { font-family: 'Akashi';  font-size: 40px; line-height: 1; margin:0 0 10px; text-align:center; }
+.champion h4 { font-family: 'Muli';  font-size: 30px; line-height: 1; margin:0 0 10px; color: #ffffff; text-align:center; }
+
+.champion img { position:absolute; left:-65px; top:35px; width:256px; height:256px;}
+.champion hr { width:80%; border-top:1px  solid  #ffffff; text-align:center;}
+.champion #HelmetLeft {display: inline-block; top: 45px !important; left: -15px !important;}
+.champion #HelmetRight {display: inline-block; top: 135px !important; right: -15px !important;}
+.champion #HelmetLeft .logo, .champion #HelmetRight .logo { position: absolute; left: 0px; top: 20px; width: 90px; height: 90px;
+   -ms-transform: rotateY(-15deg) rotate(-10deg);
+   -webkit-transform: rotateY(-15deg) rotate(-10deg);
+   transform: rotateY(-15deg) rotate(-10deg);}
+
+   .champion.minicup h1, .champion.archives h1 { font-family: 'Akashi';  font-size: 50px; line-height: 50px;  color: #ffffff; text-align:center; }
+   .champion.minicup h2, .champion.archives h2 { font-family: 'Akashi';  font-size: 30px; line-height: 40px;  color: #ffffff; text-align:center; }
+   .champion.minicup h3, .champion.archives h3 { font-family: 'Akashi';  font-size: 30px; line-height: 1; margin:0 0 10px; text-align:center; }
+   .champion.minicup h4, .champion.archives h4 { font-family: 'Muli';  font-size: 24px; line-height: 1; margin:0 0 10px; color: #ffffff; text-align:center; }
+
+/*Disclaimer*/
+#Disclaimer { position:relative; color:#ffffff; font-size: 8px;}
+
+#ForumDisplay { height: auto;  width:100%; padding: 0  0.9375rem !important; }
+#MatchWeek { overflow:hidden !important;}
+#MatchWeek .teamLogo {width: 80px; height: 80px; display: inline; vertical-align: middle; }
+#MatchWeek .teamName {width: calc(50% - 120px); max-width: calc(50% - 120px); display: inline-block; vertical-align: middle; font-family: "MuliSemiBold"; font-size:24px; color:#ffffff;}
+#MatchWeek hr { width :400px}
+#MatchWeek .versus { width: 60px; font-size: 24px; font-weight: 400; }

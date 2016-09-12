@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="format-detection" content="telephone=no" />
+  <meta name="format-detection" content="telephone=no" />
   <meta http-equiv="Cache-control" content="private, max-age=864000" />
 
   <title>Blood Bowl Baston League</title>
@@ -12,6 +12,7 @@
   <meta name="robots" content="index,follow" />
 
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css">
+  <link rel="stylesheet" href="bower_components/ng-scrollbar/dist/ng-scrollbar.min.js" type="text/css">
   <link rel="stylesheet" href="css/app.css" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
 
@@ -59,13 +60,12 @@
     <ng-view></ng-view>
     <!-- Articles plein écran -->
     <modal></modal>
-
-
   </div>
+  <div id="Disclaimer">La BBBL est une ligue indépendante de joueurs et n'a aucun affiliation avec Games Workshop, Cyanide ou Focus.</div>
   <script>
     var Cyanide_Key = "<?=$Cyanide_Key?>";
     var User = "<?=$user->data['username'];?>";
-    var Group = "9";
+    var Group = "<?=$user->data['group_id'];?>";
   </script>
   <!-- jquery -->
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
@@ -74,11 +74,9 @@
   <!-- Angular -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
   <!--<script src="bower_components/angular/angular.min.js"></script>-->
-  <script src="bower_components/restangular/dist/restangular.min.js"></script>
   <script src="bower_components/angular-route/angular-route.min.js"></script>
   <script src="bower_components/lodash/lodash.min.js"></script>
   <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
-  <script src="bower_components/angular-css/angular-css.min.js"></script>
 
   <!-- Module BBBL -->
   <script src="controllers/app.js"></script>
@@ -86,7 +84,6 @@
   <script src="controllers/archives.js"></script>
   <script src="controllers/league.js"></script>
   <script src="controllers/competition.js"></script>
-  <script src="controllers/competition2.js"></script>
 
   <script src="controllers/match.js"></script>
   <script src="controllers/team.js"></script>
