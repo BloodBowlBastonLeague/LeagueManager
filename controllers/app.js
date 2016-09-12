@@ -1,21 +1,13 @@
-var LeagueManager = angular.module('LeagueManager', ['ngRoute','restangular','ngSanitize','ngCSS'])
-
-//API REST - Local DB
-LeagueManager.config(function (RestangularProvider) {
-	RestangularProvider.setBaseUrl('http://www.bbbl.fr/Backend');
-});
+var LeagueManager = angular.module('LeagueManager', ['ngRoute','ngSanitize'])
 
 //Routage
-LeagueManager.config(function ($routeProvider, RestangularProvider) {
+LeagueManager.config(function ($routeProvider) {
 	$routeProvider
 	.when("/archives", {
 		template: '<archives></archives>'
 	})
   .when("/competition/:ID", {
 		template: '<competition></competition>'
-	})
-	.when("/competition2/:ID", {
-		template: '<competition2></competition2>'
 	})
 	.when("/league", {
 		template: '<league></league>'
@@ -39,7 +31,12 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 	$rootScope.admin = ['9','10','11','12'].indexOf(window.Group)>-1 ? 1 : 0;
 	$rootScope.title = "Tribunes - le mag de la BBBL";
 	$rootScope.competitions = [];
-	$rootScope.eliminations = ['32emes de finales','16emes de finales','8emes de finales','Quart de finales','Demi-Finales','Finale'];
+	$rootScope.finalsTemplate = ['Finale','Demi-Finales','Quart de finales','8emes de finales','16emes de finales','32emes de finales'];
+
+	//Récupération des statistiques de la ligue
+	$http.get('Backend/generic.php').success(function(result){
+		$rootScope.leagueStats = result;
+	});
 	//Récupération des articles
 	$http.get('Backend/articles.php').success(function(result){
 		$rootScope.articles = result;

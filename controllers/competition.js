@@ -1,9 +1,9 @@
-LeagueManager.directive('competition', function(Restangular){
+LeagueManager.directive('competition', function(){
 	return {
 		restrict: 'E',
 		templateUrl: 'views/competition.html',
 
-		controller: function($scope, $rootScope, $http, $timeout, Restangular, $routeParams) {
+		controller: function($scope, $rootScope, $http, $timeout,  $routeParams) {
 			$scope.competition = {};
 			$rootScope.setColours([$rootScope.colourA,$rootScope.colourB]);
 			$rootScope.competitionId = $routeParams.ID;
@@ -33,8 +33,10 @@ LeagueManager.directive('competition', function(Restangular){
 
 			$http.get('Backend/calendar.php?id='+$routeParams.ID).success(function(result){
 				$scope.calendar = result;
-				$scope.finals = $rootScope.eliminations;
-				$scope.finals.splice(6-$scope.calendar.length,$scope.calendar.length);
+				$scope.finals = $rootScope.finalsTemplate;
+				$scope.finals.splice($scope.calendar.length);
+				$scope.finals.reverse();
+
 				$scope.currentDay = $scope.calendar[0].currentDay ? $scope.calendar[0].currentDay:0;
 				if($scope.calendar.length < 6){
 					$scope.displayDay = 0;

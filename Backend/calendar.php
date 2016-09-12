@@ -21,8 +21,8 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
   while($data = mysqli_fetch_array($result,MYSQL_ASSOC)){
     $var2 = [];
     $sql2 = 'SELECT site_matchs.id, site_matchs.started, round,
-      team_id_1, t1.logo as logo_1, score_1,
-      team_id_2, t2.logo as logo_2, score_2
+      team_id_1, t1.name as name_1, t1.logo as logo_1, score_1,
+      team_id_2, t2.name as name_2, t2.logo as logo_2, score_2
       FROM site_matchs
 	    LEFT JOIN site_teams as t1 ON t1.id=site_matchs.team_id_1
       LEFT JOIN site_teams as t2 ON t2.id=site_matchs.team_id_2

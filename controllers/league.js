@@ -1,8 +1,8 @@
-LeagueManager.directive('league', function(Restangular){
+LeagueManager.directive('league', function(){
 	return {
 		restrict: 'E',
 		templateUrl: 'views/league.html',
-		controller: function($scope, $rootScope, $http, $timeout, Restangular, $routeParams) {
+		controller: function($scope, $rootScope, $http, $timeout,  $routeParams) {
       $rootScope.setColours([$rootScope.colourA,$rootScope.colourB]);
 
       $rootScope.title = "Tout sur la ligue";

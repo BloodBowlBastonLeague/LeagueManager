@@ -9,11 +9,22 @@ include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 include($phpbb_root_path . 'config.' . $phpEx);
 
 $con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
-
 if (!$con) { die('Could not connect: ' . mysqli_error()); }
   mysqli_set_charset($con,'utf8');
   $var = [];
-	$sql = "SELECT c.id, l.name AS league, l.site_order AS league_order, l.game AS game, c.pool, c.season, c.game_name AS name, c.site_order, c.competition_mode, c.started, c.site_name FROM site_competitions AS c INNER JOIN site_leagues AS l ON l.id=c.league_id WHERE c.active>=".$active;
+	$sql = "SELECT c.id,
+        c.game,
+        c.season,
+        c.league_name AS league,
+        c.pool,
+        c.param_name_format AS format,
+        c.game_name AS name,
+        c.site_order,
+        c.competition_mode,
+        c.started,
+        c.site_name,
+        c.champion
+        FROM site_competitions AS c INNER JOIN site_leagues AS l ON l.id=c.league_id WHERE c.active>=".$active;
 	$result = mysqli_query($con, $sql);
 	while($data = mysqli_fetch_array($result,MYSQL_ASSOC)) {
 

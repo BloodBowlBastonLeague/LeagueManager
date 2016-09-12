@@ -13,7 +13,7 @@ $con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
 if (!$con) { die('Could not connect: ' . mysqli_error()); }
   mysqli_set_charset($con,'utf8');
 
-	$sql = "SELECT c.id, l.name AS league, l.game AS game, c.pool, c.site_name, c.site_order, c.season, c.json, c.active, c.competition_mode, c.game_name  FROM site_competitions AS c INNER JOIN site_leagues AS l ON l.id=c.league_id WHERE c.id = ".$id;
+	$sql = "SELECT c.id, l.name AS league, l.game AS game, c.pool, c.site_name, c.site_order, c.season, c.json, c.active, c.competition_mode, c.game_name, c.champion  FROM site_competitions AS c INNER JOIN site_leagues AS l ON l.id=c.league_id WHERE c.id = ".$id;
 	$result = mysqli_query($con, $sql);
 	$data = mysqli_fetch_object($result);
 
@@ -78,7 +78,6 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
     }
 
       $data->standing = $var2;
-
 
   echo json_encode($data);
   die();

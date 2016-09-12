@@ -1,8 +1,8 @@
-LeagueManager.directive('match', function(Restangular){
+LeagueManager.directive('match', function(){
 	return {
 		restrict: 'E',
 		templateUrl: 'views/match.html',
-		controller: function($scope, $rootScope, $http, $timeout, Restangular, $routeParams) {
+		controller: function($scope, $rootScope, $http, $timeout,  $routeParams) {
 			$scope.matchID = $routeParams.ID;
 			$rootScope.match = {};
 
