@@ -3,10 +3,10 @@
 // Do not change anything in this file!
 $dbms = 'phpbb\\db\\driver\\mysqli';
 $dbhost = 'localhost';
-$dbport = '3306';
-$dbname = 'bbbl2';
+//$dbport = '3306';
+$dbname = 'bbblysgkbbbl';
 $dbuser = 'root';
-$dbpasswd = 'root';
+$dbpasswd = 'azerty';
 $table_prefix = 'forum_';
 $phpbb_adm_relative_path = 'adm/';
 $acm_type = 'phpbb\\cache\\driver\\file';

@@ -1,0 +1,16 @@
+<div class="plain prime main">
+<table>
+  <thead>
+    <tr ng-style="colours[0].background">
+      <th class="text-left">Coach</th>
+      <th class="text-center">Pts</th>
+    </tr>
+  </thead>
+  <tbody class="table-hover">
+    <tr ng-repeat="r in ranking">
+      <td class="text-left">{{r.name}}</td>
+      <td class="text-center">{{r.score}}</td>
+    </tr>
+  </tbody>
+</table>
+</div>
