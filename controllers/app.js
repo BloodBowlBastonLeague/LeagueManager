@@ -2,28 +2,31 @@ var LeagueManager = angular.module('LeagueManager', ['ngRoute','ngSanitize'])
 
 //Routage
 LeagueManager.config(function ($routeProvider) {
-	$routeProvider
+    $routeProvider
 	.when("/archives", {
-		template: '<archives></archives>'
+	    template: '<archives></archives>'
 	})
-  .when("/competition/:ID", {
-		template: '<competition></competition>'
+	.when("/competition/:ID", {
+	    template: '<competition></competition>'
 	})
 	.when("/league", {
-		template: '<league></league>'
+	    template: '<league></league>'
 	})
 	.when("/team/:ID", {
-		template: '<team></team>'
+	    template: '<team></team>'
 	})
 	.when("/match/:ID", {
-		template: '<match></match>'
+	    template: '<match></match>'
 	})
-  .when("/forum", {
-    templateUrl: '/Forum/index.php'
-  })
-  .when("/", {
-    template: '<main></main>'
-  });
+	.when("/ranking/:ID", {
+	    template: '<ranking></ranking>'
+	})
+	.when("/forum", {
+	    templateUrl: '/Forum/index.php'
+	})
+	.when("/", {
+	    template: '<main></main>'
+	});
 });
 
 LeagueManager.run(function($rootScope, $http, $location, $timeout) {

@@ -29,6 +29,16 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
 	    WHERE competition_id='.$id.' AND round='.$data[round];
 	  $result2 = mysqli_query($con, $sql2);
     while($data2 = mysqli_fetch_array($result2,MYSQL_ASSOC)) {
+      
+      //Ajout des pronos
+      $prono=[];
+      $data2[bets]=[];
+      $sqlProno="SELECT * FROM site_bets AS p, site_coachs AS c WHERE p.id_match=$data2[id] AND c.id=p.id_coach";
+      $resultProno = $con->query($sqlProno);
+      while($dataProno = $resultProno->fetch_assoc()) {
+	$data2[bets][]=$dataProno;
+      }
+      
       array_push($var2, $data2);
     }
     $data[matchs] = $var2;
@@ -41,8 +51,10 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
     while($var3 = mysqli_fetch_row($result3)) {
      $data[currentDay] = $var3[0];
     }
+
     array_push($var, $data);
-	}
+  }
+
 
   echo json_encode($var);
   die();

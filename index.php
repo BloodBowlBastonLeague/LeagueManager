@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<? include('phpBB_Connect.php') ?>
+<?php include('phpBB_Connect.php') ?>
 <html  ng-app="LeagueManager">
 <head>
   <meta charset="UTF-8" />
@@ -46,7 +46,9 @@
         <li><a class="nav <?echo $user->data['group'];?>" href="Forum">Forum</a></li>
         <li class="hidden-sm-down"><a class="nav" href="steam://run/236690">Jouer</a></li>
         <li class="hidden-sm-down"><a class="nav" href="https://discordapp.com/channels/159656062125998080/159656062125998080" target="_blank">Discord</a></li>
-        <? if($user->data['username'] != 'Anonymous'){ echo '<li><a class="nav">'.$user->data['username'].'</a></li>';} else { echo '<li ng-click="displayConnector()"><a class="nav">Connexion</a></li>';}?>
+        <?php
+	 if($user->data['username'] != 'Anonymous'){ echo '<li><a class="nav">'.$user->data['username'].'</a></li>';} else { echo '<li ng-click="displayConnector()"><a class="nav">Connexion</a></li>';}
+	?>
 
 
       </ul>
@@ -62,11 +64,11 @@
     <modal></modal>
   </div>
   <div id="Disclaimer">La BBBL est une ligue indépendante de joueurs et n'a aucun affiliation avec Games Workshop, Cyanide ou Focus.</div>
-  <script>
+<script>
     var Cyanide_Key = "<?=$Cyanide_Key?>";
     var User = "<?=$user->data['username'];?>";
     var Group = "<?=$user->data['group_id'];?>";
-  </script>
+</script>
   <!-- jquery -->
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <!-- Bootstrap -->
@@ -88,6 +90,6 @@
   <script src="controllers/match.js"></script>
   <script src="controllers/team.js"></script>
   <script src="controllers/modal.js"></script>
-
+  <script src="controllers/ranking.js"></script>
 </body>
 </html>
