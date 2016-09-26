@@ -5,10 +5,10 @@ LeagueManager.directive('competition', function(){
 
 		controller: function($scope, $rootScope, $http, $timeout,  $routeParams) {
 			$scope.competition = {};
-		        $scope.bet;
-		        $scope.affBets=false;
-		        $scope.errorBets=false;
-		        $scope.errorMessage="";
+		        $scope.bet; //Match courant sur lequel on fait les pronos
+		        $scope.affBets=false; //gere l'affichage de la fenetre des pronos
+		        $scope.errorBets=false; //gere l'affichage du message d'erreur
+		        $scope.errorMessage=""; //Message d'erreur
 			$rootScope.setColours([$rootScope.colourA,$rootScope.colourB]);
 			$rootScope.competitionId = $routeParams.ID;
 			$rootScope.orderFilter = 'round';
@@ -62,6 +62,7 @@ LeagueManager.directive('competition', function(){
 				}
 			};
 
+		    //Check si pronos déjà fait sur un match donné par le user connecté
 		    $scope.betsAlreadyDone = function(match){
  			for($v in match.bets){
 			    if(match.bets[$v]["name"]==$scope.user)
@@ -69,7 +70,8 @@ LeagueManager.directive('competition', function(){
 			}
 			return false;
 		    }
-
+		    
+		    //Check si Match joué ou non et renvoi faire la bonne fonctionnalité
 		    $scope.ifClicked= function(match){
 			if(match.started){
 			    $scope.matchDetail(match.id,match.started,match.team_id_1,match.team_id_2);
@@ -99,7 +101,7 @@ LeagueManager.directive('competition', function(){
 			return $res;
 		    };
 
-		    //Fonction pour gerer la couleur d'affichage des pronos
+		    //Ensemble de fonctions pour gerer la couleur d'affichage des pronos
 		    $scope.sup = function(bets){
 			return bets.team_score_1 > bets.team_score_2;
 		    }
@@ -118,7 +120,8 @@ LeagueManager.directive('competition', function(){
 			$scope.bet=match;
 			$scope.affBets=true;
 		    };
-		    
+
+		    //ferme la fenetre de pronostics
 		    $scope.betsOff = function(){
 			$scope.affBets=false;			    			
 			$scope.errorBets=false;
