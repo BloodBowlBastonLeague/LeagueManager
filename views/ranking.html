@@ -7,7 +7,7 @@
     </tr>
   </thead>
   <tbody class="table-hover">
-    <tr ng-repeat="r in ranking">
+    <tr ng-repeat="r in ranking | orderBy : 'score' : true ">
       <td class="text-left">{{r.name}}</td>
       <td class="text-center">{{r.score}}</td>
     </tr>
