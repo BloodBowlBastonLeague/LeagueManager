@@ -145,9 +145,31 @@
 <h3>Pronostics</h3>
 <span ng-if="errorBets"> <h4 style="color:red;" >{{errorMessage}}</h4></span>
 <form ng-submit="BetsDone(b1, b2)" method='post'>
-  <select ng-model="b1" ><option ng-value="0">0 <option ng-value="1">1 <option ng-value="2">2</select>
+  <select ng-model="b1" >
+    <option ng-value="0">0
+    <option ng-value="1">1
+    <option ng-value="2">2
+    <option ng-value="3">3
+    <option ng-value="4">4
+    <option ng-value="5">5
+    <option ng-value="6">6
+    <option ng-value="7">7
+    <option ng-value="8">8
+    <option ng-value="9">9
+  </select>
   <img class="teamLogo" src="resources/logo/Logo_{{bet.logo_1}}.png"><span style="color:#FFFFFF">{{bet.name_1}}</span></br>
-  <select ng-model="b2"><option ng-value="0">0 <option ng-value="1">1 <option ng-value="2">2</select>
+  <select ng-model="b2">
+    <option ng-value="0">0
+    <option ng-value="1">1
+    <option ng-value="2">2
+    <option ng-value="3">3
+    <option ng-value="4">4
+    <option ng-value="5">5
+    <option ng-value="6">6
+    <option ng-value="7">7
+    <option ng-value="8">8
+    <option ng-value="9">9
+  </select>
   <img class="teamLogo" src="resources/logo/Logo_{{bet.logo_2}}.png"><span style="color:#FFFFFF">{{bet.name_2}}</span></br>
 <input type="submit">
 </form>
