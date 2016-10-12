@@ -34,8 +34,8 @@ LeagueManager.directive('league', function(){
 					for(j=0; j<competitions.length; j++){
 							//alert(j);
 						$http.post('Backend/season_save.php',competitions[j]).then( function(result){
+
 							for(k=0; k<$scope.season.length; k++){
-								if($scope.season[k].competition_id == result.data ){
 									var match = {
 										"competition_id": $scope.season[k].competition_id,
 										"format": $scope.season[k].format,
@@ -57,7 +57,7 @@ LeagueManager.directive('league', function(){
 									//alert(k);
 									$http.post('Backend/season_match_save.php',match).then( function(result){ console.log(result.data); });
 
-								}
+
 							}
 						});
 					}

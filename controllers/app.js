@@ -37,6 +37,11 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 	$http.get('Backend/generic.php').success(function(result){
 		$rootScope.leagueStats = result;
 	});
+	//Récupération des parametres
+	$http.get('Backend/parameters.php').success(function(result){
+		$rootScope.parameters = result;
+		console.log(result);
+	});
 	//Récupération des articles
 	$http.get('Backend/articles.php').success(function(result){
 		$rootScope.articles = result;
@@ -47,7 +52,6 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 		//Récupération des compétitions
 		$http.get('Backend/competitions.php?active=1').success(function(result){
 			$rootScope.competitions = result;
-
 			for(j=0;j<$rootScope.competitions.length;j++){
 
 				for(k=0;k<Object.keys($rootScope.articles).length;k++){
@@ -93,6 +97,11 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 		return selection[Math.floor(Math.random() * selection.length)];
 	};
 
+	$rootScope.translate = function(param){
+		var idx = $rootScope.parameters.map( function(e){ return e.name; }).indexOf(param);
+		return $rootScope.parameters[idx].translation;
+	};
+
 	//Gestion des couleurs
 	//Couleurs de bases du site
 	$rootScope.colours = [];
@@ -115,5 +124,11 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 		$rootScope.reverse = ($rootScope.orderFilter === orderFilter) ? !$rootScope.reverse : false;
 		$rootScope.orderFilter = orderFilter;
 	};
+
+	//String to number
+	$rootScope.numerize = function(data){
+    return parseFloat(data);
+	};
+
 
 });

@@ -39,7 +39,7 @@
             <td class="text-center" ng-if="!showStats">{{player.attributes.ag}}</td>
             <td class="text-center" ng-if="!showStats">{{player.attributes.av}}</td>
             <td class="text-center hidden-xs-down" ng-if="!showStats">{{player.level}}</td>
-            <td class="text-center hidden-xs-down" ng-if="!showStats">{{player.xp}}</td>
+            <td class="text-center hidden-xs-down" ng-if="!showStats">{{numerize(player.xp)}}</td>
             <!-- Stats -->
             <td class="text-center" ng-if="showStats">{{player.stats.matchplayed}}</td>
             <td class="text-center" ng-if="showStats">{{player.stats.mvp}}</td>
@@ -92,7 +92,7 @@
         </ul><br />
         <ul class="teamDetails col2 list-unstyled">
           <li ng-if="team.rerolls>0">{{team.rerolls}} relance<span ng-if="team.rerolls>1">s</span></li>
-          <li ng-if="team.apothecary>0">{{team.apothecary}} apoticaire</li>
+          <li ng-if="team.apothecary>0">{{team.apothecary}} apothicaire</li>
           <li ng-if="team.cheerleaders>0">{{team.cheerleader}} pom-pom girl<span ng-if="team.cheerleaders>1">s</span></li>
           <li ng-if="team.assistantcoaches>0">{{team.assistantcoaches}} assistant<span ng-if="team.assistantcoaches>1">s</span></li>
         </ul><br/>

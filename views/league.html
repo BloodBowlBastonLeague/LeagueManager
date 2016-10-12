@@ -1,44 +1,68 @@
-<div class="row">
+<div class="row" >
   <div class="col-md-3">
-
     <div class="plain seconde" ng-style="colours[1].border">
-      <h3 ng-style="colours[1].color">La BBBL c'est</h3>
-      <ul class="hallOfFame list-unstyled">
-        <li><h3 ng-style="colours[1].color">32</h3> coachs actifs</li>
-        <li><h3 ng-style="colours[1].color">3 470</h3> matchs</li>
-        <li><h3 ng-style="colours[1].color">9 537</h3> touchdowns</li>
-        <li><h3 ng-style="colours[1].color">35 208</h3> sorties</li>
-        <li>et <h3 ng-style="colours[1].color">1 556</h3> morts...</li>
-      </ul>
-      <p>La BBBL c'est du sang, de la violence, des indiens... Chaque jour que les dieux font, nous nous echarpons joyeusement sur les terrains.</p>
-      <p>Mais toi le visiteur, toi le coach, toi le paria, toi aussi tu peux venir cramponner dans nos rangs.</p>
-      <p>Il te suffit de t'inscrire sur notre forum et de remplir le formulaire 22X47B, ainsi que l'appendice 42 et verser les 51 pièces d'or nécessaires au gobelin comptable de permanence.</p>
+      <h3 ng-style="colours[1].color">Joute de Couronne</h3>
       <div class="spacer"></div>
       <!--div class="button" ng-click="goToPage('league')"-->
-      <div class="button" ng-click="seasonUpdate('BBBL','La Mini Cup')">
+      <div class="button" ng-click="seasonSave('Elite','BBBL','Joute de Couronne')">
         <div ng-include="'resources/img/Button_1.svg'"></div>
-        <div class="label">Nous rejoindre</div>
+        <div class="label">Update</div>
       </div>
     </div>
-
-
-    <div id="randomPresentation1" class="plain seconde" ng-click="displayReader(randomSide.article_id)"  ng-style="colours[1].border">
-      <div class="image"></div>
-      <div class="text"><h4 ng-bind-html="randomSide.title"></h4></div>
-    </div>
-  </div>
-  <div class="col-md-6">
-    <article id="randomUne0" class="plain prime" ng-style="colours[0].border">
-      <h3 ng-style="colours[0].color" ng-click="displayReader(articles[0].article_id)" ng-bind-html="articles[0].title"></h3>
-      <p><img ng-if="articles[0].image==1" class="col-xs-4  left" ng-click="displayReader(randomElite.article_id)" src="resources/img/articles/article_{{randomElite.article_id}}.jpg"/>
-      <span ng-bind-html="articles[0].summary">Les gobelins pédalent</span> <a ng-style="colours[0].color" ng-click="displayReader(articles[0].article_id)">En savoir plus</a></p>
-    </article>
   </div>
   <div class="col-md-3">
-    <article class="plain seconde" ng-repeat="article in articles | orderBy: 'order'"  ng-if="article.category=='presentation' && article.random == 0"  ng-style="colours[0].border">
-      <h3 ng-bind-html="article.title"></h3>
-      <p ng-bind-html="article.summary"></p>
-      <h6 ng-click="displayReader(article.article_id)">En savoir plus...</h6>
-    </article>
+    <div class="plain seconde" ng-style="colours[1].border">
+      <h3 ng-style="colours[1].color">Joute de Carcassonne</h3>
+      <div class="spacer"></div>
+      <!--div class="button" ng-click="goToPage('league')"-->
+      <div class="button" ng-click="seasonSave('Elite','BBBL','Joute de Carcassonne')">
+        <div ng-include="'resources/img/Button_1.svg'"></div>
+        <div class="label">Update</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="plain seconde" ng-style="colours[1].border">
+      <h3 ng-style="colours[1].color">Joute de Parravon</h3>
+      <div class="spacer"></div>
+      <!--div class="button" ng-click="goToPage('league')"-->
+      <div class="button" ng-click="seasonSave('Prestige','BBBL','Joute de Parravon')">
+        <div ng-include="'resources/img/Button_1.svg'"></div>
+        <div class="label">Update</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="plain seconde" ng-style="colours[1].border">
+      <h3 ng-style="colours[1].color">Joute de Bordeleaux</h3>
+      <div class="spacer"></div>
+      <!--div class="button" ng-click="goToPage('league')"-->
+      <div class="button" ng-click="seasonSave('Prestige','BBBL','Joute de Bordeleaux')">
+        <div ng-include="'resources/img/Button_1.svg'"></div>
+        <div class="label">Update</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="plain seconde" ng-style="colours[1].border">
+      <h3 ng-style="colours[1].color">Joute de Bastogne</h3>
+      <div class="spacer"></div>
+      <!--div class="button" ng-click="goToPage('league')"-->
+      <div class="button" ng-click="seasonSave('Espoir','BBBL','Joute de Bastogne')">
+        <div ng-include="'resources/img/Button_1.svg'"></div>
+        <div class="label">Update</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="plain seconde" ng-style="colours[1].border">
+      <h3 ng-style="colours[1].color">Joute de Moussillon</h3>
+      <div class="spacer"></div>
+      <!--div class="button" ng-click="goToPage('league')"-->
+      <div class="button" ng-click="seasonSave('Espoir','BBBL','Joute de Moussillon')">
+        <div ng-include="'resources/img/Button_1.svg'"></div>
+        <div class="label">Update</div>
+      </div>
+    </div>
   </div>
 </div>

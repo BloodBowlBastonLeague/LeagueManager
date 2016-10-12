@@ -13,7 +13,7 @@ $con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
 if (!$con) { die('Could not connect: ' . mysqli_error()); }
   mysqli_set_charset($con,'utf8');
 
-	$sql = "SELECT c.id, l.name AS league, l.game AS game, c.pool, c.site_name, c.site_order, c.season, c.json, c.active, c.competition_mode, c.game_name, c.champion  FROM site_competitions AS c INNER JOIN site_leagues AS l ON l.id=c.league_id WHERE c.id = ".$id;
+	$sql = "SELECT c.id, c.league_name AS division, c.game, c.pool, c.site_name, c.site_order, c.season, c.json, c.active, c.competition_mode, c.game_name, c.champion  FROM site_competitions AS c  WHERE c.id = ".$id;
 	$result = mysqli_query($con, $sql);
 	$data = mysqli_fetch_object($result);
 
@@ -22,6 +22,8 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
           id,
           logo,
           team,
+          color_1,
+          color_2,
           coach,
           COUNT(case when score_1 > score_2 then 1 end) AS V,
           COUNT(case when score_1 = score_2 then 1 end) AS N,
@@ -33,12 +35,12 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
               + case when score_1 = score_2 then 1 else 0 end
           ) AS Pts
           FROM (
-          SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.logo AS logo, site_teams.name AS team, site_coachs.name AS coach, score_1, score_2, sustainedcasualties_1, sustainedcasualties_2, sustaineddead_1, sustaineddead_2 FROM site_matchs
+          SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.logo AS logo, site_teams.name AS team, site_teams.color_1 AS color_1, site_teams.color_2 AS color_2, site_coachs.name AS coach, score_1, score_2, sustainedcasualties_1, sustainedcasualties_2, sustaineddead_1, sustaineddead_2 FROM site_matchs
           LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_1
           INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
           WHERE competition_id = '.$id.' AND site_matchs.started IS NOT NULL
           UNION
-          SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.logo AS logo, site_teams.name AS team, site_coachs.name AS coach, score_2, score_1, sustainedcasualties_2, sustainedcasualties_1, sustaineddead_2, sustaineddead_1 FROM site_matchs
+          SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.logo AS logo, site_teams.name AS team, site_teams.color_1 AS color_1, site_teams.color_2 AS color_2, site_coachs.name AS coach, score_2, score_1, sustainedcasualties_2, sustainedcasualties_1, sustaineddead_2, sustaineddead_1 FROM site_matchs
           LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_2
           INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
           WHERE competition_id='.$id.' AND site_matchs.started IS NOT NULL

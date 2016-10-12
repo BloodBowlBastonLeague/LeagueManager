@@ -1,9 +1,9 @@
 
 
 <div id="MatchWeek" class="row">
-  <div class="col-xs-12">
+  <div class="col-xs-12 text-center">
     <!-- Championship / Championnat -->
-    <h3 class="affiche">{{title}}</h3>
+    <img class="banner" src="../resources/img/Banner_{{competition.division}}.png">
     <h2  class="affiche" ng-style="colours[0].color">
       <span ng-if="competition.competition_mode=='Coupe'">{{finals[matchDay.round-1]}}</span>
       <span ng-if="competition.competition_mode!='Coupe'">Journée {{matchDay.round}}</span>
@@ -11,10 +11,10 @@
     <div class="col-xs-12 match"   ng-repeat="match in matchDay.matchs">
       <div class="teamName text-right"> {{match.name_1}}</div>
       <img class="teamLogo" src="../resources/logo/Logo_{{match.logo_1}}.png">
-      <img class="versus" ng-if="!match.started" src="resources/img/vs.png">
+      <img class="versus" ng-if="!match.started" src="../resources/img/vs.png">
       <span class="versus" ng-if="match.started.length>0" ng-style="colours[0].color"> {{match.score_1}} - {{match.score_2}} </span>
       <img class="teamLogo" src="../resources/logo/Logo_{{match.logo_2}}.png">
-      <div class="teamName"> {{match.name_2}}</div>
+      <div class="teamName text-left"> {{match.name_2}}</div>
       <hr ng-style="colours[0].border">
     </div>
 

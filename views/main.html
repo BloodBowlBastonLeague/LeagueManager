@@ -1,179 +1,192 @@
 <div class="row">
-<div class="col-xl-3 hidden-lg-down">
-  <div class="image">
-    <img src="resources/img/BBBL2_5x.png">
-  </div>
-  <div class="plain seconde" ng-style="colours[1].border">
-    <h3 ng-style="colours[1].color">La BBBL c'est</h3>
-    <ul class="hallOfFame list-unstyled">
-      <li><h3 ng-style="colours[1].color">{{leagueStats.coachs}}</h3> coachs actifs</li>
-      <li><h3 ng-style="colours[1].color">{{leagueStats.matches}}</h3> matchs</li>
-      <li><h3 ng-style="colours[1].color">{{leagueStats.TD}}</h3> touchdowns</li>
-      <li><h3 ng-style="colours[1].color">{{leagueStats.casualties}}</h3> sorties</li>
-      <li>et <h3 ng-style="colours[1].color">{{leagueStats.death}}</h3> morts...</li>
-    </ul>
-    <p>La BBBL c'est du sang, de la violence, des indiens... Chaque jour que les dieux font, nous nous echarpons joyeusement sur les terrains.</p>
-    <p>Mais toi le visiteur, toi le coach, toi le paria, toi aussi tu peux venir cramponner dans nos rangs.</p>
-    <p>Il te suffit de t'inscrire sur notre forum et de remplir le formulaire 22X47B, ainsi que l'appendice 42 et verser les 51 pièces d'or nécessaires au gobelin comptable de permanence.</p>
-    <div class="spacer"></div>
-        <a class="button" href="Forum">
-          <div ng-include="'resources/img/Button_1.svg'"></div>
-          <div class="label">Découvrir</div>
-        </a>
-  </div>
-</div>
-<div class="col-lg-12 col-xl-9">
-  <div class="row">
-    <div class="col-md-12">
-      <div class="plain prime champion" ng-style="colours[0].border">
-        <img src="resources/img/bbcup.png"><div class="spacer"></div>
-        <h3>CHAMPION</h3>
-        <h4 ng-style="colours[0].color" ng-click="">Blood Bowl Cup 2516</h4>
-        <hr>
-        <h1 class="zelda" ng-style="colours[4].color" ng-click="goToPage('team/269')">Nobilis Gloria</h1>
-        <hr>
-        <h2 ng-style="colours[5].color">Feuille 2 Chêne</h2>
-        <div id="HelmetRight">
-          <div>
-            <div class="helmet" ng-include="'resources/img/HelmetRight.svg'"></div>
-            <div id="LogoRight" class="logo"></div>
-          </div>
-        </div>
-        <div class="spacer"></div>
-        <div class="button" ng-click="goToPage('competition/197')">
-          <div ng-include="'resources/img/Button_0.svg'"></div>
-          <div class="label">la compétition</div>
-        </div>
+  <div class="col-xl-3 hidden-lg-down">
+    <div class="image">
+      <img src="resources/img/BBBL2_5x.png">
     </div>
-  </div>
-    <div class="col-md-12">
-      <div class="plain prime champion minicup" ng-style="colours[0].border">
-        <h3>VAINQUEUR</h3>
-        <h4 ng-style="colours[0].color" ng-click="">Mini Cup 2516</h4>
-        <hr>
-        <h1 class="zelda" ng-style="colours[2].color" ng-click="goToPage('team/366' )">Ancestral Recall</h1>
-        <hr>
-        <h2 ng-style="colours[3].color">Cham</h2>
-        <div id="HelmetLeft">
-          <div>
-            <div class="helmet" ng-include="'resources/img/HelmetLeft.svg'"></div>
-            <div id="LogoLeft" class="logo"></div>
-          </div>
-        </div>
-        <div class="button" ng-click="goToPage('competition/199')">
-          <div ng-include="'resources/img/Button_0.svg'"></div>
-          <div class="label">la compétition</div>
-        </div>
-    </div>
-
-  <!-- Finale
-  <div class="col-md-12">
-    <div class="plain prime" ng-style="colours[0].border">
-    <h3 ng-style="colours[0].color" ng-click="">Blood Bowl Cup</h3>
-    <h1 class="affiche">Finale<br/>lundi 29 à 21h15</h1>
-    <div class="row">
-
-      <div class="col-md-5 affiche zelda" ng-click="goToPage('team/' + affiche.team_id_1 )">
-        <div id="HelmetLeft" class="affiche">
-          <div>
-            <div class="helmet" ng-include="'resources/img/HelmetLeft.svg'"></div>
-            <div id="LogoLeft" class="logo"></div>
-          </div>
-        </div>
-        <div class="noselect" ng-if="!activePlayer">
-          <hr>
-          <h2 class="zelda" ng-style="colours[2].color" ng-click="goToPage('team/' + affiche.team_id_1 )">{{affiche.team_1_name}}</h2>
-          <div class="teamBoard">
-            <h3><span ng-style="colours[3].color">{{affiche.coach_1}}</span></h3>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-2 affiche">
-        <div id="Versus"></div>
-      </div>
-
-      <div class="col-md-5 affiche zelda" ng-click="goToPage('team/' + affiche.team_id_2 )">
-
-        <div id="HelmetRight" class="affiche">
-          <div>
-            <div class="helmet" ng-include="'resources/img/HelmetRight.svg'"></div>
-            <div id="LogoRight" class="logo"></div>
-          </div>
-        </div>
-        <div class="noselect" ng-if="!activePlayer" >
-          <hr>
-          <h2 class="zelda" ng-style="colours[4].color" ng-click="goToPage('team/' + affiche.team_id_2 )">{{affiche.team_2_name}}</h2>
-          <div class="teamBoard">
-            <h3><span ng-style="colours[5].color">{{affiche.coach_2}}</span></h3>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="spacer"></div>
-    <div class="button" ng-click="goToPage('competition/198')">
-      <div ng-include="'resources/img/Button_0.svg'"></div>
-      <div class="label">la compétition</div>
-    </div>
-    </div>
-  </div-->
-
-  <!--div class="plain prime zelda" ng-class="{'col-md-8': competition.competition_mode=='Coupe', 'col-md-3':competition.competition_mode!=='Coupe' }" ng-repeat="competition in competitions | orderBy: 'site_order'" ng-if="competition.id == 199 " ng-click="goToPage('competition/'+competition.id)" ng-style="colours[0].border">
-    <h3 ng-style="colours[0].color">Demi-finales</h3>
-    <table ng-if="competition.competition_mode!=='Coupe'">
-      <tbody>
-        <tr ng-repeat="team in competition.standing | orderBy:'standing'" ng-class="{gold: $index+1 == 1 && competition.pool!='B', silver: $index+1 == 2 && competition.pool!='B', bronze: $index+1 == 3 && competition.pool!='B', relegated : $index+1 > competition.json.length-3 && competition.pool=='B'}" ng-style="colours[0].border">
-          <td>{{$index+1}}</td>
-          <td class="text-left">{{team.team}}</td>
-          <td>{{team.Pts}}</td>
-        </tr>
-      </tbody>
-    </table>
-    <div ng-if="competition.competition_mode=='Coupe'">
-      <div>
-      <br/>
-      <h4>1/{{competition.calendar[2].round}} de finale</h4>
-      <div class="vs col-xs-3" ng-class="{zelda:match.id}" ng-repeat="match in competition.calendar[2].matchs">
-        <div ng-click="matchDetail(match.id,match.started,match.team_id_1,match.team_id_2)" >
-          <img class="teamLogo" src="resources/logo/Logo_{{match.logo_1}}.png">
-          <span ng-if="!match.started" ng-style="colours[0].color"> VS </span>
-          <span ng-if="match.started.length>0" ng-style="colours[0].color"> {{match.score_1}} - {{match.score_2}} </span>
-          <img class="teamLogo" src="resources/logo/Logo_{{match.logo_2}}.png">
-        </div>
-      </div>
-      </div>
-      <br/>
-      <br/>&nbsp;
-    </div>
-  </div>
-</div>
-</div-->
-<!-- Championnat normal
-div class="col-lg-9 col-xl-6">
-  <div ng-repeat="competition in competitions | orderBy: site_order" ng-class="{'col-md-6': competition.site_order!=0, 'col-md-12': competition.site_order==0}" class="spHeight">
-    <article id="randomUne{{$index}}" class="plain prime" ng-style="colours[0].border">
-      <h3 ng-style="colours[0].color" ng-click="displayReader(competition.article.article_id)" ng-bind-html="competition.article.title">{{competition.league}}</h3>
-      <p><img ng-if="competition.article.image" class="col-xs-4 left" ng-click="displayReader(competition.article.article_id)" src="resources/img/articles/article_{{competition.article.id}}.jpg"/>
-      <span ng-bind-html="competition.article.summary">Les gobelins pédalent</span> <a ng-style="colours[0].color" ng-click="displayReader(competition.article)">En savoir plus</a></p>
+    <div class="plain seconde" ng-style="colours[1].border">
+      <h3 ng-style="colours[1].color">Légendaires</h3>
+      <p>Woody Roots Bush Bombers, Darkside Magic, Rats Fils Tauleurs... Ces équipes comme beaucoup d'autres ont marqué de leur empreinte la BBBL.<br/>
+      Tribunes vous offres aujourd'hui un accés illimité à l'Histoire de la ligue</p>
       <div class="spacer"></div>
-      <div class="button" ng-click="goToPage('competition/'+competition.id)">
-        <div ng-include="'resources/img/Button_0.svg'"></div>
-        <div class="label">{{competition.league}} {{competition.pool}}</div>
-      </div>
-    </article>
+            <div class="button" ng-click="goToPage('archives')">
+              <div ng-include="'resources/img/Button_1.svg'"></div>
+              <div class="label">les Archives</div>
+            </div>
+    </div>
+    <div class="plain seconde" ng-style="colours[1].border">
+      <h3 ng-style="colours[1].color">La BBBL c'est</h3>
+      <ul class="hallOfFame list-unstyled">
+        <li><h3 ng-style="colours[1].color">{{leagueStats.coachs}}</h3> coachs actifs</li>
+        <li><h3 ng-style="colours[1].color">{{leagueStats.matches}}</h3> matchs</li>
+        <li><h3 ng-style="colours[1].color">{{leagueStats.TD}}</h3> touchdowns</li>
+        <li><h3 ng-style="colours[1].color">{{leagueStats.casualties}}</h3> sorties</li>
+        <li>et <h3 ng-style="colours[1].color">{{leagueStats.death}}</h3> morts...</li>
+      </ul>
+      <p>La BBBL c'est du sang, de la violence, des indiens... Chaque jour que les dieux font, nous nous echarpons joyeusement sur les terrains.</p>
+      <p>Mais toi le visiteur, toi le coach, toi le paria, toi aussi tu peux venir cramponner dans nos rangs.</p>
+      <p>Il te suffit de t'inscrire sur notre forum et de remplir le formulaire 22X47B, ainsi que l'appendice 42 et verser les 51 pièces d'or nécessaires au gobelin comptable de permanence.</p>
+      <div class="spacer"></div>
+          <a class="button" href="Forum">
+            <div ng-include="'resources/img/Button_1.svg'"></div>
+            <div class="label">Découvrir</div>
+          </a>
+    </div>
+
   </div>
-</div>
-<div class="col-lg-3 hidden-md-down stick-right">
-    <div class="plain prime side zelda" ng-repeat="competition in competitions" ng-click="goToPage('competition/'+competition.id)" ng-style="colours[0].border">
-      <h3 ng-style="colours[0].color">{{competition.league}} {{competition.pool}} {{competition.site_name}}</h3>
-      <table>
+  <div class="col-xl-9 col-lg-12 col-xl-9">
+    <div class="row">
+      <!--div class="col-md-12">
+        <div class="plain prime champion" ng-style="colours[0].border">
+          <img src="resources/img/bbcup.png"><div class="spacer"></div>
+          <h3>CHAMPION</h3>
+          <h4 ng-style="colours[0].color" ng-click="">Blood Bowl Cup 2516</h4>
+          <hr>
+          <h1 class="zelda" ng-style="colours[4].color" ng-click="goToPage('team/269')">Nobilis Gloria</h1>
+          <hr>
+          <h2 ng-style="colours[5].color">Feuille 2 Chêne</h2>
+          <div id="HelmetRight">
+            <div>
+              <div class="helmet" ng-include="'resources/img/HelmetRight.svg'"></div>
+              <div id="LogoRight" class="logo"></div>
+            </div>
+          </div>
+          <div class="spacer"></div>
+          <div class="button" ng-click="goToPage('competition/197')">
+            <div ng-include="'resources/img/Button_0.svg'"></div>
+            <div class="label">la compétition</div>
+          </div>
+      </div>
+    </div>
+      <div class="col-md-12">
+        <div class="plain prime champion minicup" ng-style="colours[0].border">
+          <h3>VAINQUEUR</h3>
+          <h4 ng-style="colours[0].color" ng-click="">Mini Cup 2516</h4>
+          <hr>
+          <h1 class="zelda" ng-style="colours[2].color" ng-click="goToPage('team/366' )">Ancestral Recall</h1>
+          <hr>
+          <h2 ng-style="colours[3].color">Cham</h2>
+          <div id="HelmetLeft">
+            <div>
+              <div class="helmet" ng-include="'resources/img/HelmetLeft.svg'"></div>
+              <div id="LogoLeft" class="logo"></div>
+            </div>
+          </div>
+          <div class="button" ng-click="goToPage('competition/199')">
+            <div ng-include="'resources/img/Button_0.svg'"></div>
+            <div class="label">la compétition</div>
+          </div>
+      </div-->
+
+    <!-- Finale
+    <div class="col-md-12">
+      <div class="plain prime" ng-style="colours[0].border">
+      <h3 ng-style="colours[0].color" ng-click="">Blood Bowl Cup</h3>
+      <h1 class="affiche">Finale<br/>lundi 29 à 21h15</h1>
+      <div class="row">
+
+        <div class="col-md-5 affiche zelda" ng-click="goToPage('team/' + affiche.team_id_1 )">
+          <div id="HelmetLeft" class="affiche">
+            <div>
+              <div class="helmet" ng-include="'resources/img/HelmetLeft.svg'"></div>
+              <div id="LogoLeft" class="logo"></div>
+            </div>
+          </div>
+          <div class="noselect" ng-if="!activePlayer">
+            <hr>
+            <h2 class="zelda" ng-style="colours[2].color" ng-click="goToPage('team/' + affiche.team_id_1 )">{{affiche.team_1_name}}</h2>
+            <div class="teamBoard">
+              <h3><span ng-style="colours[3].color">{{affiche.coach_1}}</span></h3>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2 affiche">
+          <div id="Versus"></div>
+        </div>
+
+        <div class="col-md-5 affiche zelda" ng-click="goToPage('team/' + affiche.team_id_2 )">
+
+          <div id="HelmetRight" class="affiche">
+            <div>
+              <div class="helmet" ng-include="'resources/img/HelmetRight.svg'"></div>
+              <div id="LogoRight" class="logo"></div>
+            </div>
+          </div>
+          <div class="noselect" ng-if="!activePlayer" >
+            <hr>
+            <h2 class="zelda" ng-style="colours[4].color" ng-click="goToPage('team/' + affiche.team_id_2 )">{{affiche.team_2_name}}</h2>
+            <div class="teamBoard">
+              <h3><span ng-style="colours[5].color">{{affiche.coach_2}}</span></h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="spacer"></div>
+      <div class="button" ng-click="goToPage('competition/198')">
+        <div ng-include="'resources/img/Button_0.svg'"></div>
+        <div class="label">la compétition</div>
+      </div>
+      </div>
+    </div-->
+
+    <!--div class="plain prime zelda" ng-class="{'col-md-8': competition.competition_mode=='Coupe', 'col-md-3':competition.competition_mode!=='Coupe' }" ng-repeat="competition in competitions | orderBy: 'site_order'" ng-if="competition.id == 199 " ng-click="goToPage('competition/'+competition.id)" ng-style="colours[0].border">
+      <h3 ng-style="colours[0].color">Demi-finales</h3>
+      <table ng-if="competition.competition_mode!=='Coupe'">
         <tbody>
-          <tr ng-repeat="team in competition.json | orderBy:'standing'" ng-class="{gold: $index+1 == 1 && competition.pool!='B', silver: $index+1 == 2 && competition.pool!='B', bronze: $index+1 == 3 && competition.pool!='B', relegated : $index+1 > competition.json.length-3 && competition.pool=='B'}" ng-style="colours[0].border">
+          <tr ng-repeat="team in competition.standing | orderBy:'standing'" ng-class="{gold: $index+1 == 1 && competition.pool!='B', silver: $index+1 == 2 && competition.pool!='B', bronze: $index+1 == 3 && competition.pool!='B', relegated : $index+1 > competition.json.length-3 && competition.pool=='B'}" ng-style="colours[0].border">
             <td>{{$index+1}}</td>
             <td class="text-left">{{team.team}}</td>
             <td>{{team.Pts}}</td>
           </tr>
         </tbody>
       </table>
+      <div ng-if="competition.competition_mode=='Coupe'">
+        <div>
+        <br/>
+        <h4>1/{{competition.calendar[2].round}} de finale</h4>
+        <div class="vs col-xs-3" ng-class="{zelda:match.id}" ng-repeat="match in competition.calendar[2].matchs">
+          <div ng-click="matchDetail(match.id,match.started,match.team_id_1,match.team_id_2)" >
+            <img class="teamLogo" src="resources/logo/Logo_{{match.logo_1}}.png">
+            <span ng-if="!match.started" ng-style="colours[0].color"> VS </span>
+            <span ng-if="match.started.length>0" ng-style="colours[0].color"> {{match.score_1}} - {{match.score_2}} </span>
+            <img class="teamLogo" src="resources/logo/Logo_{{match.logo_2}}.png">
+          </div>
+        </div>
+        </div>
+        <br/>
+        <br/>&nbsp;
+      </div>
     </div>
-</div-->
+  </div>
+  </div-->
+      <!--Championnat normal-->
+      <div class="col-xl-9">
+        <div ng-repeat="competition in competitions | orderBy: site_order" ng-class="{'col-md-6': competition.site_order!=0, 'col-md-12': competition.site_order==0}" class="spHeight">
+          <article id="randomUne{{$index}}" class="plain prime" ng-style="colours[0].border">
+            <h3 ng-style="colours[0].color" ng-click="displayReader(competition.article.article_id)" ng-bind-html="competition.article.title">{{competition.league}}</h3>
+            <p><img ng-if="competition.article.image" class="col-xs-4 left" ng-click="displayReader(competition.article.article_id)" src="resources/img/articles/article_{{competition.article.id}}.jpg"/>
+            <span ng-bind-html="competition.article.summary">Les gobelins pédalent</span> <a ng-style="colours[0].color" ng-click="displayReader(competition.article)">En savoir plus</a></p>
+            <div class="spacer"></div>
+            <div class="button" ng-click="goToPage('competition/'+competition.id)">
+              <div ng-include="'resources/img/Button_0.svg'"></div>
+              <div class="label">{{competition.division}} {{competition.pool}}</div>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="col-lg-3 hidden-md-down stick-right">
+          <div class="plain prime side zelda" ng-repeat="competition in competitions" ng-click="goToPage('competition/'+competition.id)" ng-style="colours[0].border">
+            <h3 ng-style="colours[0].color">{{competition.division}} {{competition.pool}} {{competition.site_name}}</h3>
+            <table>
+              <tbody>
+                <tr ng-repeat="team in competition.standing | orderBy:'standing'" ng-class="{gold: $index+1 == 1, silver: $index+1 == 2, bronze: $index+1 == 3}" ng-style="colours[0].border">
+                  <td>{{$index+1}}</td>
+                  <td class="text-left">{{team.team}}</td>
+                  <td>{{team.Pts}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+  </div>
 </div>

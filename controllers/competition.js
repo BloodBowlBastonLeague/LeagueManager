@@ -16,7 +16,7 @@ LeagueManager.directive('competition', function(){
 
 			$http.get('Backend/competition.php?id='+$rootScope.competitionId).success(function(result){
 				$scope.competition = result;
-				$rootScope.title = $scope.competition.league + ' - ' + $scope.competition.season;
+				$rootScope.title = $scope.competition.division + ' - ' + $scope.competition.season;
 			});
 
 			$scope.competitionArticles = function(){
@@ -52,9 +52,9 @@ LeagueManager.directive('competition', function(){
 					$scope.goToPage('match/'+id)
 				}
 				else{
-					if($rootScope.admin==1){
-						$scope.displayMatchForm(id,team1,team2);
-					}
+					//if($rootScope.admin==1){
+				//		$scope.displayMatchForm(id,team1,team2);
+					//}
 				}
 			};
 
@@ -62,7 +62,7 @@ LeagueManager.directive('competition', function(){
 				$http.get('Backend/calendar.php?id='+$routeParams.ID).success(function(result){
 					$scope.calendar = result;
 					$scope.currentDay = $scope.calendar[0].currentDay;
-					$scope.maxDay = $scope.calendar[$scope.calendar.length].currentDay;
+					$scope.maxDay = $scope.calendar.length;
 				});
 			};
 

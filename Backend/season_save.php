@@ -13,17 +13,16 @@ include($phpbb_root_path . 'config.' . $phpEx);
 if (!$con) { die('Could not connect: ' . mysqli_error()); }
     mysqli_set_charset($con,'utf8');
 
-    $league = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM site_leagues WHERE game='BB2' AND name='".str_replace("'","\'",$request->league)."'"));
     $competition = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM site_competitions WHERE cyanide_id='".$request->competition_id."'"));
 
     //Update
-    if ( $competition[0] > 0 ){
-    }
-    else{
-      $sql = "INSERT INTO site_competitions ( cyanide_id, league_id, param_name_format, game_name)
-      VALUES (".$request->competition_id.",".$league[0].",'".$request->format."','".$request->competition."')";
+  //  if ( $competition[0] > 0 ){
+  //  }
+  //  else{
+      $sql = "INSERT INTO site_competitions ( cyanide_id, league_name, param_name_format, game_name)
+      VALUES (".$request->competition_id.",'".$request->league."','".$request->format."','".$request->competition."')";
       $con->query($sql);
-    }
-    echo $request->competition_id;
+  //  }
+    echo $sql;
     die();
 ?>

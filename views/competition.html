@@ -1,6 +1,6 @@
 
 <div class="row tabRow" ng-if="competition.active==1 && competition.competition_mode!='Coupe'">
-  <!--div class="col-lg-5 firstTab"></div-->
+  <div class="col-lg-2 firstTab"></div>
   <div class="col-lg-2 tab" ng-if="tab.id != competition.id" ng-repeat="tab in competitions" ng-click="goToPage('competition/'+tab.id)" >{{tab.name}}</div>
 </div>
 <div class="row">
@@ -37,7 +37,7 @@
         </tbody>
       </table>
       <div class="spacer"></div>
-      <div class="button" ng-if="admin==1" ng-click="competitionUpdate('BBBL',competition.game_name)">
+      <div class="button" ng-click="competitionUpdate('BBBL',competition.game_name)">
         <div ng-include="'resources/img/Button_0.svg'"></div>
         <div class="label">Mise à jour</div>
       </div>
@@ -90,7 +90,7 @@
         </tbody>
       </table>
       <div class="spacer"></div>
-      <div class="button" ng-if="admin==1" ng-click="competitionUpdate('BBBL',competition.game_name)">
+      <div class="button" ng-click="competitionUpdate('BBBL',competition.game_name)">
         <div ng-include="'resources/img/Button_0.svg'"></div>
         <div class="label">Mise à jour</div>
       </div>
@@ -117,7 +117,7 @@
       </h3>
       <h3 ng-if="matchDay.round != currentDay" ng-style="colours[0].color" ng-click="sortBy('day')" class="zelda"><span ng-if="competition.competition_mode=='Coupe'">{{finals[matchDay.round-1]}}</span><span ng-if="competition.competition_mode!='Coupe'">Journée {{matchDay.round}}</span> <div class="triangle" ng-class="{down: reverse}" ng-style="colours[0].border"></div></h3>
       <div class="match x-center">
-        <div class="vs col-xs-3" ng-class="{zelda:match.id}" ng-repeat="match in matchDay.matchs">
+        <div class="vs col-xs-4" ng-class="{zelda:match.id}" ng-repeat="match in matchDay.matchs">
           <div ng-click="matchDetail(match.id,match.started,match.team_id_1,match.team_id_2)" >
             <img class="teamLogo" src="resources/logo/Logo_{{match.logo_1}}.png">
             <span ng-if="!match.started && matchDay.round == currentDay" > VS </span>
