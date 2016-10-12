@@ -18,7 +18,7 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
     $row = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM site_players WHERE name='".str_replace("'","\'",$request->name)."' AND dead !=1 AND  team_id = ".$team[0] ));
 
     //Update
-    if ( $row[0] > 0){
+    if ( strlen($row[0]) > 0){
 	    $sql = "UPDATE site_players SET team_id = ".$team[0].",
           level = ".$request->level.",
           xp = ".$request->xp.",
@@ -26,7 +26,7 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
           skills = '".$request->skills."',
           dead = ".$request->dead.",
           injured = ".$request->injured."
-          WHERE name='".str_replace("'","\'",$request->name)."' AND  team_id = ".$request->team_id;
+          WHERE id = ".$row[0];
 	    $result = mysqli_query($con, $sql);
       $player = $row[0];
     }
@@ -39,9 +39,6 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
     $sql2 = "INSERT INTO site_players_stats (player_id, match_id, matchplayed, mvp, inflictedpasses, inflictedcatches, inflictedinterceptions, inflictedtouchdowns, inflictedcasualties, inflictedstuns, inflictedko, inflictedinjuries, inflicteddead, inflictedtackles, inflictedmeterspassing, inflictedmetersrunning, sustainedinterceptions, sustainedcasualties, sustainedstuns, sustainedko, sustainedinjuries, sustainedtackles, sustaineddead)
     VALUES (".$player.",".$match[0].",".$request->matchplayed.",".$request->mvp.",".$request->inflictedpasses.",".$request->inflictedcatches.",".$request->inflictedinterceptions.",".$request->inflictedtouchdowns.",".$request->inflictedcasualties.",".$request->inflictedstuns.",".$request->inflictedko.",".$request->inflictedinjuries.",".$request->inflicteddead.",".$request->inflictedtackles.",".$request->inflictedmeterspassing.",".$request->inflictedmetersrunning.",".$request->sustainedinterceptions.",".$request->sustainedcasualties.",".$request->sustainedstuns.",".$request->sustainedko.",".$request->sustainedinjuries.",".$request->sustainedtackles.",".$request->sustaineddead.")";
     $con->query($sql2);
-
-    echo $sql2;
-
 
     die();
 ?>

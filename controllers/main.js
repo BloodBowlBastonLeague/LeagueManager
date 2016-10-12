@@ -33,8 +33,8 @@ LeagueManager.directive('main', function(){
 
 					}*/
 
-					//$rootScope.setColours([$rootScope.colourA,$rootScope.colourB,result.team_1_color_1,result.team_1_color_2,result.team_2_color_1,result.team_2_color_2]);
-			$rootScope.setColours([$rootScope.colourA,$rootScope.colourB,'#6CB18F','#999999','#D7D274','#D7C024']);
+					$rootScope.setColours([$rootScope.colourA,$rootScope.colourB,result.team_1_color_1,result.team_1_color_2,result.team_2_color_1,result.team_2_color_2]);
+			//$rootScope.setColours([$rootScope.colourA,$rootScope.colourB,'#6CB18F','#999999','#D7D274','#D7C024']);
 
 					//Team Images
 					$('#LogoLeft').css({"background": "url(resources/logo/Logo_Neutre_22.png) center center no-repeat", "background-size":"cover"});

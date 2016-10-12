@@ -65,7 +65,7 @@
   <script>
     var Cyanide_Key = "<?=$Cyanide_Key?>";
     var User = "<?=$user->data['username'];?>";
-    var Group = "<?=$user->data['group_id'];?>";
+    var Group = 9;
   </script>
   <!-- jquery -->
   <script src="bower_components/jquery/dist/jquery.min.js"></script>

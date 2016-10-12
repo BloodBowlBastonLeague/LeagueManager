@@ -50,32 +50,43 @@
   <h3 ng-style="modal.color">Effectif</h3>
   <table>
     <thead>
-      <tr ng-style="modal.background">
-        <th class="text-center">N&#176;</th>
-        <th class="text-left">Joueur</th>
-        <th class="text-left position hidden-sm-down">Competences</th>
-        <th class="text-center">M</th>
-        <th class="text-center">F</th>
-        <th class="text-center">Ag</th>
-        <th class="text-center">Av</th>
-        <th class="text-center hidden-xs-down">Niv</th>
-        <th class="text-center hidden-xs-down">XP</th>
-        <th class="text-center hidden-xs-down">Gain</th>
-      </tr>
+
+    <tr>
+      <th class="text-left" ng-click="sortBy('name')">Joueur <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='name'"></div></th>
+      <th class="text-left position hidden-sm-down" ng-click="sortBy('position')">Position <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='position'"></div></th>
+      <th class="text-center hidden-xs-down" ng-click="sortBy('level')">Niv <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='level'"></div></th>
+      <th class="attributes text-center hidden-xs-down" ng-click="sortBy('xp')">XP <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='xp'"></div></th>
+      <th class="attributes text-center" ng-click="sortBy('mvp')" title="Joueur du match">JDM <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='stats.mvp'"></div></th>
+      <th class="attributes text-center" ng-click="sortBy('stats.inflictedpasses')" title="Passes">Pa <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='stats.inflictedpasses'"></div></th>
+      <th class="attributes text-center" ng-click="sortBy('stats.inflictedcatches')" title="Réceptions">Réc <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='stats.inflictedcatches'"></div></th>
+      <th class="attributes text-center" ng-click="sortBy('stats.inflictedinterceptions')" title="Interceptions">Int <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='stats.inflictedinterceptions'"></div></th>
+      <th class="attributes text-center" ng-click="sortBy('stats.inflictedtouchdowns')" title="TouchDown">TD <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='stats.inflictedtouchdowns'"></div></th>
+      <th class="attributes text-center" ng-click="sortBy('stats.inflicteddead')" title="Mort">Mort <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='stats.inflicteddead'"></div></th>
+      <th class="attributes text-center" ng-click="sortBy('stats.inflictedcasualties')" title="Sorties">Sor <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='stats.inflictedcasualties'"></div></th>
+      <th class="attributes text-center" ng-click="sortBy('stats.inflictedko')" title="KO">KO <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='stats.inflictedko'"></div></th>
+      <th class="attributes text-center" ng-click="sortBy('stats.inflictedtackles')" title="Blocage">Bl <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='stats.inflictedtackles'"></div></th>
+      <th class="attributes text-center" ng-click="sortBy('stats.inflictedmeterspassing')" title="Yards en passe">YP <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='stats.inflictedmeterspassing'"></div></th>
+      <th class="attributes text-center" ng-click="sortBy('stats.inflictedmetersrunning')" title="Yards en course">YC <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='stats.inflictedmetersrunning'"></div></th>
+    </tr>
     </thead>
     <tbody  class="table-hover noselect">
-      <tr ng-repeat="row in match.teams[modal.teamIdx].roster" ng-style="modal.border">
-        <td class="text-center">{{$index}}</td>
-        <td class="text-left text-cutter">{{row.name}}</td>
-        <td class="text-left text-cutter hidden-sm-down"><span ng-repeat="skills in row.skils">{{skills}}<span ng-if="$index+1<row.skils.length">, </span></span></td>
-        <td class="text-center">{{row.attributes.ma}}</td>
-        <td class="text-center">{{row.attributes.st}}</td>
-        <td class="text-center">{{row.attributes.ag}}</td>
-        <td class="text-center">{{row.attributes.av}}</td>
-        <td class="text-center hidden-xs-down">{{row.level}}</td>
-        <td class="text-center hidden-xs-down">{{row.xp}}</td>
-        <td class="text-center hidden-xs-down">{{row.xp_gain}}</td>
-      </tr>
+      <tr ng-repeat="player in match.teams[modal.teamIdx].roster | orderBy:orderFilter:reverse" ng-style="modal.border" ng-class="{injured: player.injured==1, dead: player.dead==1}">
+          <td class="text-left text-cutter"><span ng-if="player.injured==1 && player.dead==0"><img src="resources/img/injured.png"> </span><span ng-if="player.dead==1"><img src="resources/img/dead.png"> </span>{{player.name}}</td>
+          <td class="text-left text-cutter hidden-sm-down">{{translate(player.type)}}</td>
+          <td class="text-center hidden-xs-down">{{player.level}}</td>
+          <td class="text-center hidden-xs-down">{{player.xp}}</td>
+          <td class="text-center">{{player.mvp}}</td>
+          <td class="text-center">{{player.stats.inflictedpasses}}</td>
+          <td class="text-center">{{player.stats.inflictedcatches}}</td>
+          <td class="text-center">{{player.stats.inflictedinterceptions}}</td>
+          <td class="text-center">{{player.stats.inflictedtouchdowns}}</td>
+          <td class="text-center">{{player.stats.inflicteddead}}</td>
+          <td class="text-center">{{player.stats.inflictedcasualties}}</td>
+          <td class="text-center">{{player.stats.inflictedko}}</td>
+          <td class="text-center">{{player.stats.inflictedtackles}}</td>
+          <td class="text-center">{{player.stats.inflictedmeterspassing}}</td>
+          <td class="text-center">{{player.stats.inflictedmetersrunning}}</td>
+        </tr>
     </tbody>
   </table>
   <div class="spacer"></div>
