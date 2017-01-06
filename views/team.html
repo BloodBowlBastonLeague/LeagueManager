@@ -30,7 +30,7 @@
             <th class="attributes text-center" ng-click="sortBy('stats.inflictedmetersrunning')" ng-if="showStats" title="Yards en course">YC <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='stats.inflictedmetersrunning'"></div></th>
           </tr>
         </thead>
-        <tbody  class="table-hover noselect" ng-repeat="player in team.players | orderBy:orderFilter:reverse" ng-hide="player.dead==1 && !showDead">
+        <tbody  class="table-hover noselect" ng-repeat="player in team.players | orderBy:orderFilter:reverse" ng-hide="player.dead==1 || player.fired==1 && !showDead">
           <tr class="playerDetails" ng-style="colours[0].border" ng-class="{injured: player.injured==1, dead: player.dead==1}">
             <td class="text-left text-cutter"><span ng-if="player.injured==1 && player.dead==0"><img src="resources/img/injured.png"> </span><span ng-if="player.dead==1"><img src="resources/img/dead.png"> </span>{{player.name}}</td>
             <td class="text-left text-cutter hidden-sm-down" ng-if="!showStats">{{player.position}}</td>

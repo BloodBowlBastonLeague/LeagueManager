@@ -18,6 +18,9 @@ LeagueManager.config(function ($routeProvider) {
 	.when("/match/:ID", {
 		template: '<match></match>'
 	})
+	.when("/lepoing/:ID", {
+		template: '<lepoing></lepoing>'
+	})
   .when("/forum", {
     templateUrl: '/Forum/index.php'
   })
@@ -36,11 +39,11 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 	//Récupération des statistiques de la ligue
 	$http.get('Backend/generic.php').success(function(result){
 		$rootScope.leagueStats = result;
+		console.log(result);
 	});
 	//Récupération des parametres
 	$http.get('Backend/parameters.php').success(function(result){
 		$rootScope.parameters = result;
-		console.log(result);
 	});
 	//Récupération des articles
 	$http.get('Backend/articles.php').success(function(result){
@@ -104,7 +107,7 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 
 	//Gestion des couleurs
 	//Couleurs de bases du site
-	$rootScope.colours = [];
+	$rootScope.colours = ['#00558D','#DD7C00'];
 	$rootScope.colourA = "#00558D";
 	$rootScope.colourB = "#DD7C00";
 	//Mise à jours de couleurs (pour les équipes)
@@ -117,6 +120,7 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 				$rootScope.colours[i].background = { 'background-color':args[i] };
 				$rootScope.colours[i].fill = { 'fill': args[i] };
 		}
+		console.log($rootScope.colours);
 			$rootScope.navbarColour ={'background': '-webkit-linear-gradient('+args[0]+',#000000)', 'background': '-moz-linear-gradient('+args[0]+',#000000)', 'background': 'linear-gradient('+args[0]+',#000000)' };
 	};
 	//Tri des listes

@@ -34,6 +34,8 @@
   <meta name="msapplication-TileImage" content="/resources//ms-icon-144x144.png">
   <meta name="theme-color" content="#ffffff">
 
+  <!-- Angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
 
 </head>
 <body>
@@ -62,17 +64,16 @@
     <modal></modal>
   </div>
   <div id="Disclaimer">La BBBL est une ligue indépendante de joueurs et n'a aucun affiliation avec Games Workshop, Cyanide ou Focus.</div>
-  <script>
+  <!--script>
     var Cyanide_Key = "<?=$Cyanide_Key?>";
     var User = "<?=$user->data['username'];?>";
-    var Group = 9;
+    var Group = "<?=$user->data['group_id'];?>";
   </script>
   <!-- jquery -->
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <!-- Bootstrap -->
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- Angular -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+
   <!--<script src="bower_components/angular/angular.min.js"></script>-->
   <script src="bower_components/angular-route/angular-route.min.js"></script>
   <script src="bower_components/lodash/lodash.min.js"></script>
@@ -88,6 +89,8 @@
   <script src="controllers/match.js"></script>
   <script src="controllers/team.js"></script>
   <script src="controllers/modal.js"></script>
+  <!-- Module BBBL -->
+  <script src="controllers/lepoing.js"></script>
 
 </body>
 </html>

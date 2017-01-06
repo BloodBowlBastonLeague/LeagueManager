@@ -15,10 +15,10 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
 
 	$sql = "SELECT c.id, c.league_name AS division, c.game, c.pool, c.site_name, c.site_order, c.season, c.json, c.active, c.competition_mode, c.game_name, c.champion  FROM site_competitions AS c  WHERE c.id = ".$id;
 	$result = mysqli_query($con, $sql);
-	$data = mysqli_fetch_object($result);
+	$competition = mysqli_fetch_object($result);
 
-    $var2 = [];
-    $sql2 = 'SELECT
+    $var = [];
+    $sql = 'SELECT
           id,
           logo,
           team,
@@ -46,10 +46,43 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
           WHERE competition_id='.$id.' AND site_matchs.started IS NOT NULL
           ) AS a
           GROUP BY id
-          ORDER BY Pts DESC, TD DESC, TDfor DESC, S DESC';
-    $result2 = mysqli_query($con, $sql2);
+          ORDER BY Pts DESC';
+    $result = mysqli_query($con, $sql);
+    while($data = mysqli_fetch_array($result,MYSQL_ASSOC)) {
+      array_push($var, $data);
+    }
+    $i = 0;
+    $result = mysqli_query($con, $sql);
+  foreach($var as $var2) {
 
-    if ($result2->num_rows==0) {
+      if ( $var[$i][Pts] == $var[$i-1][Pts] ) {
+
+        $sqlConfrontation = 'SELECT
+          case when score_1 > score_2 then 2 else case when score_1 = score_2 then 1 else 0 end end
+          FROM (
+          SELECT site_teams.id, score_1, score_2 FROM site_matchs
+          LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_1
+          INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
+          WHERE competition_id = '.$id.' AND site_matchs.team_id_1 = '.$var[$i][id].' AND site_matchs.team_id_2 = '.$var[$i-1][id].'
+          UNION
+          SELECT site_teams.id, score_2, score_1 FROM site_matchs
+          LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_2
+          INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
+          WHERE competition_id='.$id.' AND site_matchs.team_id_2 = '.$var[$i][id].' AND site_matchs.team_id_1 = '.$var[$i-1][id].'
+          ) AS a
+          GROUP BY id';
+
+          $row = mysqli_fetch_row(mysqli_query($con, $sqlConfrontation));
+      }
+      else{
+        $row = [1];
+      }
+
+      $var[$i]['confrontation'] = $row[0];
+      $i++;
+    }
+/*
+    if ($var->length==0) {
       $sql2 = 'SELECT
           id,
           logo,
@@ -74,13 +107,14 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
           WHERE competition_id='.$id.'
           ) AS a
           GROUP BY id';
-      $result2 = mysqli_query($con, $sql2);}
-    while($data2 = mysqli_fetch_array($result2,MYSQL_ASSOC)) {
-      array_push($var2, $data2);
+      $result2 = mysqli_query($con, $sql2);
+      while($data2 = mysqli_fetch_array($result2,MYSQL_ASSOC)) {
+        array_push($var, $data2);
+      }
     }
+*/
+    $competition->standing = $var;
 
-      $data->standing = $var2;
-
-  echo json_encode($data);
+    echo json_encode($competition,JSON_NUMERIC_CHECK);
   die();
 ?>

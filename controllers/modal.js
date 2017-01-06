@@ -42,6 +42,10 @@ LeagueManager.directive('modal', function(){
 				$scope.modal.button = 'resources/img/Button_Modal.svg';
 				$scope.modal.subject = 'team';
 			};
+			//Affichage/masquage des marqueurs
+			$scope.displayStats = function(stats){
+				$scope.modal.subject = stats;
+			};
 
 			$scope.saveMatch = function(id,cyanideId,forumUrl){
 				$scope.displayOff();

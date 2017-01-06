@@ -20,6 +20,29 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
   $matches =  mysqli_fetch_row(mysqli_query($con,'SELECT COUNT(*) FROM site_matchs WHERE started IS NOT NULL'));
   $stats->matches =  $matches[0];
 
+  $currentCompetition = "SELECT id FROM site_matchs WHERE competition_id IN (SELECT id FROM site_competitions WHERE active=1)";
+
+  $scorers = [];
+  $resultScorers = mysqli_query($con,"SELECT p.id as player, p.name, t.id AS team_id, t.name AS team, t.logo, SUM(s.inflictedtouchdowns) AS TD, SUM(s.inflictedmetersrunning) AS yards, SUM(s.inflictedcatches) AS catches FROM site_players_stats AS s LEFT JOIN site_players AS p ON p.id=s.player_id LEFT JOIN site_teams AS t ON t.id=p.team_id WHERE s.inflictedtouchdowns>0 AND t.active=1 AND s.matchplayed=1 AND s.match_id IN (".$currentCompetition.") GROUP BY p.id ORDER BY SUM(s.inflictedtouchdowns) DESC");
+  while($dataScorers = mysqli_fetch_array($resultScorers,MYSQL_ASSOC)) {
+    array_push($scorers, $dataScorers);
+  }
+  $stats->scorers = $scorers;
+
+  $tacklers = [];
+  $resultTacklers = mysqli_query($con,"SELECT p.id as player, p.name, t.id AS team_id, t.name AS team, t.logo, SUM(s.inflictedcasualties) + SUM(s.inflicteddead) AS injuries, SUM(s.inflictedcasualties) AS casualties, SUM(s.inflicteddead) AS dead FROM site_players_stats AS s LEFT JOIN site_players AS p ON p.id=s.player_id LEFT JOIN site_teams AS t ON t.id=p.team_id WHERE (s.inflictedcasualties>0 OR s.inflicteddead>0) AND t.active=1 AND s.matchplayed=1 AND s.match_id IN (".$currentCompetition.") GROUP BY p.id ORDER BY SUM(s.inflictedcasualties) + SUM(s.inflicteddead) DESC");
+  while($dataTacklers = mysqli_fetch_array($resultTacklers,MYSQL_ASSOC)) {
+    array_push($tacklers, $dataTacklers);
+  }
+  $stats->tacklers = $tacklers;
+
+  $throwers = [];
+  $resultThrowers = mysqli_query($con,"SELECT p.id as player, p.name, t.id AS team_id, t.name AS team, t.logo, SUM(s.inflictedpasses) AS passes, SUM(s.inflictedmeterspassing) AS yards FROM site_players_stats AS s LEFT JOIN site_players AS p ON p.id=s.player_id LEFT JOIN site_teams AS t ON t.id=p.team_id WHERE s.inflictedpasses>0 AND t.active=1 AND s.matchplayed=1 AND s.match_id IN (".$currentCompetition.") GROUP BY p.id ORDER BY SUM(s.inflictedmeterspassing) DESC");
+  while($dataThrowers = mysqli_fetch_array($resultThrowers,MYSQL_ASSOC)) {
+    array_push($throwers, $dataThrowers);
+  }
+  $stats->throwers = $throwers;
+
 
   echo json_encode($stats);
   die();

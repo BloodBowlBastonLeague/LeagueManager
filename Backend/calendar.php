@@ -16,7 +16,8 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
   $var = [];
   $sql = 'SELECT DISTINCT(round)
     FROM site_matchs
-	  WHERE competition_id='.$id;
+	  WHERE competition_id='.$id.' 
+    ORDER BY round';
   $result = mysqli_query($con, $sql);
   while($data = mysqli_fetch_array($result,MYSQL_ASSOC)){
     $var2 = [];
@@ -44,6 +45,6 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
     array_push($var, $data);
 	}
 
-  echo json_encode($var);
+  echo json_encode($var,JSON_NUMERIC_CHECK);
   die();
 ?>

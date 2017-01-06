@@ -19,13 +19,14 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
 
     //Update
     if ( strlen($row[0]) > 0){
+      mysqli_query($con, "UPDATE site_players SET injured = IFNULL(".$request->injured.",0) WHERE id = ".$row[0]);
 	    $sql = "UPDATE site_players SET team_id = ".$team[0].",
           level = ".$request->level.",
           xp = ".$request->xp.",
           attributes = '".$request->attributes."',
           skills = '".$request->skills."',
           dead = ".$request->dead.",
-          injured = ".$request->injured."
+          injured = IFNULL(".$request->injured.",0)
           WHERE id = ".$row[0];
 	    $result = mysqli_query($con, $sql);
       $player = $row[0];
