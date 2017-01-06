@@ -84,14 +84,14 @@ time, mark, audio, video {
   body { line-height: 1; background:#000000 url('../resources/img/background.jpg'); background-size: auto 100%; overflow: hidden; }
  }
 
-
+a { font-weight: 500; cursor: pointer; }
 h1 { font-family: 'Akashi';  font-size: 40px; line-height: 50px; color: #ffffff; }
-h2 { font-family: 'Akashi';  font-size: 30px; line-height: 1; margin:0 0 10px; color: #ffffff; }
+h2, h2 a { font-family: 'Akashi' !important; font-size: 30px; line-height: 1; margin:0 0 10px; color: #ffffff; }
 h3 { font-family: 'Akashi';  font-size: 24px; line-height: 1; margin:0 0 10px; color: #ffffff; }
 h4 { font-family: 'Akashi';  font-size: 18px; line-height: 1; margin:0 0 10px; color: #ffffff; }
 h6 { font-family:'Muli'; font-weight:700;}
 p { font-family:'Muli'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc; display:inline-block; }
-a { font-weight: 500; cursor: pointer; }
+
 table { font-family:'Muli'; font-size: 14px; line-height: 18px; }
 th {text-transform: uppercase;}
 ul { font-family:'Muli'; font-family:'Muli'; font-size: 14px; line-height: 18px; text-align: justify; color:#cccccc;}
@@ -178,7 +178,7 @@ tbody.table-hover tr:hover { background-color:transparent; background: #000000; 
 box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.75);
 border-radius: 5px; border-bottom: 2px solid; }
 
-.container > article { margin:0; padding:0; max-height:calc(100vh - 268px); background: none; border:none; overflow: auto; box-shadow: none;}
+.container > article, .container > .standing { margin:0; padding:0; max-height:calc(100vh - 268px); background: none; border:none; overflow: auto; box-shadow: none;}
 .container > article > img { float:left; padding:0 20px 10px 0; }
 .container > footer > h2 { margin: 5px 0px; text-align: center; cursor: pointer; border-top: 1px solid #DD7C00; color:#DD7C00;}
 .container > .close { position: absolute; right: 2vw; cursor: pointer; }
@@ -320,7 +320,7 @@ td img { max-height: 20px; max-width: 20px; }
 .champion img { position:absolute; left:-65px; top:35px; width:256px; height:256px;}
 .champion hr, .archives hr  { width:80%; border-top:1px  solid  #ffffff; text-align:center;}
 .champion #HelmetLeft {display: inline-block; top: 45px !important; left: -15px !important;}
-.champion #HelmetRight {display: inline-block; top: 135px !important; right: -15px !important;}
+.champion #HelmetRight {display: inline-block; top: -10px !important; right: -15px !important;}
 .champion #HelmetLeft .logo, .champion #HelmetRight .logo { position: absolute; left: 10px; top: 30px; width: 75px; height: 75px;
    -ms-transform: rotateY(-15deg) rotate(-10deg);
    -webkit-transform: rotateY(-15deg) rotate(-10deg);
@@ -339,12 +339,26 @@ td img { max-height: 20px; max-width: 20px; }
 #MatchWeek .teamLogo {width: 80px; height: 80px; display: inline; vertical-align: middle; }
 #MatchWeek .teamName {width: calc(50% - 120px); max-width: calc(50% - 120px); display: inline-block; vertical-align: middle; font-family: "MuliSemiBold"; font-size:24px; color:#ffffff;}
 #MatchWeek hr { width :400px}
+.versus { width: 45px; font-size: 26px; font-weight: 700; }
 #MatchWeek .versus { width: 60px; font-size: 26px; font-weight: 700; }
 
 
-.banner { width:60%}
+.banner { width:100%; max-width:882px; margin-top: 15px;}
+#MatchWeek .banner { width:60%; }
 
 .championName { min-height: 60px; text-align: center; width: 100%; }
 .championName h2 {position: absolute;z-index: 1; text-align: center;width: calc(100% - 30px);}
  .archives .coachName { text-align: center; }
 .oldChamp { position:absolute; z-index:1;}
+
+
+/*Le Poing*/
+.lepoing { padding:0; position: relative; margin-bottom: 15px;text-align: center;}
+.lepoing img { width:100%; height:auto;}
+.lepoing.player img { width:60%; display: inline;}
+.lepoing .cover { position: absolute; z-index:2; height:100% }
+
+.colorShadow {text-shadow: 1px 1px 3px #000000;}
+
+table.mainStats, table.modalStats {cursor:default;}
+.mainStats td {max-width: 9vw;}

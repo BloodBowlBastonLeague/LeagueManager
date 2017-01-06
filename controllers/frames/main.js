@@ -10,9 +10,13 @@ LeagueManager.config(function ($routeProvider) {
 	.when("/standing", {
 		template: '<standing></standing>'
 	})
+	.when("/match/:ID", {
+		template: '<match1></match1>'
+	})
   .when("/", {
     template: '<matchweek></matchweek>'
   });
+
 });
 
 LeagueManager.run(function($rootScope, $http, $location, $timeout) {
@@ -21,7 +25,6 @@ $rootScope.competitions = [];
 	//Récupération des articles
 	$http.get('../Backend/competition.php?id='+ window.competition).success(function(result){
 		$rootScope.competition = result;
-		console.log(result);
 		$rootScope.title = $rootScope.competition.league + ' - ' + $rootScope.competition.season;
 	});
 

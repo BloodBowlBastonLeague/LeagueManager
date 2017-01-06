@@ -16,7 +16,7 @@ LeagueManager.directive('competition', function(){
 
 			$http.get('Backend/competition.php?id='+$rootScope.competitionId).success(function(result){
 				$scope.competition = result;
-				$rootScope.title = $scope.competition.division + ' - ' + $scope.competition.season;
+				$rootScope.title = $scope.competition.season + ' - ' + $scope.competition.competition_mode;
 			});
 
 			$scope.competitionArticles = function(){

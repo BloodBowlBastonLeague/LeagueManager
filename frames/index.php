@@ -36,6 +36,7 @@
   <script src="../controllers/frames/main.js"></script>
   <script src="../controllers/frames/matchweek.js"></script>
   <script src="../controllers/frames/standing.js"></script>
+  <script src="../controllers/frames/match.js"></script>
 
 </body>
 </html>
