@@ -44,7 +44,8 @@ LeagueManager.directive('modal', function(){
 			};
 			//Affichage/masquage des marqueurs
 			$scope.displayStats = function(stats){
-				$scope.modal.subject = stats;
+				$scope.modal.subject = 'stats';
+				$scope.modal.stats = stats;
 			};
 
 			$scope.saveMatch = function(id,cyanideId,forumUrl){

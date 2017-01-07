@@ -52,79 +52,34 @@
         </div>
       </div>
     </div>
-    <!--Marqueur-->
+    <!--Stats Players-->
     <div class="row">
-      <div class="col-xl-4 col-lg-6 hidden-md-down">
+      <div class="col-lg-6 hidden-md-down" ng-repeat="stats in leagueStats.playersStats">
         <div class="plain prime" ng-style="colours[0].border">
-          <h3 ng-style="colours[0].color">Marqueurs</h3>
+          <h3 ng-style="colours[0].color">{{stats.title}}</h3>
+
           <table class="mainStats">
             <thead>
               <tr ng-style="colours[0].background">
                 <th class="text-left">Joueur</th>
-                <th class="text-center">TD</th>
+                <th class="text-center" ng-if="stats.type=='scorers'">TD</th>
+                <th class="text-center" ng-if="stats.type=='tacklers'">Sorties</th>
+                <th class="text-center" ng-if="stats.type=='throwers'">Yards</th>
               </tr>
             </thead>
             <tbody class="table-hover noselect">
-              <tr ng-style="colours[0].border" ng-repeat="player in leagueStats.scorers | limitTo:5">
-                <td class="text-left text-cutter"><img src="resources/logo/logo_{{player.logo}}.png"> </span>{{player.name}}</td>
-                <td class="text-center">{{player.TD}}</td>
+              <tr class="playerDetails" ng-style="colours[0].border" ng-repeat="player in stats.players | limitTo:5">
+                <td class="text-left text-cutter"><img src="resources/logo/Logo_{{player.logo}}.png"> </span>{{player.name}}</td>
+                <td class="text-center" ng-if="stats.type=='scorers'">{{player.TD}}</td>
+                <td class="text-center" ng-if="stats.type=='tacklers'">{{player.injuries}}</td>
+                <td class="text-center" ng-if="stats.type=='throwers'">{{player.yards}}</td>
               </tr>
             </tbody>
           </table>
           <div class="spacer"></div>
-          <div class="button" ng-click="displayStats('scorers')">
+          <div class="button" ng-click="displayStats(stats)">
             <div ng-include="'resources/img/Button_0.svg'"></div>
-            <div class="label">+ de stats</div>
-          </div>
-        </div>
-      </div>
-      <!--Cogneur-->
-        <div class="col-xl-4 col-lg-6 hidden-md-down">
-          <div class="plain prime" ng-style="colours[0].border">
-            <h3 ng-style="colours[0].color">Cogneurs</h3>
-            <table class="mainStats">
-              <thead>
-                <tr ng-style="colours[0].background">
-                  <th class="text-left">Joueur</th>
-                  <th class="text-center">Sorties</th>
-                </tr>
-              </thead>
-              <tbody class="table-hover noselect">
-                <tr class="playerDetails" ng-style="colours[0].border" ng-repeat="player in leagueStats.tacklers | limitTo:5">
-                  <td class="text-left text-cutter"><img src="resources/logo/logo_{{player.logo}}.png"> </span>{{player.name}}</td>
-                  <td class="text-center">{{player.injuries}}</td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="spacer"></div>
-            <div class="button" ng-click="displayStats('tacklers')">
-              <div ng-include="'resources/img/Button_0.svg'"></div>
-              <div class="label">+ de stats</div>
-            </div>
-          </div>
-        </div>
-    <!--Lanceur-->
-      <div class="col-lg-6 col-xl-4  hidden-md-down">
-        <div class="plain prime" ng-style="colours[0].border">
-          <h3 ng-style="colours[0].color">Passeurs</h3>
-          <table class="mainStats">
-            <thead>
-              <tr ng-style="colours[0].background">
-                <th class="text-left">Joueur</th>
-                <th class="text-center">Yards</th>
-              </tr>
-            </thead>
-            <tbody class="table-hover noselect">
-              <tr class="playerDetails" ng-style="colours[0].border" ng-repeat="player in leagueStats.throwers | limitTo:5">
-                <td class="text-left text-cutter"><img src="resources/logo/logo_{{player.logo}}.png"> </span>{{player.name}}</td>
-                <td class="text-center">{{player.yards}}</td>
-              </tr>
-            </tbody>
-          </table>
-          <div class="spacer"></div>
-          <div class="button" ng-click="displayStats('throwers')">
-            <div ng-include="'resources/img/Button_0.svg'"></div>
-            <div class="label">+ de stats</div>
+            <div class="label">Plus de stats</div>
           </div>
         </div>
       </div>

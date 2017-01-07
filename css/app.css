@@ -174,7 +174,7 @@ tbody.table-hover tr:hover { background-color:transparent; background: #000000; 
 
 /* READER */
 #veil{ position:fixed; background: rgba(0,0,0,0.9); margin: 0 -0.9375rem; width:100vw; height:calc(100vh - 68px); top:68px; z-index:4; overflow:none;}
-.container { position:fixed; margin:50px 10vw; padding: 1vh 2vw 0px; width:80vw; max-height:calc(100vh - 150px); top:50px; z-index:5; background: rgba(50,50,50,0.85); overflow:none;
+.container { position:fixed; left:10vw; margin:50px 10vw; padding: 1vh 2vw 0px; width:80vw; max-height:calc(100vh - 150px); top:50px; z-index:5; background: rgba(50,50,50,0.85); overflow:none;
 box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.75);
 border-radius: 5px; border-bottom: 2px solid; }
 
