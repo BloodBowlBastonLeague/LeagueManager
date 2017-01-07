@@ -96,86 +96,36 @@
   </div>
 </div>
 
-<div id="scorers" class="container seconde main" ng-if="modal.subject==='scorers'" ng-click="" ng-style="modal.border">
+<div id="scorers" class="container seconde main" ng-if="modal.subject=='stats'" ng-click="" ng-style="modal.border">
   <div class="standing main">
-    <h2 ng-style="colours[1].color">Classement des marqueurs</h2>
+    <h2 ng-style="colours[1].color">{{stats.title}}</h2>
     <table class="modalStats">
       <thead>
         <tr ng-style="colours[1].background">
           <th class="text-left">Joueur</th>
           <th class="text-left" >Equipe</th>
-          <th class="text-center">TD</th>
-          <th class="text-center">Yards</th>
-          <th class="text-center">Receptions</th>
+          <th class="text-center" ng-if="modal.stats.type=='scorers'">TD</th>
+          <th class="text-center" ng-if="modal.stats.type=='scorers'">Yards</th>
+          <th class="text-center" ng-if="modal.stats.type=='scorers'">Receptions</th>
+          <th class="text-center" ng-if="modal.stats.type=='tacklers'">Sorties</th>
+          <th class="text-center" ng-if="modal.stats.type=='tacklers'">Blessures</th>
+          <th class="text-center" ng-if="modal.stats.type=='tacklers'">Morts</th>
+          <th class="text-center" ng-if="modal.stats.type=='throwers'">Yards</th>
+          <th class="text-center" ng-if="modal.stats.type=='throwers'">Passes</th>
         </tr>
       </thead>
       <tbody class="table-hover noselect">
-        <tr class="playerDetails" ng-style="colours[1].border" ng-repeat="player in leagueStats.scorers">
-          <td class="text-left text-cutter"><img src="resources/logo/logo_{{player.logo}}.png"> </span>{{player.name}}</td>
+        <tr class="playerDetails" ng-style="colours[1].border" ng-repeat="player in modal.stats.players">
+          <td class="text-left text-cutter"><img src="resources/logo/Logo_{{player.logo}}.png"> </span>{{player.name}}</td>
           <td class="text-left zelda" ng-click="displayOff();goToPage('team/' + player.team_id)">{{player.team}}</td>
-          <td class="text-center">{{player.TD}}</td>
-          <td class="text-center">{{player.yards}}</td>
-          <td class="text-center">{{player.catches}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="spacer"></div>
-  <div class="button" ng-click="displayOff()">
-    <div ng-include="'resources/img/Button_1.svg'"></div>
-    <div class="label">fermer</div>
-  </div>
-</div>
-
-<div id="tacklers" class="container seconde main" ng-if="modal.subject==='tacklers'" ng-click="" ng-style="modal.border">
-  <div class="standing main">
-    <h2 ng-style="colours[1].color">Classement des cogneurs</h2>
-    <table class="modalStats">
-      <thead>
-        <tr ng-style="colours[1].background">
-          <th class="text-left">Joueur</th>
-          <th class="text-left" >Equipe</th>
-          <th class="text-center">Sorties</th>
-          <th class="text-center">Blessures</th>
-          <th class="text-center">Morts</th>
-        </tr>
-      </thead>
-      <tbody class="table-hover noselect">
-        <tr class="playerDetails" ng-style="colours[1].border" ng-repeat="player in leagueStats.tacklers">
-          <td class="text-left text-cutter"><img src="resources/logo/logo_{{player.logo}}.png"> </span>{{player.name}}</td>
-          <td class="text-left zelda" ng-click="displayOff();goToPage('team/' + player.team_id)">{{player.team}}</td>
-          <td class="text-center">{{player.injuries}}</td>
-          <td class="text-center">{{player.casualties}}</td>
-          <td class="text-center">{{player.dead}}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="spacer"></div>
-  <div class="button" ng-click="displayOff()">
-    <div ng-include="'resources/img/Button_1.svg'"></div>
-    <div class="label">fermer</div>
-  </div>
-</div>
-
-<div id="throwers" class="container seconde main" ng-if="modal.subject==='throwers'" ng-click="" ng-style="modal.border">
-  <div class="standing main">
-    <h2 ng-style="colours[1].color">Classement des passeurs</h2>
-    <table class="modalStats">
-      <thead>
-        <tr ng-style="colours[1].background">
-          <th class="text-left">Joueur</th>
-          <th class="text-left" >Equipe</th>
-          <th class="text-center">Yards</th>
-          <th class="text-center">Passes</th>
-        </tr>
-      </thead>
-      <tbody class="table-hover noselect">
-        <tr class="playerDetails" ng-style="colours[1].border" ng-repeat="player in leagueStats.throwers">
-          <td class="text-left text-cutter"><img src="resources/logo/logo_{{player.logo}}.png"> </span>{{player.name}}</td>
-          <td class="text-left zelda" ng-click="displayOff();goToPage('team/' + player.team_id)">{{player.team}}</td>
-          <td class="text-center">{{player.yards}}</td>
-          <td class="text-center">{{player.passes}}</td>
+          <td class="text-center" ng-if="modal.stats.type=='scorers'">{{player.TD}}</td>
+          <td class="text-center" ng-if="modal.stats.type=='scorers'">{{player.yards}}</td>
+          <td class="text-center" ng-if="modal.stats.type=='scorers'">{{player.catches}}</td>
+          <td class="text-center" ng-if="modal.stats.type=='tacklers'">{{player.injuries}}</td>
+          <td class="text-center" ng-if="modal.stats.type=='tacklers'">{{player.casualties}}</td>
+          <td class="text-center" ng-if="modal.stats.type=='tacklers'">{{player.dead}}</td>
+          <td class="text-center" ng-if="modal.stats.type=='throwers'">{{player.yards}}</td>
+          <td class="text-center" ng-if="modal.stats.type=='throwers'">{{player.passes}}</td>
         </tr>
       </tbody>
     </table>

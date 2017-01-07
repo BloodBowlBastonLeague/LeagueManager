@@ -81,38 +81,44 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
       $var[$i]['confrontation'] = $row[0];
       $i++;
     }
-/*
-    if ($var->length==0) {
-      $sql2 = 'SELECT
-          id,
-          logo,
-          team,
-          coach,
-          0 AS V,
-          0 AS N,
-          0 AS D,
-          0 AS TDfor,
-          0 AS TD,
-          0 AS S,
-          0 AS Pts
-          FROM (
-          SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.logo AS logo, site_teams.name AS team, site_coachs.name AS coach  FROM site_matchs
-          LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_1
-          INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
-          WHERE competition_id = '.$id.'
-          UNION
-          SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.logo AS logo, site_teams.name AS team, site_coachs.name AS coach  FROM site_matchs
-          LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_2
-          INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
-          WHERE competition_id='.$id.'
-          ) AS a
-          GROUP BY id';
-      $result2 = mysqli_query($con, $sql2);
-      while($data2 = mysqli_fetch_array($result2,MYSQL_ASSOC)) {
-        array_push($var, $data2);
-      }
+
+    $currentCompetition = "SELECT id FROM site_matchs WHERE competition_id=".$id;
+    $playersStats = [];
+
+    $scorers = new stdClass();
+    $scorers->type = 'scorers';
+    $scorers->title = 'Meilleurs marqueurs';
+    $players = [];
+    $resultScorers = mysqli_query($con,"SELECT p.id as player, p.name, t.id AS team_id, t.name AS team, t.logo, SUM(s.inflictedtouchdowns) AS TD, SUM(s.inflictedmetersrunning) AS yards, SUM(s.inflictedcatches) AS catches FROM site_players_stats AS s LEFT JOIN site_players AS p ON p.id=s.player_id LEFT JOIN site_teams AS t ON t.id=p.team_id WHERE s.inflictedtouchdowns>0 AND t.active=1 AND s.matchplayed=1 AND s.match_id IN (".$currentCompetition.") GROUP BY p.id ORDER BY SUM(s.inflictedtouchdowns) DESC");
+    while($dataScorers = mysqli_fetch_array($resultScorers,MYSQL_ASSOC)) {
+      array_push($players, $dataScorers);
     }
-*/
+    $scorers->players = $players;
+    array_push($playersStats, $scorers);
+
+    $tacklers = new stdClass();
+    $tacklers->type = 'tacklers';
+    $tacklers->title = 'Meilleurs bastonneurs';
+    $players = [];
+    $resultTacklers = mysqli_query($con,"SELECT p.id as player, p.name, t.id AS team_id, t.name AS team, t.logo, SUM(s.inflictedcasualties) + SUM(s.inflicteddead) AS injuries, SUM(s.inflictedcasualties) AS casualties, SUM(s.inflicteddead) AS dead FROM site_players_stats AS s LEFT JOIN site_players AS p ON p.id=s.player_id LEFT JOIN site_teams AS t ON t.id=p.team_id WHERE (s.inflictedcasualties>0 OR s.inflicteddead>0) AND t.active=1 AND s.matchplayed=1 AND s.match_id IN (".$currentCompetition.") GROUP BY p.id ORDER BY SUM(s.inflictedcasualties) + SUM(s.inflicteddead) DESC");
+    while($dataTacklers = mysqli_fetch_array($resultTacklers,MYSQL_ASSOC)) {
+      array_push($players, $dataTacklers);
+    }
+    $tacklers->players = $players;
+    array_push($playersStats, $tacklers);
+
+    $throwers = new stdClass();
+    $throwers->type = 'throwers';
+    $throwers->title = 'Meilleurs passeurs';
+    $players = [];
+    $resultThrowers = mysqli_query($con,"SELECT p.id as player, p.name, t.id AS team_id, t.name AS team, t.logo, SUM(s.inflictedpasses) AS passes, SUM(s.inflictedmeterspassing) AS yards FROM site_players_stats AS s LEFT JOIN site_players AS p ON p.id=s.player_id LEFT JOIN site_teams AS t ON t.id=p.team_id WHERE s.inflictedpasses>0 AND t.active=1 AND s.matchplayed=1 AND s.match_id IN (".$currentCompetition.") GROUP BY p.id ORDER BY SUM(s.inflictedmeterspassing) DESC");
+    while($dataThrowers = mysqli_fetch_array($resultThrowers,MYSQL_ASSOC)) {
+      array_push($players, $dataThrowers);
+    }
+    $throwers->players = $players;
+    array_push($playersStats, $throwers);
+    $competition->playersStats = $playersStats;
+
     $competition->standing = $var;
 
     echo json_encode($competition,JSON_NUMERIC_CHECK);

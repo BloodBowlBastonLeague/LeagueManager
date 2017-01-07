@@ -49,8 +49,6 @@
         <li class="hidden-sm-down"><a class="nav" href="steam://run/236690">Jouer</a></li>
         <li class="hidden-sm-down"><a class="nav" href="https://discordapp.com/channels/159656062125998080/159656062125998080" target="_blank">Discord</a></li>
         <? if($user->data['username'] != 'Anonymous'){ echo '<li><a class="nav">'.$user->data['username'].'</a></li>';} else { echo '<li ng-click="displayConnector()"><a class="nav">Connexion</a></li>';}?>
-
-
       </ul>
       <div class="navbar-toggler hidden-lg-up pull-right zelda" type="button" data-toggle="collapse" data-target="#Menu">&#9776;</div>
     </nav>
@@ -64,11 +62,7 @@
     <modal></modal>
   </div>
   <div id="Disclaimer">La BBBL est une ligue indépendante de joueurs et n'a aucun affiliation avec Games Workshop, Cyanide ou Focus.</div>
-  <!--script>
-    var Cyanide_Key = "<?=$Cyanide_Key?>";
-    var User = "<?=$user->data['username'];?>";
-    var Group = "<?=$user->data['group_id'];?>";
-  </script>
+
   <!-- jquery -->
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <!-- Bootstrap -->
@@ -92,5 +86,15 @@
   <!-- Module BBBL -->
   <script src="controllers/lepoing.js"></script>
 
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-78990645-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
 </body>
 </html>
