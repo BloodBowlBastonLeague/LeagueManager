@@ -3,6 +3,9 @@ var LeagueManager = angular.module('LeagueManager', ['ngRoute','ngSanitize'])
 //Routage
 LeagueManager.config(function ($routeProvider) {
 	$routeProvider
+	.when("/admin", {
+		template: '<admin></admin>'
+	})
 	.when("/archives", {
 		template: '<archives></archives>'
 	})
@@ -55,6 +58,7 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 		//Récupération des compétitions
 		$http.get('Backend/competitions.php?active=1').success(function(result){
 			$rootScope.competitions = result;
+			console.log(result);
 			for(j=0;j<$rootScope.competitions.length;j++){
 
 				for(k=0;k<Object.keys($rootScope.articles).length;k++){
@@ -85,7 +89,6 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 	$rootScope.previousPage = function () {
 		$('#Logo').removeAttr( 'style' );
 		var prevUrl = $rootScope.history.length > 0 ? $rootScope.history.splice(-1)[0] : "/";
-		console.log(prevUrl);
 		$location.path(prevUrl);
 	};
 

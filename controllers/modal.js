@@ -54,7 +54,7 @@ LeagueManager.directive('modal', function(){
 				$http.get('http://web.cyanide-studio.com/ws/bb2/match/?key=' + window.Cyanide_Key + '&uuid=' + cyanideId ).success(function(result){
 
 					//Save Match
-					$http.post('Backend/match_save.php',{
+					$http.post('Backend/match_reset.php',{
 						Id : id,
 						cyanide_Id : cyanideId,
 						started : result.match.started,

@@ -56,8 +56,13 @@ LeagueManager.directive('match', function(){
 
 					$scope.stadiumBG = { 'background':  'url(resources/img/stadium/' + $rootScope.match.stadium + '.png) center center no-repeat, rgba(50, 50, 50, 0.85) ', 'background-size':'cover, cover', 'border-color': $rootScope.colours[1].hexa};
 					//Team Images
-					$('#LogoLeft').css({"background": "url(resources/logo/Logo_" + $scope.teams[0].teamlogo + ".png) center center no-repeat", "background-size":"cover"});
-					$('#LogoRight').css({"background": "url(resources/logo/Logo_" + $scope.teams[1].teamlogo + ".png) center center no-repeat", "background-size":"contain"});
+
+					$('.helmet1 .helmet-logo').css({"background": "url(../resources/logo/Logo_" + $scope.teams[0].teamlogo + ".png) center center no-repeat", "background-size":"cover"});
+					$scope.team_1_BG = { 'position': 'absolute', 'width': '100%', 'height': '100%', 'background': 'url(../resources/logo/Logo_'+$scope.teams[0].teamlogo+'.png) center center no-repeat', 'background-size': '50% auto', 'z-index': '-1'}
+					$scope.helmet_1_svg = 'resources/helmet/helmet_' + $scope.teams[0].idraces + '.svg';
+					$('.helmet2 .helmet-logo').css({"background": "url(../resources/logo/Logo_" + $scope.teams[1].teamlogo + ".png) center center no-repeat", "background-size":"contain"});
+					$scope.team_2_BG = { 'position': 'absolute', 'width': '100%', 'height': '100%', 'background': 'url(../resources/logo/Logo_'+$scope.teams[1].teamlogo+'.png) center center no-repeat', 'background-size': '50% auto', 'z-index': '-1'}
+					$scope.helmet_2_svg = 'resources/helmet/helmet_' + $scope.teams[1].idraces + '.2.svg';
 				});
 
 				$scope.matchRefresh = function(){

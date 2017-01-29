@@ -16,12 +16,12 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
   $var = [];
   $sql = 'SELECT DISTINCT(round)
     FROM site_matchs
-	  WHERE competition_id='.$id.' 
+	  WHERE competition_id='.$id.'
     ORDER BY round';
   $result = mysqli_query($con, $sql);
   while($data = mysqli_fetch_array($result,MYSQL_ASSOC)){
     $var2 = [];
-    $sql2 = 'SELECT site_matchs.id, site_matchs.started, round,
+    $sql2 = 'SELECT site_matchs.id, site_matchs.cyanide_id, site_matchs.contest_id, round,
       team_id_1, t1.name as name_1, t1.logo as logo_1, score_1,
       team_id_2, t2.name as name_2, t2.logo as logo_2, score_2
       FROM site_matchs
