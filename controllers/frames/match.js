@@ -13,7 +13,7 @@ LeagueManager.directive('match1', function(){
 				    "color2" : "#C0C0C0"}];
 
 				$http.get('../Backend/match.php?id=' + $scope.matchID).success( function(result) {
-					console.log(result);
+
 				var data = JSON.parse(result.json);
 
 				$rootScope.match = data.match;

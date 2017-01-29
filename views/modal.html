@@ -70,8 +70,12 @@
     </thead>
     <tbody  class="table-hover noselect">
       <tr ng-repeat="player in match.teams[modal.teamIdx].roster | orderBy:orderFilter:reverse" ng-style="modal.border" ng-class="{injured: player.injured==1, dead: player.dead==1}">
-          <td class="text-left text-cutter"><span ng-if="player.injured==1 && player.dead==0"><img src="resources/img/injured.png"> </span><span ng-if="player.dead==1"><img src="resources/img/dead.png"> </span>{{player.name}}</td>
-          <td class="text-left text-cutter hidden-sm-down">{{translate(player.type)}}</td>
+          <td class="text-left text-cutter"><span ng-if="player.injured==1 && player.dead==0"><img src="resources/img/injured.png"> </span><span ng-if="player.dead==1"><img src="resources/img/dead.png"> </span>
+            <span ng-if="player.name.indexOf('PLAYER_NAMES_CHAMPION')==-1">{{player.name}}</span>
+            <span ng-if="player.name.indexOf('PLAYER_NAMES_CHAMPION')>-1">{{translate(player.name)}}</span>
+          </td>
+          <td class="text-left text-cutter hidden-sm-down" ng-if="player.name.indexOf('PLAYER_NAMES_CHAMPION')==-1">{{translate(player.type)}}</td>
+          <td class="text-left text-cutter hidden-sm-down" ng-if="player.name.indexOf('PLAYER_NAMES_CHAMPION')>-1">Champion</td>
           <td class="text-center hidden-xs-down">{{player.level}}</td>
           <td class="text-center hidden-xs-down">{{player.xp}}</td>
           <td class="text-center">{{player.mvp}}</td>

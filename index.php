@@ -12,10 +12,9 @@
   <meta name="robots" content="index,follow" />
 
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css">
-  <link rel="stylesheet" href="bower_components/ng-scrollbar/dist/ng-scrollbar.min.js" type="text/css">
   <link rel="stylesheet" href="css/app.css" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
-
+  <link href="https://fonts.googleapis.com/css?family=Niconne" rel="stylesheet">
   <link rel="apple-touch-icon" sizes="57x57" href="/resources/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/resources/favicon/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="/resources/favicon/apple-icon-72x72.png">
@@ -63,6 +62,14 @@
   </div>
   <div id="Disclaimer">La BBBL est une ligue indépendante de joueurs et n'a aucun affiliation avec Games Workshop, Cyanide ou Focus.</div>
 
+<script>
+
+       var Cyanide_Key = "<?=$Cyanide_Key?>";
+
+       var User = "<?=$user->data['username'];?>";
+var Group = "<?=$user->data['group_id'];?>";
+     </script>
+
   <!-- jquery -->
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <!-- Bootstrap -->
@@ -76,6 +83,7 @@
   <!-- Module BBBL -->
   <script src="controllers/app.js"></script>
   <script src="controllers/main.js"></script>
+  <script src="controllers/admin.js"></script>
   <script src="controllers/archives.js"></script>
   <script src="controllers/league.js"></script>
   <script src="controllers/competition.js"></script>

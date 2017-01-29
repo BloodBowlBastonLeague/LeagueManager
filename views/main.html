@@ -3,16 +3,7 @@
     <div class="image">
       <img src="resources/img/BBBL2_5x.png">
     </div>
-    <div class="plain seconde" ng-style="colours[1].border">
-      <h3 ng-style="colours[1].color">Légendaires</h3>
-      <p>Woody Roots Bush Bombers, Darkside Magic, Rats Fils Tauleurs... Ces équipes comme beaucoup d'autres ont marqué de leur empreinte la BBBL.<br/>
-      Tribunes vous offres aujourd'hui un accés illimité à l'Histoire de la ligue</p>
-      <div class="spacer"></div>
-            <div class="button" ng-click="goToPage('archives')">
-              <div ng-include="'resources/img/Button_1.svg'"></div>
-              <div class="label">les Archives</div>
-            </div>
-    </div>
+
     <div class="plain seconde" ng-style="colours[1].border">
       <h3 ng-style="colours[1].color">La BBBL c'est</h3>
       <ul class="hallOfFame list-unstyled">
@@ -31,74 +22,140 @@
             <div class="label">Découvrir</div>
           </a>
     </div>
+
+    <div class="plain seconde" ng-style="colours[1].border">
+      <h3 ng-style="colours[1].color">Légendaires</h3>
+      <p>Woody Roots Bush Bombers, Darkside Magic, Rats Fils Tauleurs... Ces équipes comme beaucoup d'autres ont marqué de leur empreinte la BBBL.<br/>
+      Tribunes vous offres aujourd'hui un accés illimité à l'Histoire de la ligue</p>
+      <div class="spacer"></div>
+            <div class="button" ng-click="goToPage('archives')">
+              <div ng-include="'resources/img/Button_1.svg'"></div>
+              <div class="label">les Archives</div>
+            </div>
+    </div>
+
   </div>
-  <!--Champion-->
+
   <div class="col-xl-6 col-lg-9">
+
     <div class="row">
-      <div class="col-md-12">
-        <div class="plain prime champion" ng-style="colours[0].border">
-          <div ng-style="teamBG"></div>
-          <h3>CHAMPION</h3>
-          <h4 ng-style="colours[0].color" ng-click="">Elite Automne 2516</h4>
-          <hr>
-          <h1 class="zelda" ng-style="colours[4].color" ng-click="goToPage('team/273')">Les Psychos Totems</h1>
-          <hr>
-          <h2 ng-style="colours[5].color">RelaxMax</h2>
-          <div class="spacer"></div>
-          <div class="button" ng-click="goToPage('competition/206')">
-            <div ng-include="'resources/img/Button_0.svg'"></div>
-            <div class="label">la compétition</div>
-          </div>
-        </div>
+      <div class="col-sm-12 quote">
+        <h1>"J'ai aimé cette ligue comme je n'ai jamais aimé aucune femme..."</h1>
+        <p>Coach Jahstrad, peu avant sa disparition</p>
       </div>
     </div>
-    <!--Stats Players-->
+    <!-- Competitions -->
     <div class="row">
-      <div class="col-lg-6 hidden-md-down" ng-repeat="stats in leagueStats.playersStats">
-        <div class="plain prime" ng-style="colours[0].border">
-          <h3 ng-style="colours[0].color">{{stats.title}}</h3>
+      <div class="plain prime col-lg-12" ng-style="colours[0].border">
+          <div class="col-lg-12">
+            <img class="banner_50" src="../resources/img/Banner_Elite.png">
+            <p>La division la plus prestigieuse, ou les meilleures équipes s'affrontent pour le titre de champion de la BBBL.</p>
+          </div>
+          <div class="col-lg-6 zelda" ng-repeat="competition in competitions" ng-if="competition.division=='Elite'" ng-click="goToPage('competition/'+competition.id)" >
+            <h3 ng-style="colours[0].color">{{competition.name}}</h3>
+            <table>
+              <tbody>
+                <tr ng-repeat="team in competition.standing | orderBy:'standing' | limitTo:3" ng-class="{gold: $index+1 == 1, silver: $index+1 == 2, bronze: $index+1 == 3}" ng-style="colours[0].border">
+                  <td>{{$index+1}}</td>
+                  <td class="text-left">{{team.team}}</td>
+                  <td>{{team.Pts}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <h5 ng-style="colours[0].color">Classement complet et calendrier</h5>
+          </div>
+      </div>
+    </div>
 
-          <table class="mainStats">
-            <thead>
-              <tr ng-style="colours[0].background">
-                <th class="text-left">Joueur</th>
-                <th class="text-center" ng-if="stats.type=='scorers'">TD</th>
-                <th class="text-center" ng-if="stats.type=='tacklers'">Sorties</th>
-                <th class="text-center" ng-if="stats.type=='throwers'">Yards</th>
-              </tr>
-            </thead>
-            <tbody class="table-hover noselect">
-              <tr class="playerDetails" ng-style="colours[0].border" ng-repeat="player in stats.players | limitTo:5">
-                <td class="text-left text-cutter"><img src="resources/logo/Logo_{{player.logo}}.png"> </span>{{player.name}}</td>
-                <td class="text-center" ng-if="stats.type=='scorers'">{{player.TD}}</td>
-                <td class="text-center" ng-if="stats.type=='tacklers'">{{player.injuries}}</td>
-                <td class="text-center" ng-if="stats.type=='throwers'">{{player.yards}}</td>
+    <div class="row">
+      <div class="plain prime col-lg-12" ng-style="colours[0].border">
+        <div class="col-lg-12">
+          <img class="banner_50" src="../resources/img/Banner_Prestige.png">
+          <p>L'antichambre de la gloire... Les équipes de cette division ne rêvent que d'une chose: accéder à l'Élite. </p>
+        </div>
+        <div class="col-lg-6 zelda" ng-repeat="competition in competitions" ng-if="competition.division=='Prestige'" ng-click="goToPage('competition/'+competition.id)" >
+          <h3 ng-style="colours[0].color">{{competition.name}}</h3>
+          <table>
+            <tbody>
+              <tr ng-repeat="team in competition.standing | orderBy:'standing' | limitTo:3" ng-class="{gold: $index+1 == 1, silver: $index+1 == 2, bronze: $index+1 == 3}" ng-style="colours[0].border">
+                <td>{{$index+1}}</td>
+                <td class="text-left">{{team.team}}</td>
+                <td>{{team.Pts}}</td>
               </tr>
             </tbody>
           </table>
-          <div class="spacer"></div>
-          <div class="button" ng-click="displayStats(stats)">
-            <div ng-include="'resources/img/Button_0.svg'"></div>
-            <div class="label">Plus de stats</div>
-          </div>
+          <h5 ng-style="colours[0].color">Classement complet et calendrier</h5>
         </div>
       </div>
     </div>
+
+    <div class="row">
+      <div class="plain prime col-lg-12" ng-style="colours[0].border">
+        <div class="col-lg-12">
+          <img class="banner_50" src="../resources/img/Banner_Espoir.png">
+          <p>On s'étripe, on s'écharpe, dans la bonne humeur, et les survivants espèrent passer en Prestige.</p>
+        </div>
+        <div class="col-lg-4 zelda" ng-repeat="competition in competitions" ng-if="competition.division=='Espoir'" ng-click="goToPage('competition/'+competition.id)" >
+          <h3 ng-style="colours[0].color">{{competition.name}}</h3>
+          <table>
+            <tbody>
+              <tr ng-repeat="team in competition.standing | orderBy:'standing' | limitTo:3" ng-class="{gold: $index+1 == 1, silver: $index+1 == 2, bronze: $index+1 == 3}" ng-style="colours[0].border">
+                <td>{{$index+1}}</td>
+                <td class="text-left">{{team.team}}</td>
+                <td>{{team.Pts}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <h5 ng-style="colours[0].color">Classement complet et calendrier</h5>
+        </div>
+      </div>
+    </div>
+
   </div>
 
-  <!-- Competitions -->
-  <div class="col-lg-3 stick-right">
-      <div class="plain prime side zelda" ng-repeat="competition in competitions" ng-click="goToPage('competition/'+competition.id)" ng-style="colours[0].border">
-        <h3 ng-style="colours[0].color">{{competition.division}} {{competition.pool}} {{competition.site_name}}</h3>
-        <table>
-          <tbody>
-            <tr ng-repeat="team in competition.standing | orderBy:'standing'" ng-class="{gold: $index+1 == 1, silver: $index+1 == 2, bronze: $index+1 == 3}" ng-style="colours[0].border">
-              <td>{{$index+1}}</td>
-              <td class="text-left">{{team.team}}</td>
-              <td>{{team.Pts}}</td>
+  <div class="col-lg-3 stick-right hidden-md-down" >
+      <!--Champion-->
+    <div class="plain prime champion" ng-style="colours[0].border">
+      <div ng-style="teamBG"></div>
+      <h3>CHAMPION</h3>
+      <h4 ng-style="colours[0].color" ng-click="">Elite Automne 2516</h4>
+      <hr>
+      <h1 class="zelda" ng-style="colours[4].color" ng-click="goToPage('team/273')">Les Psychos Totems</h1>
+      <hr>
+      <h2 ng-style="colours[5].color">RelaxMax</h2>
+      <div class="spacer"></div>
+      <div class="button" ng-click="goToPage('competition/206')">
+        <div ng-include="'resources/img/Button_0.svg'"></div>
+        <div class="label">la compétition</div>
+      </div>
+    </div>
+    <!--Stats Players-->
+
+      <div class="plain seconde" ng-style="colours[1].border" ng-repeat="stats in leagueStats.playersStats">
+        <h3 ng-style="colours[1].color">{{stats.title}}</h3>
+        <table class="mainStats">
+          <thead>
+            <tr ng-style="colours[1].background">
+              <th class="text-left">Joueur</th>
+              <th class="text-center" ng-if="stats.type=='scorers'">TD</th>
+              <th class="text-center" ng-if="stats.type=='tacklers'">Sorties</th>
+              <th class="text-center" ng-if="stats.type=='throwers'">Yards</th>
+            </tr>
+          </thead>
+          <tbody class="table-hover noselect">
+            <tr class="playerDetails" ng-style="colours[1].border" ng-repeat="player in stats.players | limitTo:3">
+              <td class="text-left text-cutter"><img src="resources/logo/Logo_{{player.logo}}.png"> </span>{{player.name}}</td>
+              <td class="text-center" ng-if="stats.type=='scorers'">{{player.TD}}</td>
+              <td class="text-center" ng-if="stats.type=='tacklers'">{{player.injuries}}</td>
+              <td class="text-center" ng-if="stats.type=='throwers'">{{player.yards}}</td>
             </tr>
           </tbody>
         </table>
+        <div class="spacer"></div>
+        <div class="button" ng-click="displayStats(stats)">
+          <div ng-include="'resources/img/Button_1.svg'"></div>
+          <div class="label">Plus de stats</div>
+        </div>
       </div>
   </div>
 

@@ -10,14 +10,12 @@
   <div class="col-md-1" ng-class="{tab : admin==1}">
     <div ng-click="matchRefresh()" ng-if="admin==1">Reset</div>
   </div>
-</div>
-<div class="row adapt">
+
   <div class="col-md-6">
-    <div id="HelmetLeft">
-      <div>
-        <div class="helmet" ng-include="'resources/img/HelmetLeft.svg'"></div>
-        <div id="LogoLeft" class="logo"></div>
-      </div>
+    <div id="HelmetLeft" class="helmet1">
+      <svg class="helmet_svg" viewBox="0 0 300 300" ng-include='helmet_1_svg'></svg>
+        <div class="helmet_png helmet-{{teams[0].idraces}}"></div>
+        <div class="helmet-logo"></div>
     </div>
     <div class="plain prime content noselect text-right" ng-if="!activePlayer" ng-style="colours[2].border">
       <h2 class="zelda" ng-style="colours[2].color" ng-click="goToPage('team/' + match.teams[0].id )">{{teams[0].teamname}}</h2>
@@ -30,11 +28,10 @@
     </div>
   </div>
   <div class="col-md-6">
-    <div id="HelmetRight">
-      <div>
-        <div class="helmet" ng-include="'resources/img/HelmetRight.svg'"></div>
-        <div id="LogoRight" class="logo"></div>
-      </div>
+    <div id="HelmetRight" class="helmet2">
+      <svg class="helmet_svg" viewBox="0 0 300 300" ng-include='helmet_2_svg'></svg>
+        <div class="helmet_png helmet-{{teams[1].idraces}}"></div>
+        <div class="helmet-logo"></div>
     </div>
     <div class="plain prime content noselect text-left" ng-if="!activePlayer" ng-style="colours[4].border">
       <h2 class="zelda" ng-style="colours[4].color" ng-click="goToPage('team/' + match.teams[1].id )">{{teams[1].teamname}}</h2>
@@ -50,6 +47,7 @@
 <div class="row adapt">
   <div class="col-md-4">
     <div class="plain prime text-center" ng-style="colours[2].border">
+      <div ng-style="team_1_BG"></div>
       <h3 ng-style="colours[2].color">Statistiques</h3>
       <ul class="stats list-unstyled">
         <li>Possession : <span ng-style="colours[2].color">{{match.teams[0].possessionball}} %</span></li>
@@ -94,6 +92,7 @@
   </div>
   <div class="col-md-4">
     <div class="plain prime text-center" ng-style="colours[4].border">
+      <div ng-style="team_2_BG"></div>
       <h3 ng-style="colours[4].color">Statistiques</h3>
       <ul class="stats list-unstyled">
         <li>Possession : <span ng-style="colours[4].color">{{match.teams[1].possessionball}} %</span></li>

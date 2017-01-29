@@ -75,10 +75,10 @@ time, mark, audio, video {
 }
 
 @media all and (orientation:landscape  ) {
-  body { line-height: 1; background:#000000 url('../resources/img/background.jpg'); background-size: 100% auto; overflow: hidden; }
+  body { line-height: 1; background:#000000 url('../resources/img/background2.jpg'); background-size: 100% auto; overflow: hidden; }
 }
 @media all and ( max-height:1200px ) {
-  body { line-height: 1; background:#000000 url('../resources/img/background.jpg'); background-size: auto 1200px; overflow: hidden; }
+  body { line-height: 1; background:#000000 url('../resources/img/background2.jpg'); background-size: auto 1200px; overflow: hidden; }
  }
 @media all and (orientation:portrait) {
   body { line-height: 1; background:#000000 url('../resources/img/background.jpg'); background-size: auto 100%; overflow: hidden; }
@@ -89,6 +89,7 @@ h1 { font-family: 'Akashi';  font-size: 40px; line-height: 50px; color: #ffffff;
 h2, h2 a { font-family: 'Akashi' !important; font-size: 30px; line-height: 1; margin:0 0 10px; color: #ffffff; }
 h3 { font-family: 'Akashi';  font-size: 24px; line-height: 1; margin:0 0 10px; color: #ffffff; }
 h4 { font-family: 'Akashi';  font-size: 18px; line-height: 1; margin:0 0 10px; color: #ffffff; }
+h5 { font-family:'Muli'; font-weight:700; text-decoration: underline; margin:5px; text-align: center;}
 h6 { font-family:'Muli'; font-weight:700;}
 p { font-family:'Muli'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc; display:inline-block; }
 
@@ -167,8 +168,8 @@ article img { max-width: 95%; }
 .b2 { right:154px; opacity:0.75; padding-right: 50px;}
 .topright .label { top: 2px; left: 25px; width: 180px; color: #999999;font-family: "Muli";font-size: 14px }
 
-.plain > table { width: 100%; color:#FFFFFF; cursor: pointer; text-align: center; }
-.plain > table > tbody > tr { height: 20px !important; font-size:14px; border-bottom: 1px solid; }
+.plain table { width: 100%; color:#FFFFFF; cursor: pointer; text-align: center; }
+.plain table > tbody > tr { height: 20px !important; font-size:14px; border-bottom: 1px solid; }
 .td-left { text-align: left; padding-left: 10px; text-align: center; }
 tbody.table-hover tr:hover { background-color:transparent; background: #000000; }
 
@@ -192,8 +193,8 @@ border-radius: 5px; border-bottom: 2px solid; }
 
 
 /* COMPETITION */
-.tab { background: url(../resources/img/Button_TopRight2.png); background-size: 100% 30px; height:30px; line-height:25px; padding-left:45px; color:#FFFFFF; height:30px; line-height:25px; padding-left:45px; cursor: pointer;}
-.firstTab + .tab { background: url(../resources/img/Button_TopRight.png); background-size: 100% 30px; height:30px; line-height:25px; padding-left:45px; color:#FFFFFF; height:30px; line-height:25px; padding-left:45px; }
+.tab { background: url(../resources/img/Button_TopRight2.png) no-repeat, url(../resources/img/Repeater_TopRight.png) no-repeat; background-size: 200px 30px, calc(100% - 200px) 30px; background-position: 0 0,200px 0; height:30px; line-height:25px; padding-left:45px; color:#FFFFFF; height:30px; line-height:25px; padding-left:45px; cursor: pointer;}
+.firstTab + .tab { background: url(../resources/img/Button_TopRight.png) no-repeat, url(../resources/img/Repeater_TopRight.png) no-repeat; background-size: 200px 30px, calc(100% - 200px) 30px; background-position: 0 0,200px 0; height:30px; line-height:25px; padding-left:45px; color:#FFFFFF; height:30px; line-height:25px; padding-left:45px; }
 .tabRow  { height:30px; }
 
 .main > table { width: 100%; color:#FFFFFF; margin:0 0 10px;}
@@ -235,34 +236,104 @@ th.attributes { max-width:45px; width:45px; }
 td img { max-height: 20px; max-width: 20px; }
 #fame {float: right; display: inline-block; text-align: right;}
 #random > h6 {cursor: auto !important;}
-@media screen and (max-width: 544px) {
-	#HelmetTeam, #HelmetLeft, #HelmetRight { text-align:center; height:200px; -webkit-perspective: 150px; perspective: 150px; padding-top: 20px; }
-	#HelmetTeam > div , #HelmetLeft > div, #HelmetRight > div { position:absolute; left:calc(50% - 100px); }
-	#HelmetTeam .logo, #HelmetLeft .logo, #HelmetRight .logo { position: absolute; left: 15px; top: 30px; width: 70px; height: 70px;
+@media screen and (max-width: 1023.99px) {
+	#HelmetTeam { text-align:center; height:200px; -webkit-perspective: 150px; perspective: 150px; padding-top: 20px; }
+	#HelmetTeam > div { position:absolute; left:calc(50% - 100px); }
+	#HelmetTeam .logo { position: absolute; left: 15px; top: 30px; width: 70px; height: 70px;
 				-ms-transform: rotateY(-15deg) rotate(-10deg);
 				-webkit-transform: rotateY(-15deg) rotate(-10deg);
 				transform: rotateY(-15deg) rotate(-10deg);}
-        #HelmetRight {  transform:rotateY(180deg); }
+   #HelmetLeft, #HelmetRight {  display:none; }
 }
-@media screen and (min-width: 545px) {
+@media screen and (min-width: 1024px) and (max-width:1279.99px) {
+
+    #HelmetTeam { position:absolute; z-index:2; left:10px; width:200px; height:200px; -webkit-perspective: 150px;
+        perspective: 150px;  }
+      #HelmetTeam + .content { padding-left: 180px; top: 15px; min-height:195px;}
+
+    #HelmetLeft, #HelmetRight {
+      position:absolute; z-index:2;
+      bottom: -20px;
+      width: 200px;
+      height: 200px;
+    }
+    #HelmetLeft{
+      left: -20px;
+      transform:rotateY(180deg);
+    }
+    #HelmetLeft + .content { min-height:195px;}
+    #HelmetLeft + .content .teamBoard { padding-left: 120px;}
+    #HelmetRight{
+      right: -20px;
+    }
+    #HelmetRight + .content { min-height:195px;}
+    #HelmetRight + .content .teamBoard { padding-right: 120px;}
+    .helmet-logo {
+        position: absolute;
+    		-ms-transform:rotate(10deg);
+    		-webkit-transform:rotate(10deg);
+    		transform:rotate(10deg);}
+    .helmet_svg, .helmet_png { position:absolute; height:inherit; width:inherit; }
+}
+@media screen and (min-width: 1280px) and (max-width:1439.99px) {
+
+    #HelmetTeam { position:absolute; z-index:2; left:10px; width:200px; height:200px; -webkit-perspective: 150px;
+        perspective: 150px;  }
+      #HelmetTeam + .content { padding-left: 180px; top: 15px; min-height:195px;}
+
+    #HelmetLeft, #HelmetRight {
+      position:absolute; z-index:2;
+      bottom: -20px;
+      width: 250px;
+      height: 250px;
+    }
+    #HelmetLeft{
+      left: -20px;
+      transform:rotateY(180deg);
+    }
+    #HelmetLeft + .content { min-height:195px;}
+    #HelmetLeft + .content .teamBoard { padding-left: 200px;}
+    #HelmetRight{
+      right: -20px;
+    }
+    #HelmetRight + .content { min-height:195px;}
+    #HelmetRight + .content .teamBoard { padding-right: 200px;}
+    .helmet-logo {
+        position: absolute;
+    		-ms-transform:rotate(10deg);
+    		-webkit-transform:rotate(10deg);
+    		transform:rotate(10deg);}
+    .helmet_svg, .helmet_png { position:absolute; height:inherit; width:inherit; }
+}
+@media screen and (min-width: 1440px) {
 
   #HelmetTeam { position:absolute; z-index:2; left:10px; width:200px; height:200px; -webkit-perspective: 150px;
       perspective: 150px;  }
     #HelmetTeam + .content { padding-left: 180px; top: 15px; min-height:195px;}
 
-  #HelmetLeft { position:absolute; z-index:2; top:60px; left:10px; width:200px; height:200px; -webkit-perspective: 150px;
-      perspective: 150px;  }
-    #HelmetLeft + .content { min-height:195px;}
-    #HelmetLeft + .content .teamBoard { padding-left: 170px; }
-  #HelmetRight { position:absolute; z-index:2; top:60px; right:10px; width:200px; height:200px; -webkit-perspective: 150px;
-      perspective: 150px; transform:rotateY(180deg); }
-  #HelmetTeam .logo, #HelmetLeft .logo, #HelmetRight .logo { position: absolute; left: 15px; top: 30px; width: 70px; height: 70px;
-  		-ms-transform: rotateY(-15deg) rotate(-10deg);
-  		-webkit-transform: rotateY(-15deg) rotate(-10deg);
-  		transform: rotateY(-15deg) rotate(-10deg);}
-    #HelmetRight + .content { min-height:195px;}
-    #HelmetRight .teamBoard { padding-right: 170px;}
-
+  #HelmetLeft, #HelmetRight {
+    position:absolute; z-index:2;
+    bottom: -20px;
+    width: 300px;
+    height: 300px;
+  }
+  #HelmetLeft{
+    left: -20px;
+    transform:rotateY(180deg);
+  }
+  #HelmetLeft + .content { min-height:195px;}
+  #HelmetLeft + .content .teamBoard { padding-left: 200px;}
+  #HelmetRight{
+    right: -20px;
+  }
+  #HelmetRight + .content { min-height:195px;}
+  #HelmetRight + .content .teamBoard { padding-right: 200px;}
+  .helmet-logo {
+      position: absolute;
+  		-ms-transform:rotate(10deg);
+  		-webkit-transform:rotate(10deg);
+  		transform:rotate(10deg);}
+  .helmet_svg, .helmet_png { position:absolute; height:inherit; width:inherit; }
 }
 
 
@@ -294,8 +365,8 @@ td img { max-height: 20px; max-width: 20px; }
 
 
 .spHeight { float: initial; display: inline-block; vertical-align: top; }
-#Reader img,p { margin-right: 10px;}
-.stadium h3,h4 { text-shadow: 0 2px 5px #000000;}
+#Reader img, #Reader p { margin-right: 10px;}
+.stadium h3, .stadium h4 { text-shadow: 0 2px 5px #000000;}
 
 /* ARCHIVES */
 .searchBox { max-height: calc(100vh - 108px); padding-bottom: 0;}
@@ -306,19 +377,19 @@ td img { max-height: 20px; max-width: 20px; }
 #Versus { display: inline-block; height:100%; min-height:200px; width:128px; background: url(../resources/img/VS.png) center center no-repeat;}
 #HelmetLeft.affiche, #HelmetRight.affiche {display: inline-block; position:relative !important; top:0 !important; left:0 !important;}
 #HelmetLeft.affiche .logo, #HelmetRight.affiche .logo { position: absolute; left: 0px; top: 20px; width: 90px; height: 90px;
-   -ms-transform: rotateY(-15deg) rotate(-10deg);
-   -webkit-transform: rotateY(-15deg) rotate(-10deg);
-   transform: rotateY(-15deg) rotate(-10deg);}
+   -ms-transform: rotate(-10deg);
+   -webkit-transform: rotate(-10deg);
+   transform: rotate(-10deg);}
 .affiche hr { margin:5px 0 20px; border-top:1px  solid  #ffffff;}
 
 /* CHAMPION */
-.champion h1 { font-family: 'Akashi';  font-size: 70px; line-height: 70px;  color: #ffffff; text-align:center; }
-.champion h2 { font-family: 'Akashi';  font-size: 50px; line-height: 60px;  color: #ffffff; text-align:center; }
-.champion h3 { font-family: 'Akashi';  font-size: 40px; line-height: 1; margin:0 0 10px; text-align:center; }
-.champion h4 { font-family: 'Muli';  font-size: 30px; line-height: 1; margin:0 0 10px; color: #ffffff; text-align:center; }
+.champion h1 { font-family: 'Akashi';  font-size: 36px; line-height: 40px;  color: #ffffff; text-align:center; margin:0;}
+.champion h2 { font-family: 'Akashi';  font-size: 26px; line-height: 30px;  color: #ffffff; text-align:center; margin:0;}
+.champion h3 { font-family: 'Akashi';  font-size: 26px; line-height: 1; text-align:center; margin:0;}
+.champion h4 { font-family: 'Muli';  font-size: 22px; line-height: 1; color: #ffffff; text-align:center; margin:0;}
 
 .champion img { position:absolute; left:-65px; top:35px; width:256px; height:256px;}
-.champion hr, .archives hr  { width:80%; border-top:1px  solid  #ffffff; text-align:center;}
+.champion hr, .archives hr  { width:80%; border-top:1px  solid  #ffffff; text-align:center; margin: 10px auto;}
 .champion #HelmetLeft {display: inline-block; top: 45px !important; left: -15px !important;}
 .champion #HelmetRight {display: inline-block; top: -10px !important; right: -15px !important;}
 .champion #HelmetLeft .logo, .champion #HelmetRight .logo { position: absolute; left: 10px; top: 30px; width: 75px; height: 75px;
@@ -344,7 +415,9 @@ td img { max-height: 20px; max-width: 20px; }
 
 
 .banner { width:100%; max-width:882px; margin-top: 15px;}
-#MatchWeek .banner { width:60%; }
+#MatchWeek .banner { width:50%; }
+.banner_50 { width:50%; margin:0 10px 0 5%; float:left;}
+.banner_50 + p {display: inherit; margin:20px 0 0;}
 
 .championName { min-height: 60px; text-align: center; width: 100%; }
 .championName h2 {position: absolute;z-index: 1; text-align: center;width: calc(100% - 30px);}
@@ -362,3 +435,44 @@ td img { max-height: 20px; max-width: 20px; }
 
 table.mainStats, table.modalStats {cursor:default;}
 .mainStats td {max-width: 9vw;}
+
+.stick-right .button {bottom:1px;}
+.quote {padding: 40px 20px;}
+.quote h1 { font-size: 60px; font-family: 'Niconne', cursive; }
+.quote p { font-size: 30px; line-height: 30px; font-family: 'Niconne', cursive; text-align: right; display:inherit}
+
+.quickLink {font-weight: 500;}
+
+.helmet-logo { height: 25%; width: 25%; bottom: 50%; right: 25%; }
+.helmet-1 {	background: url('/resources/helmet/helmet_1.png') top left no-repeat; background-size:cover; }
+.helmet-2 {	background: url('/resources/helmet/helmet_2.png') top left no-repeat; background-size:cover; }
+.helmet-2 + .helmet-logo { height: 13%; width: 13%; bottom: 53%; right: 43%; transform: rotateX(0);}
+.helmet-3 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
+.helmet-4 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
+.helmet-5 {	background: url('/resources/helmet/helmet_5.png') top left no-repeat; background-size:cover; }
+.helmet-6 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
+.helmet-7 {	background: url('/resources/helmet/helmet_7.png') top left no-repeat; background-size:cover; }
+.helmet-8 {	background: url('/resources/helmet/helmet_8.png') top left no-repeat; background-size:cover; }
+.helmet-8 + .helmet-logo { height: 25%; width:25%; bottom: 56%; right: 36%;}
+.helmet-9 {	background: url('/resources/helmet/helmet_9.png') top left no-repeat; background-size:cover; }
+.helmet-9 + .helmet-logo { height: 17%; width: 17%; bottom: 25%; right:60%;}
+.helmet-10 {	background: url('/resources/helmet/helmet_10.png') top left no-repeat; background-size:cover; }
+.helmet-10 + .helmet-logo { height: 25%; width: 25%; bottom: 52%; right: 25%; transform: rotate(0); }
+.helmet-11 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
+.helmet-12 {	background: url('/resources/helmet/helmet_12.png') top left no-repeat; background-size:cover; }
+.helmet-13 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
+.helmet-14 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
+.helmet-15 {	background: url('/resources/helmet/helmet_15.png') top left no-repeat; background-size:cover; }
+.helmet-15 + .helmet-logo { height: 20%; width: 20%; bottom: 52%; right: 30%; transform: rotate(0); }
+.helmet-16 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
+.helmet-17 {	background: url('/resources/helmet/helmet_10.png') top left no-repeat; background-size:cover; }
+.helmet-17 + .helmet-logo { height: 25%; width: 25%; bottom: 52%; right: 25%; transform: rotate(0); }
+.helmet-18 {	background: url('/resources/helmet/helmet_8.png') top left no-repeat; background-size:cover; }
+.helmet-18 + .helmet-logo { height: 25%; width:25%; bottom: 56%; right: 36%; }
+.helmet-19 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
+.helmet-20 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
+.helmet-21 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
+.helmet-22 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
+.helmet-23 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
+.helmet-24 {	background: url('/resources/helmet/helmet_24.png') top left no-repeat; background-size:cover; }
+.helmet-24 + .helmet-logo { height: 25%; width: 25%; bottom: 52%; right: 26%; }
