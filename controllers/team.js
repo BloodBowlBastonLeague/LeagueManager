@@ -23,11 +23,17 @@ LeagueManager.directive('team', function(){
 				}
 				$rootScope.title = $scope.team.name;
 				$scope.team.pop = [];
-		    $rootScope.setColours([$scope.team.color_1,$scope.team.color_2]);
+				for(i=0;i<$scope.team.popularity;i++){ $scope.team.pop.push(i); }
+		    $rootScope.setColours([$scope.team.color_1,$scope.team.color_2,$scope.team.color_1,$scope.team.color_2]);
 				//Team Images
 				$('.logo').css({"background": "url(resources/logo/Logo_"+$scope.team.logo+".png) center center no-repeat", "background-size":"contain"});
-				$scope.teamBG = { 'position': 'absolute', 'width': '100%', 'height': '100%', 'background': 'url(resources/logo/Logo_'+$scope.team.logo+'.png) center center no-repeat', 'background-size': '30% auto', 'z-index': '-1'}
-				for(i=0;i<$scope.team.popularite;i++){ $scope.team.pop.push(i); }
+				$('.helmet1 .helmet-logo').css({"background": "url(../resources/logo/Logo_" + $scope.team.logo + ".png) center center no-repeat", "background-size":"cover"});
+				$scope.team_BG = { 'position': 'absolute', 'width': '100%', 'height': '100%', 'background': 'url(../resources/logo/Logo_'+$scope.team.logo+'.png) center center no-repeat', 'background-size': '30% auto', 'z-index': '-1'}
+				$scope.helmet_svg = 'resources/helmet/helmet_' + $scope.team.param_id_race + '.svg';
+
+
+
+
 				$scope.teamArticle();
 
 				//Classement

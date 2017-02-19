@@ -1,7 +1,7 @@
 <div class="row">
-  <div class="col-lg-7 scroll">
+  <div class="col-lg-7">
     <div id="players" class="plain prime main" ng-style="colours[0].border">
-      <div ng-style="teamBG"></div>
+      <div ng-style="team_BG"></div>
       <h3 ng-style="colours[0].color">Effectif</h3>
       <table>
         <thead>
@@ -72,15 +72,14 @@
         <div class="label" ng-if="showStats">Effectif</div>
       </div>
     </div>
-    <div id="HelmetTeam">
-      <div>
-        <div class="helmet" ng-include="'resources/img/Helmet.svg'"></div>
-        <div id="LogoLeft" class="logo"></div>
-      </div>
+    <div id="HelmetTeam" class="helmet1">
+      <svg class="helmet_svg" viewBox="0 0 300 300" ng-include='helmet_svg'></svg>
+        <div class="helmet_png helmet-{{team.param_id_race}}"></div>
+        <div class="helmet-logo"></div>
     </div>
     <div id="Profile" class="plain seconde content noselect" ng-if="!activePlayer" ng-style="colours[1].border">
-      <div id="fame" ng-style="colours[1].color">
-        <div ng-repeat="i in team.pop" class="star">&#9733;</div><br/>
+      <div id="fame"  class="teamBoard">
+        <h4 ng-repeat="i in team.pop" class="star"  ng-style="colours[1].color">&#9733;</h4>
         <h4 class="noselect" ng-style="colours[1].color">TV {{team.value}}</h4>
         <h4 ng-style="colours[1].color">{{team.cash}} PO</h4>
       </div>
@@ -105,7 +104,7 @@
       </div>
     </div>
   </div>
-  <div class="col-lg-5 scroll">
+  <div class="col-lg-5">
     <div id="teamPhoto" class="plain" ng-style="colours[1].border" ng-if="teamID>268">
       <img class="cover" src="resources/img/Cover_Glass.png">
       <img src="resources/img/teams/photo{{teamID}}.png">

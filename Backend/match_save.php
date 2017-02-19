@@ -27,7 +27,6 @@ foreach ($played->upcoming_matches as $game) {
     $game_details = json_decode($response_2);
 
 
-
   //Save match
   $sql_match = "UPDATE site_matchs SET
     cyanide_id = '".$game_details->uuid."',
@@ -82,27 +81,36 @@ foreach ($played->upcoming_matches as $game) {
 
   $match = $game_details->match;
   foreach ($match->teams as $team){
-    $team_bbbl_id = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM site_teams WHERE cyanide_id = ".$team->idteamlisting));
+    $team_bbbl = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM site_teams WHERE cyanide_id = ".$team->idteamlisting));
+    $team_bbbl_id = $team_bbbl[0];
+
     foreach ($team->roster as $player) {
       //Save players
-     $player_bbbl = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM site_players WHERE name='".str_replace("'","\'",$player->name)."' AND dead !=1 AND team_id = ".$team_bbbl_id[0]));
+     $player_bbbl = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM site_players WHERE name='".str_replace("'","\'",$player->name)."' AND dead !=1 AND team_id = ".$team_bbbl_id));
 
       //Update
       if ( $player_bbbl[0] > 0){
-        $sql_player = "UPDATE site_players SET team_id = ".$team_bbbl_id[0].",
+        $sql_reset_injuries = "UPDATE site_players SET injured=0 WHERE team_id = ".$team_bbbl_id;
+        $con->query($sql_reset_injuries);
+        $sql_player = "UPDATE site_players SET team_id = ".$team_bbbl_id.",
           level = ".$player->level.",
           xp = ".$player->xp.",
           attributes = '".json_encode($player->attributes)."',
           skills = '".json_encode($player->skills)."',
+          injuries = '".json_encode($player->casualties_state)."',
           dead = ".$player->stats->sustaineddead.",
-          injured = ".$player->stats->sustainedcasualties."
+          injured = CASE WHEN LENGTH('".json_encode($player->casualties_sustained)."') = 2 THEN 0 ELSE
+                      CASE WHEN '".json_encode($player->casualties_sustained)."' LIKE '%BadlyHurt%' THEN 0 ELSE 1 END
+                    END
           WHERE id = ".$player_bbbl[0];
+          echo $sql_player;
         $con->query($sql_player);
         $player_bbbl_id = $player_bbbl[0];
       }
       else {
         $sql_player = "INSERT INTO site_players (team_id, param_name_type, name, level, xp, attributes, skills, dead, injured)
           VALUES (".$team_bbbl_id.",'".$player->type."','".str_replace("'","\'",$player->name)."',".$player->level.",".$player->xp.",'".json_encode($player->attributes)."','".json_encode($player->skills)."',".$player->stats->sustaineddead.",".$player->stats->sustainedcasualties.")";
+        echo $sql_player;
         $con->query($sql_player);
         $player_bbbl_id = $con->insert_id;
       };

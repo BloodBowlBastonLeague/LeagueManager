@@ -6,18 +6,19 @@ LeagueManager.directive('match', function(){
 			$scope.matchID = $routeParams.ID;
 			$rootScope.match = {};
 
-				$scope.tmpTeams = [  { "teamID" : "0",
+			$scope.tmpTeams = [  { "teamID" : "0",
 				  "color1" : "#A9A9A9",
 				  "color2" : "#8C7853"},
 				  { "teamID" : "1",
 				    "color1" : "#CFB53B",
 				    "color2" : "#C0C0C0"}];
 
-				$http.get('Backend/match.php?id=' + $scope.matchID).success( function(result) {
+			$http.get('Backend/match.php?id=' + $scope.matchID).success( function(result) {
 				var data = JSON.parse(result.json);
 
 				$rootScope.match = data.match;
 				$rootScope.match.cyanide_id = result.cyanide_id;
+				$rootScope.match.competition_id = result.competition_id;
 				$rootScope.title = $rootScope.match.competitionname;
 				$scope.stadium = data.teams[0].stadiumname;
 				$scope.teams = $rootScope.match.teams;
@@ -29,7 +30,8 @@ LeagueManager.directive('match', function(){
 				$scope.teams[1].id = result.team_id_2;
 				$scope.teams[1].color1 = result.team_2_color_1;
 				$scope.teams[1].color2 = result.team_2_color_2;
-				$rootScope.match.discussion = result.forum_url
+				$rootScope.match.discussion = result.forum_url;
+
 					//Récupération des couleurs - Fetching colours
 					for(i=0; i < 2; i++){
 						$scope.teamIdx = $scope.tmpTeams.map(function(e) { return e.teamID; }).indexOf($scope.teams[i].id);
@@ -56,7 +58,6 @@ LeagueManager.directive('match', function(){
 
 					$scope.stadiumBG = { 'background':  'url(resources/img/stadium/' + $rootScope.match.stadium + '.png) center center no-repeat, rgba(50, 50, 50, 0.85) ', 'background-size':'cover, cover', 'border-color': $rootScope.colours[1].hexa};
 					//Team Images
-
 					$('.helmet1 .helmet-logo').css({"background": "url(../resources/logo/Logo_" + $scope.teams[0].teamlogo + ".png) center center no-repeat", "background-size":"cover"});
 					$scope.team_1_BG = { 'position': 'absolute', 'width': '100%', 'height': '100%', 'background': 'url(../resources/logo/Logo_'+$scope.teams[0].teamlogo+'.png) center center no-repeat', 'background-size': '50% auto', 'z-index': '-1'}
 					$scope.helmet_1_svg = 'resources/helmet/helmet_' + $scope.teams[0].idraces + '.svg';

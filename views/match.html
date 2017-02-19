@@ -1,6 +1,6 @@
 <div class="row adapt">
   <div class="col-md-3"></div>
-  <div class="col-md-6" ng-click="previousPage()">
+  <div class="col-md-6" ng-click="goToPage('competition/'+match.competition_id)">
     <div class="plain header seconde text-center stadium zelda" ng-style="stadiumBG">
       <h4>{{match.leaguename}}</h4>
       <h3 ng-style="colours[1].color">{{match.competitionname}}</h3>
@@ -19,7 +19,7 @@
     </div>
     <div class="plain prime content noselect text-right" ng-if="!activePlayer" ng-style="colours[2].border">
       <h2 class="zelda" ng-style="colours[2].color" ng-click="goToPage('team/' + match.teams[0].id )">{{teams[0].teamname}}</h2>
-      <div id="ScoreLeft" class="score" ng-style="colours[2].color">{{teams[0].score}}</div>
+      <div id="ScoreLeft" class="score" ng-style="colours[2].textborder">{{teams[0].score}}</div>
       <div class="teamBoard">
         <h3>coaché par <span ng-style="colours[2].color">{{match.coaches[0].coachname}}</span></h3>
         <h3>TV <span ng-style="colours[2].color">{{teams[0].value}}</span></h3>
@@ -35,7 +35,7 @@
     </div>
     <div class="plain prime content noselect text-left" ng-if="!activePlayer" ng-style="colours[4].border">
       <h2 class="zelda" ng-style="colours[4].color" ng-click="goToPage('team/' + match.teams[1].id )">{{teams[1].teamname}}</h2>
-      <div id="ScoreRight" class="score" ng-style="colours[4].color">{{match.teams[1].score}}</div>
+      <div id="ScoreRight" class="score" ng-style="colours[4].textborder">{{match.teams[1].score}}</div>
       <div class="teamBoard">
         <h3>coaché par <span ng-style="colours[4].color">{{match.coaches[1].coachname}}</span></h3>
         <h3 class="noselect">TV <span ng-style="colours[4].color">{{teams[1].value}}</span></h3>

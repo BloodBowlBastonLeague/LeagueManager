@@ -237,34 +237,32 @@ td img { max-height: 20px; max-width: 20px; }
 #fame {float: right; display: inline-block; text-align: right;}
 #random > h6 {cursor: auto !important;}
 @media screen and (max-width: 1023.99px) {
-	#HelmetTeam { text-align:center; height:200px; -webkit-perspective: 150px; perspective: 150px; padding-top: 20px; }
+	#HelmetTeam { text-align:center; height:200px; padding-top: 20px; }
 	#HelmetTeam > div { position:absolute; left:calc(50% - 100px); }
 	#HelmetTeam .logo { position: absolute; left: 15px; top: 30px; width: 70px; height: 70px;
 				-ms-transform: rotateY(-15deg) rotate(-10deg);
 				-webkit-transform: rotateY(-15deg) rotate(-10deg);
 				transform: rotateY(-15deg) rotate(-10deg);}
-   #HelmetLeft, #HelmetRight {  display:none; }
+   #HelmetLeft, #HelmetRight, #HelmetTeam {  display:none; }
 }
 @media screen and (min-width: 1024px) and (max-width:1279.99px) {
 
-    #HelmetTeam { position:absolute; z-index:2; left:10px; width:200px; height:200px; -webkit-perspective: 150px;
-        perspective: 150px;  }
+    #HelmetTeam { position:absolute; z-index:2; left:10px; width:200px; height:200px; }
       #HelmetTeam + .content { padding-left: 180px; top: 15px; min-height:195px;}
 
     #HelmetLeft, #HelmetRight {
       position:absolute; z-index:2;
-      bottom: -20px;
-      width: 200px;
+      bottom: 0px;      width: 200px;
       height: 200px;
     }
-    #HelmetLeft{
-      left: -20px;
+    #HelmetLeft, #HelmetTeam{
+      left: 0px;
       transform:rotateY(180deg);
     }
     #HelmetLeft + .content { min-height:195px;}
     #HelmetLeft + .content .teamBoard { padding-left: 120px;}
     #HelmetRight{
-      right: -20px;
+      right: 0px;
     }
     #HelmetRight + .content { min-height:195px;}
     #HelmetRight + .content .teamBoard { padding-right: 120px;}
@@ -277,24 +275,23 @@ td img { max-height: 20px; max-width: 20px; }
 }
 @media screen and (min-width: 1280px) and (max-width:1439.99px) {
 
-    #HelmetTeam { position:absolute; z-index:2; left:10px; width:200px; height:200px; -webkit-perspective: 150px;
-        perspective: 150px;  }
-      #HelmetTeam + .content { padding-left: 180px; top: 15px; min-height:195px;}
+    #HelmetTeam { position:absolute; z-index:2; left:10px; width:250px; height:250px;  }
+      #HelmetTeam + .content { padding-left: 200px; top: 15px; min-height:195px;}
 
     #HelmetLeft, #HelmetRight {
       position:absolute; z-index:2;
-      bottom: -20px;
+      bottom: 0px;
       width: 250px;
       height: 250px;
     }
-    #HelmetLeft{
-      left: -20px;
+    #HelmetLeft, #HelmetTeam {
+      left: 0px;
       transform:rotateY(180deg);
     }
     #HelmetLeft + .content { min-height:195px;}
     #HelmetLeft + .content .teamBoard { padding-left: 200px;}
     #HelmetRight{
-      right: -20px;
+      right: 0px;
     }
     #HelmetRight + .content { min-height:195px;}
     #HelmetRight + .content .teamBoard { padding-right: 200px;}
@@ -307,24 +304,23 @@ td img { max-height: 20px; max-width: 20px; }
 }
 @media screen and (min-width: 1440px) {
 
-  #HelmetTeam { position:absolute; z-index:2; left:10px; width:200px; height:200px; -webkit-perspective: 150px;
-      perspective: 150px;  }
-    #HelmetTeam + .content { padding-left: 180px; top: 15px; min-height:195px;}
+  #HelmetTeam { position:absolute; z-index:2; left:10px; width:300px; height:300px; }
+    #HelmetTeam + .content { padding-left: 230px; top: 15px; min-height:195px;}
 
   #HelmetLeft, #HelmetRight {
     position:absolute; z-index:2;
-    bottom: -20px;
+    bottom: 0px;
     width: 300px;
     height: 300px;
   }
-  #HelmetLeft{
-    left: -20px;
+  #HelmetLeft, #HelmetTeam {
+    left: 0px;
     transform:rotateY(180deg);
   }
   #HelmetLeft + .content { min-height:195px;}
   #HelmetLeft + .content .teamBoard { padding-left: 200px;}
   #HelmetRight{
-    right: -20px;
+    right: 0px;
   }
   #HelmetRight + .content { min-height:195px;}
   #HelmetRight + .content .teamBoard { padding-right: 200px;}
@@ -443,15 +439,21 @@ table.mainStats, table.modalStats {cursor:default;}
 
 .quickLink {font-weight: 500;}
 
+a:hover h4{ text-decoration: none !important;}
+
+
 .helmet-logo { height: 25%; width: 25%; bottom: 50%; right: 25%; }
 .helmet-1 {	background: url('/resources/helmet/helmet_1.png') top left no-repeat; background-size:cover; }
 .helmet-2 {	background: url('/resources/helmet/helmet_2.png') top left no-repeat; background-size:cover; }
 .helmet-2 + .helmet-logo { height: 13%; width: 13%; bottom: 53%; right: 43%; transform: rotateX(0);}
-.helmet-3 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
-.helmet-4 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
+.helmet-3 {	background: url('/resources/helmet/helmet_3.png') top left no-repeat; background-size:cover; }
+.helmet-3 + .helmet-logo { height: 10%; width: 10%; bottom: 34%; right:44%;}
+.helmet-4 {	background: url('/resources/helmet/helmet_4.png') top left no-repeat; background-size:cover; }
+.helmet-4 + .helmet-logo { height: 25%; width:25%; bottom: 55%; right: 30%; }
 .helmet-5 {	background: url('/resources/helmet/helmet_5.png') top left no-repeat; background-size:cover; }
 .helmet-6 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
 .helmet-7 {	background: url('/resources/helmet/helmet_7.png') top left no-repeat; background-size:cover; }
+.helmet-7 + .helmet-logo { height: 25%; width:25%; bottom: 50%; right: 30%; }
 .helmet-8 {	background: url('/resources/helmet/helmet_8.png') top left no-repeat; background-size:cover; }
 .helmet-8 + .helmet-logo { height: 25%; width:25%; bottom: 56%; right: 36%;}
 .helmet-9 {	background: url('/resources/helmet/helmet_9.png') top left no-repeat; background-size:cover; }
@@ -460,6 +462,7 @@ table.mainStats, table.modalStats {cursor:default;}
 .helmet-10 + .helmet-logo { height: 25%; width: 25%; bottom: 52%; right: 25%; transform: rotate(0); }
 .helmet-11 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
 .helmet-12 {	background: url('/resources/helmet/helmet_12.png') top left no-repeat; background-size:cover; }
+.helmet-12 + .helmet-logo { height: 13%; width: 13%; bottom: 62%; right:54%;}
 .helmet-13 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
 .helmet-14 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
 .helmet-15 {	background: url('/resources/helmet/helmet_15.png') top left no-repeat; background-size:cover; }
@@ -467,8 +470,8 @@ table.mainStats, table.modalStats {cursor:default;}
 .helmet-16 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
 .helmet-17 {	background: url('/resources/helmet/helmet_10.png') top left no-repeat; background-size:cover; }
 .helmet-17 + .helmet-logo { height: 25%; width: 25%; bottom: 52%; right: 25%; transform: rotate(0); }
-.helmet-18 {	background: url('/resources/helmet/helmet_8.png') top left no-repeat; background-size:cover; }
-.helmet-18 + .helmet-logo { height: 25%; width:25%; bottom: 56%; right: 36%; }
+.helmet-18 {	background: url('/resources/helmet/helmet_18.png') top left no-repeat; background-size:cover; }
+.helmet-18 + .helmet-logo { height: 25%; width:25%; bottom: 50%; right: 30%; }
 .helmet-19 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
 .helmet-20 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }
 .helmet-21 {	background: url('/resources/helmet/helmet_0.png') top left no-repeat; background-size:cover; }

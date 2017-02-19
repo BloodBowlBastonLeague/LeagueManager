@@ -18,6 +18,7 @@ LeagueManager.directive('match1', function(){
 
 				$rootScope.match = data.match;
 				$rootScope.match.cyanide_id = result.cyanide_id;
+				$rootScope.match.competition_id = result.competition_id;
 				$rootScope.title = $rootScope.match.competitionname;
 				$scope.stadium = data.teams[0].stadiumname;
 				$scope.teams = $rootScope.match.teams;
@@ -55,11 +56,12 @@ LeagueManager.directive('match1', function(){
 					$rootScope.setColours([$rootScope.colourA,$rootScope.colourB,$scope.teams[0].color1,$scope.teams[0].color2,$scope.teams[1].color1,$scope.teams[1].color2]);
 
 					$scope.stadiumBG = { 'background':  'url("../resources/img/stadium/' + $rootScope.match.stadium + '.png") center center no-repeat, rgba(50, 50, 50, 0.85) ', 'background-size':'cover, cover', 'border-color': $rootScope.colours[1].hexa};
-					//Team Images
-					$('#LogoLeft').css({"background": "url(../resources/logo/Logo_" + $scope.teams[0].teamlogo + ".png) center center no-repeat", "background-size":"cover"});
+					$('.helmet1 .helmet-logo').css({"background": "url(../resources/logo/Logo_" + $scope.teams[0].teamlogo + ".png) center center no-repeat", "background-size":"cover"});
 					$scope.team_1_BG = { 'position': 'absolute', 'width': '100%', 'height': '100%', 'background': 'url(../resources/logo/Logo_'+$scope.teams[0].teamlogo+'.png) center center no-repeat', 'background-size': '50% auto', 'z-index': '-1'}
-					$('#LogoRight').css({"background": "url(../resources/logo/Logo_" + $scope.teams[1].teamlogo + ".png) center center no-repeat", "background-size":"contain"});
+					$scope.helmet_1_svg = '../resources/helmet/helmet_' + $scope.teams[0].idraces + '.svg';
+					$('.helmet2 .helmet-logo').css({"background": "url(../resources/logo/Logo_" + $scope.teams[1].teamlogo + ".png) center center no-repeat", "background-size":"contain"});
 					$scope.team_2_BG = { 'position': 'absolute', 'width': '100%', 'height': '100%', 'background': 'url(../resources/logo/Logo_'+$scope.teams[1].teamlogo+'.png) center center no-repeat', 'background-size': '50% auto', 'z-index': '-1'}
+					$scope.helmet_2_svg = '../resources/helmet/helmet_' + $scope.teams[1].idraces + '.2.svg';
 				});
 		}
 	}
