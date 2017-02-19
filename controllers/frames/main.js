@@ -19,7 +19,7 @@ LeagueManager.config(function ($routeProvider) {
 
 });
 
-LeagueManager.run(function($rootScope, $http, $location, $timeout) {
+LeagueManager.run(function($rootScope, $http, $location, $timeout, $window) {
 $rootScope.competitions = [];
 	$rootScope.eliminations = ['32emes de finales','16emes de finales','8emes de finales','Quart de finales','Demi-Finales','Finale'];
 	//Récupération des articles
@@ -42,6 +42,7 @@ $rootScope.competitions = [];
 				$rootScope.colours[i].border = { 'border-color':args[i] };
 				$rootScope.colours[i].background = { 'background-color':args[i] };
 				$rootScope.colours[i].fill = { 'fill': args[i] };
+				$rootScope.colours[i].textborder = { 'color': args[i],'text-shadow': '-2px -2px #FFFFFF, 2px 2px #FFFFFF, 2px -2px #FFFFFF, -2px 2px #FFFFFF' };
 		}
 			$rootScope.navbarColour ={'background': '-webkit-linear-gradient('+args[0]+',#000000)', 'background': '-moz-linear-gradient('+args[0]+',#000000)', 'background': 'linear-gradient('+args[0]+',#000000)' };
 	};
@@ -51,6 +52,10 @@ $rootScope.competitions = [];
 	$rootScope.sortBy = function(orderFilter) {
 		$rootScope.reverse = ($rootScope.orderFilter === orderFilter) ? !$rootScope.reverse : false;
 		$rootScope.orderFilter = orderFilter;
+	};
+
+	$rootScope.openSite = function(url) {
+		$window.open(url,'_blank');
 	};
 
 });

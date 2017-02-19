@@ -30,7 +30,7 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
           COUNT(case when score_2 > score_1 then 1 end) AS D,
           SUM(score_1) AS TDfor,
           SUM(score_1) - SUM(score_2) AS TD,
-          SUM(sustainedcasualties_2 ) + SUM(sustaineddead_2) - SUM(sustainedcasualties_1) - SUM(sustaineddead_1) AS S,
+          SUM(sustainedcasualties_2 ) - SUM(sustainedcasualties_1) AS S,
           SUM( case when score_1 > score_2 then 3 else 0 end
               + case when score_1 = score_2 then 1 else 0 end
           ) AS Pts

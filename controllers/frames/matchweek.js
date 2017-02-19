@@ -6,7 +6,12 @@ LeagueManager.directive('matchweek', function(){
 			$rootScope.setColours([$rootScope.colourA,$rootScope.colourB]);
 			$http.get('../Backend/calendar.php?id='+window.competition).success(function(result){
 				$scope.calendar = result;
-				$scope.matchDay = $scope.calendar[window.round-1];
+				if(window.round>5){
+					var corrector = 6;
+				} else {
+					var corrector = 1;
+				}
+				$scope.matchDay = $scope.calendar[window.round-corrector];
 				$scope.finals = $rootScope.eliminations.splice($scope.calendar.length,$scope.calendar.length);
 			});
 		}

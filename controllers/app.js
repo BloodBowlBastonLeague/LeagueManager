@@ -122,6 +122,7 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 				$rootScope.colours[i].border = { 'border-color':args[i] };
 				$rootScope.colours[i].background = { 'background-color':args[i] };
 				$rootScope.colours[i].fill = { 'fill': args[i] };
+				$rootScope.colours[i].textborder = { 'color': args[i],'text-shadow': '-2px -2px #FFFFFF, 2px 2px #FFFFFF, 2px -2px #FFFFFF, -2px 2px #FFFFFF' };
 		}
 		console.log($rootScope.colours);
 			$rootScope.navbarColour ={'background': '-webkit-linear-gradient('+args[0]+',#000000)', 'background': '-moz-linear-gradient('+args[0]+',#000000)', 'background': 'linear-gradient('+args[0]+',#000000)' };
