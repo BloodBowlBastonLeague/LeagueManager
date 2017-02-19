@@ -48,7 +48,7 @@
 
     <!-- Cup / Coupe -->
     <div class="plain prime main" ng-if="competition.competition_mode=='Coupe'" ng-style="colours[0].border">
-      <h3 ng-style="colours[0].color">Qualifiés</h3>
+      <h3 ng-style="colours[0].color">Qualifiés JE SUIS ICI</h3>
       <table>
         <thead>
           <tr ng-style="colours[0].background">
@@ -143,17 +143,85 @@
       </h3>
       <h3 ng-if="matchDay.round != currentDay" ng-style="colours[0].color" ng-click="sortBy('day')" class="zelda"><span ng-if="competition.competition_mode=='Coupe'">{{finals[matchDay.round-1]}}</span><span ng-if="competition.competition_mode!='Coupe'">Journée {{matchDay.round}}</span> <div class="triangle" ng-class="{down: reverse}" ng-style="colours[0].border"></div></h3>
       <div class="match x-center">
-        <div class="vs col-xs-4" ng-class="{zelda:match.cyanide_id!=null}" ng-repeat="match in matchDay.matchs">
-          <div ng-click="matchDetail(match.id,match.cyanide_id,match.team_id_1,match.team_id_2)" >
-            <img class="teamLogo" src="resources/logo/Logo_{{match.logo_1}}.png">
-            <img class="versus" ng-if="match.cyanide_id==null" src="../resources/img/vs.png">
-            <span ng-if="match.cyanide_id!=null && matchDay.round == currentDay"> {{match.score_1}} - {{match.score_2}} </span>
-            <span ng-if="match.cyanide_id!=null && matchDay.round != currentDay" ng-style="colours[0].color"> {{match.score_1}} - {{match.score_2}} </span>
-            <img class="teamLogo" src="resources/logo/Logo_{{match.logo_2}}.png">
+
+        <div class="vs col-xs-4" ng-class="{zelda:match.id}" ng-repeat="match in matchDay.matchs">
+          <!--
+	       Modif pour la possibilité de faire des pronos.
+	       On passe par la fonction ifClicked qui va renvoyer sur la bonne page (pronos ou détail du match)
+	       <div ng-click="matchDetail(match.id,match.started,match.team_id_1,match.team_id_2)">
+		 -->
+          <div ng-click="ifClicked(match)" >
+	    <div>
+              <img class="teamLogo" src="resources/logo/Logo_{{match.logo_1}}.png">
+              <span ng-if="!match.started && matchDay.round == currentDay" > VS </span>
+              <span ng-if="!match.started && matchDay.round != currentDay" ng-style="colours[0].color"> VS </span>
+              <span ng-if="match.started.length>0 && matchDay.round == currentDay"> {{match.score_1}} - {{match.score_2}} </span>
+              <span ng-if="match.started.length>0 && matchDay.round != currentDay" ng-style="colours[0].color"> {{match.score_1}} - {{match.score_2}} </span>
+              <img class="teamLogo" src="resources/logo/Logo_{{match.logo_2}}.png"></br>
+	      <span ng-if="betsAlreadyDone(match)"><span style="font-size:60%"> {{ratio(match)}}</span></span>
+	    </div>
+
           </div>
         </div>
-
       </div>
     </div>
   </div>
+</div>
+
+<!-- FENETRE DES PRONOSTICS-->
+<div class="container seconde" ng-if="affBets">
+<h3>Pronostics</h3>
+<span ng-if="errorBets"> <h4 style="color:red;" >{{errorMessage}}</h4></span>
+<form ng-submit="BetsDone(b1, b2)" method='post'>
+  <select ng-model="b1" >
+    <option ng-value="0">0
+    <option ng-value="1">1
+    <option ng-value="2">2
+    <option ng-value="3">3
+    <option ng-value="4">4
+    <option ng-value="5">5
+    <option ng-value="6">6
+    <option ng-value="7">7
+    <option ng-value="8">8
+    <option ng-value="9">9
+  </select>
+  <img class="teamLogo" src="resources/logo/Logo_{{bet.logo_1}}.png"><span style="color:#FFFFFF">{{bet.name_1}}</span></br>
+  <select ng-model="b2">
+    <option ng-value="0">0
+    <option ng-value="1">1
+    <option ng-value="2">2
+    <option ng-value="3">3
+    <option ng-value="4">4
+    <option ng-value="5">5
+    <option ng-value="6">6
+    <option ng-value="7">7
+    <option ng-value="8">8
+    <option ng-value="9">9
+  </select>
+  <img class="teamLogo" src="resources/logo/Logo_{{bet.logo_2}}.png"><span style="color:#FFFFFF">{{bet.name_2}}</span></br>
+<input type="submit">
+</form>
+</br>
+<table>
+  <thead>
+    <tr ng-style="colours[0].background">
+      <th>Coach</th>
+      <th>Pronostic</th>
+    </tr>
+  </thead>
+  <tbody class="table-hover">
+    <tr ng-repeat="b in bet.bets">
+      <td ng-if="isMe(b)" style="color:red">{{b.name}}</td>
+      <td ng-if="!isMe(b)" style="color:#FFFFFF">{{b.name}}</td>
+      <td ng-if="sup(b)" class="text-center" style="color:#FFFFFF"> <span style="color:blue">{{b.team_score_1}}</span> - {{b.team_score_2}}</td>
+      <td ng-if="nul(b)" class="text-center" style="color:green">{{b.team_score_1}} - {{b.team_score_2}}</td>
+      <td ng-if="inf(b)" class="text-center" style="color:#FFFFFF">{{b.team_score_1}} - <span style="color:blue">{{b.team_score_2}}</span></td>
+    </tr>
+  </tbody>
+</table>
+  <div class="button" ng-click="betsOff()">
+    <div ng-include="'resources/img/Button_1.svg'"></div>
+    <div class="label">fermer</div>
+  </div>
+</div>
 </div>
