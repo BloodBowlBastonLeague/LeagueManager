@@ -48,6 +48,37 @@ LeagueManager.directive('modal', function(){
 				$scope.modal.stats = stats;
 			};
 
+			//Affichage/masquage des paris
+			$scope.displayBets = function(competition){
+				$http.get('Backend/bets/bets.php?action=ranking&competition='+competition).success(function(result){
+					$scope.ranking = result;
+					$scope.modal.subject = 'bets';
+				});
+			}
+			//Affichage/masquage des paris
+			$scope.displayMatchBets = function(bets){
+				$scope.prognosis = bets;
+				console.log($scope.prognosis);
+				$scope.modal.subject = 'matchBets';
+
+			}
+
+			//Ensemble de fonctions pour gerer la couleur d'affichage des pronos
+			$scope.sup = function(bets) {
+					return bets.team_score_1 > bets.team_score_2;
+			}
+			$scope.nul = function(bets) {
+					return bets.team_score_1 == bets.team_score_2;
+			}
+			$scope.inf = function(bets) {
+					return bets.team_score_1 < bets.team_score_2;
+			}
+			$scope.isMe = function(bets) {
+					return bets.name == $scope.user;
+			}
+
+
+
 			$scope.saveMatch = function(id,cyanideId,forumUrl){
 				$scope.displayOff();
 				//Call Cyanide API

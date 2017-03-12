@@ -63,7 +63,7 @@
     <!-- Articles plein écran -->
     <modal></modal>
   </div>
-  <div id="Disclaimer">La BBBL est une ligue indépendante de joueurs et n'a aucun affiliation avec Games Workshop, Cyanide ou Focus.</div>
+  
 
 <script>
     var Cyanide_Key = "<?=$Cyanide_Key?>";

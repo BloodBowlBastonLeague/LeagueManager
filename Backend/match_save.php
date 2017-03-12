@@ -24,8 +24,8 @@ foreach ($played->upcoming_matches as $game) {
 
     $request_2 = 'http://web.cyanide-studio.com/ws/bb2/match/?key='.$params[0].'&uuid='.$game->match_uuid;
     $response_2  = file_get_contents($request_2);
+    $json_2 = str_replace("\\","\\\\",$response_2);
     $game_details = json_decode($response_2);
-
 
   //Save match
   $sql_match = "UPDATE site_matchs SET
@@ -49,7 +49,7 @@ foreach ($played->upcoming_matches as $game) {
     sustainedko_2 = '".$game_details->match->teams[1]->sustainedko."',
     sustainedinjuries_2 = '".$game_details->match->teams[1]->sustainedinjuries."',
     sustaineddead_2 = '".$game_details->match->teams[1]->sustaineddead."',
-    json = '".str_replace("'","\'",$response_2)."'
+    json = '".str_replace("'","\'",$json_2)."'
     WHERE contest_id=".$game->contest_id;
 	$con->query($sql_match);
 
@@ -103,14 +103,12 @@ foreach ($played->upcoming_matches as $game) {
                       CASE WHEN '".json_encode($player->casualties_sustained)."' LIKE '%BadlyHurt%' THEN 0 ELSE 1 END
                     END
           WHERE id = ".$player_bbbl[0];
-          echo $sql_player;
         $con->query($sql_player);
         $player_bbbl_id = $player_bbbl[0];
       }
       else {
         $sql_player = "INSERT INTO site_players (team_id, param_name_type, name, level, xp, attributes, skills, dead, injured)
           VALUES (".$team_bbbl_id.",'".$player->type."','".str_replace("'","\'",$player->name)."',".$player->level.",".$player->xp.",'".json_encode($player->attributes)."','".json_encode($player->skills)."',".$player->stats->sustaineddead.",".$player->stats->sustainedcasualties.")";
-        echo $sql_player;
         $con->query($sql_player);
         $player_bbbl_id = $con->insert_id;
       };
