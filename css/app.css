@@ -175,7 +175,7 @@ tbody.table-hover tr:hover { background-color:transparent; background: #000000; 
 
 /* READER */
 #veil{ position:fixed; background: rgba(0,0,0,0.9); margin: 0 -0.9375rem; width:100vw; height:calc(100vh - 68px); top:68px; z-index:4; overflow:none;}
-.container { position:fixed; left:10vw; margin:50px 10vw; padding: 1vh 2vw 0px; width:80vw; max-height:calc(100vh - 150px); top:50px; z-index:5; background: rgba(50,50,50,0.85); overflow:none;
+.container { position:fixed; margin:0px 10vw; padding: 1vh 2vw 0px; width:80vw; max-width:80vw; max-height:calc(100vh - 150px); top:100px; left:0; z-index:5; background: rgba(50,50,50,0.85); overflow:none;
 box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.75);
 border-radius: 5px; border-bottom: 2px solid; }
 
@@ -198,12 +198,12 @@ border-radius: 5px; border-bottom: 2px solid; }
 .tabRow  { height:30px; }
 
 .main > table { width: 100%; color:#FFFFFF; margin:0 0 10px;}
-.main > table > tbody > tr { height: 28px; border-bottom: 1px solid; }
-.main > table > thead > tr > th { line-height: 28px; padding: 0 5px; }
-.main > table > tbody > tr > td { line-height: 28px; padding: 0 5px; }
+.main > table > tbody > tr, .bet table > tbody > tr { height: 28px; border-bottom: 1px solid; }
+.main > table > thead > tr > th, .bet table > thead > tr > th { line-height: 28px; padding: 0 5px; }
+.main > table > tbody > tr > td, .bet table > tbody > tr > td { line-height: 28px; padding: 0 5px; }
 
 .match { display: table; vertical-align: middle; width:100%; }
-.vs { display: inline-block; font-family: 'Muli'; font-size: 20px; line-height: 24px; font-weight: 400; vertical-align: middle; text-align: center; margin: 10px 0 0; border-radius: 5px}
+.vs { display: inline-block; font-family: 'Muli'; font-size: 20px; line-height: 24px; font-weight: 400; vertical-align: middle; text-align: center; margin: 10px 0 0; padding: 5px 0; border-radius: 5px;}
 .vs:hover { background: #000000; color:#ffffff }
 .hide {display: none; height:0px; padding:10px 1vw -webkit-transition: all linear 0.5s;  transition: height linear 0.5s; }
 
@@ -441,11 +441,31 @@ table.mainStats, table.modalStats {cursor:default;}
 
 a:hover h4{ text-decoration: none !important;}
 
+/*Bet*/
+.calendarOdds { display:inline-block; height:20px; color:#FFFFFF; font-size: 12px; line-height: 20px; font-family: 'Arial' !important; margin:2px 0 0}
+.calendarOdds div { margin:0 1px 1px 0; border: 1px solid #011D4D; padding: 0; display: inline-block; width: 50px; }
+.calendarOdds span {background-color: #011D4D; width: 15px; float: left; text-align: center;}
+.calendarBetsAd { display:inline-block; background: #011D4D; height:20px; margin:4px 0; color:#FFFFFF; font-size: 12px; line-height: 20px; min-width:80px; }
+.calendarBetsAd img { height: 16px; vertical-align: text-bottom; }
+.bet {background: #011D4D url('/resources/bets/BetBG.jpg'); background-size: cover;color:#FFFFFF; font-family: 'Arial' !important; border:none; border-radius: 0; padding-top: 0;}
+.betLogo { height:70px; display: inline-block;}
+.betVersus { margin-top: 24px; width:100%; max-width: 128px;}
+.bet .score, .bet h2 {font-family: 'Arial' !important; font-weight: bolder;}
+.bet button { height:30px; color:#000000; }
 
+.bet h1 { font-family: 'Arial';}
+
+.bet th { background-color: #FFFFFF; color:#011D4D;}
+.bet td { color: #FFFFFF;}
+
+.bet.ad { margin:0 10px 20px; max-width: 440px; background: #011D4D; }
+.bet.ad img {width: 100%;}
+
+/*Helmet*/
 .helmet-logo { height: 25%; width: 25%; bottom: 50%; right: 25%; }
 .helmet-1 {	background: url('/resources/helmet/helmet_1.png') top left no-repeat; background-size:cover; }
 .helmet-2 {	background: url('/resources/helmet/helmet_2.png') top left no-repeat; background-size:cover; }
-.helmet-2 + .helmet-logo { height: 13%; width: 13%; bottom: 53%; right: 43%; transform: rotateX(0);}
+.helmet-2 + .helmet-logo { height: 13%; width: 13%; bottom: 53%; right: 45%; transform: rotateX(0);}
 .helmet-3 {	background: url('/resources/helmet/helmet_3.png') top left no-repeat; background-size:cover; }
 .helmet-3 + .helmet-logo { height: 10%; width: 10%; bottom: 34%; right:44%;}
 .helmet-4 {	background: url('/resources/helmet/helmet_4.png') top left no-repeat; background-size:cover; }

@@ -140,3 +140,80 @@
     <div class="label">fermer</div>
   </div>
 </div>
+
+
+<div id="bet" class="container bet" ng-if="modal.subject==='bets'">
+  <div class=row>
+    <div class="col-xs-12">
+      <img class="betLogo" src="resources/bets/BetLogo.png"><br>
+      <div class="spacer"></div>
+    </div>
+    <div class="col-xs-6">
+      <h1>Pariez sur les plus grands évènements de la BBBL</h1>
+      <br/>
+      <h2>Saisons régulières, BB Cup, tous les matchs sont ouverts aux paris chez Guillaume Colline.</h2>
+    </div>
+    <div class="col-xs-3">
+      <h2 ng-style="colours[2].color">Rejoignez les meilleurs parieurs</h2>
+      <p>Dans votre magazine Tribunes, sélectionnez le match de votre choix et faites votre pronostics, validez votre pari et entrez dans le jeu !<br>
+        Suivez aussi les classements des meilleurs parieurs en temps réel, joute par joute</p>
+    </div>
+    <div class="col-xs-3">
+      <table>
+        <thead>
+          <tr ng-style="colours[0].background">
+            <th class="text-left">Coach</th>
+            <th class="text-center">Pts</th>
+          </tr>
+        </thead>
+        <tbody class="table-hover">
+          <tr ng-repeat="coach in ranking | orderBy : 'score' : true ">
+            <td class="text-left">{{coach.name}}</td>
+            <td class="text-center">{{coach.score}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="spacer"></div>
+    </div>
+  </div>
+</div>
+
+<div id="matchBets" class="container bet" ng-if="modal.subject==='matchBets'">
+  <div class=row>
+    <div class="col-xs-12">
+      <img class="betLogo" src="resources/bets/BetLogo.png"><br>
+      <div class="spacer"></div>
+    </div>
+    <div class="col-xs-1"></div>
+    <div class="col-xs-6">
+      <h1>Pariez sur les plus grands évènements de la BBBL</h1>
+      <br/>
+      <h2>Saisons régulières, BB Cup, tous les matchs sont ouverts aux paris chez Guillaume Colline.</h2>
+      <div class="spacer"></div>
+    </div>
+    <div class="col-xs-1"></div>
+    <div class="col-xs-3">
+      <h2 style="color:#F7FB03">Découvrez les pronostics</h2>
+      <table >
+          <thead>
+              <tr>
+                  <th>Coach</th>
+                  <th>Pronostic</th>
+              </tr>
+          </thead>
+          <tbody class="table-hover">
+              <tr ng-if="prognosis.length == 0">
+                <td>Aucun pronostic</td>
+              </tr>
+              <tr ng-if="prognosis.length > 0" ng-repeat="b in prognosis">
+                  <td ng-if="isMe(b)" style="color:#F7FB03">{{b.name}}</td>
+                  <td ng-if="!isMe(b)" style="color:#FFFFFF">{{b.name}}</td>
+                  <td class="text-center">{{b.team_score_1}} - {{b.team_score_2}}</td>
+              </tr>
+          </tbody>
+      </table>
+      <div class="spacer"></div>
+    </div>
+    <div class="col-xs-1"></div>
+  </div>
+</div>

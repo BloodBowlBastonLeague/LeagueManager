@@ -34,12 +34,12 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
       //Ajout des pronos
       $prono=[];
       $data2[bets]=[];
-      $sqlProno="SELECT * FROM site_bets AS p, site_coachs AS c WHERE p.id_match=$data2[id] AND c.id=p.id_coach";
+      $sqlProno="SELECT * FROM site_bets AS p, site_coachs AS c WHERE p.match_id=$data2[id] AND c.id=p.coach_id";
       $resultProno = $con->query($sqlProno);
       while($dataProno = $resultProno->fetch_assoc()) {
-	$data2[bets][]=$dataProno;
+	       $data2[bets][]=$dataProno;
       }
-      
+
       array_push($var2, $data2);
     }
     $data[matchs] = $var2;

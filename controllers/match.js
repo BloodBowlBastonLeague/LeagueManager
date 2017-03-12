@@ -31,7 +31,8 @@ LeagueManager.directive('match', function(){
 				$scope.teams[1].color1 = result.team_2_color_1;
 				$scope.teams[1].color2 = result.team_2_color_2;
 				$rootScope.match.discussion = result.forum_url;
-
+				$scope.bets = result.bets;
+				
 					//Récupération des couleurs - Fetching colours
 					for(i=0; i < 2; i++){
 						$scope.teamIdx = $scope.tmpTeams.map(function(e) { return e.teamID; }).indexOf($scope.teams[i].id);

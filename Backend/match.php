@@ -13,7 +13,7 @@ include($phpbb_root_path . 'config.' . $phpEx);
 if (!$con) { die('Could not connect: ' . mysqli_error()); }
   mysqli_set_charset($con,'utf8');
 
-  $sql = 'SELECT site_matchs.cyanide_id,
+  $sqlMatch = 'SELECT site_matchs.cyanide_id,
 	        site_matchs.competition_id,
           site_matchs.forum_url,
           site_matchs.stadium,
@@ -36,9 +36,16 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
           LEFT JOIN site_coachs as c1 ON c1.id=t1.coach_id
           LEFT JOIN site_coachs as c2 ON c2.id=t2.coach_id
           WHERE site_matchs.id='.$id;
-	$result = mysqli_query($con, $sql);
-	while($obj = mysqli_fetch_object($result)) {
-    $var = $obj;
+	$resultMatch = mysqli_query($con, $sqlMatch);
+	while($dataMatch = mysqli_fetch_object($resultMatch)) {
+    $var = $dataMatch;
+    $var->bets = [];
+    $sqlBets = "SELECT p.match_id, m.score_1, m.score_2, p.team_score_1, p.team_score_2, c.name FROM site_matchs AS m, site_bets AS p, site_coachs AS c WHERE c.id=p.coach_id AND p.match_id=m.id AND match_id=".$id;
+    $resultBets = mysqli_query($con, $sqlBets);
+    while($dataBets = mysqli_fetch_array($resultBets,MYSQL_ASSOC)) {
+
+      array_push($var->bets, $dataBets);
+    }
 	}
 
   echo json_encode($var);
