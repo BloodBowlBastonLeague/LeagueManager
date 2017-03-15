@@ -1,89 +1,40 @@
 <div class="row" >
-  <div class="col-md-3">
+  <div class="col-xs-4">
     <div class="plain seconde" ng-style="colours[1].border">
-      <h3 ng-style="colours[1].color">Joute de Couronne</h3>
-      <div class="spacer"></div>
-      <!--div class="button" ng-click="goToPage('league')"-->
-      <div class="button" ng-click="seasonSave('Elite','BBBL','Joute de Couronne')">
+      <h2>Ajoutez une compétition</h2>
+      <form>
+      Compétition en jeu : <select ng-model="newCompetition.indexIG" >
+        <option ng-repeat="competition in competitionsIG" value="{{$index}}" ng-selected="$index==newCompetition.indexIG">{{competition.game_name}}</option>
+      </select><br/>
+      Division &amp; poule : <select ng-model="newCompetition.site_order" >
+        <option value="0" ng-selected="newCompetition.site_order==0">Elite A</option>
+        <option value="1">Elite B</option>
+        <option value="2">Prestige A</option>
+        <option value="3">Prestige B</option>
+        <option value="4">Espoir A</option>
+        <option value="5">Espoir B</option>
+        <option value="6">Espoir C</option>
+        <option value="7">Espoir D</option>
+      </select><br/>
+      Saison : <select ng-model="newCompetition.season" >
+        <option value="Hiver">Hiver</option>
+        <option value="Printemps">Printemps</option>
+        <option value="Été">Été</option>
+        <option value="Automne">Automne</option>
+      </select>
+      <br/>
+      Partie de saison : <select ng-model="newCompetition.competition_mode">
+        <option value="Partie 1">Partie 1</option>
+        <option value="Partie 2">Partie 2</option>
+      </select><br/>
+    </form><br/>
+    <div class="spacer"></div>
+      <div class="button" ng-click="seasonNew()">
         <div ng-include="'resources/img/Button_1.svg'"></div>
-        <div class="label">Update</div>
+        <div class="label">Ajouter</div>
       </div>
     </div>
   </div>
-  <div class="col-md-3">
-    <div class="plain seconde" ng-style="colours[1].border">
-      <h3 ng-style="colours[1].color">Joute de Carcassonne</h3>
-      <div class="spacer"></div>
-      <!--div class="button" ng-click="goToPage('league')"-->
-      <div class="button" ng-click="seasonSave('Elite','BBBL','Joute de Carcassonne')">
-        <div ng-include="'resources/img/Button_1.svg'"></div>
-        <div class="label">Update</div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="plain seconde" ng-style="colours[1].border">
-      <h3 ng-style="colours[1].color">Joute de Parravon</h3>
-      <div class="spacer"></div>
-      <!--div class="button" ng-click="goToPage('league')"-->
-      <div class="button" ng-click="seasonSave('Prestige','BBBL','Joute de Parravon')">
-        <div ng-include="'resources/img/Button_1.svg'"></div>
-        <div class="label">Update</div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="plain seconde" ng-style="colours[1].border">
-      <h3 ng-style="colours[1].color">Joute de Bordeleaux</h3>
-      <div class="spacer"></div>
-      <!--div class="button" ng-click="goToPage('league')"-->
-      <div class="button" ng-click="seasonSave('Prestige','BBBL','Joute de Bordeleaux')">
-        <div ng-include="'resources/img/Button_1.svg'"></div>
-        <div class="label">Update</div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="plain seconde" ng-style="colours[1].border">
-      <h3 ng-style="colours[1].color">Joute de Bastogne</h3>
-      <div class="spacer"></div>
-      <!--div class="button" ng-click="goToPage('league')"-->
-      <div class="button" ng-click="seasonSave('Espoir','BBBL','Joute de Bastogne')">
-        <div ng-include="'resources/img/Button_1.svg'"></div>
-        <div class="label">Update</div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="plain seconde" ng-style="colours[1].border">
-      <h3 ng-style="colours[1].color">Joute de Moussillon</h3>
-      <div class="spacer"></div>
-      <!--div class="button" ng-click="goToPage('league')"-->
-      <div class="button" ng-click="seasonSave('Espoir','BBBL','Joute de Moussillon')">
-        <div ng-include="'resources/img/Button_1.svg'"></div>
-        <div class="label">Update</div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="plain seconde" ng-style="colours[1].border">
-      <h3 ng-style="colours[1].color">Joute de Lyonnesse</h3>
-      <div class="spacer"></div>
-      <!--div class="button" ng-click="goToPage('league')"-->
-      <div class="button" ng-click="seasonSave('Espoir','BBBL','Joute de Lyonnesse')">
-        <div ng-include="'resources/img/Button_1.svg'"></div>
-        <div class="label">Update</div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-3">
-    <div class="plain seconde" ng-style="colours[1].border">
-      <h3 ng-style="colours[1].color">Test</h3>
-      <div class="spacer"></div>
-      <div class="button" ng-click="testing('BBBL','Joute de Bastogne')">
-        <div ng-include="'resources/img/Button_1.svg'"></div>
-        <div class="label">Test</div>
-      </div>
-    </div>
+  <div class="col-xs-8">
   </div>
 </div>
