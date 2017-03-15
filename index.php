@@ -63,10 +63,11 @@
     <!-- Articles plein écran -->
     <modal></modal>
   </div>
-  
+
 
 <script>
     var Cyanide_Key = "<?=$Cyanide_Key?>";
+    var Cyanide_League = "<?=$Cyanide_League?>";
     var User = "<?=$user->data['username'];?>";
     var Group = "<?=$user->data['group_id'];?>";
 </script>

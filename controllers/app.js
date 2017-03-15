@@ -41,16 +41,21 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 	$rootScope.competitions = [];
 	$rootScope.finalsTemplate = ['Finale','Demi-Finales','Quart de finales','8emes de finales','16emes de finales','32emes de finales'];
 
+	//Récupération des compétitions
+	$http.get('Backend/competitions.php?active=1').success(function(result){
+		$rootScope.competitions = result;
+	});
+
 	//Récupération des statistiques de la ligue
 	$http.get('Backend/generic.php').success(function(result){
 		$rootScope.leagueStats = result;
-		console.log(result);
+		$rootScope.$broadcast('competitionsFetched');
 	});
 	//Récupération des parametres
 	$http.get('Backend/parameters.php').success(function(result){
 		$rootScope.parameters = result;
 	});
-	//Récupération des articles
+	/*Récupération des articles
 	$http.get('Backend/articles.php').success(function(result){
 		$rootScope.articles = result;
 
@@ -60,7 +65,6 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 		//Récupération des compétitions
 		$http.get('Backend/competitions.php?active=1').success(function(result){
 			$rootScope.competitions = result;
-			console.log(result);
 			for(j=0;j<$rootScope.competitions.length;j++){
 
 				for(k=0;k<Object.keys($rootScope.articles).length;k++){
@@ -74,7 +78,7 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 			$rootScope.competitionsFetched = 1;
 			$rootScope.$broadcast('articlesFetched');
 		});
-	});
+	});*/
 
 	$rootScope.goToPage = function(page) {
 		$('#Logo').removeAttr( 'style' );
@@ -126,7 +130,6 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 				$rootScope.colours[i].fill = { 'fill': args[i] };
 				$rootScope.colours[i].textborder = { 'color': args[i],'text-shadow': '-2px -2px #FFFFFF, 2px 2px #FFFFFF, 2px -2px #FFFFFF, -2px 2px #FFFFFF' };
 		}
-		console.log($rootScope.colours);
 			$rootScope.navbarColour ={'background': '-webkit-linear-gradient('+args[0]+',#000000)', 'background': '-moz-linear-gradient('+args[0]+',#000000)', 'background': 'linear-gradient('+args[0]+',#000000)' };
 	};
 	//Tri des listes

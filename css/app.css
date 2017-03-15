@@ -89,9 +89,11 @@ h1 { font-family: 'Akashi';  font-size: 40px; line-height: 50px; color: #ffffff;
 h2, h2 a { font-family: 'Akashi' !important; font-size: 30px; line-height: 1; margin:0 0 10px; color: #ffffff; }
 h3 { font-family: 'Akashi';  font-size: 24px; line-height: 1; margin:0 0 10px; color: #ffffff; }
 h4 { font-family: 'Akashi';  font-size: 18px; line-height: 1; margin:0 0 10px; color: #ffffff; }
-h5 { font-family:'Muli'; font-weight:700; text-decoration: underline; margin:5px; text-align: center;}
-h6 { font-family:'Muli'; font-weight:700;}
+h5 { font-family:'Muli'; font-weight:700; text-decoration: underline; margin:5px; text-align: center; }
+h6 { font-family:'Muli'; font-weight:700; }
 p { font-family:'Muli'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc; display:inline-block; }
+form { font-family:'Muli'; font-size: 14px; line-height: 18px; text-align: justify; color:#cccccc; display:inline-block; }
+input, select { color:#000000;}
 
 table { font-family:'Muli'; font-size: 14px; line-height: 18px; }
 th {text-transform: uppercase;}
