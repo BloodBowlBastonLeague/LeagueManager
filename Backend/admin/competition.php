@@ -1,17 +1,6 @@
 <?php
-define('IN_PHPBB', true);
-$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './../Forum/';
-$phpEx = substr(strrchr(__FILE__, '.'), 1);
-
-include($phpbb_root_path . 'common.' . $phpEx);
-include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
-include($phpbb_root_path . 'config.' . $phpEx);
-
-  $con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
-  $postdata = file_get_contents("php://input");
-  $competition = json_decode($postdata);
-  var_dump($competition);
-if (!$con) { die('Could not connect: ' . mysqli_error()); }
+function competition_add($con, $competition){
+  if (!$con) { die('Could not connect: ' . mysqli_error()); }
     mysqli_set_charset($con,'utf8');
     //Test if competition exist
     $test_competition = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM site_competitions WHERE cyanide_id='".$competition->matches[0]->competition_id."'"));
@@ -28,20 +17,28 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
         $teams = [];
         foreach ($match->opponents as $key=>$opponent) {
           $test_coach = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM site_coachs WHERE cyanide_id = '".$opponent->coach->id."'"));
-          $coach_id = $test_coach[0];
           if ( $test_coach[0] == 0){
             $sqlCoach = "INSERT INTO site_coachs ( name, cyanide_id, active ) VALUES ('".$opponent->coach->name."','".$opponent->coach->id."',1)";
             $con->query($sqlCoach);
             $coach_id = $con->insert_id;
+          }
+          else {
+            $sqlCoach = "UPDATE site_coachs SET active=1 WHERE cyanide_id=".$opponent->coach->id;
+            $con->query($sqlCoach);
+            $coach_id = $test_coach[0];
           };
 
           $test_team = mysqli_fetch_row(mysqli_query($con,"SELECT id FROM site_teams WHERE cyanide_id = '".$opponent->team->id."'"));
-          $teams[$key] = $test_team[0];
           if ( $test_team[0] == 0){
             $sqlTeam= "INSERT INTO site_teams ( name, cyanide_id, coach_id, active,  value, leitmotiv, logo)
             VALUES ('".str_replace("'","\'",$opponent->team->name)."',  '".$opponent->team->id."',  '".$coach_id."', '1','".$opponent->team->value."','".str_replace("'","\'",$opponent->team->motto)."', '".$opponent->team->logo."')";
             $con->query($sqlTeam);
             $teams[$key] = $con->insert_id;
+          }
+          else {
+            $sqlTeam = "UPDATE site_teams SET active=1 WHERE cyanide_id=".$opponent->team->id;
+            $con->query($sqlTeam);
+            $teams[$key] = $test_team[0];
           };
         }
 
@@ -51,8 +48,17 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
 
 
       }
-      echo "Compétition créée (bordel! 3 e...)"
-    };
-    echo "La compétition existe déjà";
-    die();
+      $json = new stdClass;
+      $json->result = "success";
+      $json->message = "Compétition créée (bordel! 3 e...)";
+      echo json_encode($json);
+    }
+    else {
+      $json = new stdClass;
+      $json->result = "failure";
+      $json->message = "La compétition existe déjà";
+      echo json_encode($json);
+    }
+
+}
 ?>

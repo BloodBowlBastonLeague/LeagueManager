@@ -17,10 +17,14 @@
       <p>Mais toi le visiteur, toi le coach, toi le paria, toi aussi tu peux venir cramponner dans nos rangs.</p>
       <p>Il te suffit de t'inscrire sur notre forum et de remplir le formulaire 22X47B, ainsi que l'appendice 42 et verser les 51 pièces d'or nécessaires au gobelin comptable de permanence.</p>
       <div class="spacer"></div>
-          <a class="button" href="Forum">
-            <div ng-include="'resources/img/Button_1.svg'"></div>
-            <div class="label">Découvrir</div>
-          </a>
+      <a class="button" href="Forum" ng-if="admin!=1">
+        <div ng-include="'resources/img/Button_1.svg'"></div>
+        <div class="label">Découvrir</div>
+      </a>
+      <a class="button" ng-click="goToPage('admin')" ng-if="admin==1">
+        <div ng-include="'resources/img/Button_1.svg'"></div>
+        <div class="label">Administrer</div>
+      </a>
     </div>
 
     <div class="plain seconde" ng-style="colours[1].border">
@@ -120,13 +124,13 @@
     <div class="plain prime champion" ng-style="colours[0].border">
       <div ng-style="teamBG"></div>
       <h3>CHAMPION</h3>
-      <h4 ng-style="colours[0].color" ng-click="">Elite Automne 2516</h4>
+      <h4 ng-style="colours[0].color" ng-click="">Elite Hiver 2516</h4>
       <hr>
       <h1 class="zelda" ng-style="colours[4].color" ng-click="goToPage('team/273')">Les Psychos Totems</h1>
       <hr>
       <h2 ng-style="colours[5].color">RelaxMax</h2>
       <div class="spacer"></div>
-      <div class="button" ng-click="goToPage('competition/206')">
+      <div class="button" ng-click="goToPage('competition/225')">
         <div ng-include="'resources/img/Button_0.svg'"></div>
         <div class="label">la compétition</div>
       </div>

@@ -28,13 +28,24 @@
         <option value="Partie 2">Partie 2</option>
       </select><br/>
     </form><br/>
-    <div class="spacer"></div>
-      <div class="button" ng-click="seasonNew()">
+    <div class="spacer" ng-class="newCompetition.result">{{newCompetition.message}}</div>
+      <div class="button" ng-click="competitionAdd()" ng-if="newCompetition.processing==0">
         <div ng-include="'resources/img/Button_1.svg'"></div>
         <div class="label">Ajouter</div>
       </div>
     </div>
   </div>
-  <div class="col-xs-8">
+  <div class="col-xs-4">
+    <div class="plain seconde" ng-style="colours[1].border">
+      <h2>Passage de saison</h2>
+      <p>En passant la saison, les compétitions sont archivées. Les équipes et coachs sont rendues "inactives". Leur participation à une nouvelle compétition les réactivera.</p>
+      <div class="spacer" ng-class="season.result">{{season.message}}</div>
+      <div class="button" ng-click="seasonArchive()" ng-if="season.processing==0">
+        <div ng-include="'resources/img/Button_1.svg'"></div>
+        <div class="label">Archiver</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-xs-4">
   </div>
 </div>
