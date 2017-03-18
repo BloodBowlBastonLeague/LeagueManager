@@ -1,4 +1,4 @@
-<div class="row tabRow hidden-md-down" ng-if="competition.competition_mode!='Coupe'">
+<div class="row tabRow hidden-md-down" ng-if="competition.competition_mode!='Coupe' && competition.active==1">
     <div class="col-lg-2 firstTab" ng-if="competitions.length<7"></div>
     <div class="col-lg-2 tab" ng-if="tab.id != competition.id" ng-repeat="tab in competitions" ng-click="goToPage('competition/'+tab.id)">{{tab.name}}</div>
 </div>

@@ -36,7 +36,7 @@ LeagueManager.config(function ($routeProvider) {
 
 LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 	$rootScope.user = window.User;
-	$rootScope.admin = ['9','10','12'].indexOf(window.Group)>-1 ? 1 : 0;
+	$rootScope.admin = ['9','10'].indexOf(window.Group)>-1 ? 1 : 0;
 	$rootScope.title = "Tribunes - le mag de la BBBL";
 	$rootScope.competitions = [];
 	$rootScope.finalsTemplate = ['Finale','Demi-Finales','Quart de finales','8emes de finales','16emes de finales','32emes de finales'];

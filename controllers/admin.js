@@ -7,12 +7,14 @@ LeagueManager.directive('admin', function(){
 			$rootScope.title = "Administatorum";
 			$scope.competition = {};
 			$scope.competitionsIG = [];
+			$scope.season = {"processing":0};
 			$scope.newCompetition = {
 				"indexIG":0,
 				"site_order":0,
 				"season":"Hiver",
 				"competition_mode":"1",
-				"champion":0
+				"champion":0,
+				"processing":0
 			};
 			$scope.divisions = [
 				{'league_name':'Elite','pool':'A'},
@@ -37,12 +39,24 @@ LeagueManager.directive('admin', function(){
 				}
 			});
 
-			$scope.seasonNew = function(){
+			$scope.competitionAdd = function(){
+				$scope.newCompetition.processing = 1;
 				$scope.newCompetition.league_name = $scope.divisions[$scope.newCompetition.site_order].league_name;
 				$scope.newCompetition.pool = $scope.divisions[$scope.newCompetition.site_order].pool;
 				$scope.newCompetition.matches = $scope.competitionsIG[$scope.newCompetition.indexIG].matches;
-				$http.post('Backend/season_save.php',$scope.newCompetition).then( function(result){
-					alert(result);
+				$http.post('Backend/admin/admin.php?action=competitionAdd',$scope.newCompetition).then( function(result){
+					$scope.newCompetition.message = result.data.message;
+					$scope.newCompetition.result = result.data.result;
+					$scope.newCompetition.processing = 0;
+				});
+			};
+
+			$scope.seasonArchive = function(){
+				$scope.season.processing = 1;
+				$http.post('Backend/admin/admin.php?action=seasonArchive').then( function(result){
+					$scope.season.message = result.data.message;
+					$scope.season.result = result.data.result;
+					$scope.season.processing = 0;
 				});
 			};
 		}

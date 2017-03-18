@@ -437,7 +437,8 @@ table.mainStats, table.modalStats {cursor:default;}
 .stick-right .button {bottom:1px;}
 .quote {padding: 40px 20px;}
 .quote h1 { font-size: 60px; font-family: 'Niconne', cursive; }
-.quote p { font-size: 30px; line-height: 30px; font-family: 'Niconne', cursive; text-align: right; display:inherit}
+.quote p,.quote p a { font-size: 30px; line-height: 30px; font-family: 'Niconne', cursive; text-align: right; display:inherit; color:#cccccc;}
+.quote p a {text-decoration: underline;}
 
 .quickLink {font-weight: 500;}
 
@@ -462,6 +463,11 @@ a:hover h4{ text-decoration: none !important;}
 
 .bet.ad { margin:0 10px 20px; max-width: 440px; background: #011D4D; }
 .bet.ad img {width: 100%;}
+
+/*Admin*/
+.success {color:green;}
+.failure {color:red;}
+
 
 /*Helmet*/
 .helmet-logo { height: 25%; width: 25%; bottom: 50%; right: 25%; }
