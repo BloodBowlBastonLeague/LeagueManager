@@ -11,6 +11,10 @@ function season_archive($con){
     $sqlCoachs = "UPDATE site_coachs SET active=0";
     $con->query($sqlCoachs);
 
-    echo "Saison archivée.";
+    $json = new stdClass;
+  	$json->result = "success";
+  	$json->message = "Saison archivée.";
+  	echo json_encode($json);
+
 }
 ?>
