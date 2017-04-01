@@ -49,36 +49,12 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 	//Récupération des statistiques de la ligue
 	$http.get('Backend/generic.php').success(function(result){
 		$rootScope.leagueStats = result;
-		$rootScope.$broadcast('competitionsFetched');
+		$rootScope.$broadcast('statsSuccess');
 	});
 	//Récupération des parametres
 	$http.get('Backend/parameters.php').success(function(result){
 		$rootScope.parameters = result;
 	});
-	/*Récupération des articles
-	$http.get('Backend/articles.php').success(function(result){
-		$rootScope.articles = result;
-
-		for(i=0;i<$rootScope.articles.length;i++){
-			$rootScope.articles[i].summary = $rootScope.articles[i].text.substr(0, $rootScope.articles[i].text.indexOf('<br/><br/>'))
-		}
-		//Récupération des compétitions
-		$http.get('Backend/competitions.php?active=1').success(function(result){
-			$rootScope.competitions = result;
-			for(j=0;j<$rootScope.competitions.length;j++){
-
-				for(k=0;k<Object.keys($rootScope.articles).length;k++){
-					if($rootScope.articles[k].competition_id == $rootScope.competitions[j].id){
-						$rootScope.competitions[j].article=$rootScope.articles[k];
-					}
-				}
-
-			}
-
-			$rootScope.competitionsFetched = 1;
-			$rootScope.$broadcast('articlesFetched');
-		});
-	});*/
 
 	$rootScope.goToPage = function(page) {
 		$('#Logo').removeAttr( 'style' );
@@ -122,13 +98,13 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 	//Mise à jours de couleurs (pour les équipes)
 	$rootScope.setColours = function(args){
 		for(i=0; i < args.length; i++){
-				$rootScope.colours[i] = {};
-				$rootScope.colours[i].hexa = args[i];
-				$rootScope.colours[i].color = { 'color': args[i] };
-				$rootScope.colours[i].border = { 'border-color':args[i] };
-				$rootScope.colours[i].background = { 'background-color':args[i] };
-				$rootScope.colours[i].fill = { 'fill': args[i] };
-				$rootScope.colours[i].textborder = { 'color': args[i],'text-shadow': '-2px -2px #FFFFFF, 2px 2px #FFFFFF, 2px -2px #FFFFFF, -2px 2px #FFFFFF' };
+			$rootScope.colours[i] = {};
+			$rootScope.colours[i].hexa = args[i];
+			$rootScope.colours[i].color = { 'color': args[i] };
+			$rootScope.colours[i].border = { 'border-color':args[i] };
+			$rootScope.colours[i].background = { 'background-color':args[i] };
+			$rootScope.colours[i].fill = { 'fill': args[i] };
+			$rootScope.colours[i].textborder = { 'color': args[i],'text-shadow': '-2px -2px #FFFFFF, 2px 2px #FFFFFF, 2px -2px #FFFFFF, -2px 2px #FFFFFF' };
 		}
 			$rootScope.navbarColour ={'background': '-webkit-linear-gradient('+args[0]+',#000000)', 'background': '-moz-linear-gradient('+args[0]+',#000000)', 'background': 'linear-gradient('+args[0]+',#000000)' };
 	};

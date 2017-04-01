@@ -92,7 +92,7 @@ h4 { font-family: 'Akashi';  font-size: 18px; line-height: 1; margin:0 0 10px; c
 h5 { font-family:'Muli'; font-weight:700; text-decoration: underline; margin:5px; text-align: center; }
 h6 { font-family:'Muli'; font-weight:700; }
 p { font-family:'Muli'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc; display:inline-block; }
-form { font-family:'Muli'; font-size: 14px; line-height: 18px; text-align: justify; color:#cccccc; display:inline-block; }
+.plain form { font-family:'Muli'; font-size: 14px; line-height: 18px; text-align: justify; color:#cccccc; display:inline-block; }
 input, select { color:#000000;}
 
 table { font-family:'Muli'; font-size: 14px; line-height: 18px; }
@@ -466,6 +466,7 @@ a:hover h4{ text-decoration: none !important;}
 
 /*Admin*/
 .success {color:green;}
+.processing {color:orange;}
 .failure {color:red;}
 
 

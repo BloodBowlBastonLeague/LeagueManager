@@ -7,6 +7,7 @@ LeagueManager.directive('admin', function(){
 			$rootScope.title = "Administatorum";
 			$scope.competition = {};
 			$scope.competitionsIG = [];
+			$scope.forum = {"processing":0};
 			$scope.season = {"processing":0};
 			$scope.newCompetition = {
 				"indexIG":0,
@@ -27,6 +28,14 @@ LeagueManager.directive('admin', function(){
 				{'league_name':'Espoir','pool':'D'}
 			];
 
+			$rootScope.$on('statsSuccess', function() {
+				if( $rootScope.leagueStats.matchesLeft > 0 ){
+					$scope.season.message = "Tous les matchs n'ont pas été joués.";
+					$scope.season.result = "failure";
+				};
+			});
+
+
 			$http.get('http://web.cyanide-studio.com/ws/bb2/contests/?key=' + window.Cyanide_Key + '&status=scheduled&league=' + window.Cyanide_League).success(function(result){
 				for(i=0;i<result.upcoming_matches.length;i++){
 					var competitionIdx = $scope.competitionsIG.map(function(e) { return e.game_name; }).indexOf(result.upcoming_matches[i].competition);
@@ -39,8 +48,21 @@ LeagueManager.directive('admin', function(){
 				}
 			});
 
+			$scope.seasonArchive = function(){
+				$scope.season.processing = 1;
+				$scope.season.message = "Les gobelins pédalent...";
+				$scope.season.result = "processing";
+				$http.post('Backend/admin/admin.php?action=seasonArchive').then( function(result){
+					$scope.season.message = result.data.message;
+					$scope.season.result = result.data.result;
+					$scope.season.processing = 0;
+				});
+			};
+
 			$scope.competitionAdd = function(){
 				$scope.newCompetition.processing = 1;
+				$scope.newCompetition.message = "Les gobelins pédalent...";
+				$scope.newCompetition.result = "processing";
 				$scope.newCompetition.league_name = $scope.divisions[$scope.newCompetition.site_order].league_name;
 				$scope.newCompetition.pool = $scope.divisions[$scope.newCompetition.site_order].pool;
 				$scope.newCompetition.matches = $scope.competitionsIG[$scope.newCompetition.indexIG].matches;
@@ -51,14 +73,16 @@ LeagueManager.directive('admin', function(){
 				});
 			};
 
-			$scope.seasonArchive = function(){
-				$scope.season.processing = 1;
-				$http.post('Backend/admin/admin.php?action=seasonArchive').then( function(result){
-					$scope.season.message = result.data.message;
-					$scope.season.result = result.data.result;
-					$scope.season.processing = 0;
+			$scope.forumUpdate = function(){
+				$scope.forum.processing = 1;
+				$scope.forum.message = "Les gobelins pédalent...";
+				$scope.forum.result = "processing";
+				$http.post('Backend/admin/admin.php?action=forumUpdate').then( function(result){
+					$scope.forum.message = result.data.message;
+					$scope.forum.result = result.data.result;
+					$scope.forum.processing = 0;
 				});
-			};
+			}
 		}
 	}
 });
