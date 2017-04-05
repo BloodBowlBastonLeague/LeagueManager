@@ -22,6 +22,7 @@ LeagueManager.directive('admin', function(){
 				{'league_name':'Elite','pool':'B'},
 				{'league_name':'Prestige','pool':'A'},
 				{'league_name':'Prestige','pool':'B'},
+				{'league_name':'Prestige','pool':'C'},
 				{'league_name':'Espoir','pool':'A'},
 				{'league_name':'Espoir','pool':'B'},
 				{'league_name':'Espoir','pool':'C'},

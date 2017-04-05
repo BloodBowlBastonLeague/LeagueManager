@@ -9,7 +9,7 @@ function add_prognosis($con, $request){
   if (!$con) { die('Could not connect: ' . mysqli_error()); }
   mysqli_set_charset($con,'utf8');
   //On récupère l'id du coach
-  $sql = "SELECT id FROM site_coachs WHERE name='".$request->name."'";
+  $sql = "SELECT id FROM site_coachs WHERE user_id='".$request->coach_id."'";
   $res = mysqli_query($con, $sql);
   $row = $res->fetch_assoc();
 
@@ -28,7 +28,7 @@ function update_prognosis($con, $request){
   if (!$con) { die('Could not connect: ' . mysqli_error()); }
   mysqli_set_charset($con,'utf8');
   //On récupère l'id du coach
-  $sql = "SELECT id FROM site_coachs WHERE name='".$request->name."'";
+  $sql = "SELECT id FROM site_coachs WHERE user_id='".$request->coach_id."'";
   $res = mysqli_query($con, $sql);
   $row = $res->fetch_assoc();
 

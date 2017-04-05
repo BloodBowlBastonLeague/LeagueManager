@@ -79,7 +79,7 @@
           <img class="banner_50" src="../resources/img/Banner_Prestige.png">
           <p>L'antichambre de la gloire... Les équipes de cette division ne rêvent que d'une chose: accéder à l'Élite. </p>
         </div>
-        <div class="col-lg-6 zelda" ng-repeat="competition in competitions" ng-if="competition.division=='Prestige'" ng-click="goToPage('competition/'+competition.id)" >
+        <div class="col-lg-4 zelda" ng-repeat="competition in competitions" ng-if="competition.division=='Prestige'" ng-click="goToPage('competition/'+competition.id)" >
           <h3 ng-style="colours[0].color">{{competition.name}}</h3>
           <table>
             <tbody>
@@ -101,7 +101,7 @@
           <img class="banner_50" src="../resources/img/Banner_Espoir.png">
           <p>On s'étripe, on s'écharpe, dans la bonne humeur, et les survivants espèrent passer en Prestige.</p>
         </div>
-        <div class="col-lg-4 zelda" ng-repeat="competition in competitions" ng-if="competition.division=='Espoir'" ng-click="goToPage('competition/'+competition.id)" >
+        <div class="col-lg-6 zelda" ng-repeat="competition in competitions" ng-if="competition.division=='Espoir'" ng-click="goToPage('competition/'+competition.id)" >
           <h3 ng-style="colours[0].color">{{competition.name}}</h3>
           <table>
             <tbody>
