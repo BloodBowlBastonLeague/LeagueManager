@@ -57,7 +57,7 @@ LeagueManager.directive('competition', function() {
 						//Check si pronos déjà fait sur un match donné par le user connecté
 						$scope.betsAlreadyDone = function(match) {
 								for ($v in match.bets) {
-										if (match.bets[$v]["name"] == $scope.user)
+										if (match.bets[$v]["coach_id"] == $rootScope.coach_id)
 												return true;
 								}
 								return false;
@@ -65,7 +65,7 @@ LeagueManager.directive('competition', function() {
 
 						//Check si Match joué ou non et renvoi faire la bonne fonctionnalité
 						$scope.ifClicked = function(match) {
-								if (match.cyanide_id || $rootScope.admin==0) {
+								if (match.cyanide_id) {
 										$scope.goToPage('match/' + match.id)
 								} else {
 										$scope.odds(match);
@@ -129,7 +129,7 @@ LeagueManager.directive('competition', function() {
 								return bets.team_score_1 < bets.team_score_2;
 						}
 						$scope.isMe = function(bets) {
-								return bets.name == $scope.user;
+								return bets.coach_id == $rootScope.coach_id;
 						}
 
 						//ouvre la fenetre de pronostics en fixant le match
@@ -139,7 +139,7 @@ LeagueManager.directive('competition', function() {
 								$scope.bet2 = 0;
 								$scope.bet = match;
 								for ($v in $scope.bet.bets) {
-										if ($scope.bet.bets[$v]["name"] == $scope.user) {
+										if ($scope.bet.bets[$v]["coach_id"] == $rootScope.coach_id) {
 												//modif en live
 												$scope.bet1 = $scope.bet.bets[$v]["team_score_1"];
 												$scope.bet2 = $scope.bet.bets[$v]["team_score_2"];
@@ -157,7 +157,7 @@ LeagueManager.directive('competition', function() {
 						//Gestion des Pronos
 						$scope.BetsDone = function(bets1, bets2) {
 								//Test des données récuperées
-								if ($scope.user == "Anonymous") {
+								if ($rootScope.coach_id == 1) {
 										$scope.errorMessage = "Vous n'êtes pas connecté";
 										$scope.errorBets = true;
 								} else if (bets1 == null || bets2 == null) {
@@ -171,13 +171,13 @@ LeagueManager.directive('competition', function() {
 										//Si oui MAJ
 										//A transformer en While (ca c'est moche mais je connais la syntaxe)
 										for ($v in $scope.bet.bets) {
-												if ($scope.bet.bets[$v]["name"] == $scope.user) {
+												if ($scope.bet.bets[$v]["coach_id"] == $rootScope.coach_id) {
 														$newBets = false;
 														//modif en live
 														$scope.bet.bets[$v]["team_score_1"] = bets1;
 														$scope.bet.bets[$v]["team_score_2"] = bets2;
 														var prognos = {
-																"name": $scope.user,
+																"coach_id": $rootScope.coach_id,
 																"bets_1": bets1,
 																"bets_2": bets2,
 																"id_match": $scope.bet.id
@@ -192,13 +192,13 @@ LeagueManager.directive('competition', function() {
 										if ($newBets) {
 												//Modif en live
 												$tmp = [];
-												$tmp["name"] = $scope.user;
+												$tmp["coach_id"] = $rootScope.coach_id;
 												$tmp["team_score_1"] = bets1;
 												$tmp["team_score_2"] = bets2;
 												$scope.bet.bets.push($tmp);
 												//Ajout en base
 												var prognos = {
-														"name": $scope.user,
+														"coach_id": $rootScope.coach_id,
 														"bets_1": bets1,
 														"bets_2": bets2,
 														"id_match": $scope.bet.id

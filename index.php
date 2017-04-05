@@ -69,6 +69,7 @@
     var Cyanide_Key = "<?=$Cyanide_Key?>";
     var Cyanide_League = "<?=$Cyanide_League?>";
     var User = "<?=$user->data['username'];?>";
+    var coach_id = "<?=$user->data['user_id'];?>";
     var Group = "<?=$user->data['group_id'];?>";
 </script>
 
