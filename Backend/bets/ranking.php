@@ -17,15 +17,15 @@ function ranking($con, $competition){
     $b = 0;
     $e = 0;
 
-    $sql2="SELECT p.match_id, m.score_1, m.score_2, p.team_score_1, p.team_score_2, c.coach_id, c.name 
+    $sql2="SELECT p.match_id, m.score_1, m.score_2, p.team_score_1, p.team_score_2, c.id, c.name
     FROM site_matchs AS m, site_bets AS p, site_coachs AS c
     WHERE c.id=p.coach_id AND p.match_id=m.id AND m.score_1 IS NOT NULL AND match_id=".$match["match_id"];
     $result2 = $con->query($sql2);
     //Pour chaque match, on calcul les côtes.
     while($bet = $result2->fetch_assoc()) {
-      if ($bet["score_1"] == $bet["score_2"]){
+      if ($bet["team_score_1"] == $bet["team_score_2"]){
         $e++; }
-      else if ($bet["score_1"] > $bet["score_2"]){
+      else if ($bet["team_score_1"] > $bet["team_score_2"]){
         $a++; }
       else{
         $b++; }
@@ -71,15 +71,15 @@ function point($score1, $score2, $prono1, $prono2, $quote_1, $quote_2, $quote_e 
   }
 
   // Victoire 1
-  if($score1>$score2){
+  if($score1>$score2 && $prono1 > $prono2){
     $res = $quote_1 * $bonus;
   }
   // Victoire 2
-  else if($score1 < $score2){
+  else if($score1 < $score2 && $prono1 < $prono2){
     $res = $quote_2 * $bonus;
   }
   // Match nul
-  else if($score1 == $score2){
+  else if($score1 == $score2 && $prono1 == $prono2){
     $res = $quote_e * $bonus;
   }
   return $res;
