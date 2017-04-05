@@ -8,11 +8,8 @@ LeagueManager.directive('ranking', function(){
 	        $rootScope.title = "Classement des Pronostics";
 	        $rootScope.setColours([$rootScope.colourA,$rootScope.colourB]);
 	        $rootScope.rankingID = $routeParams.ID;
-          console.log('test');
-
 
 	        $http.get('Backend/bets/bets.php?action=ranking&ligue='+$rootScope.rankingID).success(function(result){
-              console.log('test');
 		          $scope.ranking = result;
 	        });
 	      }
