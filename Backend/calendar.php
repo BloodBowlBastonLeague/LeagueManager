@@ -30,11 +30,13 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
 	    WHERE competition_id='.$id.' AND round='.$data[round];
 	  $result2 = mysqli_query($con, $sql2);
     while($data2 = mysqli_fetch_array($result2,MYSQL_ASSOC)) {
-      
+
       //Ajout des pronos
       $prono=[];
       $data2[bets]=[];
-      $sqlProno="SELECT * FROM site_bets AS p, site_coachs AS c WHERE p.match_id=$data2[id] AND c.id=p.coach_id";
+      $sqlProno="SELECT p.match_id, p.team_score_1, p.team_score_2,c.user_id AS coach_id FROM site_bets AS p 
+      LEFT JOIN site_coachs AS c ON c.id=p.coach_id
+      WHERE p.match_id=$data2[id] AND c.id=p.coach_id";
       $resultProno = $con->query($sqlProno);
       while($dataProno = $resultProno->fetch_assoc()) {
 	       $data2[bets][]=$dataProno;
