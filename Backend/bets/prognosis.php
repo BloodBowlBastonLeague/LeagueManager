@@ -32,8 +32,9 @@ function update_prognosis($con, $request){
   $res = mysqli_query($con, $sql);
   $row = $res->fetch_assoc();
 
-  $sql2 = "UPDATE site_bets SET team_score_1 = '".$request->bets_1."', team_score_2 = '".$request->bets_2."' WHERE id_match='".$request->id_match."' AND id_coach='".$row[id]."'";
+  $sql2 = "UPDATE site_bets SET team_score_1 = '".$request->bets_1."', team_score_2 = '".$request->bets_2."' WHERE match_id='".$request->id_match."' AND coach_id='".$row[id]."'";
   $result = mysqli_query($con, $sql2);
+  echo $sql2;
   die();
 }
 
