@@ -8,28 +8,28 @@ LeagueManager.config(function ($routeProvider) {
 		template: '<admin></admin>'
 	})
 	.when("/archives", {
-	    template: '<archives></archives>'
+		template: '<archives></archives>'
 	})
 	.when("/competition/:ID", {
-	    template: '<competition></competition>'
+		template: '<competition></competition>'
 	})
 	.when("/league", {
-	    template: '<league></league>'
+		template: '<league></league>'
 	})
 	.when("/team/:ID", {
-	    template: '<team></team>'
+		template: '<team></team>'
 	})
 	.when("/match/:ID", {
-	    template: '<match></match>'
+		template: '<match></match>'
 	})
 	.when("/lepoing/:ID", {
 		template: '<lepoing></lepoing>'
 	})
 	.when("/forum", {
-	    templateUrl: '/Forum/index.php'
+		templateUrl: '/Forum/index.php'
 	})
 	.when("/", {
-	    template: '<main></main>'
+		template: '<main></main>'
 	});
 
 });
@@ -60,13 +60,13 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 	$rootScope.goToPage = function(page) {
 		$('#Logo').removeAttr( 'style' );
 		$rootScope.$broadcast('routeChangeSuccess');
-    $location.path( page );
-  };
+		$location.path( page );
+	};
 
 	//Gestion de l'historique
 	$rootScope.history = [];
 	$rootScope.$on('routeChangeSuccess', function() {
-				$rootScope.history.push($location.$$path);
+		$rootScope.history.push($location.$$path);
 	});
 
 	$rootScope.previousPage = function () {

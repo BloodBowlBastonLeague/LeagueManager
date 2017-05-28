@@ -1,4 +1,5 @@
 <?php
+
 $active = $_GET['active'];
 define('IN_PHPBB', true);
 $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './../Forum/';
@@ -26,7 +27,7 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
         c.champion
         FROM site_competitions AS c WHERE c.active>=".$active." order by c.site_order";
 	$result = mysqli_query($con, $sql);
-	while($data = mysqli_fetch_array($result,MYSQL_ASSOC)) {
+	while( $data = mysqli_fetch_array($result,MYSQLI_ASSOC) ) {
 
     //$data[json] = json_decode($data[json]);
     $var2 = [];
@@ -89,8 +90,9 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
           WHERE competition_id='.$data[id].'
           ) AS a
           GROUP BY id';
+
       $result2 = mysqli_query($con, $sql2);}
-    while($data2 = mysqli_fetch_array($result2,MYSQL_ASSOC)) {
+    while($data2 = mysqli_fetch_array($result2,MYSQLI_ASSOC)) {
       array_push($var2, $data2);
     }
 
@@ -101,7 +103,7 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
       FROM site_matchs
       WHERE competition_id='.$data[id];
     $result3 = mysqli_query($con, $sql3);
-    while($data3 = mysqli_fetch_array($result3,MYSQL_ASSOC)){
+    while($data3 = mysqli_fetch_array($result3,MYSQLI_ASSOC)){
       $var4 = [];
       $sql4 = 'SELECT site_matchs.id, site_matchs.started, round,
         team_id_1, t1.logo as logo_1, score_1,
@@ -111,7 +113,7 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
         LEFT JOIN site_teams as t2 ON t2.id=site_matchs.team_id_2
         WHERE competition_id='.$data[id].' AND round='.$data3[round];
       $result4 = mysqli_query($con, $sql4);
-      while($data4 = mysqli_fetch_array($result4,MYSQL_ASSOC)) {
+      while($data4 = mysqli_fetch_array($result4,MYSQLI_ASSOC)) {
         array_push($var4, $data4);
       }
       $data3[matchs] = $var4;

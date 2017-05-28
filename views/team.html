@@ -1,4 +1,8 @@
 <div class="row">
+  <div class="col-md-11"></div>
+  <div class="col-md-1" ng-class="{tab : admin==1}">
+    <div ng-click="teamUpdate()" ng-if="admin==1">Reset</div>
+  </div>
   <div class="col-lg-7">
     <div id="players" class="plain prime main" ng-style="colours[0].border">
       <div ng-style="team_BG"></div>
@@ -7,7 +11,6 @@
         <thead>
           <tr ng-style="colours[0].background">
             <th class="text-left" ng-click="sortBy('name')">Joueur <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='name'"></div></th>
-
             <th class="text-left position hidden-sm-down" ng-click="sortBy('position')" ng-if="!showStats">Position <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='position'"></div></th>
             <th class="attributes text-center" ng-click="sortBy('attributes.ma')" ng-if="!showStats">MA <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='attributes.ma'"></div></th>
             <th class="attributes text-center" ng-click="sortBy('attributes.st')" ng-if="!showStats">FO <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='attributes.st'"></div></th>
@@ -30,11 +33,14 @@
             <th class="attributes text-center" ng-click="sortBy('stats.inflictedmetersrunning')" ng-if="showStats" title="Yards en course">YC <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='stats.inflictedmetersrunning'"></div></th>
           </tr>
         </thead>
-        <tbody  class="table-hover noselect" ng-repeat="player in team.players | orderBy:orderFilter:reverse" ng-hide="(player.dead+player.fired)==1 && !showDead">
-          <tr class="playerDetails" ng-style="colours[0].border" ng-class="{injured: player.injured==1, dead: player.dead==1}">
-            <td class="text-left text-cutter"><span ng-if="player.injured==1 && player.dead==0"><img src="resources/img/injured.png"> </span><span ng-if="player.dead==1"><img src="resources/img/dead.png"> </span>{{player.name}}</td>
+        <tbody  class="table-hover noselect" ng-repeat="player in team.players | orderBy:orderFilter:reverse" ng-hide="(player.dead+player.fired)>=1 && !showDead">
+          <tr class="playerDetails" ng-style="colours[0].border">
+            <td class="text-left text-cutter" ng-class="{injured: player.casualties.length>2, dead: player.dead==1}">
+              <span ng-if="player.casualties.length>2 && player.dead==0"><img src="resources/img/injured.png"> </span>
+              <span ng-if="player.dead==1"><img src="resources/img/dead.png"> </span>
+              {{player.name}}</td>
             <td class="text-left text-cutter hidden-sm-down" ng-if="!showStats">{{player.position}}</td>
-            <td class="text-center" ng-if="!showStats">{{player.attributes.ma}}</td>
+            <td class="text-center" ng-if="!showStats">{{player.attributes.ma}}{{player.attributes.mv}}</td>
             <td class="text-center" ng-if="!showStats">{{player.attributes.st}}</td>
             <td class="text-center" ng-if="!showStats">{{player.attributes.ag}}</td>
             <td class="text-center" ng-if="!showStats">{{player.attributes.av}}</td>
@@ -96,11 +102,6 @@
           <li ng-if="team.assistantcoaches>0">{{team.assistantcoaches}} assistant<span ng-if="team.assistantcoaches>1">s</span></li>
         </ul><br/>
         <h6 class="text-right" ng-style="colours[1].color" ng-if="team.leitmotiv"> "{{team.leitmotiv}}"</h6>
-        <div class="spacer"></div>
-        <!--div class="button" ng-click="goToPage('competition/0')">
-          <div ng-include="'resources/img/Button_1.svg'"></div>
-          <div class="label">Archives</div>
-        </div-->
       </div>
     </div>
   </div>
