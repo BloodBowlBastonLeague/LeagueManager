@@ -19,7 +19,7 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
 	  WHERE competition_id='.$id.'
     ORDER BY round';
   $result = mysqli_query($con, $sql);
-  while($data = mysqli_fetch_array($result,MYSQL_ASSOC)){
+  while($data = mysqli_fetch_array($result,MYSQLI_ASSOC)){
     $var2 = [];
     $sql2 = 'SELECT site_matchs.id, site_matchs.cyanide_id, site_matchs.contest_id, round,
       team_id_1, t1.name as name_1, t1.logo as logo_1, score_1,
@@ -29,7 +29,7 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
       LEFT JOIN site_teams as t2 ON t2.id=site_matchs.team_id_2
 	    WHERE competition_id='.$id.' AND round='.$data[round];
 	  $result2 = mysqli_query($con, $sql2);
-    while($data2 = mysqli_fetch_array($result2,MYSQL_ASSOC)) {
+    while($data2 = mysqli_fetch_array($result2,MYSQLI_ASSOC)) {
 
       //Ajout des pronos
       $prono=[];

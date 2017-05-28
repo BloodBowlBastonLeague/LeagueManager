@@ -25,7 +25,7 @@ LeagueManager.directive('competition', function() {
 						$scope.calendarUpdate = function() {
 								$http.get('Backend/competition.php?id=' + $rootScope.competitionId).success(function(result) {
 										$scope.competition = result;
-										$rootScope.title = $scope.competition.season + ' - ' + $scope.competition.competition_mode;
+										$rootScope.title = $scope.competition.game_name;
 								});
 								$http.get('Backend/calendar.php?id=' + $routeParams.ID).success(function(result) {
 										$scope.calendar = result;
@@ -228,9 +228,12 @@ LeagueManager.directive('competition', function() {
 						$scope.competitionUpdate = function(league, competition) {
 								$scope.saving = true;
 								params = [window.Cyanide_Key, competition, $scope.matchsToSave];
-								$http.post('Backend/match_save.php', params).then(function(result) {
+								$http.post('Backend/update/update.php?action=competitionUpdate', params).then(function(result) {
 										$scope.calendarUpdate();
 								});
+								//$http.post('Backend/match_save.php', params).then(function(result) {
+								//		$scope.calendarUpdate();
+								//});
 						};
 
 				}

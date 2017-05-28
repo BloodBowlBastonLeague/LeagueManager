@@ -48,7 +48,7 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
           GROUP BY id
           ORDER BY Pts DESC';
     $result = mysqli_query($con, $sql);
-    while($data = mysqli_fetch_array($result,MYSQL_ASSOC)) {
+    while($data = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
       array_push($var, $data);
     }
     $i = 0;
@@ -90,7 +90,7 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
     $scorers->title = 'Meilleurs marqueurs';
     $players = [];
     $resultScorers = mysqli_query($con,"SELECT p.id as player, p.name, t.id AS team_id, t.name AS team, t.logo, SUM(s.inflictedtouchdowns) AS TD, SUM(s.inflictedmetersrunning) AS yards, SUM(s.inflictedcatches) AS catches FROM site_players_stats AS s LEFT JOIN site_players AS p ON p.id=s.player_id LEFT JOIN site_teams AS t ON t.id=p.team_id WHERE s.inflictedtouchdowns>0 AND t.active=1 AND s.matchplayed=1 AND s.match_id IN (".$currentCompetition.") GROUP BY p.id ORDER BY SUM(s.inflictedtouchdowns) DESC");
-    while($dataScorers = mysqli_fetch_array($resultScorers,MYSQL_ASSOC)) {
+    while($dataScorers = mysqli_fetch_array($resultScorers,MYSQLI_ASSOC)) {
       array_push($players, $dataScorers);
     }
     $scorers->players = $players;
@@ -101,7 +101,7 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
     $tacklers->title = 'Meilleurs bastonneurs';
     $players = [];
     $resultTacklers = mysqli_query($con,"SELECT p.id as player, p.name, t.id AS team_id, t.name AS team, t.logo, SUM(s.inflictedcasualties) + SUM(s.inflicteddead) AS injuries, SUM(s.inflictedcasualties) AS casualties, SUM(s.inflicteddead) AS dead FROM site_players_stats AS s LEFT JOIN site_players AS p ON p.id=s.player_id LEFT JOIN site_teams AS t ON t.id=p.team_id WHERE (s.inflictedcasualties>0 OR s.inflicteddead>0) AND t.active=1 AND s.matchplayed=1 AND s.match_id IN (".$currentCompetition.") GROUP BY p.id ORDER BY SUM(s.inflictedcasualties) + SUM(s.inflicteddead) DESC");
-    while($dataTacklers = mysqli_fetch_array($resultTacklers,MYSQL_ASSOC)) {
+    while($dataTacklers = mysqli_fetch_array($resultTacklers,MYSQLI_ASSOC)) {
       array_push($players, $dataTacklers);
     }
     $tacklers->players = $players;
@@ -112,7 +112,7 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
     $throwers->title = 'Meilleurs passeurs';
     $players = [];
     $resultThrowers = mysqli_query($con,"SELECT p.id as player, p.name, t.id AS team_id, t.name AS team, t.logo, SUM(s.inflictedpasses) AS passes, SUM(s.inflictedmeterspassing) AS yards FROM site_players_stats AS s LEFT JOIN site_players AS p ON p.id=s.player_id LEFT JOIN site_teams AS t ON t.id=p.team_id WHERE s.inflictedpasses>0 AND t.active=1 AND s.matchplayed=1 AND s.match_id IN (".$currentCompetition.") GROUP BY p.id ORDER BY SUM(s.inflictedmeterspassing) DESC");
-    while($dataThrowers = mysqli_fetch_array($resultThrowers,MYSQL_ASSOC)) {
+    while($dataThrowers = mysqli_fetch_array($resultThrowers,MYSQLI_ASSOC)) {
       array_push($players, $dataThrowers);
     }
     $throwers->players = $players;
