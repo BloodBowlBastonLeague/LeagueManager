@@ -231,9 +231,7 @@ LeagueManager.directive('competition', function() {
 								$http.post('Backend/update/update.php?action=competitionUpdate', params).then(function(result) {
 										$scope.calendarUpdate();
 								});
-								//$http.post('Backend/match_save.php', params).then(function(result) {
-								//		$scope.calendarUpdate();
-								//});
+
 						};
 
 				}

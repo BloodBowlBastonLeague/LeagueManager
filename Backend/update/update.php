@@ -20,14 +20,8 @@ switch ($action) {
   case "competitionUpdate":
     competition_update($con,$params);
     break;
-  case "teamMatch":
-    team_update($params);
-    break;
-  case "teamAdd":
-    team_get($params,'team_add');
-    break;
   case "teamUpdate":
-    team_get($params,$con,'team_update');
+    team_update($con,$params);
     break;
   default:
     echo "Erreur!";
