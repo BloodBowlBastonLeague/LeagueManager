@@ -100,10 +100,27 @@
   </div>
 </div>
 
-<div id="player" class="container seconde main" ng-if="modal.subject==='player'" ng-click="" ng-style="modal.border">
+<div id="player" class="container seconde main" ng-if="modal.subject==='player'" ng-click="" ng-style="colours[1].border">
+  <h2 ng-style="colours[1].color">{{modal.player.name}} <span>{{modal.player.position}}</span></h2>
+  <div class="row">
+    <div class="col-xs-4">
+      <h3>MV {{modal.player.attributes.ma}}</h3>
+      <h3>FO {{modal.player.attributes.st}}</h3>
+      <h3>AG {{modal.player.attributes.ag}}</h3>
+      <h3>AR {{modal.player.attributes.av}}</h3>
+    </div>
+    <div class="col-xs-8">
+
+    </div>
+  </div>
+  <div class="spacer"></div>
+  <div class="button" ng-click="displayOff()">
+    <div ng-include="'resources/img/Button_1.svg'"></div>
+    <div class="label">fermer</div>
+  </div>
 </div>
 
-//Players statistics
+<!-- Players statistics -->
 <div id="scorers" class="container seconde main" ng-if="modal.subject=='stats'" ng-click="" ng-style="modal.border">
   <div class="standing main">
     <h2 ng-style="colours[1].color">{{stats.title}}</h2>
@@ -145,7 +162,7 @@
   </div>
 </div>
 
-//Bets
+<!-- Bets -->
 <div id="bet" class="container bet" ng-if="modal.subject==='bets'">
   <div class=row>
     <div class="col-xs-12">

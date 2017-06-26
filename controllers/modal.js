@@ -42,6 +42,12 @@ LeagueManager.directive("modal", function() {
         $scope.modal.button = "resources/img/Button_Modal.svg";
         $scope.modal.subject = "team";
       };
+      //Affichage/masquage joueur
+      $scope.displayPlayer = function(player){
+        $scope.modal.player = player;
+        $scope.modal.subject = "player";
+      };
+
       //Affichage/masquage des marqueurs
       $scope.displayStats = function(stats) {
         $scope.modal.subject = "stats";
