@@ -1,0 +1,90 @@
+BBBL\LeagueManagerBundle\Entity\Player:
+    type: entity
+    table: player
+    indexes:
+        idteamlcl:
+            columns:
+                - idteamlcl
+    id:
+        idplayer:
+            type: bigint
+            nullable: false
+            unsigned: false
+            comment: ''
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        name:
+            type: string
+            nullable: false
+            length: 50
+            fixed: false
+            comment: ''
+        idposte:
+            type: integer
+            nullable: false
+            unsigned: false
+            comment: ''
+        competences:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+        blessures:
+            type: string
+            nullable: true
+            length: 50
+            fixed: false
+            comment: ''
+        fired:
+            type: boolean
+            nullable: true
+            comment: ''
+            default: '0'
+        blesse:
+            type: boolean
+            nullable: true
+            comment: ''
+            default: '0'
+        num:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            default: '0'
+        xp:
+            type: integer
+            nullable: true
+            unsigned: false
+            comment: ''
+            default: '0'
+    manyToOne:
+        idteamlcl:
+            targetEntity: Team
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                idteamlcl:
+                    referencedColumnName: idteam
+            orphanRemoval: false
+    manyToMany:
+        idmatch:
+            targetEntity: Matchs
+            cascade: {  }
+            mappedBy: null
+            inversedBy: idplayer
+            joinTable:
+                name: stats_player
+                joinColumns:
+                    -
+                        name: idplayer
+                        referencedColumnName: idplayer
+                inverseJoinColumns:
+                    -
+                        name: idmatch
+                        referencedColumnName: idmatch
+            orderBy: null
+    lifecycleCallbacks: {  }
