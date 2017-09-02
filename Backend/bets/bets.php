@@ -25,6 +25,9 @@ case "addBet":
 case "updateBet":
   update_prognosis($con, $request);
   break;
+case "pay":
+  pay_players($con);
+  break;
 case "ranking":
   echo ranking($con, $competition);
   break;

@@ -191,9 +191,12 @@
 			<img src="resources/logo/Logo_{{bet.logo_2}}.png">
 			<h2>{{bet.name_2}}</h2>
 		</div>
+		<div class="col-xs-2 text-center">
+			<a> Mise: <input type="text" name="mise" ng-model="mise" required></a>
+		</div>
 		<div class="col-xs-12 text-center">
 			<div class="spacer"></div><br>
-			<span><button ng-if="!errorBets" ng-click="BetsDone(bet1, bet2)">Parier</button><br></span>
+			<span><button ng-if="!errorBets" ng-click="BetsDone(bet1, bet2, stake)">Parier</button><br></span>
 			<h4 style="color:red;" ng-if="errorBets">{{errorMessage}}</h4>
 			<div class="spacer"></div>
 		</div>
