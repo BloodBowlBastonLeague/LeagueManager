@@ -25,10 +25,9 @@ include($phpbb_root_path . 'config.' . $phpEx);
   $team->competition = $Competition;
 
   $Players = [];
-  $sqlPlayers = "SELECT p.id, p.name, t.translation AS position, p.attributes, p.skills, p.level, p.xp, p.dead, p.injured, p.fired FROM site_players AS p LEFT JOIN site_parameters AS t ON t.name=p.param_name_type WHERE team_id=".$id;
-
+  $sqlPlayers = "SELECT p.id, p.name, t.translation AS position, p.attributes, p.skills, p.casualties, p.level, p.xp, p.dead, p.fired FROM site_players AS p LEFT JOIN site_parameters AS t ON t.name=p.param_name_type WHERE team_id=".$id;
   $resultPlayers = mysqli_query($con, $sqlPlayers);
-  while($dataPlayers = mysqli_fetch_array($resultPlayers,MYSQL_ASSOC)) {
+  while($dataPlayers = mysqli_fetch_array($resultPlayers,MYSQLI_ASSOC)) {
 
     $sqlStats = "SELECT SUM(matchplayed) AS matchplayed, SUM(mvp) AS mvp, SUM(inflictedpasses) AS inflictedpasses, SUM(inflictedcatches) AS inflictedcatches, SUM(inflictedinterceptions) AS inflictedinterceptions, SUM(inflictedtouchdowns) AS inflictedtouchdowns, SUM(inflictedcasualties) AS inflictedcasualties, SUM(inflictedstuns) AS inflictedstuns, SUM(inflictedko) AS inflictedko, SUM(inflictedinjuries) AS inflictedinjuries, SUM(inflicteddead) AS inflicteddead, SUM(inflictedtackles) AS inflictedtackles, SUM(inflictedmeterspassing) AS inflictedmeterspassing, SUM(inflictedmetersrunning) AS inflictedmetersrunning, SUM(sustainedinterceptions) AS sustainedinterceptions, SUM(sustainedcasualties) AS sustainedcasualties, SUM(sustainedstuns) AS sustainedstuns, SUM(sustainedko) AS sustainedko, SUM(sustainedinjuries) AS sustainedinjuries, SUM(sustainedtackles) AS sustainedtackles, sustaineddead FROM site_players_stats WHERE player_id=".$dataPlayers[id]." GROUP BY player_id";
     $resultStats = mysqli_query($con,$sqlStats);

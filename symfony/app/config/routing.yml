@@ -1,0 +1,3 @@
+bbbl_league_manager:
+    resource: "@BBBLLeagueManagerBundle/Resources/config/routing.yml"
+    prefix:   /

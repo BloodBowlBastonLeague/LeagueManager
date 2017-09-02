@@ -28,7 +28,7 @@ LeagueManager.directive('team', function(){
 				//Team Images
 				$('.logo').css({"background": "url(resources/logo/Logo_"+$scope.team.logo+".png) center center no-repeat", "background-size":"contain"});
 				$('.helmet1 .helmet-logo').css({"background": "url(../resources/logo/Logo_" + $scope.team.logo + ".png) center center no-repeat", "background-size":"cover"});
-				$scope.team_BG = { 'position': 'absolute', 'width': '100%', 'height': '100%', 'background': 'url(../resources/logo/Logo_'+$scope.team.logo+'.png) center center no-repeat', 'background-size': '30% auto', 'z-index': '-1'}
+				$scope.team_BG = { 'position': 'absolute', 'width': '100%', 'height': '100%', 'background': 'url(../resources/logo/Logo_'+$scope.team.logo+'.png) center center no-repeat', 'background-size': '30% auto', 'z-index': '0', 'opacity': '0.25'}
 				$scope.helmet_svg = 'resources/helmet/helmet_' + $scope.team.param_id_race + '.svg';
 
 
@@ -59,6 +59,13 @@ LeagueManager.directive('team', function(){
 				else{
 					$scope.activePlayer = false;
 				}
+			};
+
+			$scope.teamUpdate = function(){
+				params = [window.Cyanide_Key, $scope.team.cyanide_id];
+				$http.post('Backend/update/update.php?action=teamUpdate', params).then(function(result) {
+					console.log(result.data);
+				});
 			};
 
 		}

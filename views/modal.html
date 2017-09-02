@@ -44,13 +44,11 @@
   </div>
 </div>
 
-
 <div id="team" class="container seconde main" ng-if="modal.subject==='team'" ng-click="" ng-style="modal.border">
   <h3 ng-style="modal.color">Effectif</h3>
   <table>
     <thead>
-
-    <tr>
+    <tr ng-style="modal.background">
       <th class="text-left" ng-click="sortBy('name')">Joueur <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='name'"></div></th>
       <th class="text-left position hidden-sm-down" ng-click="sortBy('position')">Position <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='position'"></div></th>
       <th class="text-center hidden-xs-down" ng-click="sortBy('level')">Niv <div class="triangle" ng-class="{down: reverse}" ng-if="orderFilter=='level'"></div></th>
@@ -69,13 +67,15 @@
     </tr>
     </thead>
     <tbody  class="table-hover noselect">
-      <tr ng-repeat="player in match.teams[modal.teamIdx].roster | orderBy:orderFilter:reverse" ng-style="modal.border" ng-class="{injured: player.injured==1, dead: player.dead==1}">
-          <td class="text-left text-cutter"><span ng-if="player.injured==1 && player.dead==0"><img src="resources/img/injured.png"> </span><span ng-if="player.dead==1"><img src="resources/img/dead.png"> </span>
-            <span ng-if="player.name.indexOf('PLAYER_NAMES_CHAMPION')==-1">{{player.name}}</span>
-            <span ng-if="player.name.indexOf('PLAYER_NAMES_CHAMPION')>-1">{{translate(player.name)}}</span>
+      <tr ng-repeat="player in match.teams[modal.teamIdx].roster | orderBy:orderFilter:reverse" ng-style="modal.border">
+          <td class="text-left text-cutter">
+            <span class="playerStatus" title="{{translate(player.casualties_sustained[0])}}" ng-if="player.casualties_sustained.length > 0 && player.stats.sustainedcasualties > 0 && player.stats.sustaineddead==0"><img src="resources/img/injured.png"> </span>
+            <span class="playerStatus" ng-if="player.stats.sustaineddead==1"><img src="resources/img/dead.png"> </span>
+            <span ng-if="player.type.indexOf('StarPlayer')==-1">{{player.name}}</span>
+            <span ng-if="player.type.indexOf('StarPlayer')>-1">&#9733; {{translate(player.type)}}</span>
           </td>
-          <td class="text-left text-cutter hidden-sm-down" ng-if="player.name.indexOf('PLAYER_NAMES_CHAMPION')==-1">{{translate(player.type)}}</td>
-          <td class="text-left text-cutter hidden-sm-down" ng-if="player.name.indexOf('PLAYER_NAMES_CHAMPION')>-1">Champion</td>
+          <td class="text-left text-cutter hidden-sm-down" ng-if="player.type.indexOf('StarPlayer')==-1">{{translate(player.type)}}</td>
+          <td class="text-left text-cutter hidden-sm-down" ng-if="player.type.indexOf('StarPlayer')>-1">Champion</td>
           <td class="text-center hidden-xs-down">{{player.level}}</td>
           <td class="text-center hidden-xs-down">{{player.xp}}</td>
           <td class="text-center">{{player.mvp}}</td>
@@ -100,6 +100,27 @@
   </div>
 </div>
 
+<div id="player" class="container seconde main" ng-if="modal.subject==='player'" ng-click="" ng-style="colours[1].border">
+  <h2 ng-style="colours[1].color">{{modal.player.name}} <span>{{modal.player.position}}</span></h2>
+  <div class="row">
+    <div class="col-xs-4">
+      <h3>MV {{modal.player.attributes.ma}}</h3>
+      <h3>FO {{modal.player.attributes.st}}</h3>
+      <h3>AG {{modal.player.attributes.ag}}</h3>
+      <h3>AR {{modal.player.attributes.av}}</h3>
+    </div>
+    <div class="col-xs-8">
+
+    </div>
+  </div>
+  <div class="spacer"></div>
+  <div class="button" ng-click="displayOff()">
+    <div ng-include="'resources/img/Button_1.svg'"></div>
+    <div class="label">fermer</div>
+  </div>
+</div>
+
+<!-- Players statistics -->
 <div id="scorers" class="container seconde main" ng-if="modal.subject=='stats'" ng-click="" ng-style="modal.border">
   <div class="standing main">
     <h2 ng-style="colours[1].color">{{stats.title}}</h2>
@@ -141,7 +162,7 @@
   </div>
 </div>
 
-
+<!-- Bets -->
 <div id="bet" class="container bet" ng-if="modal.subject==='bets'">
   <div class=row>
     <div class="col-xs-12">

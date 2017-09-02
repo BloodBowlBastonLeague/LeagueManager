@@ -9,7 +9,7 @@ function forum_update($con){
 					LEFT JOIN site_parameters AS p ON p.id=t.param_id_race
 					WHERE t.active=1';
 	$result = mysqli_query($con, $sql);
-	while($team = mysqli_fetch_array($result,MYSQL_ASSOC)) {
+	while($team = mysqli_fetch_array($result,MYSQLI_ASSOC)) {
 		//Update forum database
 		$sql2 = 'UPDATE forum_profile_fields_data SET pf_race='.$team[param_id_race].', pf_equipe="<a href=\"http://bbbl.fr/#/team/'.$team[team_id].'\" target=\"_blank\">'.$team[name].'</a>" WHERE user_id='.$team[user_id];
 		$result2 = mysqli_query($con, $sql2);
