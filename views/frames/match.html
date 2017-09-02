@@ -1,0 +1,124 @@
+<div class="row adapt">
+  <div class="col-md-3"></div>
+  <div class="col-md-6">
+    <div class="plain header seconde text-center stadium" ng-style="stadiumBG" ng-click="openSite('http://bbbl.fr/#/competition/'+match.competition_id)">
+      <h4>{{match.leaguename}}</h4>
+      <h3 ng-style="colours[1].color">{{match.competitionname}}</h3>
+    </div>
+  </div>
+  <div class="col-md-2" ng-class="{firstTab : admin==1}"></div>
+  <div class="col-md-1" ng-class="{tab : admin==1}">
+    <div ng-click="matchRefresh()" ng-if="admin==1">Reset</div>
+  </div>
+  <div class="col-md-6">
+    <div id="HelmetLeft" class="helmet1">
+      <svg class="helmet_svg" viewBox="0 0 300 300" ng-include='helmet_1_svg'></svg>
+        <div class="helmet_png helmet-{{teams[0].idraces}}"></div>
+        <div class="helmet-logo"></div>
+    </div>
+    <div class="plain prime content noselect text-right" ng-if="!activePlayer" ng-style="colours[2].border">
+      <h2><a ng-style="colours[2].color" href="http://bbbl.fr/#/team/{{match.teams[0].id}}" target="_blank">{{teams[0].teamname}}</a></h2>
+      <div id="ScoreLeft" class="score" ng-style="colours[2].textborder">{{teams[0].score}}</div>
+      <div class="teamBoard">
+        <h3>coaché par <span ng-style="colours[2].color">{{match.coaches[0].coachname}}</span></h3>
+        <h3>TV <span ng-style="colours[2].color">{{teams[0].value}}</span></h3>
+        <h3><div ng-repeat="i in teams[0].pop" class="star" ng-style="colours[2].color">&#9733;</div><span ng-if="teams[0].newPop.length > 0"> + <div ng-repeat="i in teams[0].newPop" class="star">&#9733;</div></span></h3>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div id="HelmetRight" class="helmet2">
+      <svg class="helmet_svg" viewBox="0 0 300 300" ng-include='helmet_2_svg'></svg>
+        <div class="helmet_png helmet-{{teams[1].idraces}}"></div>
+        <div class="helmet-logo"></div>
+    </div>
+    <div class="plain prime content noselect text-left" ng-if="!activePlayer" ng-style="colours[4].border">
+      <h2><a ng-style="colours[4].color" href="http://bbbl.fr/#/team/{{match.teams[1].id}}" target="_blank">{{teams[1].teamname}}</a></h2>
+      <div id="ScoreRight" class="score" ng-style="colours[4].textborder">{{match.teams[1].score}}</div>
+      <div class="teamBoard">
+        <h3>coaché par <span ng-style="colours[4].color">{{match.coaches[1].coachname}}</span></h3>
+        <h3 class="noselect">TV <span ng-style="colours[4].color">{{teams[1].value}}</span></h3>
+        <h3><div ng-repeat="i in teams[1].pop" class="star" ng-style="colours[4].color">&#9733;</div><span ng-if="teams[1].newPop.length > 0"> + <div ng-repeat="i in teams[1].newPop" class="star">&#9733;</div></span></h3>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row adapt">
+  <div class="col-md-4">
+    <div class="plain prime text-center" ng-style="colours[2].border">
+      <div ng-style="team_1_BG"></div>
+      <h3 ng-style="colours[2].color">Statistiques</h3>
+      <ul class="stats list-unstyled">
+        <li>Possession : <span ng-style="colours[2].color">{{match.teams[0].possessionball}} %</span></li>
+        <li>Occupation de son terrain : <span ng-style="colours[2].color">{{match.teams[0].occupationown}} %</span></li>
+        <li>Occupation du terrain adverse : <span ng-style="colours[2].color">{{match.teams[0].occupationtheir}} %</span></li>
+        <li>Passes : <span ng-style="colours[2].color">{{match.teams[0].inflictedpasses}} </span></li>
+        <li>Réceptions : <span ng-style="colours[2].color">{{match.teams[0].inflictedcatches}} </span></li>
+        <li>Yards en passe : <span ng-style="colours[2].color">{{match.teams[0].inflictedmeterspassing}} </span></li>
+        <li>Yards en course : <span ng-style="colours[2].color">{{match.teams[0].inflictedmetersrunning}} </span></li>
+        <li>Blocages : <span ng-style="colours[2].color">{{match.teams[0].inflictedtackles}} </span></li>
+        <li>Sonnés : <span ng-style="colours[2].color">{{match.teams[0].inflictedinjuries-match.teams[0].inflictedko-match.teams[0].inflictedcasualties}}</span></li>
+        <li>KO : <span ng-style="colours[2].color">{{match.teams[0].inflictedko}} </span></li>
+        <li>Blessures : <span ng-style="colours[2].color">{{match.teams[0].inflictedcasualties}}</span></li>
+        <li>Mort : <span ng-style="colours[2].color">{{match.teams[0].inflicteddead}} </span></li>
+        <li>Offrande au public : <span ng-style="colours[2].color">{{match.teams[0].inflictedpushouts}} </span></li>
+        <li>Expulsions : <span ng-style="colours[2].color">{{match.teams[0].sustainedexpulsions}} </span></li>
+      </ul>
+      <!--div class="spacer"></div>
+      <div class="button" ng-click="displayTeam(0,2)">
+        <div ng-include="'resources/img/Button_2.svg'"></div>
+        <div class="label">Effectif</div>
+      </div-->
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="plain seconde text-center stadium" ng-style="stadiumBG">
+      <h3 ng-style="colours[1].color">{{match.started|date:'d MMM yyyy HH'}}H</h3><br/>
+      <h4>Stade</h4>
+      <h3 ng-style="colours[1].color">{{stadium}}</h3><br/>
+      <h4>Arbitre</h4>
+      <h3 ng-style="colours[1].color">M. Squig</h3><br/>
+      <h4>Supporters</h4>
+      <h3 ng-style="colours[1].color">{{match.teams[0].nbsupporters--match.teams[1].nbsupporters | number:0}}</h3><br/>
+      <div class="spacer"></div>
+      <div class="button">
+        <a target="_blank" href="http://www.bbbl.fr/#/match/{{matchID}}">
+        <div ng-include="'../resources/img/Button_1.svg'"></div>
+        <div class="label">Dans Tribunes</div>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="plain prime text-center" ng-style="colours[4].border">
+      <div ng-style="team_2_BG"></div>
+      <h3 ng-style="colours[4].color">Statistiques</h3>
+      <ul class="stats list-unstyled">
+        <li>Possession : <span ng-style="colours[4].color">{{match.teams[1].possessionball}} %</span></li>
+        <li>Occupation de son terrain : <span ng-style="colours[4].color">{{match.teams[1].occupationown}} %</span></li>
+        <li>Occupation du terrain adverse : <span ng-style="colours[4].color">{{match.teams[1].occupationtheir}} %</span></li>
+        <li>Passes : <span ng-style="colours[4].color">{{match.teams[1].inflictedpasses}} </span></li>
+        <li>Réceptions : <span ng-style="colours[4].color">{{match.teams[1].inflictedcatches}} </span></li>
+        <li>Yards en passe : <span ng-style="colours[4].color">{{match.teams[1].inflictedmeterspassing}} </span></li>
+        <li>Yards en course : <span ng-style="colours[4].color">{{match.teams[1].inflictedmetersrunning}} </span></li>
+        <li>Blocages : <span ng-style="colours[4].color">{{match.teams[1].inflictedtackles}} </span></li>
+        <li>Sonnés : <span ng-style="colours[4].color">{{match.teams[1].inflictedinjuries-match.teams[1].inflictedko-match.teams[1].inflictedcasualties}}</span></li>
+        <li>KO : <span ng-style="colours[4].color">{{match.teams[1].inflictedko}} </span></li>
+        <li>Blessures : <span ng-style="colours[4].color">{{match.teams[1].inflictedcasualties}} </span></li>
+        <li>Mort : <span ng-style="colours[4].color">{{match.teams[1].inflicteddead}} </span></li>
+        <li>Offrande au public : <span ng-style="colours[4].color">{{match.teams[1].inflictedpushouts}} </span></li>
+        <li>Expulsions : <span ng-style="colours[4].color">{{match.teams[1].sustainedexpulsions}} </span></li>
+      </ul>
+      <!--div class="spacer"></div>
+      <div class="button" ng-click="displayTeam(1,4)">
+        <div ng-include="'resources/img/Button_4.svg'"></div>
+        <div class="label">Effectif</div>
+      </div-->
+    </div>
+  </div>
+</div>
+<div class="row adapt">
+  <div class="col-xs-12 text-center">
+    <p><br />Retrouvez toutes les statistiques des joueurs dans <a target="_blank" href="http://www.bbbl.fr/#/match/{{matchID}}">Tribunes - le mag de la BBBL</a> </p>
+  <div>
+</div>

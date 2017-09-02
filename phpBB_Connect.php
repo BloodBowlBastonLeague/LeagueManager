@@ -23,7 +23,8 @@ $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './Forum/';
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 
 include($phpbb_root_path . 'common.' . $phpEx);
-
+include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
+include($phpbb_root_path . 'config.' . $phpEx);
 
 //Create the mandatory variables / Création des variables nécessaires
 $user->session_begin();
@@ -38,4 +39,5 @@ $con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
 if (!$con) { die('Could not connect: ' . mysqli_error()); }
 mysqli_set_charset($con,'utf8');
 
+$Cyanide_Key = 'b20b49cf35dce68418a4c375bf4e3cd3';
 ?>

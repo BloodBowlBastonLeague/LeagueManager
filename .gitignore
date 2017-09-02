@@ -1,3 +1,6 @@
-Forum/cache/*
-symfony/app/config/parameters.yml
+/Forum
+/resources/helmet
+/resources/img/teams
+*.ini
+*~
 

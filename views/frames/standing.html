@@ -1,0 +1,37 @@
+<div id="MatchWeek" class="row">
+  <div class="scroll">
+    <!-- Championship / Championnat -->
+    <div class="main"  ng-style="colours[0].border">
+      <h3 ng-style="colours[0].color">Classement</h3>
+      <table>
+        <thead>
+          <tr ng-style="colours[0].background">
+            <th></th>
+            <th class="text-left">Equipe</th>
+            <th class="text-left hidden-sm-down">Coach</th>
+            <th class="text-center">Pts</th>
+            <th class="text-center hidden-xs-down">V</th>
+            <th class="text-center hidden-xs-down">N</th>
+            <th class="text-center hidden-xs-down">D</th>
+            <th class="text-center hidden-sm-down">TD</th>
+            <th class="text-center hidden-sm-down">S</th>
+          </tr>
+        </thead>
+        <tbody class="table-hover">
+          <tr ng-repeat="team in competition.standing | orderBy:'standing'" class="link" ng-click="goToPage('team/' + team.id)"  ng-style="colours[0].border">
+            <td class="text-center">{{$index+1}}</td>
+            <td class="text-left"><img class="teamLogo" src="../resources/logo/Logo_{{team.logo}}.png"> {{team.team}}</td>
+            <td class="text-left hidden-sm-down">{{team.coach}}</td>
+            <td class="text-center">{{team.Pts}}</td>
+            <td class="text-center hidden-xs-down">{{team.V}}</td>
+            <td class="text-center hidden-xs-down">{{team.N}}</td>
+            <td class="text-center hidden-xs-down">{{team.D}}</td>
+            <td class="text-center hidden-sm-down">{{team.TD}}</td>
+            <td class="text-center hidden-sm-down">{{team.S}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

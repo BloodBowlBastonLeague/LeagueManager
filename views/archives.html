@@ -1,0 +1,117 @@
+<div class="row">
+  <div class="col-lg-3 hidden-md-down scroll">
+    <div class="plain seconde searchBox" ng-style="colours[1].border">
+      <h3 ng-style="colours[1].color">Archives publiques</h3>
+      <input type="text" ng-model="archiveSearch.$"placeholder="chercher"><br/>
+      <!--table>
+        <tr>
+          <th ng-click="sortBy('started')">Saison<div ng-if="orderFilter=='started'" class="triangle" ng-class="{down: reverse}"></div></th>
+          <th ng-click="sortBy('division')">Competition<div ng-if="orderFilter=='division'" class="triangle" ng-class="{down: reverse}"></div></th>
+        </tr>
+      </table-->
+      <div class="searchResult">
+        <ul>
+          <li class="zelda" ng-repeat="archive in archives | filter: archiveSearch | orderBy:'-started'" ng-click="showCompetition(archive)">
+            <span ng-if="archive.id!=competition.id"><span ng-if="archive.champion == 1">&#9733; </span><b>{{archive.season}}</b> - {{archive.division}} {{archive.pool}} - {{archive.name}} ({{archive.competition_mode}})</span>
+            <span ng-if="archive.id==competition.id" ng-style="colours[1].color"><span ng-if="archive.champion == 1">&#9733; </span><b>{{archive.season}}</b> - {{archive.division}} {{archive.pool}} - {{archive.name}} ({{archive.competition_mode}})</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="button" ng-click="reset()" ng-if="competition">
+        <div ng-include="'resources/img/Button_1.svg'"></div>
+        <div class="label">Hall of fame</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-lg-9 scroll">
+    <div class="col-sm-6 col-xl-4" ng-repeat="archive in archives | orderBy:'-started'" ng-if="archive.champion==1 && !competition">
+      <div class="plain prime archives" ng-style="colours[0].border" ng-click="showCompetition(archive)">
+        <div ng-style="teamBG={ 'position': 'absolute', 'top':'-10px', 'width': '100%', 'height': '100%', 'background': 'url(resources/logo/Logo_'+archive.standing[0].logo+'.png) right top no-repeat', 'background-size': '30% auto', 'z-index': '0'}"></div>
+
+          <h3 ng-style="colours[0].color">{{archive.season}}</h3>
+          <hr>
+          <div class="championName"><h2>{{archive.standing[0].team}}</h2></div>
+          <hr>
+          <h3 class="coachName" ng-style="colours[0].color">{{archive.standing[0].coach}}</h3>
+
+      </div>
+    </div>
+    <!-- Champion-->
+    <div class="col-lg-12" ng-if="competition.champion == 1">
+      <div class="plain prime champion archives" ng-style="colours[0].border">
+        <div class="spacer"></div>
+        <h3 ng-if="competition.champion==1">CHAMPION</h3>
+        <h3 ng-if="competition.champion==0">Vainqueur</h3>
+        <h4 ng-style="colours[0].color">{{competition.season}}</h4>
+        <hr>
+        <h1 class="zelda" ng-style="colours[2].color" ng-click="goToPage('team/269')">{{competition.standing[0].team}}</h1>
+        <hr>
+        <h2 ng-style="colours[3].color">{{competition.standing[0].coach}}</h2>
+        <div id="HelmetRight">
+          <div>
+            <div class="helmet" ng-include="'resources/img/HelmetRight.svg'"></div>
+            <div id="LogoRight" class="logo" ng-style="LogoRight={'background': 'url(resources/logo/Logo_' + competition.standing[0].logo + '.png) center center no-repeat', 'background-size':'contain'}"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-12">
+      <div class="plain prime main" ng-style="colours[0].border" ng-if="competition.id">
+        <h2 ng-if="competition.champion != 'single_elimination'">{{competition.season}} - {{competition.division}} {{competition.pool}}</h2>
+        <h3 ng-style="colours[0].color" ng-if="competition.format != 'single_elimination'">Classement</h3>
+        <h3 ng-style="colours[0].color" ng-if="competition.format == 'single_elimination'">Participants</h3>
+        <table>
+          <thead>
+            <tr ng-style="colours[0].background">
+              <th></th>
+              <th class="text-left">Equipe</th>
+              <th class="text-left hidden-sm-down">Coach</th>
+              <th ng-if="competition.competition_mode=='championnat'" class="text-center">Pts</th>
+              <th ng-if="competition.competition_mode=='championnat'" class="text-center hidden-xs-down">V</th>
+              <th ng-if="competition.competition_mode=='championnat'" class="text-center hidden-xs-down">N</th>
+              <th ng-if="competition.competition_mode=='championnat'" class="text-center hidden-xs-down">D</th>
+              <th ng-if="competition.competition_mode=='championnat'" class="text-center hidden-sm-down">TD</th>
+              <th ng-if="competition.competition_mode=='championnat'" class="text-center hidden-sm-down">S</th>
+            </tr>
+          </thead>
+          <tbody class="table-hover">
+            <tr ng-repeat="team in competition.standing | orderBy:'standing'" ng-class="{gold: $index+1 == 1 && competition.pool!='B' && competition.competition_mode=='championnat', silver: $index+1 == 2 && competition.pool!='B' && competition.competition_mode=='championnat', bronze: $index+1 == 3 && competition.pool!='B' && competition.competition_mode=='championnat', relegated : $index+1 > competition.standing.length-3 && competition.pool=='B' && competition.competition_mode=='championnat'}" class="link" ng-click="goToPage('team/' + team.id)"  ng-style="colours[0].border">
+              <td class="text-center">{{$index+1}}</td>
+              <td class="text-left"><img class="teamLogo" src="resources/logo/Logo_{{team.logo}}.png"> {{team.team}}</td>
+              <td class="text-left hidden-sm-down">{{team.coach}}</td>
+              <td ng-if="competition.competition_mode=='championnat'" class="text-center">{{team.Pts}}</td>
+              <td ng-if="competition.competition_mode=='championnat'" class="text-center hidden-xs-down">{{team.V}}</td>
+              <td ng-if="competition.competition_mode=='championnat'" class="text-center hidden-xs-down">{{team.N}}</td>
+              <td ng-if="competition.competition_mode=='championnat'" class="text-center hidden-xs-down">{{team.D}}</td>
+              <td ng-if="competition.competition_mode=='championnat'" class="text-center hidden-sm-down">{{team.TD}}</td>
+              <td ng-if="competition.competition_mode=='championnat'" class="text-center hidden-sm-down">{{team.S}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="col-lg-12">
+      <div ng-repeat="matchDay in calendar | orderBy:orderFilter:reverse" id="day{{matchDay.round}}" class="plain prime" ng-style="colours[0].border" ng-show="matchDay.round <= displayDay || displayDay==0" >
+        <h3 ng-if="matchDay.round != currentDay" ng-style="colours[0].color" ng-click="sortBy('round')" class="zelda"><span ng-if="competition.format=='single_elimination' && competition.game=='BB2'">{{finals[matchDay.round-1]}}</span><span ng-if="competition.format=='single_elimination' && competition.game=='BB1'">{{finalsBB1[matchDay.round-1]}}</span><span ng-if="competition.format!='single_elimination'">Journée {{matchDay.round}}</span> <div class="triangle" ng-class="{down: reverse}" ng-style="colours[0].border"></div></h3>
+        <div class="match x-center">
+          <div class="vs col-xs-4" ng-class="{zelda:competition.game=='BB2'}" ng-repeat="match in matchDay.matchs">
+            <div ng-click="goToPage('match/'+match.id)" ng-if="competition.game=='BB2'" >
+              <img class="teamLogo" src="resources/logo/Logo_{{match.logo_1}}.png">
+              <span ng-style="colours[0].color"> {{match.score_1}} - {{match.score_2}} </span>
+              <img class="teamLogo" src="resources/logo/Logo_{{match.logo_2}}.png">
+            </div>
+            <div ng-if="competition.game=='BB1'" >
+              <img class="teamLogo" src="resources/logo/Logo_{{match.logo_1}}.png">
+              <span ng-style="colours[0].color"> {{match.score_1}} - {{match.score_2}} </span>
+              <img class="teamLogo" src="resources/logo/Logo_{{match.logo_2}}.png">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
