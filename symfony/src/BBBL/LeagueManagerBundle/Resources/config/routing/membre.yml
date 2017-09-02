@@ -1,0 +1,31 @@
+membre:
+    path:     /
+    defaults: { _controller: "BBBLLeagueManagerBundle:Membre:index" }
+
+membre_show:
+    path:     /{id}/show/{_format}
+    defaults: { _controller: "BBBLLeagueManagerBundle:Membre:show", _format: twig }
+    requirements: { _format: twig|html|json }
+
+membre_new:
+    path:     /new
+    defaults: { _controller: "BBBLLeagueManagerBundle:Membre:new" }
+
+membre_create:
+    path:     /create
+    defaults: { _controller: "BBBLLeagueManagerBundle:Membre:create" }
+    requirements: { _method: post }
+
+membre_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BBBLLeagueManagerBundle:Membre:edit" }
+
+membre_update:
+    path:     /{id}/update
+    defaults: { _controller: "BBBLLeagueManagerBundle:Membre:update" }
+    requirements: { _method: post|put }
+
+membre_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BBBLLeagueManagerBundle:Membre:delete" }
+    requirements: { _method: post|delete }

@@ -1,0 +1,31 @@
+team:
+    path:     /
+    defaults: { _controller: "BBBLLeagueManagerBundle:Team:index" }
+
+team_show:
+    path:     /{id}/show/{_format}
+    defaults: { _controller: "BBBLLeagueManagerBundle:Team:show", _format: twig }
+    requirements: { _format: twig|html|json }
+
+team_new:
+    path:     /new
+    defaults: { _controller: "BBBLLeagueManagerBundle:Team:new" }
+
+team_create:
+    path:     /create
+    defaults: { _controller: "BBBLLeagueManagerBundle:Team:create" }
+    requirements: { _method: post }
+
+team_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BBBLLeagueManagerBundle:Team:edit" }
+
+team_update:
+    path:     /{id}/update
+    defaults: { _controller: "BBBLLeagueManagerBundle:Team:update" }
+    requirements: { _method: post|put }
+
+team_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BBBLLeagueManagerBundle:Team:delete" }
+    requirements: { _method: post|delete }

@@ -1,0 +1,59 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Membre list</h1>
+
+    <table class="records_list">
+        <thead>
+            <tr>
+                <th>Pseudo</th>
+                <th>Email</th>
+                <th>Pass</th>
+                <th>Droits</th>
+                <th>Hovernav</th>
+                <th>Hovernavplace</th>
+                <th>Tresorerie</th>
+                <th>Policedefaut</th>
+                <th>Actif</th>
+                <th>Description</th>
+                <th>Idmembre</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td><a href="{{ path('membre_show', { 'id': entity.idmembre }) }}">{{ entity.pseudo }}</a></td>
+                <td>{{ entity.email }}</td>
+                <td>{{ entity.pass }}</td>
+                <td>{{ entity.droits }}</td>
+                <td>{{ entity.hoverNav }}</td>
+                <td>{{ entity.hoverNavPlace }}</td>
+                <td>{{ entity.tresorerie }}</td>
+                <td>{{ entity.policeDefaut }}</td>
+                <td>{{ entity.actif }}</td>
+                <td>{{ entity.description }}</td>
+                <td>{{ entity.idmembre }}</td>
+                <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('membre_show', { 'id': entity.idmembre }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('membre_edit', { 'id': entity.idmembre }) }}">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul>
+        <li>
+            <a href="{{ path('membre_new') }}">
+                Create a new entry
+            </a>
+        </li>
+    </ul>
+    {% endblock %}

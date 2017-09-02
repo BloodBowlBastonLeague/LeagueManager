@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="BBBL\LeagueManagerBundle\Entity\Ligue" table="ligue">
+    <unique-constraints>
+      <unique-constraint name="ordre" columns="ordre"/>
+    </unique-constraints>
+    <id name="idligue" type="integer" column="idligue">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="name" type="string" column="name" length="100" nullable="false"/>
+    <field name="ordre" type="float" column="ordre" precision="10" scale="0" nullable="true"/>
+    <field name="prestige" type="integer" column="prestige" nullable="true"/>
+    <field name="actif" type="integer" column="actif" nullable="false"/>
+    <field name="posTop" type="integer" column="pos_top" nullable="false"/>
+    <field name="posLeft" type="integer" column="pos_left" nullable="false"/>
+    <field name="description" type="text" column="description" nullable="true"/>
+    <many-to-many field="idliguechild" target-entity="Ligue" inversed-by="idmetaligue">
+      <join-table name="ligue_link">
+        <join-columns>
+          <join-column name="idmetaligue" referenced-column-name="idligue"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="idliguechild" referenced-column-name="idligue"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>
