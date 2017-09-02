@@ -1,10 +1,10 @@
 <div class="row tabRow hidden-md-down" ng-if="competition.competition_mode!='Coupe' && competition.active==1">
-	<div class="col-lg-2 firstTab" ng-if="competitions.length<7"></div>
+	<div class="col-lg-4 firstTab" ng-if="competitions.length<7"></div>
 	<div class="col-lg-2 tab" ng-if="tab.id != competition.id" ng-repeat="tab in competitions" ng-click="goToPage('competition/'+tab.id)">{{tab.name}}</div>
 </div>
 <div class="row scroll">
 	<div ng-class="{'col-lg-7':competition.competition_mode!='Coupe','col-lg-5':competition.competition_mode=='Coupe'}">
-		<img class="banner" ng-if="competition.competition_mode!='Coupe'" src="../resources/img/Banner_{{competition.division}}.png">
+		<img class="banner" src="../resources/img/banners/{{competition.division}}.png">
 
 		<!-- Championship / Championnat -->
 		<div class="plain prime main" ng-if="competition.competition_mode!='Coupe'" ng-style="colours[0].border" ng-cloak>

@@ -12,6 +12,7 @@ include($phpbb_root_path . 'config.' . $phpEx);
 include('competition.php');
 include('season.php');
 include('forum.php');
+include('team.php');
 
 $con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
 $postdata = file_get_contents("php://input");

@@ -3,7 +3,7 @@
 <div id="MatchWeek" class="row">
   <div class="col-xs-12 text-center">
     <!-- Championship / Championnat -->
-    <img class="banner" src="../resources/img/Banner_{{competition.division}}.png">
+    <img class="banner" src="../resources/img/banners/{{competition.division}}.png">
     <h2  class="affiche" ng-style="colours[0].color">
       <span ng-if="competition.competition_mode=='Coupe'">{{finals[matchDay.round-1]}}</span>
       <span ng-if="competition.competition_mode!='Coupe'">Journée {{matchDay.round}}</span>

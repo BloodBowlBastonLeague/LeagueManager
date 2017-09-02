@@ -26,6 +26,7 @@
           <option value="5">Espoir A</option>
           <option value="6">Espoir B</option>
           <option value="7">Espoir C</option>
+          <option value="8">BB Cup</option>
         </select><br/>
         Saison : <select ng-model="newCompetition.season" >
           <option value="Hiver">Hiver</option>
@@ -37,6 +38,8 @@
         Partie de saison : <select ng-model="newCompetition.competition_mode">
           <option value="Partie 1">Partie 1</option>
           <option value="Partie 2">Partie 2</option>
+          <option value="Qualification">Qualifications</option>
+          <option value="Coupe">Coupe</option>
         </select><br/>
       </form><br/><br/>
       <div class="spacer" ng-class="newCompetition.result">{{newCompetition.message}}</div>
