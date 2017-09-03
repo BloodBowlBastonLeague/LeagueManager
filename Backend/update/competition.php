@@ -6,7 +6,6 @@ function competition_update($con,$params){
 	$response  = file_get_contents($request);
 	$played = json_decode($response);
 
-
 	foreach ($played->upcoming_matches as $game) {
 
 		if(in_array($game->contest_id, $params[2])){
@@ -43,22 +42,22 @@ function competition_update($con,$params){
 				WHERE contest_id=".$game->contest_id;
 			$con->query($sql_match);
 
-		$match = $game_details->match;
-		foreach ($match->teams as $team){
-			$team_param = array($params[0],$team->idteamlisting);
+			$match = $game_details->match;
+			foreach ($match->teams as $team){
+				$team_param = array($params[0],$team->idteamlisting);
 
-			//update team
-			$team_bbbl_id = team_update($con,$team_param);
-			//add stats
-			foreach ($team->roster as $player) {
-				if($player->id) {
-					$player_bbbl = $con->query("SELECT id FROM site_players WHERE cyanide_id = ".$player->id)->fetch_row();
-				}
-				else {
-					$player_bbbl = $con->query("SELECT id FROM site_players WHERE name='".str_replace("'","\'",$player->name)."' AND team_id = ".$team_bbbl_id)->fetch_row();
-				}
+				//update team
+				$team_bbbl_id = team_update($con,$team_param);
+				//add stats
+				foreach ($team->roster as $player) {
+					if($player->id) {
+						$player_bbbl = $con->query("SELECT id FROM site_players WHERE cyanide_id = ".$player->id)->fetch_row();
+					}
+					else {
+						$player_bbbl = $con->query("SELECT id FROM site_players WHERE name='".str_replace("'","\'",$player->name)."' AND team_id = ".$team_bbbl_id)->fetch_row();
+					}
 
-				$match_bbbl = $con->query("SELECT id FROM site_matchs WHERE cyanide_id = '".$game_details->uuid."'")->fetch_row();
+					$match_bbbl = $con->query("SELECT id FROM site_matchs WHERE cyanide_id = '".$game_details->uuid."'")->fetch_row();
 
 					//Save players stats
 					if($player_bbbl[0]){
@@ -68,11 +67,13 @@ function competition_update($con,$params){
 
 						$con->query($sql_player_stats);
 					}
+				};
 			};
-		};
-	}
+		}
 
 	}
+
+	payment($con, $params[1]);
 
 };
 ?>

@@ -9,11 +9,6 @@ LeagueManager.directive('competition', function() {
 			$scope.affBets = false; //gere l'affichage de la fenetre des pronos
 			$scope.errorBets = false; //gere l'affichage du message d'erreur
 			$scope.errorMessage = ""; //Message d'erreur
-			$scope.bet1 = 0;
-			$scope.bet2 = 0;
-			$scope.gold = 1000; //VALEUR A RECUPER EN BASE (FIXER ICI POUR TESTER)
-			$scope.maxBets = 100000; // VALEUR A DEFINIR
-			$scope.mise = 0;
 
 			$rootScope.setColours([$rootScope.colourA, $rootScope.colourB, '#F7FB03']);
 			$rootScope.competitionId = $routeParams.ID;
@@ -138,15 +133,16 @@ LeagueManager.directive('competition', function() {
 
 			//ouvre la fenetre de pronostics en fixant le match
 			$scope.doBets = function(match) {
-
 				$scope.bet1 = 0;
 				$scope.bet2 = 0;
+				$scope.stake = 10;
 				$scope.bet = match;
 				for ($v in $scope.bet.bets) {
 					if ($scope.bet.bets[$v]["coach_id"] == $rootScope.coach_id) {
 						//modif en live
 						$scope.bet1 = $scope.bet.bets[$v]["team_score_1"];
 						$scope.bet2 = $scope.bet.bets[$v]["team_score_2"];
+						$scope.stake = $scope.bet.bets[$v]["stake"];
 					}
 				}
 				$scope.affBets = true;
@@ -159,16 +155,14 @@ LeagueManager.directive('competition', function() {
 			};
 
 			//Gestion des Pronos
-			$scope.BetsDone = function(bets1, bets2, mise) {
+			$scope.BetsDone = function(bets1, bets2, stake) {
+
 				//Test des données récuperées
-				if ($rootScope.coach_id == 1) {
-					$scope.errorMessage = "Vous n'êtes pas connecté";
+				if (!stake) {
+					$scope.errorMessage = "Vous avez des origines orques?";
 					$scope.errorBets = true;
-				} else if (bets1 == null || bets2 == null) {
-					$scope.errorMessage = "Pronostics mal renseignés";
-					$scope.errorBets = true;
-				} else if (!Number.isInteger(parseInt(mise)) || mise > $scope.maxBets || mise > $scope.gold || mise < 0) {
-					$scope.errorMessage = "Mise interdite";
+				} else if (stake > $rootScope.coach_gold) {
+					$scope.errorMessage = "Votre comptable vous a menti...";
 					$scope.errorBets = true;
 				} else {
 					$scope.errorBets = false;
@@ -183,17 +177,17 @@ LeagueManager.directive('competition', function() {
 							//modif en live
 							$scope.bet.bets[$v]["team_score_1"] = bets1;
 							$scope.bet.bets[$v]["team_score_2"] = bets2;
-							$scope.bet.bets[$v]["stake"] = mise;
+							$scope.bet.bets[$v]["stake"] = stake;
 							var prognos = {
 								"coach_id": $rootScope.coach_id,
 								"bets_1": bets1,
 								"bets_2": bets2,
-								"stake": mise,
-								"id_match": $scope.bet.id
+								"stake": stake,
+								"match_id": $scope.bet.id
 							};
 							//MAJ en base
-							$http.post('Backend/bets/bets.php?action=updateBet', prognos).then(function(result) {
-								console.log(result.data);
+							$http.post('Backend/bets.php?action=updateBet', prognos).then(function(result) {
+								$rootScope.coach_gold -= $scope.stake;
 							});
 						}
 					}
@@ -204,18 +198,18 @@ LeagueManager.directive('competition', function() {
 						$tmp["coach_id"] = $rootScope.coach_id;
 						$tmp["team_score_1"] = bets1;
 						$tmp["team_score_2"] = bets2;
-						$tmp["stake"] = mise;
+						$tmp["stake"] = stake;
 						$scope.bet.bets.push($tmp);
 						//Ajout en base
 						var prognos = {
 							"coach_id": $rootScope.coach_id,
 							"bets_1": bets1,
 							"bets_2": bets2,
-							"stake": mise,
-							"id_match": $scope.bet.id
+							"stake": stake,
+							"match_id": $scope.bet.id
 						};
-						$http.post('Backend/bets/bets.php?action=addBet', prognos).then(function(result) {
-							console.log(result.data);
+						$http.post('Backend/bets.php?action=addBet', prognos).then(function(result) {
+							$rootScope.coach_gold -= $scope.stake;
 						});
 					}
 					//Fermeture de la fenetre de bets
@@ -239,12 +233,10 @@ LeagueManager.directive('competition', function() {
 			$scope.competitionUpdate = function(league, competition) {
 				$scope.saving = true;
 				params = [window.Cyanide_Key, competition, $scope.matchsToSave];
-				$http.post('Backend/match_save.php', params).then(function(result) {
+				$http.post('Backend/update/update.php?action=competitionUpdate', params).then(function(result) {
 					$scope.calendarUpdate();
 				});
-				$http.post('Backend/bets/bets.php?action=pay').then(function(result) {
-					console.log(result.data);
-				});
+				$http.post('Backend/bets.php?action=pay&competition=' + $rootScope.competitionId).then(function(result) {});
 			};
 
 		}

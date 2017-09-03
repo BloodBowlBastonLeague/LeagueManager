@@ -21,6 +21,8 @@ $usergroup = htmlentities($user->data['group_id'],ENT_QUOTES,"UTF-8");
 $con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
 if (!$con) { die('Could not connect: ' . mysqli_error()); }
 mysqli_set_charset($con,'utf8');
+$coach = $con->query("SELECT id, gold FROM site_coachs WHERE user_id=".$user->data['user_id']);
+$coach = $coach->fetch_assoc();
 
 $Cyanide_Key = 'YOUR_KEY_HERE';
 $Cyanide_League = 'YOUR_LEAGUE_NAME_HERE';

@@ -11,6 +11,7 @@ include($phpbb_root_path . 'config.' . $phpEx);
 
 include('team.php');
 include('competition.php');
+include('../bets.php');
 
 $con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
 $postdata = file_get_contents("php://input");

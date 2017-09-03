@@ -69,8 +69,10 @@
     var Cyanide_Key = "<?=$Cyanide_Key?>";
     var Cyanide_League = "<?=$Cyanide_League?>";
     var User = "<?=$user->data['username'];?>";
-    var coach_id = "<?=$user->data['user_id'];?>";
+    var user_id = "<?=$user->data['user_id'];?>";
     var Group = "<?=$user->data['group_id'];?>";
+    var coach_id = ("<?=$coach[id]?>");
+    var coach_gold = ("<?=$coach[gold]?>")
 </script>
 
   <!-- jquery -->
@@ -91,12 +93,11 @@
   <script src="controllers/league.js"></script>
   <script src="controllers/competition.js"></script>
   <script src="controllers/ranking.js"></script>
-
   <script src="controllers/match.js"></script>
   <script src="controllers/team.js"></script>
   <script src="controllers/modal.js"></script>
 
-  <!-- Module BBBL -->
+  <!-- Module spéciaux -->
   <script src="controllers/lepoing.js"></script>
 
   <script>

@@ -184,13 +184,13 @@
         <thead>
           <tr ng-style="colours[0].background">
             <th class="text-left">Coach</th>
-            <th class="text-center">Pts</th>
+            <th class="text-center">Gains</th>
           </tr>
         </thead>
         <tbody class="table-hover">
-          <tr ng-repeat="coach in ranking | orderBy : 'score' : true ">
+          <tr ng-repeat="coach in ranking | orderBy : 'earnings' : true ">
             <td class="text-left">{{coach.name}}</td>
-            <td class="text-center">{{coach.score}}</td>
+            <td class="text-center">{{coach.earnings}} PO</td>
           </tr>
         </tbody>
       </table>
