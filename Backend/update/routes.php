@@ -4,6 +4,9 @@ $phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './../../For
 $phpEx = substr(strrchr(__FILE__, '.'), 1);
 
 $action = $_GET["action"];
+$competition=$_GET["competition"];
+$competition_id=$_GET["competition_id"];
+
 
 include($phpbb_root_path . 'common.' . $phpEx);
 include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
@@ -11,7 +14,7 @@ include($phpbb_root_path . 'config.' . $phpEx);
 
 include('team.php');
 include('competition.php');
-include('../bets.php');
+include('bets.php');
 
 $con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
 $postdata = file_get_contents("php://input");
@@ -23,6 +26,18 @@ switch ($action) {
     break;
   case "teamUpdate":
     team_update($con,$params);
+    break;
+  case "addBet":
+    add_bet($con, $params);
+    break;
+  case "updateBet":
+    update_bet($con, $params);
+    break;
+  case "pay":
+    payment($con, $competition);
+    break;
+  case "ranking":
+    ranking($con, $competition);
     break;
   default:
     echo "Erreur!";

@@ -1,55 +1,22 @@
 <?php
-define('IN_PHPBB', true);
-$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './../../Forum/';
-$phpEx = substr(strrchr(__FILE__, '.'), 1);
-
-$action= $_GET["action"];
-$competition=$_GET["competition"];
-
-include($phpbb_root_path . 'common.' . $phpEx);
-include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
-include($phpbb_root_path . 'config.' . $phpEx);
-
-$con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
-$postdata = file_get_contents("php://input");
-$request = json_decode($postdata);
-
-switch ($action) {
-
-case "addBet":
-  add_bet($con, $request);
-  break;
-case "updateBet":
-  update_bet($con, $request);
-  break;
-case "pay":
-  payment($con, $competition);
-  break;
-case "ranking":
-  ranking($con, $competition);
-  break;
-default:
-  echo "action invalid!";
-  break;
-}
 
 /**
  * Ajout d'un pronostic en base
  * @param $con la connexion à la BDD
- * @param $request les données à insérer
+ * @param $params les données à insérer
  */
-function add_bet($con, $request){
+function add_bet($con, $params){
   if (!$con) { die('Could not connect: ' . mysqli_error()); }
   mysqli_set_charset($con,'utf8');
 
   //On insère son pari dans la base
-  $sqlBetNew = "INSERT INTO site_bets (match_id,coach_id,team_score_1,team_score_2, stake) VALUES (".$request->match_id.", ".$request->coach_id.", ".$request->bets_1.", ".$request->bets_2.", ".$request->stake.")";
+  $sqlBetNew = "INSERT INTO site_bets (match_id,coach_id,team_score_1,team_score_2, stake) VALUES (".$params->match_id.", ".$params->coach_id.", ".$params->bets_1.", ".$params->bets_2.", ".$params->stake.")";
   //echo $sqlBetNew."\n"; //for debug
   $resBetNew = $con->query($sqlBetNew);
 
 
   //on update l'argent disponible du coach
-  $sqlCoachUpdate = "UPDATE site_coachs SET gold = gold - ".$request->stake." WHERE id=".$request->coach_id;
+  $sqlCoachUpdate = "UPDATE site_coachs SET gold = gold - ".$params->stake." WHERE id=".$params->coach_id;
   //echo $sqlCoachUpdate."\n"; //for debug
   $resCoachUpdate = $con->query($sqlCoachUpdate);
 
@@ -59,26 +26,26 @@ function add_bet($con, $request){
 /**
  * Mise à jour d'un pronostic en base
  * @param $con la connexion à la BDD
- * @param $request les données à mettre à jour
+ * @param $params les données à mettre à jour
  */
-function update_bet($con, $request){
+function update_bet($con, $params){
   if (!$con) { die('Could not connect: ' . mysqli_error()); }
   mysqli_set_charset($con,'utf8');
 
   //on update l'argent dispo du coach
-  $sqlBetOld = "SELECT id, stake from site_bets WHERE match_id=".$request->match_id." AND coach_id=".$request->coach_id;
+  $sqlBetOld = "SELECT id, stake from site_bets WHERE match_id=".$params->match_id." AND coach_id=".$params->coach_id;
   $resBetOld = $con->query($sqlBetOld);
   //echo $sqlBetOld."\n"; //for debug
   $BetOld = $resBetOld->fetch_assoc();
   //echo $BetOld;
-  $sqlCoachUpdate = "UPDATE site_coachs SET gold = gold + ".$BetOld[stake]." - ".$request->stake." WHERE id=".$request->coach_id;
+  $sqlCoachUpdate = "UPDATE site_coachs SET gold = gold + ".$BetOld[stake]." - ".$params->stake." WHERE id=".$params->coach_id;
   //echo $sqlCoachUpdate."\n"; //for debug
   $resCoachUpdate = $con->query($sqlCoachUpdate);
 
   //TODO Gestion des erreurs (pas assez de fonds)
 
   //on update le pari déjà fait
-  $sqlBetNew = "UPDATE site_bets SET team_score_1 = ".$request->bets_1.", team_score_2 = ".$request->bets_2.", stake = ".$request->stake.", modify_date = now() WHERE id=".$BetOld[id];
+  $sqlBetNew = "UPDATE site_bets SET team_score_1 = ".$params->bets_1.", team_score_2 = ".$params->bets_2.", stake = ".$params->stake.", modify_date = now() WHERE id=".$BetOld[id];
   echo $sqlBetNew."\n"; //for debug
   $resBetNew = $con->query($sqlBetNew);
 
@@ -99,7 +66,6 @@ function update_bet($con, $request){
      $a = 0;
      $b = 0;
      $e = 0;
-
      $sqlBets="SELECT b.id, b.match_id, b.coach_id, m.score_1, m.score_2, b.team_score_1, b.team_score_2, b.stake
      FROM site_matchs AS m
      LEFT JOIN site_bets AS b ON b.match_id=m.id
@@ -123,16 +89,17 @@ function update_bet($con, $request){
      //Distribution des gains
      $resultBets2 = $con->query($sqlBets);
      while($bet2 = $resultBets2->fetch_assoc()) {
+
        $reward = reward($bet2["score_1"], $bet2["score_2"], $bet2["team_score_1"], $bet2["team_score_2"], $odd_1, $odd_2, $odd_e, $bet2["stake"]);
 
        //Update du pari
        $sqlBetUpdate="UPDATE site_bets SET reward = ROUND(".$reward.",0), modify_date=NOW() WHERE id=".$bet2[id];
-       echo $sqlBetUpdate."\n"; //for debug
+       //echo $sqlBetUpdate."\n"; //for debug
        $resBetUpdate = $con->query($sqlBetUpdate);
 
        //Mise à jour de la gagnotte du coach
        $sqlCoachUpdate="UPDATE site_coachs SET gold = gold + ROUND(".$reward.",0) WHERE id=".$bet2[coach_id];
-       echo $sqlCoachUpdate."\n"; //for debug
+       //echo $sqlCoachUpdate."\n"; //for debug
        $resCoachUpdate = $con->query($sqlCoachUpdate);
      }
    }

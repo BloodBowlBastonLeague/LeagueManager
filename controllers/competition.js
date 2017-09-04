@@ -186,7 +186,7 @@ LeagueManager.directive('competition', function() {
 								"match_id": $scope.bet.id
 							};
 							//MAJ en base
-							$http.post('Backend/bets.php?action=updateBet', prognos).then(function(result) {
+							$http.post('Backend/update/routes.php?action=updateBet', prognos).then(function(result) {
 								$rootScope.coach_gold -= $scope.stake;
 							});
 						}
@@ -208,7 +208,7 @@ LeagueManager.directive('competition', function() {
 							"stake": stake,
 							"match_id": $scope.bet.id
 						};
-						$http.post('Backend/bets.php?action=addBet', prognos).then(function(result) {
+						$http.post('Backend/update/routes.php?action=addBet', prognos).then(function(result) {
 							$rootScope.coach_gold -= $scope.stake;
 						});
 					}
@@ -232,11 +232,10 @@ LeagueManager.directive('competition', function() {
 			//Mise à jour de la competition
 			$scope.competitionUpdate = function(league, competition) {
 				$scope.saving = true;
-				params = [window.Cyanide_Key, competition, $scope.matchsToSave];
-				$http.post('Backend/update/update.php?action=competitionUpdate', params).then(function(result) {
+				params = [window.Cyanide_Key, competition, $scope.matchsToSave, $rootScope.competitionId];
+				$http.post('Backend/update/routes.php?action=competitionUpdate', params).then(function(result) {
 					$scope.calendarUpdate();
 				});
-				$http.post('Backend/bets.php?action=pay&competition=' + $rootScope.competitionId).then(function(result) {});
 			};
 
 		}
