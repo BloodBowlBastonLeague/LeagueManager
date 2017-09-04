@@ -158,7 +158,7 @@
 	</div>
 </div>
 
-<!-- FENETRE DES PRONOSTICS-->
+<!-- FENETRE DES PARIS-->
 <div id="veil" ng-show="affBets" ng-click="betsOff()"></div>
 
 <div class="container bet" ng-if="affBets">
@@ -167,8 +167,11 @@
 			<img class="betLogo" src="resources/bets/BetLogo.png"><br>
 			<div class="spacer"></div>
 		</div>
-		<div class="col-xs-2 text-right zelda" ng-click="betsOff()">
+		<div class="col-xs-2 text-right zelda" ng-click="betsOff()" style="margin-top: 10px;">
 			FERMER
+		</div>
+		<div class="col-xs-12 text-center">
+			<h2>Faites votre pronostic</h2><br>
 		</div>
 		<div class="col-xs-3 text-center">
 			<img src="resources/logo/Logo_{{bet.logo_1}}.png">
@@ -193,8 +196,13 @@
 		</div>
 		<div class="col-xs-12 text-center">
 			<div class="spacer"></div><br>
-			<span><button ng-if="!errorBets" ng-click="BetsDone(bet1, bet2)">Parier</button><br></span>
-			<h4 style="color:red;" ng-if="errorBets">{{errorMessage}}</h4>
+			<span>
+				<h2>Entrez le montant de votre mise</h2>
+				<input type="number" name="stake" ng-model="stake" min="1"><br>
+				(Vous disposez de {{coach_gold}} PO en banque)<br>
+				<h4 style="color:red;" ng-if="errorBets">{{errorMessage}}<br></h4>
+				<button ng-click="BetsDone(bet1, bet2, stake)">Pariez</button><br></span>
+
 			<div class="spacer"></div>
 		</div>
 	</div>

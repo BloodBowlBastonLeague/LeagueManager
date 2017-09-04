@@ -457,7 +457,14 @@ a:hover h4{ text-decoration: none !important;}
 .betLogo { height:70px; display: inline-block;}
 .betVersus { margin-top: 24px; width:100%; max-width: 128px;}
 .bet .score, .bet h2 {font-family: 'Arial' !important; font-weight: bolder;}
-.bet button { height:30px; color:#000000; }
+.bet button { background: #F7FB03;
+color: #011D4D;
+height: 40px;
+margin-top: 15px;
+font-size: 30px;
+font-weight: 700;
+font-family: Arial;
+width: 150px; }
 
 .bet h1 { font-family: 'Arial';}
 
@@ -466,6 +473,18 @@ a:hover h4{ text-decoration: none !important;}
 
 .bet.ad { margin:0 10px 20px; max-width: 440px; background: #011D4D; }
 .bet.ad img {width: 100%;}
+
+.bet input {border: 2px solid #F7FB03;
+background: transparent;
+height: 40px;
+margin-bottom: 5px;
+font-size: 30px;
+font-weight: 700;
+font-family: Arial;
+color: #FFF;
+text-align: center;
+-moz-appearance: textfield;
+-webkit-appearance: none;}
 
 /*Admin*/
 .success {color:green;}

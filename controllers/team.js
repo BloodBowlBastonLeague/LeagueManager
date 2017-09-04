@@ -82,7 +82,7 @@ LeagueManager.directive('team', function() {
 
 			$scope.teamUpdate = function() {
 				params = [window.Cyanide_Key, $scope.team.cyanide_id];
-				$http.post('Backend/update/update.php?action=teamUpdate', params).then(function(result) {
+				$http.post('Backend/update/routes.php?action=teamUpdate', params).then(function(result) {
 					console.log(result.data);
 				});
 			};
