@@ -23,7 +23,7 @@ LeagueManager.directive('competition', function() {
 			$scope.calendarUpdate = function() {
 				$http.get('Backend/competition.php?id=' + $rootScope.competitionId).success(function(result) {
 					$scope.competition = result;
-					$rootScope.title = $scope.competition.season + ' - ' + $scope.competition.competition_mode;
+					$rootScope.title = $scope.competition.game_name;
 				});
 				$http.get('Backend/calendar.php?id=' + $routeParams.ID).success(function(result) {
 					$scope.calendar = result;
@@ -143,6 +143,7 @@ LeagueManager.directive('competition', function() {
 						$scope.bet1 = $scope.bet.bets[$v]["team_score_1"];
 						$scope.bet2 = $scope.bet.bets[$v]["team_score_2"];
 						$scope.stake = $scope.bet.bets[$v]["stake"];
+
 					}
 				}
 				$scope.affBets = true;
@@ -178,6 +179,7 @@ LeagueManager.directive('competition', function() {
 							$scope.bet.bets[$v]["team_score_1"] = bets1;
 							$scope.bet.bets[$v]["team_score_2"] = bets2;
 							$scope.bet.bets[$v]["stake"] = stake;
+
 							var prognos = {
 								"coach_id": $rootScope.coach_id,
 								"bets_1": bets1,
