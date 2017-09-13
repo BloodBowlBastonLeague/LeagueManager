@@ -1,4 +1,5 @@
 <?php
+$action = $_GET["action"];
 $id = $_GET['id'];
 
 define('IN_PHPBB', true);
@@ -11,7 +12,49 @@ include($phpbb_root_path . 'config.' . $phpEx);
 
 $con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
 
-if (!$con) { die('Could not connect: ' . mysqli_error()); }
+switch ($action) {
+  case "upcomingGames":
+    upcomingGames($con);
+    break;
+  default:
+    competition($con,$id);
+    break;
+}
+
+
+function upcomingGames($con){
+  mysqli_set_charset($con,'utf8');
+
+  $var = [];
+  $sqlCompetitions = "SELECT DISTINCT(DATE_FORMAT(m.started,'%Y-%m-%d')) AS day
+    FROM site_matchs AS m
+    LEFT JOIN site_competitions AS c ON c.id=m.competition_id
+    WHERE c.active=1 AND m.cyanide_id IS NULL AND m.started>NOW()
+    ORDER BY m.started";
+  $resultCompetitions = mysqli_query($con, $sqlCompetitions);
+  while($data = mysqli_fetch_array($resultCompetitions,MYSQLI_ASSOC)){
+    $data[matchs]=[];
+    $sqlMatchs = "SELECT m.id, DATE_FORMAT(m.started,'%Y%m%dT%H%i%sZ') AS planned,
+    c.league_name, m.round,
+    t1.name as name_1, t1.logo as logo_1,
+    t2.name as name_2, t2.logo as logo_2
+    FROM site_matchs AS m
+    LEFT JOIN site_competitions AS c ON c.id=m.competition_id
+    LEFT JOIN site_teams AS t1 ON t1.id=m.team_id_1
+    LEFT JOIN site_teams AS t2 ON t2.id=m.team_id_2
+    WHERE m.cyanide_id IS NULL AND m.started IS NOT NULL AND DATE_FORMAT(m.started,'%Y-%m-%d')='".$data[day]."'
+    ORDER BY c.site_order";
+    $resultMatchs = mysqli_query($con, $sqlMatchs);
+    while($dataMatchs = mysqli_fetch_array($resultMatchs,MYSQLI_ASSOC)){
+      array_push($data[matchs], $dataMatchs);
+    }
+    array_push($var, $data);
+  }
+  echo json_encode($var,JSON_NUMERIC_CHECK);
+}
+
+
+function competition($con,$id){
   mysqli_set_charset($con,'utf8');
   $var = [];
   $sql = 'SELECT DISTINCT(round)
@@ -21,13 +64,13 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
   $result = mysqli_query($con, $sql);
   while($data = mysqli_fetch_array($result,MYSQLI_ASSOC)){
     $var2 = [];
-    $sql2 = 'SELECT site_matchs.id, site_matchs.cyanide_id, site_matchs.contest_id, round,
-      team_id_1, t1.name as name_1, t1.logo as logo_1, score_1,
-      team_id_2, t2.name as name_2, t2.logo as logo_2, score_2
+    $sql2 = "SELECT site_matchs.id, site_matchs.cyanide_id, site_matchs.contest_id, DATE_FORMAT(site_matchs.started,'%Y%m%dT%H%i%sZ') AS started, round,
+      t1.coach_id as coach_id_1, team_id_1, t1.name as name_1, t1.logo as logo_1, score_1,
+      t2.coach_id as coach_id_2, team_id_2, t2.name as name_2, t2.logo as logo_2, score_2
       FROM site_matchs
 	    LEFT JOIN site_teams as t1 ON t1.id=site_matchs.team_id_1
       LEFT JOIN site_teams as t2 ON t2.id=site_matchs.team_id_2
-	    WHERE competition_id='.$id.' AND round='.$data[round];
+	    WHERE competition_id=".$id." AND round=".$data[round];
 	  $result2 = mysqli_query($con, $sql2);
     while($data2 = mysqli_fetch_array($result2,MYSQLI_ASSOC)) {
 
@@ -60,4 +103,6 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
 
   echo json_encode($var,JSON_NUMERIC_CHECK);
   die();
+}
+
 ?>

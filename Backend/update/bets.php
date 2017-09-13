@@ -5,7 +5,7 @@
  * @param $con la connexion à la BDD
  * @param $params les données à insérer
  */
-function add_bet($con, $params){
+function bet_add($con, $params){
   if (!$con) { die('Could not connect: ' . mysqli_error()); }
   mysqli_set_charset($con,'utf8');
 
@@ -28,7 +28,7 @@ function add_bet($con, $params){
  * @param $con la connexion à la BDD
  * @param $params les données à mettre à jour
  */
-function update_bet($con, $params){
+function bet_update($con, $params){
   if (!$con) { die('Could not connect: ' . mysqli_error()); }
   mysqli_set_charset($con,'utf8');
 

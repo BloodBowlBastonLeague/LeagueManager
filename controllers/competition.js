@@ -6,7 +6,7 @@ LeagueManager.directive('competition', function() {
 		controller: function($scope, $rootScope, $http, $timeout, $routeParams) {
 			$scope.competition = {};
 			$scope.bet; //Match courant sur lequel on fait les pronos
-			$scope.affBets = false; //gere l'affichage de la fenetre des pronos
+			$scope.showBets = false; //gere l'affichage de la fenetre des pronos
 			$scope.errorBets = false; //gere l'affichage du message d'erreur
 			$scope.errorMessage = ""; //Message d'erreur
 
@@ -63,11 +63,17 @@ LeagueManager.directive('competition', function() {
 
 			//Check si Match joué ou non et renvoi faire la bonne fonctionnalité
 			$scope.ifClicked = function(match) {
+
 				if (match.cyanide_id) {
 					$scope.goToPage('match/' + match.id)
-				} else {
-					$scope.odds(match);
-					$scope.doBets(match);
+				} else if ($rootScope.external != 1) {
+					if (($rootScope.coach_id == match.coach_id_1 || $rootScope.coach_id == match.coach_id_2 || $rootScope.admin == 1) && match.started == null) {
+						$scope.match = match;
+						$scope.showMatchDate = true;
+					} else {
+						$scope.odds(match);
+						$scope.doBets(match);
+					}
 				}
 			};
 
@@ -143,15 +149,15 @@ LeagueManager.directive('competition', function() {
 						$scope.bet1 = $scope.bet.bets[$v]["team_score_1"];
 						$scope.bet2 = $scope.bet.bets[$v]["team_score_2"];
 						$scope.stake = $scope.bet.bets[$v]["stake"];
-
 					}
 				}
-				$scope.affBets = true;
+				$scope.showBets = true;
 			};
 
 			//ferme la fenetre de pronostics
-			$scope.betsOff = function() {
-				$scope.affBets = false;
+			$scope.veilOff = function() {
+				$scope.showMatchDate = false;
+				$scope.showBets = false;
 				$scope.errorBets = false;
 			};
 
@@ -188,7 +194,7 @@ LeagueManager.directive('competition', function() {
 								"match_id": $scope.bet.id
 							};
 							//MAJ en base
-							$http.post('Backend/update/routes.php?action=updateBet', prognos).then(function(result) {
+							$http.post('Backend/update/routes.php?action=betUpdate', prognos).then(function(result) {
 								$rootScope.coach_gold -= $scope.stake;
 							});
 						}
@@ -210,12 +216,12 @@ LeagueManager.directive('competition', function() {
 							"stake": stake,
 							"match_id": $scope.bet.id
 						};
-						$http.post('Backend/update/routes.php?action=addBet', prognos).then(function(result) {
+						$http.post('Backend/update/routes.php?action=betAdd', prognos).then(function(result) {
 							$rootScope.coach_gold -= $scope.stake;
 						});
 					}
 					//Fermeture de la fenetre de bets
-					$scope.affBets = false;
+					$scope.showBets = false;
 				}
 			};
 
@@ -240,6 +246,12 @@ LeagueManager.directive('competition', function() {
 				});
 			};
 
+			//Mise à jour de date
+			$scope.matchDate = function(match) {
+				$http.post('Backend/update/routes.php?action=matchDate', match).then(function(result) {
+					$scope.veilOff();
+				});
+			}
 		}
 	}
 });

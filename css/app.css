@@ -91,7 +91,7 @@ h3 { font-family: 'Akashi';  font-size: 24px; line-height: 1; margin:0 0 10px; c
 h4 { font-family: 'Akashi';  font-size: 18px; line-height: 1; margin:0 0 10px; color: #ffffff; }
 h5 { font-family:'Muli'; font-weight:700; text-decoration: underline; margin:5px; text-align: center; }
 h6 { font-family:'Muli'; font-weight:700; }
-p { font-family:'Muli'; font-size: 14px; line-height: 18px; text-align: justify; text-indent: 36px; color:#cccccc; display:inline-block; }
+p { font-family:'Muli'; font-size: 14px; line-height: 18px; text-align: justify; color:#cccccc; display:inline-block; }
 .plain form { font-family:'Muli'; font-size: 14px; line-height: 18px; text-align: justify; color:#cccccc; display:inline-block; }
 input, select { color:#000000;}
 
@@ -123,7 +123,8 @@ li > h3 { display:inline; }
   #Menu { position: absolute;top: 50px;left: 0px;z-index: 1;}
 }
 .row.adapt {height:auto;}
-.plain .row {margin:0}
+.plain .row {margin:0;}
+.noPadding {padding:0 !important;}
 /* HEADER */
 #Intro { position:relative; width:100vw; height:18px; background:#000000; font-size: 12px;box-sizing: border-box; line-height: 18px;text-align:center; font-family:'Muli'; color:#f1f1f1; z-index:2;}
 #Logo { position:fixed; top:0px; left:0; margin:0 10px; height: 90px; width: 120px; cursor: pointer; background: url(../resources/img/BBBL2.png) no-repeat; background-position: center 2px; background-size:contain; z-index:100;}
@@ -188,7 +189,7 @@ border-radius: 5px; border-bottom: 2px solid; }
 
 #newsfeed { width:100vw; height:50px; background: #000000;}
 
-#connect, #match { width:20vw; min-width:216px; margin:50px 40vw; text-align: center !important; line-height: 30px; }
+#connect, #match, #planner { width:20vw; min-width:216px; margin:50px 40vw; text-align: center !important; line-height: 30px; }
 .container input { width:150px; }
 
 .blur { color: transparent !important; text-shadow: 0 0 2px rgba(0,0,0,0.75); }
@@ -422,7 +423,7 @@ td img { max-height: 20px; max-width: 20px; }
 
 .championName { min-height: 60px; text-align: center; width: 100%; }
 .championName h2 {position: absolute;z-index: 1; text-align: center;width: calc(100% - 30px);}
- .archives .coachName { text-align: center; }
+.x-center, .archives .coachName { text-align: center; }
 .oldChamp { position:absolute; z-index:1;}
 
 
