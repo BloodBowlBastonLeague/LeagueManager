@@ -14,7 +14,9 @@
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="css/app.css" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
-  <link href="https://fonts.googleapis.com/css?family=Niconne" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Niconne" rel="stylesheet" type='text/css'>
+  <link href="bower_components\angularjs-datetime-picker\angularjs-datetime-picker.css" rel="stylesheet" type='text/css'>
+
   <link rel="apple-touch-icon" sizes="57x57" href="/resources/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/resources/favicon/apple-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="/resources/favicon/apple-icon-72x72.png">
@@ -35,7 +37,7 @@
 
   <!-- Angular -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
-
+  <script src="bower_components\angular-locale_fr-fr.js"></script>
 </head>
 <body>
   <header>
@@ -80,7 +82,7 @@
   <!-- Bootstrap -->
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-  <!--<script src="bower_components/angular/angular.min.js"></script>-->
+  <script src="bower_components\angularjs-datetime-picker\angularjs-datetime-picker.js"></script>
   <script src="bower_components/angular-route/angular-route.min.js"></script>
   <script src="bower_components/lodash/lodash.min.js"></script>
   <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>

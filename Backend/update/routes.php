@@ -12,8 +12,9 @@ include($phpbb_root_path . 'common.' . $phpEx);
 include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
 include($phpbb_root_path . 'config.' . $phpEx);
 
-include('team.php');
 include('competition.php');
+include('team.php');
+include('match.php');
 include('bets.php');
 
 $con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
@@ -27,11 +28,14 @@ switch ($action) {
   case "teamUpdate":
     team_update($con,$params);
     break;
-  case "addBet":
-    add_bet($con, $params);
+  case "matchDate":
+    match_date($con,$params);
     break;
-  case "updateBet":
-    update_bet($con, $params);
+  case "betAdd":
+    bet_add($con, $params);
+    break;
+  case "betUpdate":
+    bet_update($con, $params);
     break;
   case "pay":
     payment($con, $competition);

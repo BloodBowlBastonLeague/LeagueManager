@@ -17,8 +17,8 @@ LeagueManager.directive('main', function() {
 				$scope.standing = result;
 			});
 			//Récupération de l'agenda en JSON (temporaire)
-			$http.get('resources/json/calendar.json').success(function(result) {
-				$scope.calendar = result;
+			$http.get('Backend/calendar.php?action=upcomingGames').success(function(result) {
+				$scope.games = result;
 			});
 			$scope.tmpTeams = [{
 					"teamID": "0",

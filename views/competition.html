@@ -141,7 +141,8 @@
 			<h3 ng-if="matchDay.round == currentDay" ng-click="sortBy('round')" class="zelda"><span ng-if="competition.competition_mode=='Coupe'">{{finals[matchDay.round-1]}}</span><span ng-if="competition.competition_mode!='Coupe'">Journée {{matchDay.round}}</span> <div class="triangle" ng-class="{down: reverse}"></div></h3>
 			<h3 ng-if="matchDay.round != currentDay" ng-style="colours[0].color" ng-click="sortBy('day')" class="zelda"><span ng-if="competition.competition_mode=='Coupe'">{{finals[matchDay.round-1]}}</span><span ng-if="competition.competition_mode!='Coupe'">Journée {{matchDay.round}}</span> <div class="triangle" ng-class="{down: reverse}" ng-style="colours[0].border"></div></h3>
 			<div class="match x-center">
-				<div class="vs col-lg-6 col-xl-4" ng-class="{zelda:match.id}" ng-repeat="match in matchDay.matchs" ng-click="ifClicked(match)">
+				<div title="{{match.name_1}} VS {{match.name_2}}" class="vs col-lg-6 col-xl-4" ng-class="{zelda:match.id}" ng-repeat="match in matchDay.matchs" ng-click="ifClicked(match)">
+					<div ng-if="!match.cyanide_id"><p>{{match.started | date:'dd MMM HH:mm' : '+000' }}</p></div>
 					<img class="teamLogo" src="resources/logo/Logo_{{match.logo_1}}.png">
 					<img class="versus" ng-if="match.cyanide_id==null" src="../resources/img/vs.png">
 					<span ng-if="match.cyanide_id && matchDay.round == currentDay"> {{match.score_1}} - {{match.score_2}} </span>
@@ -159,15 +160,15 @@
 </div>
 
 <!-- FENETRE DES PARIS-->
-<div id="veil" ng-show="affBets" ng-click="betsOff()"></div>
+<div id="veil" ng-show="showBets || showMatchDate" ng-click="veilOff()"></div>
 
-<div class="container bet" ng-if="affBets">
+<div class="container bet" ng-if="showBets">
 	<div class="row">
 		<div class="col-xs-10">
 			<img class="betLogo" src="resources/bets/BetLogo.png"><br>
 			<div class="spacer"></div>
 		</div>
-		<div class="col-xs-2 text-right zelda" ng-click="betsOff()" style="margin-top: 10px;">
+		<div class="col-xs-2 text-right zelda" ng-click="veilOff()" style="margin-top: 10px;">
 			FERMER
 		</div>
 		<div class="col-xs-12 text-center">
@@ -205,5 +206,17 @@
 
 			<div class="spacer"></div>
 		</div>
+	</div>
+</div>
+
+<div id="planner" class="container seconde" ng-if="showMatchDate" ng-style="colours[1].border">
+	<form id="matchSave" name="matchSave" ng-style="colours[1].color">
+		Date du match<br/>
+		 <input datetime-picker ng-model="match.started" date-format="dd/MM/yy HH:mm" />
+	</form>
+	<div class="spacer"></div>
+	<div class="button" ng-click="matchDate(match)">
+		<div ng-include="'resources/img/Button_1.svg'"></div>
+		<div class="label">Enregistrer</div>
 	</div>
 </div>
