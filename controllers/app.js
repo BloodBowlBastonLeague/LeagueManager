@@ -34,7 +34,7 @@ LeagueManager.config(function($routeProvider) {
 
 });
 
-LeagueManager.run(function($rootScope, $http, $location, $timeout) {
+LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 	$rootScope.user = window.User;
 	$rootScope.user_id = window.user_id;
 	$rootScope.coach_id = window.coach_id;
@@ -142,5 +142,32 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout) {
 		return parseFloat(data);
 	};
 
+
+});
+
+
+
+LeagueManager.filter('talkingToTheGods', function() {
+
+	return function(input, dictionnary) {
+		var idx = dictionnary.map(function(e) {
+			return e.name;
+		}).indexOf(input);
+		return dictionnary[idx].translation;
+	}
+
+});
+
+LeagueManager.filter('mutantAnalyzer', function() {
+
+	return function(input, mutator, antidote, player) {
+		for (s = 0; s < player.skills.length; s++) {
+			player.skills[s] == mutator ? input++ : 0;
+		}
+		for (i = 0; i < player.casualties.length; i++) {
+			antidote.indexOf(player.casualties[i]) > -1 ? input-- : 0;
+		}
+		return input;
+	}
 
 });

@@ -25,7 +25,8 @@ include($phpbb_root_path . 'config.' . $phpEx);
   $team->competition = $Competition;
 
   $Players = [];
-  $sqlPlayers = "SELECT p.id, p.name, t.translation AS position, p.attributes, p.skills, p.casualties, p.level, p.xp, p.dead, p.fired FROM site_players AS p LEFT JOIN site_parameters AS t ON t.name=p.param_name_type WHERE team_id=".$id;
+  $sqlPlayers = "SELECT id, name, param_name_type AS position, attributes, skills, casualties, level, xp, dead, fired FROM site_players WHERE team_id=".$id;
+
   $resultPlayers = mysqli_query($con, $sqlPlayers);
   while($dataPlayers = mysqli_fetch_array($resultPlayers,MYSQLI_ASSOC)) {
 

@@ -350,10 +350,13 @@ td img { max-height: 20px; max-width: 20px; }
 .teamDetails.col2 > li { width:40%; float:left; display:inline; }
 
 #teamPhoto { padding:0;}
-#teamPhoto img { width:100%; height:auto;}
+#teamPhoto img, #playerPhoto img { width:100%; height:auto;}
 #teamPhoto .cover { position: absolute; z-index:2; height:100% }
+#playerPhoto .cover { position: absolute; z-index:2; height:100%; max-height: 100%; max-width:150px; }
 
 .articleDate { float:right; display: inline-block; line-height: 18px;}
+
+img.player { max-width: 150px; max-height: 100%; }
 
 /* MATCH */
 .score {  font-family: 'Akashi';  font-size: 120px; }
