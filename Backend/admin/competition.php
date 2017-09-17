@@ -7,8 +7,8 @@ function competition_add($con, $competition){
 
     if ( $test_competition[0] == 0 ){
       //Saving competition
-      $sql = "INSERT INTO site_competitions ( cyanide_id, league_name, param_name_format, champion, pool, game_name, season, competition_mode, site_order, active, started)
-        VALUES (".$competition->matches[0]->competition_id.",'".$competition->league_name."','".$competition->matches[0]->format."','".$competition->champion."','".$competition->pool."','".$competition->matches[0]->competition."',CONCAT('".$competition->season." ', YEAR(DATE_ADD(NOW(), INTERVAL 500 YEAR)) ),'".$competition->competition_mode."','".$competition->site_order."','1',NOW())";
+      $sql = "INSERT INTO site_competitions ( cyanide_id, league_name, param_name_format, champion, pool, game_name, season, competition_mode, site_order, site_name, active, started)
+        VALUES (".$competition->matches[0]->competition_id.",'".$competition->league_name."','".$competition->matches[0]->format."','".$competition->champion."','".$competition->pool."','".$competition->matches[0]->competition."',CONCAT('".$competition->season." ', YEAR(DATE_ADD(NOW(), INTERVAL 500 YEAR)) ),'".$competition->competition_mode."','".$competition->site_order.",'".$competition->site_name."','1',NOW())";
         $con->query($sql);
         $competition_id = $con->insert_id;
       //Saving matches

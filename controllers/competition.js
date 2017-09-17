@@ -63,17 +63,23 @@ LeagueManager.directive('competition', function() {
 
 			//Check si Match joué ou non et renvoi faire la bonne fonctionnalité
 			$scope.ifClicked = function(match) {
-
 				if (match.cyanide_id) {
 					$scope.goToPage('match/' + match.id)
 				} else if ($rootScope.external != 1) {
-					if (($rootScope.coach_id == match.coach_id_1 || $rootScope.coach_id == match.coach_id_2 || $rootScope.admin == 1) && match.started == null) {
+					if (($rootScope.coach_id == match.coach_id_1 || $rootScope.coach_id == match.coach_id_2) && match.started == null) {
 						$scope.match = match;
 						$scope.showMatchDate = true;
 					} else {
 						$scope.odds(match);
 						$scope.doBets(match);
 					}
+				}
+			};
+			$scope.rightClicked = function(match) {
+
+				if ($rootScope.admin == 1 && match.cyanide_id == null) {
+					$scope.match = match;
+					$scope.showMatchDate = true;
 				}
 			};
 

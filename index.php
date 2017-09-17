@@ -15,7 +15,9 @@
   <link rel="stylesheet" href="css/app.css" type="text/css">
   <link href='https://fonts.googleapis.com/css?family=Muli' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css?family=Niconne" rel="stylesheet" type='text/css'>
+
   <link href="bower_components\angularjs-datetime-picker\angularjs-datetime-picker.css" rel="stylesheet" type='text/css'>
+  <link rel="stylesheet" href=" bower_components/angular-right-click/src/css/ng-right-click.css">
 
   <link rel="apple-touch-icon" sizes="57x57" href="/resources/favicon/apple-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="/resources/favicon/apple-icon-60x60.png">
@@ -86,6 +88,7 @@
   <script src="bower_components/angular-route/angular-route.min.js"></script>
   <script src="bower_components/lodash/lodash.min.js"></script>
   <script src="bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+  <script src='bower_components/angular-right-click/src/ng-right-click.js'></script>
 
   <!-- Module BBBL -->
   <script src="controllers/app.js"></script>

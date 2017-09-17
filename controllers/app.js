@@ -1,4 +1,4 @@
-var LeagueManager = angular.module('LeagueManager', ['ngRoute', 'ngSanitize', 'angularjs-datetime-picker'])
+var LeagueManager = angular.module('LeagueManager', ['ngRoute', 'ngSanitize', 'angularjs-datetime-picker', 'ngRightClick'])
 
 //Routage
 LeagueManager.config(function($routeProvider) {

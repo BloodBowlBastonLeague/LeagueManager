@@ -141,7 +141,7 @@
 			<h3 ng-if="matchDay.round == currentDay" ng-click="sortBy('round')" class="zelda"><span ng-if="competition.competition_mode=='Coupe'">{{finals[matchDay.round-1]}}</span><span ng-if="competition.competition_mode!='Coupe'">Journée {{matchDay.round}}</span> <div class="triangle" ng-class="{down: reverse}"></div></h3>
 			<h3 ng-if="matchDay.round != currentDay" ng-style="colours[0].color" ng-click="sortBy('day')" class="zelda"><span ng-if="competition.competition_mode=='Coupe'">{{finals[matchDay.round-1]}}</span><span ng-if="competition.competition_mode!='Coupe'">Journée {{matchDay.round}}</span> <div class="triangle" ng-class="{down: reverse}" ng-style="colours[0].border"></div></h3>
 			<div class="match x-center">
-				<div title="{{match.name_1}} VS {{match.name_2}}" class="vs col-lg-6 col-xl-4" ng-class="{zelda:match.id}" ng-repeat="match in matchDay.matchs" ng-click="ifClicked(match)">
+				<div title="{{match.name_1}} VS {{match.name_2}}" class="vs col-lg-6 col-xl-4" ng-class="{zelda:match.id}" ng-repeat="match in matchDay.matchs" ng-click="ifClicked(match)" ng-right-click="rightClicked(match)">
 					<div ng-if="!match.cyanide_id"><p>{{match.started | date:'dd MMM HH:mm' : '+000' }}</p></div>
 					<img class="teamLogo" src="resources/logo/Logo_{{match.logo_1}}.png">
 					<img class="versus" ng-if="match.cyanide_id==null" src="../resources/img/vs.png">
