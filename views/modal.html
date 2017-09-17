@@ -101,18 +101,49 @@
 </div>
 
 <div id="player" class="container seconde main" ng-if="modal.subject==='player'" ng-click="" ng-style="colours[1].border">
-  <h2 ng-style="colours[1].color">{{modal.player.name}} <span>{{modal.player.position}}</span></h2>
-  <div class="row">
-    <div class="col-xs-4">
-      <h3>MV {{modal.player.attributes.ma}}</h3>
-      <h3>FO {{modal.player.attributes.st}}</h3>
-      <h3>AG {{modal.player.attributes.ag}}</h3>
-      <h3>AR {{modal.player.attributes.av}}</h3>
-    </div>
-    <div class="col-xs-8">
+  <div id="fame"  class="teamBoard">
+    <h4 ng-repeat="i in modal.player.stars" class="star"  ng-style="colours[1].color">&#9733;</h4>
+    <h4 class="noselect" ng-style="colours[1].color">{{modal.player.xp}} XP</h4>
 
+  </div>
+  <h1 ng-style="colours[1].color">{{modal.player.name}}<h1>
+  <h2><span>{{modal.player.position | talkingToTheGods:parameters}}</span></h2>
+  <br>
+  <div class="row">
+    <div id="playerPhoto"class="col-xs-6 col-md-3">
+      <img class="cover" src="resources/img/Cover_Glass.png">
+      <img class="player" src="resources/players/{{modal.player.position}}.jpg">
+    </div>
+    <div class="col-xs-6 col-md-3">
+      <h3>MV {{modal.player.attributes.ma | mutantAnalyzer:'IncreaseMovement':['SmashedHip','SmashedAnkle']:modal.player}}</h3>
+      <h3>FO {{modal.player.attributes.st | mutantAnalyzer:'IncreaseStrength':['SmashedCollarBone']:modal.player}}</h3>
+      <h3>AG {{modal.player.attributes.ag | mutantAnalyzer:'IncreaseAgility':['BrokenNeck']:modal.player}}</h3>
+      <h3>AR {{modal.player.attributes.av | mutantAnalyzer:'IncreaseArmour':['SeriousConcussion','FracturedSkull']:modal.player}}</h3>
+    </div>
+    <div class="col-xs-6 col-md-3">
+      <h3 ng-style="colours[1].color">Compétences</h3>
+      <p ng-if="modal.player.skills.length==0">Nada! Peau de zob! Ce joueur est un noob!</p>
+      <ul>
+        <li ng-repeat="skill in modal.player.skills track by $index">{{ skill | talkingToTheGods:parameters }}</li>
+      </ul>
+    </div>
+    <div class="col-xs-6 col-md-3">
+      <h3 ng-style="colours[1].color">Blessures</h3>
+      <p ng-if="modal.player.casualties.length==0">Aucune... C'est d'un triste...</p>
+      <ul>
+        <li ng-repeat="casualty in modal.player.casualties track by $index">{{ casualty | talkingToTheGods:parameters }}</li>
+      </ul>
     </div>
   </div>
+  <!--div class="row">
+    <div class="col-xs-3"></div>
+    <div class="col-xs-9">
+      <h3 ng-style="colours[1].color">Statistiques</h3>
+      <ul>
+        <li ng-repeat="(key,stat) in modal.player.stats" ng-if="key.indexOf('sustain')==-1">{{key | talkingToTheGods:parameters }}: {{stat}}</li>
+      </ul>
+    </div>
+  </div-->
   <div class="spacer"></div>
   <div class="button" ng-click="displayOff()">
     <div ng-include="'resources/img/Button_1.svg'"></div>

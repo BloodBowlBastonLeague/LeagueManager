@@ -39,7 +39,7 @@
 							<span ng-if="player.casualties.length>2 && player.dead==0"><img src="resources/img/injured.png"> </span>
 							<span ng-if="player.dead==1"><img src="resources/img/dead.png"> </span>
 							{{player.name}}</td>
-						<td class="text-left text-cutter hidden-sm-down" ng-if="!showStats">{{player.position}}</td>
+						<td class="text-left text-cutter hidden-sm-down" ng-if="!showStats">{{player.position | talkingToTheGods:parameters}}</td>
 						<td class="text-center" ng-if="!showStats">{{player.attributes.ma}}{{player.attributes.mv}}</td>
 						<td class="text-center" ng-if="!showStats">{{player.attributes.st}}</td>
 						<td class="text-center" ng-if="!showStats">{{player.attributes.ag}}</td>

@@ -20,6 +20,11 @@ LeagueManager.directive('team', function() {
 				for (p = 0; p < result.players.length; p++) {
 					$scope.team.players[p].attributes = result.players[p].attributes.length > 0 ? JSON.parse(result.players[p].attributes) : [];
 					$scope.team.players[p].skills = result.players[p].skills.length > 0 ? JSON.parse(result.players[p].skills) : [];
+					$scope.team.players[p].casualties = result.players[p].casualties != undefined ? JSON.parse(result.players[p].casualties) : [];
+					$scope.team.players[p].stars = [];
+					for (i = 0; i < result.players[p].level; i++) {
+						$scope.team.players[p].stars.push(i);
+					}
 				}
 				$rootScope.title = $scope.team.name;
 				$scope.team.pop = [];

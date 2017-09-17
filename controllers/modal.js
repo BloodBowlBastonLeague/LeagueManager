@@ -2,10 +2,11 @@ LeagueManager.directive("modal", function() {
 	return {
 		restrict: "E",
 		templateUrl: "views/modal.html",
-		controller: function($rootScope, $scope, $http, $timeout) {
+		controller: function($rootScope, $scope, $http, $timeout, $filter) {
 			//Initialisation de la variable d'affichage de la liseuse
 			$scope.modal = {};
 			$scope.cyanideId = "";
+
 
 			//masquage de la fenetre
 			$scope.displayOff = function() {
