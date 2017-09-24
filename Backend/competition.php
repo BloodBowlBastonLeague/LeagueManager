@@ -32,18 +32,18 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
           SUM(score_1) - SUM(score_2) AS TD,
           SUM(sustainedcasualties_2 ) - SUM(sustainedcasualties_1) AS S,
           SUM( case when score_1 > score_2 then 3 else 0 end
-              + case when score_1 = score_2 then 1 else 0 end
+              + case when score_1 = score_2 AND score_1 IS NOT NULL then 1 else 0 end
           ) AS Pts
           FROM (
           SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.logo AS logo, site_teams.name AS team, site_teams.color_1 AS color_1, site_teams.color_2 AS color_2, site_coachs.name AS coach, score_1, score_2, sustainedcasualties_1, sustainedcasualties_2, sustaineddead_1, sustaineddead_2 FROM site_matchs
           LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_1
           INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
-          WHERE competition_id = '.$id.' AND site_matchs.started IS NOT NULL
+          WHERE competition_id = '.$id.'
           UNION
           SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.logo AS logo, site_teams.name AS team, site_teams.color_1 AS color_1, site_teams.color_2 AS color_2, site_coachs.name AS coach, score_2, score_1, sustainedcasualties_2, sustainedcasualties_1, sustaineddead_2, sustaineddead_1 FROM site_matchs
           LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_2
           INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
-          WHERE competition_id='.$id.' AND site_matchs.started IS NOT NULL
+          WHERE competition_id='.$id.'
           ) AS a
           GROUP BY id
           ORDER BY Pts DESC';

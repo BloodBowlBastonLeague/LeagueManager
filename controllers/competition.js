@@ -201,7 +201,7 @@ LeagueManager.directive('competition', function() {
 							};
 							//MAJ en base
 							$http.post('Backend/update/routes.php?action=betUpdate', prognos).then(function(result) {
-								$rootScope.coach_gold -= $scope.stake;
+								$rootScope.coach_gold -= result.data;
 							});
 						}
 					}
@@ -223,7 +223,7 @@ LeagueManager.directive('competition', function() {
 							"match_id": $scope.bet.id
 						};
 						$http.post('Backend/update/routes.php?action=betAdd', prognos).then(function(result) {
-							$rootScope.coach_gold -= $scope.stake;
+							$rootScope.coach_gold -= result.data;
 						});
 					}
 					//Fermeture de la fenetre de bets

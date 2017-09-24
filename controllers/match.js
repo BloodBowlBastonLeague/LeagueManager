@@ -26,6 +26,7 @@ LeagueManager.directive("match", function() {
 					$rootScope.match = data.match;
 					$rootScope.match.cyanide_id = result.cyanide_id;
 					$rootScope.match.competition_id = result.competition_id;
+					$rootScope.match.started = result.started;
 					$rootScope.title = $rootScope.match.competitionname;
 					$scope.stadium = data.teams[0].stadiumname;
 					$scope.teams = $rootScope.match.teams;

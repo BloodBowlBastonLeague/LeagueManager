@@ -11,15 +11,14 @@ function bet_add($con, $params){
 
   //On insère son pari dans la base
   $sqlBetNew = "INSERT INTO site_bets (match_id,coach_id,team_score_1,team_score_2, stake) VALUES (".$params->match_id.", ".$params->coach_id.", ".$params->bets_1.", ".$params->bets_2.", ".$params->stake.")";
-  //echo $sqlBetNew."\n"; //for debug
   $resBetNew = $con->query($sqlBetNew);
 
 
   //on update l'argent disponible du coach
   $sqlCoachUpdate = "UPDATE site_coachs SET gold = gold - ".$params->stake." WHERE id=".$params->coach_id;
-  //echo $sqlCoachUpdate."\n"; //for debug
   $resCoachUpdate = $con->query($sqlCoachUpdate);
-
+  echo $params->stake;
+  
   die();
 }
 
@@ -35,20 +34,16 @@ function bet_update($con, $params){
   //on update l'argent dispo du coach
   $sqlBetOld = "SELECT id, stake from site_bets WHERE match_id=".$params->match_id." AND coach_id=".$params->coach_id;
   $resBetOld = $con->query($sqlBetOld);
-  //echo $sqlBetOld."\n"; //for debug
   $BetOld = $resBetOld->fetch_assoc();
-  //echo $BetOld;
   $sqlCoachUpdate = "UPDATE site_coachs SET gold = gold + ".$BetOld[stake]." - ".$params->stake." WHERE id=".$params->coach_id;
-  //echo $sqlCoachUpdate."\n"; //for debug
   $resCoachUpdate = $con->query($sqlCoachUpdate);
 
   //TODO Gestion des erreurs (pas assez de fonds)
 
   //on update le pari déjà fait
   $sqlBetNew = "UPDATE site_bets SET team_score_1 = ".$params->bets_1.", team_score_2 = ".$params->bets_2.", stake = ".$params->stake.", modify_date = now() WHERE id=".$BetOld[id];
-  echo $sqlBetNew."\n"; //for debug
   $resBetNew = $con->query($sqlBetNew);
-
+  echo $params->stake;
   die();
 }
 

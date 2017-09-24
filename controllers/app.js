@@ -42,7 +42,6 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 
 	$rootScope.admin = ['9', '10'].indexOf(window.Group) > -1 ? 1 : 0;
 	$rootScope.external = window.Group == 19 || !window.coach_id ? 1 : 0;
-	console.log($rootScope.external);
 	$rootScope.title = "Tribunes - le mag de la BBBL";
 	$rootScope.competitions = [];
 	$rootScope.finalsTemplate = ['Finale', 'Demi-Finales', 'Quart de finales', '8emes de finales', '16emes de finales', '32emes de finales'];
