@@ -29,21 +29,23 @@
 
     <div class="plain seconde" ng-style="colours[1].border" ng-if="coach_id">
       <h2>Programme CabalVision</h2>
+      <p ng-if="games.length==0">Aucun match de programmé pour le moment.</p>
       <div ng-repeat="day in games track by $index" style="display:inline-block;">
         <h3 ng-style="colours[1].color">{{day.day | date:'EEEE d MMM' : '+000' }}</h3>
         <div class="col-xs-12 match noPadding" ng-repeat="match in day.matchs">
           <h4 class="x-center">{{match.planned | date:'HH:mm' : '+000' }}</h4>
-
             <div class="col-xs-4 text-right  noPadding"><h4>{{match.name_1}}</h4></div>
             <div class="col-xs-4 x-center noPadding">
               <img class="teamLogo" src="resources/logo/Logo_{{match.logo_1}}.png"><img class="versus" style="width:30px;" src="../resources/img/vs.png"><img class="teamLogo" src="resources/logo/Logo_{{match.logo_2}}.png">
             </div>
             <div class="col-xs-4 text-left  noPadding"><h4>{{match.name_2}}</h4></div>
-
-
-
         </div>
       </div>
+      <div class="spacer"></div>
+      <a class="button" ng-click="goToPage('admin')" ng-if="admin==1">
+        <div ng-include="'resources/img/Button_1.svg'"></div>
+        <div class="label">Administrer</div>
+      </a>
     </div>
 
     <div class="plain seconde" ng-style="colours[1].border">
@@ -157,22 +159,18 @@
     <!--Stats Players-->
 
       <div class="plain seconde" ng-style="colours[1].border" ng-repeat="stats in leagueStats.playersStats">
-        <h3 ng-style="colours[1].color">{{stats.title}}</h3>
+        <h3 ng-style="colours[1].color">{{stats.type | talkingToTheGods:parameters}}</h3>
         <table class="mainStats">
           <thead>
             <tr ng-style="colours[1].background">
               <th class="text-left">Joueur</th>
-              <th class="text-center" ng-if="stats.type=='scorers'">TD</th>
-              <th class="text-center" ng-if="stats.type=='tacklers'">Sorties</th>
-              <th class="text-center" ng-if="stats.type=='throwers'">Yards</th>
+              <th class="text-center" >{{stats.stats[0] | talkingToTheGods:parameters}}</th>
             </tr>
           </thead>
           <tbody class="table-hover noselect">
             <tr class="playerDetails" ng-style="colours[1].border" ng-repeat="player in stats.players | limitTo:3">
               <td class="text-left text-cutter"><img src="resources/logo/Logo_{{player.logo}}.png"> </span>{{player.name}}</td>
-              <td class="text-center" ng-if="stats.type=='scorers'">{{player.TD}}</td>
-              <td class="text-center" ng-if="stats.type=='tacklers'">{{player.injuries}}</td>
-              <td class="text-center" ng-if="stats.type=='throwers'">{{player.yards}}</td>
+              <td class="text-center" >{{player.stat0}}</td>
             </tr>
           </tbody>
         </table>

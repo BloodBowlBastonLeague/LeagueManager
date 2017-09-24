@@ -57,7 +57,7 @@ function leaders($con, $params){
 
     $sqlPlayers = "SELECT p.id as player, p.name, t.id AS team_id, t.name AS team, t.logo".$fields."
         FROM site_players_stats AS s
-        LEFT JOIN site_players AS p ON p.id=s.player_id
+        INNER JOIN site_players AS p ON p.id=s.player_id
         LEFT JOIN site_teams AS t ON t.id=p.team_id
         WHERE s.".$leaders->stats[0].">0".$where."
         GROUP BY p.id".$orderBy;
