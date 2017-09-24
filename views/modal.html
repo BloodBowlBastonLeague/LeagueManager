@@ -154,34 +154,22 @@
 <!-- Players statistics -->
 <div id="scorers" class="container seconde main" ng-if="modal.subject=='stats'" ng-click="" ng-style="modal.border">
   <div class="standing main">
-    <h2 ng-style="colours[1].color">{{stats.title}}</h2>
+    <h2 ng-style="colours[1].color">{{modal.info.type | talkingToTheGods:parameters}}</h2>
     <table class="modalStats">
       <thead>
         <tr ng-style="colours[1].background">
           <th class="text-left">Joueur</th>
           <th class="text-left" >Equipe</th>
-          <th class="text-center" ng-if="modal.stats.type=='scorers'">TD</th>
-          <th class="text-center" ng-if="modal.stats.type=='scorers'">Yards</th>
-          <th class="text-center" ng-if="modal.stats.type=='scorers'">Receptions</th>
-          <th class="text-center" ng-if="modal.stats.type=='tacklers'">Sorties</th>
-          <th class="text-center" ng-if="modal.stats.type=='tacklers'">Blessures</th>
-          <th class="text-center" ng-if="modal.stats.type=='tacklers'">Morts</th>
-          <th class="text-center" ng-if="modal.stats.type=='throwers'">Yards</th>
-          <th class="text-center" ng-if="modal.stats.type=='throwers'">Passes</th>
+          <th class="text-center" ng-repeat="stat in modal.info.stats">{{stat | talkingToTheGods:parameters}}</th>
         </tr>
       </thead>
       <tbody class="table-hover noselect">
-        <tr class="playerDetails" ng-style="colours[1].border" ng-repeat="player in modal.stats.players">
+        <tr class="playerDetails" ng-style="colours[1].border" ng-repeat="player in modal.info.players">
           <td class="text-left text-cutter"><img src="resources/logo/Logo_{{player.logo}}.png"> </span>{{player.name}}</td>
           <td class="text-left zelda" ng-click="displayOff();goToPage('team/' + player.team_id)">{{player.team}}</td>
-          <td class="text-center" ng-if="modal.stats.type=='scorers'">{{player.TD}}</td>
-          <td class="text-center" ng-if="modal.stats.type=='scorers'">{{player.yards}}</td>
-          <td class="text-center" ng-if="modal.stats.type=='scorers'">{{player.catches}}</td>
-          <td class="text-center" ng-if="modal.stats.type=='tacklers'">{{player.injuries}}</td>
-          <td class="text-center" ng-if="modal.stats.type=='tacklers'">{{player.casualties}}</td>
-          <td class="text-center" ng-if="modal.stats.type=='tacklers'">{{player.dead}}</td>
-          <td class="text-center" ng-if="modal.stats.type=='throwers'">{{player.yards}}</td>
-          <td class="text-center" ng-if="modal.stats.type=='throwers'">{{player.passes}}</td>
+          <td class="text-center" ng-if="player.stat0">{{player.stat0}}</td>
+          <td class="text-center" ng-if="player.stat1">{{player.stat1}}</td>
+          <td class="text-center" ng-if="player.stat2">{{player.stat2}}</td>
         </tr>
       </tbody>
     </table>

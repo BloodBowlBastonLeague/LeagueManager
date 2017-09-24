@@ -1,6 +1,6 @@
 <div class="row tabRow hidden-md-down" ng-if="competition.competition_mode!='Coupe' && competition.active==1">
 	<div class="col-lg-4 firstTab" ng-if="competitions.length<7"></div>
-	<div class="col-lg-2 tab" ng-if="tab.id != competition.id" ng-repeat="tab in competitions" ng-click="goToPage('competition/'+tab.id)">{{tab.name}}</div>
+	<div class="col-lg-4 tab" ng-if="tab.id != competition.id" ng-repeat="tab in competitions" ng-click="goToPage('competition/'+tab.id)">{{tab.name}}</div>
 </div>
 <div class="row scroll">
 	<div ng-class="{'col-lg-7':competition.competition_mode!='Coupe','col-lg-5':competition.competition_mode=='Coupe'}">
@@ -100,25 +100,21 @@
 
 		<!--Stats Players-->
 		<div class="row">
-			<div class="col-lg-6 hidden-md-down" ng-repeat="stats in competition.playersStats">
+			<div class="col-lg-6 hidden-md-down" ng-repeat="stats in competition.playersStats" ng-if="stats.players.length>0">
 				<div class="plain seconde" ng-style="colours[1].border">
-					<h3 ng-style="colours[1].color">{{stats.title}}</h3>
+					<h3 ng-style="colours[1].color">{{stats.type | talkingToTheGods:parameters}}</h3>
 
 					<table class="mainStats">
 						<thead>
 							<tr ng-style="colours[1].background">
 								<th class="text-left">Joueur</th>
-								<th class="text-center" ng-if="stats.type=='scorers'">TD</th>
-								<th class="text-center" ng-if="stats.type=='tacklers'">Sorties</th>
-								<th class="text-center" ng-if="stats.type=='throwers'">Yards</th>
+								<th class="text-center" >{{stats.stats[0] | talkingToTheGods:parameters}}</th>
 							</tr>
 						</thead>
 						<tbody class="table-hover noselect">
-							<tr class="playerDetails" ng-style="colours[1].border" ng-repeat="player in stats.players | limitTo:5">
+							<tr class="playerDetails" ng-style="colours[1].border" ng-repeat="player in stats.players | limitTo:3">
 								<td class="text-left text-cutter"><img src="resources/logo/Logo_{{player.logo}}.png"> </span>{{player.name}}</td>
-								<td class="text-center" ng-if="stats.type=='scorers'">{{player.TD}}</td>
-								<td class="text-center" ng-if="stats.type=='tacklers'">{{player.injuries}}</td>
-								<td class="text-center" ng-if="stats.type=='throwers'">{{player.yards}}</td>
+								<td class="text-center" >{{player.stat0}}</td>
 							</tr>
 						</tbody>
 					</table>
