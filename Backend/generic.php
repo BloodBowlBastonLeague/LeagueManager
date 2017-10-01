@@ -18,21 +18,25 @@ mysqli_set_charset($con,'utf8');
 
 $matchesLeft = mysqli_fetch_row(mysqli_query($con,'SELECT COUNT(*) FROM site_matchs WHERE cyanide_id IS NULL AND competition_id IN (SELECT id FROM site_competitions WHERE active=1)'));
 
-$leagueStats = mysqli_fetch_object(mysqli_query($con,'SELECT SUM(sustainedcasualties) AS casualties ,SUM(sustaineddead) AS death,SUM(inflictedtouchdowns) AS TD FROM site_players_stats'));
+$leagueStats = mysqli_fetch_object(mysqli_query($con,'SELECT SUM(sustainedcasualties) AS casualties ,SUM(sustaineddead) AS death, SUM(inflictedtouchdowns) AS TD FROM site_players_stats'));
 $coachs =  mysqli_fetch_row(mysqli_query($con,'SELECT COUNT(*) FROM site_coachs WHERE active=1'));
 $leagueStats->coachs = $coachs[0];
 $matches =  mysqli_fetch_row(mysqli_query($con,'SELECT COUNT(*) FROM site_matchs WHERE started IS NOT NULL'));
 $leagueStats->matches =  $matches[0];
 
-$currentCompetition = "SELECT id FROM site_matchs WHERE competition_id IN (SELECT id FROM site_competitions WHERE active=1)";
-
+$competitions = [];
+$sqlCompetitions =  'SELECT id FROM site_competitions WHERE active=1';
+$resultCompetitions = $con->query($sqlCompetitions);
+while($dataCompetitions = mysqli_fetch_array($resultCompetitions,MYSQLI_ASSOC)){
+  array_push($competitions, $dataCompetitions[id]);
+}
 
 //Leaderboard
 $leagueStats->playersStats = [];
 
 $stats = ['scorer','thrower','tackler','killer','intercepter','catcher','punchingball'];
 foreach($stats as $stat){
-    array_push($leagueStats->playersStats, leaders($con,[$stat,$id]));
+    array_push($leagueStats->playersStats, leaders($con,[$stat,$competitions,1]));
 }
 
 $leagueStats->matchesLeft = $matchesLeft[0];

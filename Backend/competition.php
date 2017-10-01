@@ -60,7 +60,7 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
 
     //Managing exaequo
     $limit = count($competition->standing);
-    for($i = 0; $i <= $limit; $i++) {
+    for($i = 0; $i <= $limit-1; $i++) {
         if ( $competition->standing[$i][Pts] == $competition->standing[$i-1][Pts] ) {
           $sqlConfrontation = 'SELECT
           case when score_1 > score_2 then 2 else case when score_1 = score_2 AND score_1 IS NOT NULL then 1 else 0 end end

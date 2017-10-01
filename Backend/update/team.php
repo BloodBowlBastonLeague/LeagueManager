@@ -30,8 +30,9 @@ function team_update($con,$params){
 			leitmotiv = '".str_replace("'","\'",$team->leitmotiv)."'
 			WHERE cyanide_id = '".$team->id."'";
 	$con->query($sql_team);
-
+	//var_dump($roster);
 	foreach ( $roster as $player ) {
+			//var_dump($player);
 			//Save players
 			$player_bbbl_query = $con->query("SELECT id FROM site_players WHERE name='".str_replace("'","\'",$player->name)."' AND team_id = ".$team_bbbl[0]);
 			$player_bbbl = $player_bbbl_query->fetch_row();
@@ -51,11 +52,13 @@ function team_update($con,$params){
 			}
 			//Create
 			else {
+
 				if( $player->id ){
 
 					$sql_player = "INSERT INTO site_players (cyanide_id, team_id, param_name_type, name, level, xp, attributes, skills, dead, casualties)
-						VALUES (".$player->id.",".$team_bbbl[0].",'".$player->type."','".str_replace("'","\'",$player->name)."',".$player->level.",".$player->xp.",'".json_encode($player->attributes)."','".json_encode($player->skills)."',IFNULL(".$player->stats->sustaineddead.",0),'".json_encode($player->casualties_state)."')";
+						VALUES (".$player->id.",".$team_bbbl[0].",'".$player->type."','".str_replace("'","\'",$player->name)."',".$player->level.",".$player->xp.",'".json_encode($player->attributes)."','".json_encode($player->skills)."',0,'".json_encode($player->casualties_state)."')";
 					$con->query($sql_player);
+
 				}
 			};
 		}

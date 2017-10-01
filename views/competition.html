@@ -1,6 +1,6 @@
 <div class="row tabRow hidden-md-down" ng-if="competition.competition_mode!='Coupe' && competition.active==1">
 	<div class="col-lg-4 firstTab" ng-if="competitions.length<7"></div>
-	<div class="col-lg-4 tab" ng-if="tab.id != competition.id" ng-repeat="tab in competitions" ng-click="goToPage('competition/'+tab.id)">{{tab.name}}</div>
+	<div class="col-lg-4 tab" ng-if="tab.id != competition.id" ng-repeat="tab in competitions" ng-click="goToPage('competition/'+tab.id)">{{tab.site_name}}</div>
 </div>
 <div class="row scroll">
 	<div ng-class="{'col-lg-7':competition.competition_mode!='Coupe','col-lg-5':competition.competition_mode=='Coupe'}">
@@ -208,7 +208,7 @@
 <div id="planner" class="container seconde" ng-if="showMatchDate" ng-style="colours[1].border">
 	<form id="matchSave" name="matchSave" ng-style="colours[1].color">
 		Date du match<br/>
-		 <input datetime-picker ng-model="match.started" date-format="dd/MM/yy HH:mm" />
+		 <input datetime-picker ng-model="match.started" date-format="dd/MM/yy HH:mm"/>
 	</form>
 	<div class="spacer"></div>
 	<div class="button" ng-click="matchDate(match)">
