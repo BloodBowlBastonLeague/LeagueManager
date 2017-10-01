@@ -61,7 +61,7 @@ LeagueManager.directive('competition', function() {
 				return false;
 			}
 
-			//Check si Match joué ou non et renvoi faire la bonne fonctionnalité
+			//Check si Match joué ou non et renvoi vers la bonne fonctionnalité
 			$scope.ifClicked = function(match) {
 				if (match.cyanide_id) {
 					$scope.goToPage('match/' + match.id)
@@ -77,7 +77,7 @@ LeagueManager.directive('competition', function() {
 			};
 			$scope.rightClicked = function(match) {
 
-				if ($rootScope.admin == 1 && match.cyanide_id == null) {
+				if (($rootScope.coach_id == match.coach_id_1 || $rootScope.coach_id == match.coach_id_2 || $rootScope.admin == 1) && match.cyanide_id == null) {
 					$scope.match = match;
 					$scope.showMatchDate = true;
 				}

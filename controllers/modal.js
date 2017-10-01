@@ -49,10 +49,10 @@ LeagueManager.directive("modal", function() {
 				$scope.modal.subject = "player";
 			};
 
-			//Affichage/masquage des marqueurs
-			$scope.displayStats = function(stats) {
+			//Affichage/masquage des stats
+			$scope.displayStats = function(info) {
 				$scope.modal.subject = "stats";
-				$scope.modal.stats = stats;
+				$scope.modal.info = info;
 			};
 
 			//Affichage/masquage des paris

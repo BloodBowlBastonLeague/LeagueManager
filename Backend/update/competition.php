@@ -5,11 +5,10 @@ function competition_update($con,$params){
 	$request = 'http://web.cyanide-studio.com/ws/bb2/contests/?key='.$params[0].'&competition='.urlencode($params[1]).'&status=played&league=BBBL';
 	$response  = file_get_contents($request);
 	$played = json_decode($response);
-	echo 'test';
-	foreach ($played->upcoming_matches as $game) {
-	
-		if(in_array($game->contest_id, $params[2])){
 
+	foreach ($played->upcoming_matches as $game) {
+
+		if(in_array($game->contest_id, $params[2])){
 
 			$request_2 = 'http://web.cyanide-studio.com/ws/bb2/match/?key='.$params[0].'&uuid='.$game->match_uuid;
 			$response_2  = file_get_contents($request_2);

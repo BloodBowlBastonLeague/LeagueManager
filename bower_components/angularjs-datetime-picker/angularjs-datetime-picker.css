@@ -16,7 +16,7 @@
   border-bottom: 1px solid #555;
   position: relative;
 }
-.angularjs-datetime-picker > .adp-month > button {
+.angularjs-datetime-picker button {
   color: #aaa;
   font: normal 14px sans-serif;
   outline: none;
@@ -25,6 +25,15 @@
   border: none;
   cursor: pointer;
 }
+
+.angularjs-datetime-picker button.validate {
+  position:relative;
+  margin:10px;
+  padding: 5px;
+  color: #FFF;
+  background: #DD7C00;
+}
+
 .angularjs-datetime-picker > .adp-month > button:hover {
   color: #ccc;
 }
@@ -39,6 +48,7 @@
   margin: 10px;
   text-align: center;
 }
+
 .angularjs-datetime-picker > .adp-days > .adp-day-of-week, .angularjs-datetime-picker > .adp-days > .adp-day {
   box-sizing: border-box;
   -moz-box-sizing: border-box;

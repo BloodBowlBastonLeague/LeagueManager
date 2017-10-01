@@ -29,7 +29,6 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
 	$result = mysqli_query($con, $sql);
 	while( $data = mysqli_fetch_array($result,MYSQLI_ASSOC) ) {
 
-    //$data[json] = json_decode($data[json]);
     $var2 = [];
     $sql2 = 'SELECT
         id,

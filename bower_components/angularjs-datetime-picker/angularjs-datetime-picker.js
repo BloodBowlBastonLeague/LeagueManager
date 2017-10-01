@@ -131,6 +131,7 @@
 		'    <label class="hourLabel">Hour:</label> <input class="hourInput" type="range" min="0" max="23" ng-model="inputHour" ng-change="updateNgModel()" />',
 		'    <label class="minutesLabel">Min:</label> <input class="minutesInput" type="range" min="0" step="15" max="45" ng-model="inputMinute"  ng-change="updateNgModel()"/> ',
 		'  </div> ',
+		' <div style="text-align:center"> <button type="button" class="validate" ng-click="closePopUp()">Valider</button></div>',
 		'</div>'
 	].join("\n");
 
@@ -177,7 +178,6 @@
 				dayOfWeek = firstDayOfMonth.getDay(),
 				leadingDays = (dayOfWeek - firstDayOfWeek + 7) % 7 || 7, // Ensure there are always leading days to give context
 				trailingDays = days.slice(0, 6 * 7 - (leadingDays + daysInMonth));
-			console.log(dayOfWeek);
 			if (trailingDays.length > 7) {
 				trailingDays = trailingDays.slice(0, trailingDays.length - 7);
 			}
@@ -260,11 +260,16 @@
 				var target = angular.element(evt.target)[0];
 				if (target.className.indexOf('selectable') !== -1) {
 					scope.updateNgModel(parseInt(target.innerHTML));
-					if (scope.closeOnSelect !== false) {
+					/*if (scope.closeOnSelect !== false) {
 						ctrl.closeDatetimePicker();
-					}
+					}*/
 				}
 			};
+
+			scope.closePopUp = function() {
+				ctrl.closeDatetimePicker();
+			};
+
 
 			scope.updateNgModel = function(day) {
 				day = day ? day : scope.selectedDate.getDate();

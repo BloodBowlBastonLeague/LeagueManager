@@ -29,21 +29,23 @@
 
     <div class="plain seconde" ng-style="colours[1].border" ng-if="coach_id">
       <h2>Programme CabalVision</h2>
+      <p ng-if="games.length==0">Aucun match de programmé pour le moment.</p>
       <div ng-repeat="day in games track by $index" style="display:inline-block;">
-        <h3 ng-style="colours[1].color">{{day.day | date:'EEEE d MMM' : '+000' }}</h3>
+        <h3 ng-style="colours[1].color">{{day.day | date:'EEEE d MMM' }}</h3>
         <div class="col-xs-12 match noPadding" ng-repeat="match in day.matchs">
           <h4 class="x-center">{{match.planned | date:'HH:mm' : '+000' }}</h4>
-
             <div class="col-xs-4 text-right  noPadding"><h4>{{match.name_1}}</h4></div>
             <div class="col-xs-4 x-center noPadding">
               <img class="teamLogo" src="resources/logo/Logo_{{match.logo_1}}.png"><img class="versus" style="width:30px;" src="../resources/img/vs.png"><img class="teamLogo" src="resources/logo/Logo_{{match.logo_2}}.png">
             </div>
             <div class="col-xs-4 text-left  noPadding"><h4>{{match.name_2}}</h4></div>
-
-
-
         </div>
       </div>
+      <div class="spacer"></div>
+      <a class="button" ng-click="goToPage('admin')" ng-if="admin==1">
+        <div ng-include="'resources/img/Button_1.svg'"></div>
+        <div class="label">Administrer</div>
+      </a>
     </div>
 
     <div class="plain seconde" ng-style="colours[1].border">
@@ -63,20 +65,20 @@
 
     <div class="row">
       <div class="col-sm-12 quote">
-        <h1>La ligue championne de la Coupe Des Vices.</h1>
-        <p><a href="http://www.ligue-bloodbowl.fr/news/50/la-bbbl-remporte-le-1er-bouclier-dulthuan.html">Toutes les infos</a></p>
-        <!--h1>"J'ai aimé cette ligue comme je n'ai jamais aimé aucune femme..."</h1>
-        <p>Coach Jahstrad, peu avant sa disparition</p-->
+        <!--h1>La ligue championne de la Coupe Des Vices.</h1>
+        <p><a href="http://www.ligue-bloodbowl.fr/news/50/la-bbbl-remporte-le-1er-bouclier-dulthuan.html">Toutes les infos</a></p-->
+        <h1>"J'ai aimé cette ligue comme je n'ai jamais aimé aucune femme..."</h1>
+        <p>Coach Jahstrad, peu avant sa disparition</p>
       </div>
     </div>
     <!-- Competitions -->
     <div class="row">
-      <div class="plain prime col-lg-12" ng-style="colours[0].border">
-          <div class="col-lg-12">
-            <img class="banner_50" src="../resources/img/Banner_Elite.png">
+      <div class="plain prime col-md-12" ng-style="colours[0].border">
+          <div class="col-md-6">
+            <img class="banner_100" src="../resources/img/Banner_Elite.png">
             <p>La division la plus prestigieuse, ou les meilleures équipes s'affrontent pour le titre de champion de la BBBL.</p>
           </div>
-          <div class="col-lg-6 zelda" ng-repeat="competition in competitions" ng-if="competition.division=='Elite'" ng-click="goToPage('competition/'+competition.id)" >
+          <div class="col-md-6 zelda" ng-repeat="competition in competitions" ng-if="competition.division=='Elite'" ng-click="goToPage('competition/'+competition.id)" >
             <h3 ng-style="colours[0].color">{{competition.name}}</h3>
             <table>
               <tbody>
@@ -93,12 +95,12 @@
     </div>
 
     <div class="row">
-      <div class="plain prime col-lg-12" ng-style="colours[0].border">
-        <div class="col-lg-12">
-          <img class="banner_50" src="../resources/img/Banner_Prestige.png">
+      <div class="plain prime col-md-12" ng-style="colours[0].border">
+        <div class="col-md-6">
+          <img class="banner_100" src="../resources/img/Banner_Prestige.png">
           <p>L'antichambre de la gloire... Les équipes de cette division ne rêvent que d'une chose: accéder à l'Élite. </p>
         </div>
-        <div class="col-lg-4 zelda" ng-repeat="competition in competitions" ng-if="competition.division=='Prestige'" ng-click="goToPage('competition/'+competition.id)" >
+        <div class="col-md-6 zelda" ng-repeat="competition in competitions" ng-if="competition.division=='Prestige'" ng-click="goToPage('competition/'+competition.id)" >
           <h3 ng-style="colours[0].color">{{competition.name}}</h3>
           <table>
             <tbody>
@@ -116,8 +118,8 @@
 
     <div class="row">
       <div class="plain prime col-lg-12" ng-style="colours[0].border">
-        <div class="col-lg-12">
-          <img class="banner_50" src="../resources/img/Banner_Espoir.png">
+        <div class="col-lg-6">
+          <img class="banner_100" src="../resources/img/Banner_Espoir.png">
           <p>On s'étripe, on s'écharpe, dans la bonne humeur, et les survivants espèrent passer en Prestige.</p>
         </div>
         <div class="col-lg-6 zelda" ng-repeat="competition in competitions" ng-if="competition.division=='Espoir'" ng-click="goToPage('competition/'+competition.id)" >
@@ -143,36 +145,35 @@
     <div class="plain prime champion" ng-style="colours[0].border">
       <div ng-style="teamBG"></div>
       <h3>CHAMPION</h3>
-      <h4 ng-style="colours[0].color" ng-click="">Elite Printemps 2516</h4>
+      <h4 ng-style="colours[0].color" ng-click="">BB Cup 2517</h4>
       <hr>
-      <h1 class="zelda" ng-style="colours[4].color" ng-click="goToPage('team/279')">Enfants d'Itarillië</h1>
+      <h1 class="zelda" ng-style="colours[4].color" ng-click="goToPage('team/278')">Dieux de l'Arène</h1>
       <hr>
-      <h2 ng-style="colours[5].color">Obsidian</h2>
+      <h2 ng-style="colours[5].color">Voodoo</h2>
       <div class="spacer"></div>
-      <div class="button" ng-click="goToPage('competition/225')">
+      <div class="button" ng-click="goToPage('competition/251')">
         <div ng-include="'resources/img/Button_0.svg'"></div>
         <div class="label">la compétition</div>
       </div>
     </div>
+    <div class="image">
+      <a href="http://www.bbbl.fr/Forum/viewforum.php?f=368"><img class="affiche" src="resources/img/CoupeDesVices.jpg"></a>
+    </div>
     <!--Stats Players-->
 
-      <div class="plain seconde" ng-style="colours[1].border" ng-repeat="stats in leagueStats.playersStats">
-        <h3 ng-style="colours[1].color">{{stats.title}}</h3>
+      <div class="plain seconde" ng-style="colours[1].border" ng-repeat="stats in leagueStats.playersStats" ng-if="stats.players.length>0">
+        <h3 ng-style="colours[1].color">{{stats.type | talkingToTheGods:parameters}}</h3>
         <table class="mainStats">
           <thead>
             <tr ng-style="colours[1].background">
               <th class="text-left">Joueur</th>
-              <th class="text-center" ng-if="stats.type=='scorers'">TD</th>
-              <th class="text-center" ng-if="stats.type=='tacklers'">Sorties</th>
-              <th class="text-center" ng-if="stats.type=='throwers'">Yards</th>
+              <th class="text-center" >{{stats.stats[0] | talkingToTheGods:parameters}}</th>
             </tr>
           </thead>
           <tbody class="table-hover noselect">
             <tr class="playerDetails" ng-style="colours[1].border" ng-repeat="player in stats.players | limitTo:3">
               <td class="text-left text-cutter"><img src="resources/logo/Logo_{{player.logo}}.png"> </span>{{player.name}}</td>
-              <td class="text-center" ng-if="stats.type=='scorers'">{{player.TD}}</td>
-              <td class="text-center" ng-if="stats.type=='tacklers'">{{player.injuries}}</td>
-              <td class="text-center" ng-if="stats.type=='throwers'">{{player.yards}}</td>
+              <td class="text-center" >{{player.stat0}}</td>
             </tr>
           </tbody>
         </table>
