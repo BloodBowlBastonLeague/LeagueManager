@@ -24,6 +24,8 @@ LeagueManager.directive("match", function() {
 					var data = JSON.parse(result.json);
 
 					$rootScope.match = data.match;
+					$rootScope.match.coach_id_1 = result.coach_id_1;
+					$rootScope.match.coach_id_2 = result.coach_id_2;
 					$rootScope.match.cyanide_id = result.cyanide_id;
 					$rootScope.match.competition_id = result.competition_id;
 					$rootScope.match.started = result.started;
@@ -38,7 +40,7 @@ LeagueManager.directive("match", function() {
 					$scope.teams[1].id = result.team_id_2;
 					$scope.teams[1].color1 = result.team_2_color_1;
 					$scope.teams[1].color2 = result.team_2_color_2;
-					$rootScope.match.discussion = result.forum_url;
+					$rootScope.match.forum_id = result.forum_id;
 					$scope.bets = result.bets;
 
 					//Récupération des couleurs - Fetching colours
