@@ -13,14 +13,14 @@ $con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
 if (!$con) { die('Could not connect: ' . mysqli_error()); }
 mysqli_set_charset($con,'utf8');
 
-$sqlMatch = "SELECT site_matchs.cyanide_id,
-					site_matchs.competition_id,
-					site_matchs.forum_url,
-					site_matchs.stadium,
-					DATE_ADD(site_matchs.started, INTERVAL 500 YEAR) AS started,
-					site_matchs.json,
-					site_matchs.team_id_1,
-					site_matchs.team_id_2,
+$sqlMatch = "SELECT m.cyanide_id,
+					m.competition_id,
+					l.forum_id,
+					m.stadium,
+					DATE_ADD(m.started, INTERVAL 500 YEAR) AS started,
+					m.json,
+					m.team_id_1,
+					m.team_id_2,
 					t1.name AS team_1_name,
 					t2.name AS team_2_name,
 					t1.logo AS team_1_logo,
@@ -30,13 +30,16 @@ $sqlMatch = "SELECT site_matchs.cyanide_id,
 					t2.color_1 AS team_2_color_1,
 					t2.color_2 AS team_2_color_2,
 					c1.name AS coach_1,
-					c2.name AS coach_2
-					FROM site_matchs
-					LEFT JOIN site_teams as t1 ON t1.id=site_matchs.team_id_1
-					LEFT JOIN site_teams as t2 ON t2.id=site_matchs.team_id_2
+					c2.name AS coach_2,
+					c1.id AS coach_id_1,
+					c2.id AS coach_id_2
+					FROM site_matchs AS m
+					LEFT JOIN site_teams as t1 ON t1.id=m.team_id_1
+					LEFT JOIN site_teams as t2 ON t2.id=m.team_id_2
 					LEFT JOIN site_coachs as c1 ON c1.id=t1.coach_id
 					LEFT JOIN site_coachs as c2 ON c2.id=t2.coach_id
-					WHERE site_matchs.id=".$id;
+					LEFT JOIN site_forum_links AS l ON l.competition_id=m.competition_id AND l.round=m.round
+					WHERE m.id=".$id;
 $resultMatch = mysqli_query($con, $sqlMatch);
 while($dataMatch = mysqli_fetch_object($resultMatch)) {
 	$var = $dataMatch;
