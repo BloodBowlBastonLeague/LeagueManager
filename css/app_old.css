@@ -75,13 +75,13 @@ time, mark, audio, video {
 }
 
 @media all and (orientation:landscape  ) {
-  body { line-height: 1; background:#FFF url('../resources/img/background2.jpg'); background-position: bottom; background-size: 100% auto; overflow: hidden; }
+  body { line-height: 1; background:#000000 url('../resources/img/background2.jpg'); background-size: 100% auto; overflow: hidden; }
 }
 @media all and ( max-height:1200px ) {
-  body { line-height: 1; background:#FFF url('../resources/img/background2.jpg'); background-position: bottom; background-position: bottom; background-size: auto 1200px; overflow: hidden; }
+  body { line-height: 1; background:#000000 url('../resources/img/background2.jpg'); background-size: auto 1200px; overflow: hidden; }
  }
 @media all and (orientation:portrait) {
-  body { line-height: 1; background:#FFF url('../resources/img/background.jpg'); background-size: auto 100%; overflow: hidden; }
+  body { line-height: 1; background:#000000 url('../resources/img/background.jpg'); background-size: auto 100%; overflow: hidden; }
  }
 
 a { font-weight: 500; cursor: pointer; }
@@ -126,7 +126,7 @@ li > h3 { display:inline; }
 .plain .row {margin:0;}
 .noPadding {padding:0 !important;}
 /* HEADER */
-#Intro { position:relative; width:100vw; height:18px; background:transparent; font-size: 12px;box-sizing: border-box; line-height: 18px;text-align:center; font-family:'Muli'; color:#000; font-weight:600; z-index:2;}
+#Intro { position:relative; width:100vw; height:18px; background:#000000; font-size: 12px;box-sizing: border-box; line-height: 18px;text-align:center; font-family:'Muli'; color:#f1f1f1; z-index:2;}
 #Logo { position:fixed; top:0px; left:0; margin:0 10px; height: 90px; width: 120px; cursor: pointer; background: url(../resources/img/BBBL2.png) no-repeat; background-position: center 2px; background-size:contain; z-index:100;}
 /* Navbar */
 .navbar { color:#ffffff;  height:50px; margin:0; padding: 0 0 0 170px; border-radius: 0;
@@ -142,7 +142,7 @@ nav > ul > li:hover { background: linear-gradient(to left, rgba(0,0,0,0.5) 0%, r
 nav > ul > li:active { background: transparent; box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);}
 nav > ul > li > a { text-decoration: none; color: #FFFFFF; line-height:50px; font-weight: 400;  font-family: "Akashi"; display:block; height:100%; width:100%; padding: 0 10px !important; }
 nav > ul > li:hover > a { text-decoration: none; color: #CCCCCC;}
-nav > ul > li > a:active { text-decoration: none; color: #91BFDC;}
+nav > ul > li > a:active { text-decoration: none; color: #DD7C00;}
 nav > ul > li > a:visited { text-decoration: none; color: #FFFFFF;}
 
 
@@ -154,7 +154,7 @@ nav > ul > li > a:visited { text-decoration: none; color: #FFFFFF;}
 .image > img { width:100%; height:auto; margin: 0; }
 img.affiche { width:90%; height:auto; margin: 0; }
 
-.prime, .forabg > .inner, .panel, .forumbg, .phpbb_alert, .action-bar, .forum-title, .topic-title, .posting-title, .post, .headerspace, #review, .solo, .ucp-title, #tabs, .memberlist-title {  background: rgba(0, 0, 0, 0.95); }
+.prime, .forabg > .inner, .panel, .forumbg, .phpbb_alert, .action-bar, .forum-title, .topic-title, .posting-title, .post, .headerspace, #review, .solo, .ucp-title, #tabs, .memberlist-title {  background: rgba(0, 0, 0, 0.9); }
 .seconde, .stat-block, .toolbar { background: rgba(50, 50, 50, 0.9); }
 
 .stick-left { padding-left: 0; }
@@ -184,7 +184,7 @@ border-radius: 5px; border-bottom: 2px solid; }
 
 .container > article, .container > .standing { margin:0; padding:0; max-height:calc(100vh - 268px); background: none; border:none; overflow: auto; box-shadow: none;}
 .container > article > img { float:left; padding:0 20px 10px 0; }
-.container > footer > h2 { margin: 5px 0px; text-align: center; cursor: pointer; border-top: 1px solid #91BFDC; color:#91BFDC;}
+.container > footer > h2 { margin: 5px 0px; text-align: center; cursor: pointer; border-top: 1px solid #DD7C00; color:#DD7C00;}
 .container > .close { position: absolute; right: 2vw; cursor: pointer; }
 
 #newsfeed { width:100vw; height:50px; background: #000000;}
@@ -432,6 +432,10 @@ img.player { max-width: 150px; max-height: 100%; }
 
 
 /*Le Poing*/
+.lepoing { padding:0; position: relative; margin-bottom: 15px;text-align: center;}
+.lepoing img { width:100%; height:auto;}
+.lepoing.player img { width:60%; display: inline;}
+.lepoing .cover { position: absolute; z-index:2; height:100% }
 
 .colorShadow {text-shadow: 1px 1px 3px #000000;}
 
@@ -440,8 +444,8 @@ table.mainStats, table.modalStats {cursor:default;}
 
 .stick-right .button {bottom:1px;}
 .quote {padding: 40px 20px;}
-.quote h1 { font-size: 60px; font-family: 'Niconne', cursive; color: #555;}
-.quote p,.quote p a { font-size: 30px; line-height: 30px; font-family: 'Niconne', cursive; text-align: right; display:inherit; color:#999;}
+.quote h1 { font-size: 60px; font-family: 'Niconne', cursive; }
+.quote p,.quote p a { font-size: 30px; line-height: 30px; font-family: 'Niconne', cursive; text-align: right; display:inherit; color:#cccccc;}
 .quote p a {text-decoration: underline;}
 
 .quickLink {font-weight: 500;}
