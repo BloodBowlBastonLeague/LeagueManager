@@ -46,10 +46,14 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 	$rootScope.competitions = [];
 	$rootScope.finalsTemplate = ['Finale', 'Demi-Finales', 'Quart de finales', '8emes de finales', '16emes de finales', '32emes de finales'];
 
-	//Récupération des compétitions
+	/*Récupération des compétitions
 	$http.get('Backend/competitions.php?active=1').success(function(result) {
 		$rootScope.competitions = result;
+	});*/
+	$http.get('Backend/route.php?action=boot').success(function(result) {
+		$rootScope.competitions = result;
 	});
+
 
 	//Récupération des statistiques de la ligue
 	$http.get('Backend/generic.php').success(function(result) {

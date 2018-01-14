@@ -12,14 +12,11 @@ LeagueManager.directive('main', function() {
 
 			$rootScope.title = "Tribunes - le mag de la BBBL";
 
-			//Récupération du classement en JSON (temporaire)
-			$http.get('resources/json/standing.json').success(function(result) {
-				$scope.standing = result;
-			});
 			//Récupération de l'agenda en JSON (temporaire)
 			$http.get('Backend/calendar.php?action=upcomingGames').success(function(result) {
 				$scope.games = result;
 			});
+
 			$scope.tmpTeams = [{
 					"teamID": "0",
 					"color1": "#A9A9A9",

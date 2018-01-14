@@ -58,7 +58,7 @@ if (!$con) { die('Could not connect: ' . mysqli_error()); }
         WHERE competition_id='.$data[id].' AND site_matchs.started IS NOT NULL
         ) AS a
         GROUP BY id
-        ORDER BY Pts DESC, TD DESC, TDfor DESC, S DESC';
+        ORDER BY Pts DESC';
 
     $result2 = mysqli_query($con, $sql2);
 

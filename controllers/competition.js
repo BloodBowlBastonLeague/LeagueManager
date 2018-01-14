@@ -21,7 +21,10 @@ LeagueManager.directive('competition', function() {
 			};
 
 			$scope.calendarUpdate = function() {
-				$http.get('Backend/competition.php?id=' + $rootScope.competitionId).success(function(result) {
+				$scope.competition = {
+					"id": $routeParams.ID
+				};
+				$http.post('Backend/route.php?action=competition', $scope.competition).success(function(result) {
 					$scope.competition = result;
 					$rootScope.title = $scope.competition.game_name;
 				});

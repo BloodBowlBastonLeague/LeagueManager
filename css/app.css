@@ -212,7 +212,7 @@ border-radius: 5px; border-bottom: 2px solid; }
 
 .current { border-bottom: 3px solid #000000; background: rgba(0, 85, 141, 0.75) !important; color: #FFFFFF !important;}
 .current span { color: #FFFFFF; }
-.teamLogo {width: 35px; height: 35px; display: inline; vertical-align: middle;}
+.teamLogo {width: 40px; height: 40px; display: inline; vertical-align: middle;}
 td > .teamLogo {width: 20px; height: 20px; display: inline; padding-right: 2px;}
 .gold {
 	background: linear-gradient(to left, rgba(255,215,0,0.1),rgba(255,215,0,0.75), rgba(255,215,0,0.1));
@@ -276,7 +276,7 @@ td img { max-height: 20px; max-width: 20px; }
         position: absolute;
     		-ms-transform:rotate(10deg);
     		-webkit-transform:rotate(10deg);
-    		transform:rotate(10deg);}
+    		transform:rotate(10deg) rotateY(180deg);}
     .helmet_svg, .helmet_png { position:absolute; height:inherit; width:inherit; }
 }
 @media screen and (min-width: 1280px) and (max-width:1439.99px) {
@@ -305,7 +305,7 @@ td img { max-height: 20px; max-width: 20px; }
         position: absolute;
     		-ms-transform:rotate(10deg);
     		-webkit-transform:rotate(10deg);
-    		transform:rotate(10deg);}
+    		transform:rotate(10deg)  rotateY(180deg);}
     .helmet_svg, .helmet_png { position:absolute; height:inherit; width:inherit; }
 }
 @media screen and (min-width: 1440px) {
@@ -334,7 +334,7 @@ td img { max-height: 20px; max-width: 20px; }
       position: absolute;
   		-ms-transform:rotate(10deg);
   		-webkit-transform:rotate(10deg);
-  		transform:rotate(10deg);}
+  		transform:rotate(10deg) rotateY(180deg);}
   .helmet_svg, .helmet_png { position:absolute; height:inherit; width:inherit; }
 }
 
@@ -415,7 +415,7 @@ img.player { max-width: 150px; max-height: 100%; }
 #MatchWeek .teamLogo {width: 80px; height: 80px; display: inline; vertical-align: middle; }
 #MatchWeek .teamName {width: calc(50% - 120px); max-width: calc(50% - 120px); display: inline-block; vertical-align: middle; font-family: "MuliSemiBold"; font-size:24px; color:#ffffff;}
 #MatchWeek hr { width :400px}
-.versus { width: 45px; font-size: 26px; font-weight: 700; }
+.versus { width: 40px; font-size: 26px; font-weight: 700; }
 #MatchWeek .versus { width: 60px; font-size: 26px; font-weight: 700; }
 
 

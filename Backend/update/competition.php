@@ -1,13 +1,13 @@
 <?php
 function competition_update($con,$params){
 	mysqli_set_charset($con,'utf8');
-
+	var_dump($params[2]);
 	$request = 'http://web.cyanide-studio.com/ws/bb2/contests/?key='.$params[0].'&competition='.urlencode($params[1]).'&status=played&league=BBBL';
 	$response  = file_get_contents($request);
 	$played = json_decode($response);
 
 	foreach ($played->upcoming_matches as $game) {
-
+		var_dump($game->contest_id);
 		if(in_array($game->contest_id, $params[2])){
 
 			$request_2 = 'http://web.cyanide-studio.com/ws/bb2/match/?key='.$params[0].'&uuid='.$game->match_uuid;
@@ -39,6 +39,7 @@ function competition_update($con,$params){
 				sustaineddead_2 = '".$game_details->match->teams[1]->sustaineddead."',
 				json = '".str_replace("'","\'",$json_2)."'
 				WHERE contest_id=".$game->contest_id;
+				echo $sql_match."/r/n";
 			$con->query($sql_match);
 
 			$match = $game_details->match;
