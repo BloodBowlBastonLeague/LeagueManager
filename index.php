@@ -44,7 +44,7 @@
 <body>
   <header>
     <div id="Intro" class="hd-100 x-center y-center">la Blood Bowl Baston League pr&eacute;sente</div>
-    <nav class="navbar" ng-style="navbarColour">
+    <nav class="navbar" ng-style="colours[0].border">
       <div id="Logo" class="logo" ng-click="goToPage('/')"></div>
       <h1 class="navbar-brand inline text-cutter">{{title}}</h1>
       <ul class="nav navbar-nav inline collapse navbar-toggleable-md pull-xs-right" id="Menu">
@@ -102,8 +102,6 @@
   <script src="controllers/team.js"></script>
   <script src="controllers/modal.js"></script>
 
-  <!-- Module spéciaux -->
-  <script src="controllers/lepoing.js"></script>
 
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

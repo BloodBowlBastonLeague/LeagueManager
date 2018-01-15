@@ -49,7 +49,7 @@ function leaders($con, $params){
     }
     //Manage competition filter
     if($params[2]){
-        $where = " AND s.match_id IN (SELECT id FROM site_matchs WHERE competition_id IN (".implode(",",$params[1]).")";
+        $where = " AND s.match_id IN (SELECT id FROM site_matchs WHERE competition_id IN (".implode(",",$params[1])."))";
     }
     else{
         $where = " AND s.match_id IN (SELECT id FROM site_matchs WHERE competition_id IN (".$params[1]."))";

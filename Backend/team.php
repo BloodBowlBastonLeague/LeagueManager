@@ -40,12 +40,6 @@ include($phpbb_root_path . 'config.' . $phpEx);
   $team->players = $Players;
 
   $Articles = [];
-  $sqlArticles = "SELECT * FROM site_teams_rp WHERE team_id=".$id;
-  $resultArticles = mysqli_query($con, $sqlArticles);
-  while($objArticles = mysqli_fetch_object($resultArticles)) {
-   array_push($Articles, $objArticles);
-  }
-  $team->articles = $Articles;
 
   $Coach = [];
   $sqlCoach = 'SELECT name FROM site_coachs WHERE id='.$team->coach_id;

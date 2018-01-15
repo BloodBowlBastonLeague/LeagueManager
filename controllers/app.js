@@ -22,9 +22,6 @@ LeagueManager.config(function($routeProvider) {
 		.when("/match/:ID", {
 			template: '<match></match>'
 		})
-		.when("/lepoing/:ID", {
-			template: '<lepoing></lepoing>'
-		})
 		.when("/forum", {
 			templateUrl: '/Forum/index.php'
 		})
@@ -127,11 +124,9 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 				'color': args[i],
 				'text-shadow': '-2px -2px #FFFFFF, 2px 2px #FFFFFF, 2px -2px #FFFFFF, -2px 2px #FFFFFF'
 			};
-		}
-		$rootScope.navbarColour = {
-			'background': '-webkit-linear-gradient(' + args[0] + ',#000000)',
-			'background': '-moz-linear-gradient(' + args[0] + ',#000000)',
-			'background': 'linear-gradient(' + args[0] + ',#000000)'
+			$rootScope.navbarColour = {
+				'border-bottom': '3px solid' + args[i]
+			};
 		};
 	};
 	//Tri des listes

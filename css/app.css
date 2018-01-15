@@ -129,15 +129,14 @@ li > h3 { display:inline; }
 #Intro { position:relative; width:100vw; height:18px; background:transparent; font-size: 12px;box-sizing: border-box; line-height: 18px;text-align:center; font-family:'Muli'; color:#000; font-weight:600; z-index:2;}
 #Logo { position:fixed; top:0px; left:0; margin:0 10px; height: 90px; width: 120px; cursor: pointer; background: url(../resources/img/BBBL2.png) no-repeat; background-position: center 2px; background-size:contain; z-index:100;}
 /* Navbar */
-.navbar { color:#ffffff;  height:50px; margin:0; padding: 0 0 0 170px; border-radius: 0;
-	background: -webkit-linear-gradient(#00558D,#000000);
-	background: linear-gradient(#00558D,#000000);}
+.navbar { color:#ffffff;  height:50px; margin:0; padding: 0 0 0 170px; border-radius: 0; background: url(../resources/img/navbar.jpg); border-bottom: 3px solid #00558D;}
+
 .navbar-brand { padding:0; margin:0; font-size: 36px; max-width:calc(100vw - 160px);}
 
 
 
 .collapse.in { width: 100vw; background: #000000; padding: 5px 5px 5px 110px;}
-nav > ul > li { font-family: "Akashi" !important; height: 50px; margin: 0 0 0 -5px; border-left: 1px solid #000 !important; display: inline-block; cursor: pointer; line-height:50px; }
+nav > ul > li { font-family: "Akashi" !important; height: 50px; margin: 0 0 0 -5px; display: inline-block; cursor: pointer; line-height:50px; }
 nav > ul > li:hover { background: linear-gradient(to left, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 5%);}
 nav > ul > li:active { background: transparent; box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);}
 nav > ul > li > a { text-decoration: none; color: #FFFFFF; line-height:50px; font-weight: 400;  font-family: "Akashi"; display:block; height:100%; width:100%; padding: 0 10px !important; }

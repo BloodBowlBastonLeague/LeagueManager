@@ -54,7 +54,7 @@ function competition_fetch($con, $id){
           WHERE competition_id='.$competition->id.'
           ) AS a
           GROUP BY id
-          ORDER BY Pts DESC';
+          ORDER BY Pts DESC, V DESC, TDS DESC';
 
     $resultStanding = $con->query($sqlStanding);
     while($dataStanding = $resultStanding->fetch_assoc()) {
