@@ -32,7 +32,7 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $window) {
 	//Couleurs de bases du site
 	$rootScope.colours = [];
 	$rootScope.colourA = "#00558D";
-	$rootScope.colourB = "#DD7C00";
+	$rootScope.colourB = "#91BFDC";
 	//Mise à jours de couleurs (pour les équipes)
 	$rootScope.setColours = function(args) {
 		for (i = 0; i < args.length; i++) {

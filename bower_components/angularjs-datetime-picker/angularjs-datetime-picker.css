@@ -31,7 +31,7 @@
   margin:10px;
   padding: 5px;
   color: #FFF;
-  background: #DD7C00;
+  background: #91BFDC;
 }
 
 .angularjs-datetime-picker > .adp-month > button:hover {
@@ -68,7 +68,7 @@
   cursor: pointer;
 }
 .angularjs-datetime-picker > .adp-days > .adp-day.selected {
-  background: #DD7C00;
+  background: #91BFDC;
 }
 .angularjs-datetime-picker > .adp-days > .adp-day.selectable:hover {
   background: #fff;

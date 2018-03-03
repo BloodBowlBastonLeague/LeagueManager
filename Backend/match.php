@@ -17,6 +17,7 @@ $sqlMatch = "SELECT site_matchs.cyanide_id,
 					site_matchs.competition_id,
 					site_matchs.forum_url,
 					site_matchs.stadium,
+					site_matchs.round,
 					DATE_ADD(site_matchs.started, INTERVAL 500 YEAR) AS started,
 					site_matchs.json,
 					site_matchs.team_id_1,
@@ -29,8 +30,8 @@ $sqlMatch = "SELECT site_matchs.cyanide_id,
 					t1.color_2 AS team_1_color_2,
 					t2.color_1 AS team_2_color_1,
 					t2.color_2 AS team_2_color_2,
-					c1.name AS coach_1,
-					c2.name AS coach_2
+					t1.coach_id AS coach_id_1,
+					t2.coach_id AS coach_id_2
 					FROM site_matchs
 					LEFT JOIN site_teams as t1 ON t1.id=site_matchs.team_id_1
 					LEFT JOIN site_teams as t2 ON t2.id=site_matchs.team_id_2

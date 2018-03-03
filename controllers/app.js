@@ -43,27 +43,25 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 	$rootScope.competitions = [];
 	$rootScope.finalsTemplate = ['Finale', 'Demi-Finales', 'Quart de finales', '8emes de finales', '16emes de finales', '32emes de finales'];
 
-	/*Récupération des compétitions
-	$http.get('Backend/competitions.php?active=1').success(function(result) {
-		$rootScope.competitions = result;
-	});*/
-	$http.get('Backend/route.php?action=boot').success(function(result) {
-		$rootScope.competitions = result;
-	});
-
-
-	//Récupération des statistiques de la ligue
-	$http.get('Backend/generic.php').success(function(result) {
-		$rootScope.leagueStats = result;
+	//Récupération des informations de base
+	$http.get('Backend/routes.php?action=boot').success(function(result) {
+		$rootScope.parameters = result.parameters;
+		$rootScope.competitions = result.competitions;
+		$rootScope.leagueStats = result.stats;
 		$rootScope.$broadcast('statsSuccess');
 	});
-	//Récupération des parametres
-	$http.get('Backend/parameters.php').success(function(result) {
-		$rootScope.parameters = result;
-	});
+
+	//Récupération des liens compétitions-forums
+	$http
+		.get("resources/json/competition_forum.json")
+		.success(function(result) {
+			$rootScope.competitionForum = result;
+		});
+
 
 	$rootScope.goToPage = function(page) {
 		$('#Logo').removeAttr('style');
+		$('.navbar').removeAttr('style');
 		$rootScope.$broadcast('routeChangeSuccess');
 		$location.path(page);
 	};
@@ -80,16 +78,6 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 		$location.path(prevUrl);
 	};
 
-	$rootScope.randomArticle = function(categories) {
-		//Récupération des articles en JSON (temporaire)
-		var selection = [];
-		for (i = 0; i < Object.keys($rootScope.articles).length; i++) {
-			if ($rootScope.articles[i].random == 1 && categories.indexOf($rootScope.articles[i].category) != -1) {
-				selection.push($rootScope.articles[i]);
-			}
-		}
-		return selection[Math.floor(Math.random() * selection.length)];
-	};
 
 	$rootScope.translate = function(param) {
 		var idx = $rootScope.parameters.map(function(e) {

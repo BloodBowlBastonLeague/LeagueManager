@@ -18,14 +18,12 @@ LeagueManager.directive("match", function() {
 				}
 			];
 
-			console.log($rootScope.coach_id);
-
 			$http
 				.get("Backend/match.php?id=" + $scope.matchID)
 				.success(function(result) {
 					var data = JSON.parse(result.json);
-
 					$rootScope.match = data.match;
+					$rootScope.match.round = result.round;
 					$rootScope.match.coach_id_1 = result.coach_id_1;
 					$rootScope.match.coach_id_2 = result.coach_id_2;
 					$rootScope.match.cyanide_id = result.cyanide_id;
@@ -45,6 +43,11 @@ LeagueManager.directive("match", function() {
 					$rootScope.match.forum_id = result.forum_id;
 					//$rootScope.match.discussion = result.forum_url;
 					$scope.bets = result.bets;
+
+					$scope.forum = $rootScope.competitionForum.filter(function(obj) {
+						return obj.id === $rootScope.match.competition_id;
+					});
+
 
 					//Récupération des couleurs - Fetching colours
 					for (i = 0; i < 2; i++) {

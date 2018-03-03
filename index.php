@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<?php include('phpBB_Connect.php') ?>
+<?php
+  $forum = './Forum/';
+  define('PHPBB_ROOT_PATH','./Forum/');
+  include('Backend/config.php');
+?>
+
+<!--?php include('phpBB_Connect.php') ?-->
 <html  ng-app="LeagueManager">
 <head>
   <meta charset="UTF-8" />
@@ -48,13 +54,9 @@
       <div id="Logo" class="logo" ng-click="goToPage('/')"></div>
       <h1 class="navbar-brand inline text-cutter">{{title}}</h1>
       <ul class="nav navbar-nav inline collapse navbar-toggleable-md pull-xs-right" id="Menu">
-        <li><a class="nav <?echo $user->data['group'];?>" href="Forum">Forum</a></li>
+        <li><a class="nav" href="Forum">Forum</a></li>
         <li class="hidden-sm-down"><a class="nav" href="steam://run/236690">Jouer</a></li>
         <li class="hidden-sm-down"><a class="nav" href="https://discordapp.com/channels/159656062125998080/159656062125998080" target="_blank">Discord</a></li>
-
-        <?php
-	 if($user->data['username'] != 'Anonymous'){ echo '<li><a class="nav">'.$user->data['username'].'</a></li>';} else { echo '<li ng-click="displayConnector()"><a class="nav">Connexion</a></li>';}
-	?>
       </ul>
       <div class="navbar-toggler hidden-lg-up pull-right zelda" type="button" data-toggle="collapse" data-target="#Menu">&#9776;</div>
     </nav>

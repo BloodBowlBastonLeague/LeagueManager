@@ -43,7 +43,7 @@ function competition_add($con, $competition){
             $con->query($sqlTeam);
             $teams[$key] = $con->insert_id;
             //Update team with race and players
-            //team_update($con,$opponent->team->id);
+            team_update($con,$opponent->team->id);
           }
           else {
             $sqlTeam = "UPDATE site_teams SET active=1 WHERE cyanide_id=".$opponent->team->id;
@@ -62,14 +62,14 @@ function competition_add($con, $competition){
       $json->result = "success";
       $json->message = "Compétition créée (bordel! 3 e...)";
       echo json_encode($json);
-      /*SwissFix
+
     }
     else {
       $json = new stdClass;
       $json->result = "failure";
       $json->message = "La compétition existe déjà";
       echo json_encode($json);
-    }*/
+    }
 
 }
 ?>

@@ -54,7 +54,7 @@
     <div class="row">
 
     <div class="plain prime" ng-style="colours[0].border">
-        <div ng-repeat="competition in competitions" ng-click="goToPage('competition/'+competition.id)" >
+        <div ng-repeat="competition in competitions | orderBy: 'site_order'"  ng-click="goToPage('competition/'+competition.id)" >
           <h2>{{competition.site_name}}</h2>
           <table>
             <tbody>
@@ -68,7 +68,6 @@
           <h5 ng-style="colours[0].color">Classement complet et calendrier</h5>
         </div>
     </div>
-  </div>
 
   <div class="plain prime" ng-style="colours[0].border">
     <h2>Programme CabalVision</h2>
@@ -90,6 +89,8 @@
       <div class="label">Administrer</div>
     </a>
   </div>
+
+</div>
 
     <!--div class="row">
       <div class="plain prime col-md-12" ng-style="colours[0].border">
@@ -166,18 +167,16 @@
       <h3>CHAMPION</h3>
       <h4 ng-style="colours[0].color" ng-click="">BB Cup 2517</h4>
       <hr>
-      <h1 class="zelda" ng-click="goToPage('team/278')">Black Berrurier</h1>
+      <h1 class="zelda" ng-click="goToPage('team/294')">Black Berrurier</h1>
       <hr>
       <h2>Zongo</h2>
       <div class="spacer"></div>
-      <div class="button" ng-click="goToPage('competition/254')">
+      <div class="button" ng-click="goToPage('competition/252')">
         <div ng-include="'resources/img/Button_0.svg'"></div>
         <div class="label">la compétition</div>
       </div>
     </div>
-    <div class="image">
-      <a href="http://www.bbbl.fr/Forum/viewforum.php?f=368"><img class="affiche" src="resources/img/CoupeDesVices.jpg"></a>
-    </div>
+
     <!--Stats Players-->
 
       <div class="plain seconde" ng-style="colours[1].border" ng-repeat="stats in leagueStats.playersStats" ng-if="stats.players.length>0">

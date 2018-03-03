@@ -1,53 +1,114 @@
 <?php
-$id = $_GET['id'];
-if(is_numeric($id) == 1){
 
-define('IN_PHPBB', true);
-$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './../Forum/';
-$phpEx = substr(strrchr(__FILE__, '.'), 1);
+//Fetch team info
+function team_fetch($con,$id){
 
-include($phpbb_root_path . 'common.' . $phpEx);
-include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
-include($phpbb_root_path . 'config.' . $phpEx);
+    //Get team info
+    $sqlTeam = "SELECT * FROM site_teams WHERE id=".$id;
+    $resultTeam = $con->query($sqlTeam);
+    $team = $resultTeam->fetch_object();
 
-  $con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
+    //Get current competition
+    $sqlCompetition = "SELECT MAX(m.competition_id) AS id, c.game_name AS name FROM site_matchs AS m INNER JOIN site_competitions AS c ON c.id = m.competition_id WHERE (m.team_id_1=".$id." OR m.team_id_2=".$id.") LIMIT 1";
+    $resultCompetition = $con->query($sqlCompetition);
+    $competition = $resultCompetition->fetch_object();
+    $team->competition = $competition;
 
-  if (!$con) { die('Could not connect: ' . mysqli_error()); }
-  mysqli_set_charset($con,'utf8');
+    //Get players
+    $players = [];
+    $sqlPlayers = "SELECT id, name, param_name_type AS position, attributes, skills, casualties, level, xp, dead, fired   FROM site_players WHERE team_id=".$id;
+    $resultPlayers = $con->query($sqlPlayers);
+    while($dataPlayers = $resultPlayers->fetch_assoc()) {
 
-	$sql = "SELECT * FROM site_teams WHERE id=".$id;
-	$result = mysqli_query($con, $sql);
-	$team = mysqli_fetch_object($result);
+        $sqlStats = "SELECT SUM(matchplayed) AS matchplayed, SUM(mvp) AS mvp, SUM(inflictedpasses) AS inflictedpasses, SUM(inflictedcatches) AS inflictedcatches, SUM(inflictedinterceptions) AS inflictedinterceptions, SUM(inflictedtouchdowns) AS inflictedtouchdowns, SUM(inflictedcasualties) AS inflictedcasualties, SUM(inflictedstuns) AS inflictedstuns, SUM(inflictedko) AS inflictedko, SUM(inflictedinjuries) AS inflictedinjuries, SUM(inflicteddead) AS inflicteddead, SUM(inflictedtackles) AS inflictedtackles, SUM(inflictedmeterspassing) AS inflictedmeterspassing, SUM(inflictedmetersrunning) AS inflictedmetersrunning, SUM(sustainedinterceptions) AS sustainedinterceptions, SUM(sustainedcasualties) AS sustainedcasualties, SUM(sustainedstuns) AS sustainedstuns, SUM(sustainedko) AS sustainedko, SUM(sustainedinjuries) AS sustainedinjuries, SUM(sustainedtackles) AS sustainedtackles, sustaineddead FROM site_players_stats WHERE player_id=".$dataPlayers[id]." GROUP BY player_id";
+        $resultStats = $con->query($sqlStats);
+        $stats = $resultStats->fetch_object();
 
-  $sqlCompetition = "SELECT MAX(m.competition_id) AS id, c.game_name AS name FROM site_matchs AS m INNER JOIN site_competitions AS c ON c.id = m.competition_id WHERE (m.team_id_1=".$id." OR m.team_id_2=".$id.") LIMIT 1";
-  $resultCompetition = mysqli_query($con, $sqlCompetition);
-  $Competition = mysqli_fetch_object($resultCompetition);
-  $team->competition = $Competition;
+        $dataPlayers[stats] = $Stats;
+        array_push($players, $dataPlayers);
+    }
+    $team->players = $players;
 
-  $Players = [];
-  $sqlPlayers = "SELECT id, name, param_name_type AS position, attributes, skills, casualties, level, xp, dead, fired FROM site_players WHERE team_id=".$id;
+    //Get coach
+    $sqlCoach = 'SELECT name FROM site_coachs WHERE id='.$team->coach_id;
+    $resultCoach = $con->query($sqlCoach);
+    $coach = $resultCoach->fetch_row();
+    $team->coach = $coach[0];
 
-  $resultPlayers = mysqli_query($con, $sqlPlayers);
-  while($dataPlayers = mysqli_fetch_array($resultPlayers,MYSQLI_ASSOC)) {
+};
 
-    $sqlStats = "SELECT SUM(matchplayed) AS matchplayed, SUM(mvp) AS mvp, SUM(inflictedpasses) AS inflictedpasses, SUM(inflictedcatches) AS inflictedcatches, SUM(inflictedinterceptions) AS inflictedinterceptions, SUM(inflictedtouchdowns) AS inflictedtouchdowns, SUM(inflictedcasualties) AS inflictedcasualties, SUM(inflictedstuns) AS inflictedstuns, SUM(inflictedko) AS inflictedko, SUM(inflictedinjuries) AS inflictedinjuries, SUM(inflicteddead) AS inflicteddead, SUM(inflictedtackles) AS inflictedtackles, SUM(inflictedmeterspassing) AS inflictedmeterspassing, SUM(inflictedmetersrunning) AS inflictedmetersrunning, SUM(sustainedinterceptions) AS sustainedinterceptions, SUM(sustainedcasualties) AS sustainedcasualties, SUM(sustainedstuns) AS sustainedstuns, SUM(sustainedko) AS sustainedko, SUM(sustainedinjuries) AS sustainedinjuries, SUM(sustainedtackles) AS sustainedtackles, sustaineddead FROM site_players_stats WHERE player_id=".$dataPlayers[id]." GROUP BY player_id";
-    $resultStats = mysqli_query($con,$sqlStats);
-    $Stats = mysqli_fetch_object($resultStats);
+//Update team info
+function team_update($con,$params){
 
-    $dataPlayers[stats] = $Stats;
-    array_push($Players, $dataPlayers);
-  }
-  $team->players = $Players;
+    $request = 'http://web.cyanide-studio.com/ws/bb2/team/?key='.$params[0].'&id='.$params[1];
+    $response  = file_get_contents($request);
+    $json = json_decode($response);
+    $team = $json->team;
+    $roster = $json->roster;
 
-  $Articles = [];
+    //Get current DB info
+    $team_bbbl = $con->query("SELECT id FROM site_teams WHERE cyanide_id = ".$team->id)->fetch_row();
+    $players_control = [];
+    $players_control_query = $con->query("SELECT id FROM site_players WHERE cyanide_id IS NOT NULL AND dead != 1 AND fired != 1 AND team_id = ".$team_bbbl[0]);
+    while($row = $players_control_query->fetch_array(MYSQLI_NUM)){
+    $players_control[] = $row[0];
+    };
 
-  $Coach = [];
-  $sqlCoach = 'SELECT name FROM site_coachs WHERE id='.$team->coach_id;
-  $resultCoach = mysqli_query($con, $sqlCoach);
-  while($Coach = mysqli_fetch_row($resultCoach)) {
-   $team->coach = $Coach[0];
-  }
+    //Update team info
+    $sql_team = "UPDATE site_teams SET
+      param_id_race = ".$team->idraces.",
+      apothecary = ".$team->apothecary.",
+      assistantcoaches = ".$team->assistantcoaches.",
+      cheerleaders = ".$team->cheerleaders.",
+      cash = '".$team->cash."',
+      rerolls = '".$team->rerolls."',
+      popularity = ".$team->popularity.",
+      value = ".$team->value.",
+      stadium_level = ".$team->stadiumlevel.",
+      leitmotiv = '".str_replace("'","\'",$team->leitmotiv)."'
+      WHERE cyanide_id = '".$team->id."'";
+    $con->query($sql_team);
 
-  echo json_encode($team,JSON_NUMERIC_CHECK);
-  die();}
+    foreach ( $roster as $player ) {
+        //Save players
+        $sqlPlayerID = "SELECT id FROM site_players WHERE name='".str_replace("'","\'",$player->name)."' AND team_id = ".$team_bbbl[0];
+        $resultPlayerID = $con->query($sqlPlayerID);
+        $playerID = $resultPlayerID->fetch_row();
+        //Update
+        if ( $playerID[0] > 0 ){
+            $sqlUpdatePlayer = "UPDATE site_players SET
+              cyanide_id = ".$player->id.",
+              level = ".$player->level.",
+              xp = CASE WHEN ".$player->xp." > 0 THEN ".$player->xp." ELSE xp END,
+              attributes = '".json_encode($player->attributes)."',
+              skills = '".json_encode($player->skills)."',
+              casualties = '".json_encode($player->casualties_state)."',
+              dead = IFNULL('".$player->stats->sustaineddead."',0)
+              WHERE id = ".$playerID[0];
+            $con->query($sqlUpdatePlayer);
+            $playersControl = array_diff($playersControl, array($playerID[0]));
+        }
+        //Create
+        else {
+            if( $player->id ){
+                $sql_player = "INSERT INTO site_players (cyanide_id, team_id, param_name_type, name, level, xp, attributes, skills, dead, casualties)
+                VALUES (".$player->id.",".$team_bbbl[0].",'".$player->type."','".str_replace("'","\'",$player->name)."',".$player->level.",".$player->xp.",'".json_encode($player->attributes)."','".json_encode($player->skills)."',0,'".json_encode($player->casualties_state)."')";
+                $con->query($sql_player);
+            }
+        };
+    }
+
+    //Update fired/sold players
+    foreach ( $players_control as $player ){
+        $sql_fired = "UPDATE site_players SET fired = 1 WHERE id=".$player;
+        $con->query($sql_fired);
+    }
+
+    //managing old teams
+    $sql_fired = "UPDATE site_players SET fired = 1 WHERE team_id = ".$team_bbbl[0]." AND cyanide_id IS NULL";
+    $con->query($sql_fired);
+
+    return $team_bbbl[0];
+};
+
 ?>

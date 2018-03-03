@@ -1,14 +1,25 @@
 <?php
 function competition_update($con,$params){
+	var_dump($params);
+	if(count($params[4]) != 0){
+		echo "string";
+		competition_update_matches($con,$params);
+	}
+	elseif ($params[5] == 'swiss') {
+		competition_next_day($con,$params);
+	}
+};
+
+function competition_update_matches($con,$params){
 	mysqli_set_charset($con,'utf8');
-	var_dump($params[2]);
-	$request = 'http://web.cyanide-studio.com/ws/bb2/contests/?key='.$params[0].'&competition='.urlencode($params[1]).'&status=played&league=BBBL';
+
+	$request = 'http://web.cyanide-studio.com/ws/bb2/contests/?key='.$params[0].'&league='.urlencode($params[1]).'&competition='.urlencode($params[2]).'&status=played';
 	$response  = file_get_contents($request);
 	$played = json_decode($response);
 
 	foreach ($played->upcoming_matches as $game) {
 		var_dump($game->contest_id);
-		if(in_array($game->contest_id, $params[2])){
+		if(in_array($game->contest_id, $params[3])){
 
 			$request_2 = 'http://web.cyanide-studio.com/ws/bb2/match/?key='.$params[0].'&uuid='.$game->match_uuid;
 			$response_2  = file_get_contents($request_2);
@@ -76,4 +87,39 @@ function competition_update($con,$params){
 	payment($con, $params[3]);
 
 };
+
+function competition_next_day($con,$params){
+
+	$request = "http://web.cyanide-studio.com/ws/bb2/contests/?key=".$params[0]."&league=".urlencode($params[1])."&competition=".urlencode($params[2])."&exact=1&status=scheduled&round=".$params[6];
+	$response  = file_get_contents($request);
+	$schedule = json_decode($response);
+
+	//Saving matches
+	foreach ($schedule->upcoming_matches as $match) {
+		$teams = [];
+		foreach ($match->opponents as $key=>$opponent) {
+			$sqlTeam = "SELECT id FROM site_teams WHERE cyanide_id = '".$opponent->team->id."'";
+			$resultTeam = $con->query($sqlTeam);
+			$team = $resultTeam->fetch_row();
+			if ( $team[0] == 0){
+				$sqlTeam= "INSERT INTO site_teams ( name, cyanide_id, coach_id, active, value, leitmotiv, logo)
+				VALUES ('".str_replace("'","\'",$opponent->team->name)."',  '".$opponent->team->id."',  '".$coach_id."', '1','".$opponent->team->value."','".str_replace("'","\'",$opponent->team->motto)."', '".$opponent->team->logo."')";
+				$con->query($sqlTeam);
+				$teams[$key] = $con->insert_id;
+			}
+			else {
+				$sqlTeam = "UPDATE site_teams SET active=1 WHERE cyanide_id=".$opponent->team->id;
+				$con->query($sqlTeam);
+				$teams[$key] = $team[0];
+			};
+		}
+
+		$sqlMatch = "INSERT INTO site_matchs (contest_id, competition_id, round, team_id_1, team_id_2)
+		VALUES (".$match->contest_id.",".$params[3].",".$match->round.",".$teams[0].",".$teams[1].")";
+		echo $sqlMatch;
+		$con->query($sqlMatch);
+	}
+
+};
+
 ?>

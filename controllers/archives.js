@@ -12,7 +12,7 @@ LeagueManager.directive('archives', function() {
 				$scope.competition = undefined;
 			}
 			//Récupération des compétitions
-			$http.get('Backend/competitions.php?active=0').success(function(result) {
+			$http.get('Backend/routes.php?action=archives').success(function(result) {
 				$rootScope.archives = result;
 			});
 

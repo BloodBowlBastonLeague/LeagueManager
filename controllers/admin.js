@@ -67,7 +67,7 @@ LeagueManager.directive('admin', function() {
 			});
 
 
-			$http.get('http://web.cyanide-studio.com/ws/bb2/contests/?key=' + window.Cyanide_Key + '&status=scheduled&league=' + window.Cyanide_League + '&exact=1&competition=Coupe des architectes&round=1').success(function(result) {
+			$http.get('http://web.cyanide-studio.com/ws/bb2/contests/?key=' + window.Cyanide_Key + '&status=scheduled&league=' + window.Cyanide_League + '&exact=1').success(function(result) {
 				for (i = 0; i < result.upcoming_matches.length; i++) {
 					var competitionIdx = $scope.competitionsIG.map(function(e) {
 						return e.game_name;

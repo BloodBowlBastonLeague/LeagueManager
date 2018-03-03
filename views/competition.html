@@ -1,7 +1,7 @@
-<div class="row tabRow hidden-md-down" ng-if="competition.competition_mode!='Coupe' && competition.active==1">
+<!--div class="row tabRow hidden-md-down" ng-if="competition.competition_mode!='Coupe' && competition.active==1">
 	<div class="col-lg-4 firstTab" ng-if="competitions.length<7"></div>
 	<div class="col-lg-4 tab" ng-if="tab.id != competition.id" ng-repeat="tab in competitions" ng-click="goToPage('competition/'+tab.id)">{{tab.site_name}}</div>
-</div>
+</div-->
 <div class="row scroll">
 	<div ng-class="{'col-lg-7':competition.competition_mode!='Coupe','col-lg-5':competition.competition_mode=='Coupe'}">
 		<!--img class="banner" src="../resources/img/banners/{{competition.division}}.png"-->
@@ -146,8 +146,8 @@
 					<span ng-if="match.cyanide_id && matchDay.round == currentDay"> {{match.score_1}} - {{match.score_2}} </span>
 					<span ng-if="match.cyanide_id && matchDay.round != currentDay" ng-style="colours[0].color"> {{match.score_1}} - {{match.score_2}} </span>
 					<img class="teamLogo" src="resources/logo/Logo_{{match.logo_2}}.png"><br/>
-					<div class="calendarOdds" ng-if="betsAlreadyDone(match)" ng-bind-html="ratio(match)"></div>
-					<div class="calendarBetsAd" ng-if="!betsAlreadyDone(match)"><img class="betLogo" src="resources/bets/BetLogo.png"></div>
+					<div class="calendarOdds" ng-if="matchDay.round >= currentDay && betsAlreadyDone(match)" ng-bind-html="ratio(match)"></div>
+					<div class="calendarBetsAd" ng-if="matchDay.round >= currentDay && !betsAlreadyDone(match)"><img class="betLogo" src="resources/bets/BetLogo.png"></div>
 				</div>
 			</div>
 		</div>
