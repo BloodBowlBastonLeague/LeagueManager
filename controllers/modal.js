@@ -12,19 +12,11 @@ LeagueManager.directive("modal", function() {
 			$scope.displayOff = function() {
 				$scope.modal = {};
 			};
-
-			//Affichage/masquage des articles
-			$scope.displayReader = function(article) {
-				$scope.article = article;
-				//Affichage/masquage de la liseuse
-				$scope.modal.subject = "reader";
-			};
-
-			//Affichage/masquage de la connexion
-			$scope.displayConnector = function() {
-				//Affichage/masquage de la liseuse
-				$scope.modal.subject = "connector";
-			};
+//Affichage/masquage de la connexion
+$scope.displayConnector = function() {
+	//Affichage/masquage de la liseuse
+	$scope.modal.subject = "connector";
+};
 
 			$scope.displayMatchForm = function(id, team1, team2) {
 				$scope.modal.subject = "match";

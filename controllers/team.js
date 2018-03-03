@@ -52,11 +52,6 @@ LeagueManager.directive('team', function() {
 				}
 				$scope.helmet_svg = 'resources/helmet/helmet_' + $scope.team.param_id_race + '.svg';
 
-
-
-
-				$scope.teamArticle();
-
 				//Classement
 				$http.get('Backend/competition.php?id=' + $scope.team.competition.id).success(function(result) {
 					$scope.standing = result.standing;
@@ -66,12 +61,6 @@ LeagueManager.directive('team', function() {
 				});
 			});
 
-			//Gestion du RP
-			$scope.teamArticle = function(categories) {
-				for (i = 0; i < $scope.team.articles.length; i++) {
-					$scope.team.articles[i].summary = $scope.team.articles[i].text.substr(0, $scope.team.articles[i].text.indexOf('<br/><br/>'))
-				}
-			};
 
 			$scope.showPlayer = function(id) {
 				if (id) {

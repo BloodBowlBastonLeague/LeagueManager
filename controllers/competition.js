@@ -248,7 +248,6 @@ LeagueManager.directive('competition', function() {
 			//Mise à jour de la competition
 			$scope.competitionUpdate = function(league, competition_name) {
 				$scope.saving = true;
-				console.log($scope.matchesToSave);
 				var params = [window.Cyanide_Key, window.Cyanide_League, competition_name, $scope.competition.id, $scope.matchesToSave, $scope.competition.format, $scope.calendar.length + 1];
 
 				$http.post('Backend/routes.php?action=competitionUpdate', params).then(function(result) {

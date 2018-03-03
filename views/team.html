@@ -1,6 +1,7 @@
 <div class="row">
 	<div class="col-md-11"></div>
-	<div class="col-md-1" ng-class="{tab : admin==1}">
+	<div class="col-md-1" ng-class="{firstTab : admin==1}">
+		<div class="tab"
 		<div class="label" ng-click="teamUpdate()" ng-if="admin==1">Reset</div>
 	</div>
 	<div class="col-lg-7">
@@ -117,11 +118,6 @@
 								<div ng-include="'resources/img/Button_1.svg'"></div>
 								<div class="label">Archives</div>
 							</div>
-		</div>
-		<div class="plain prime" ng-repeat="article in team.articles | orderBy:'- publication'" id="chapter{{day.journee}}" ng-style="colours[0].border">
-			<div ng-style="colours[0].color" class="articleDate">{{article.publication | date:'d MMM yyyy'}}</div>
-			<h3 ng-style="colours[0].color" ng-bind-html="article.title"></h3>
-			<p><span ng-bind-html="article.summary"></span> <a ng-style="colours[0].color" ng-click="displayReader(article)">En savoir plus</a></p>
 		</div>
 	</div>
 </div>

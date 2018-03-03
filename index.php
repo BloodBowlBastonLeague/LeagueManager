@@ -66,7 +66,6 @@
 
   <div id="Main" class="container-fluid" ng-class="{ blur : reader }">
     <ng-view></ng-view>
-    <!-- Articles plein écran -->
     <modal></modal>
   </div>
 
