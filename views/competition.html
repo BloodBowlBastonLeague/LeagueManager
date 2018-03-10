@@ -1,10 +1,10 @@
-<div class="row tabRow hidden-md-down" ng-if="competition.competition_mode!='Coupe' && competition.active==1">
+<!--div class="row tabRow hidden-md-down" ng-if="competition.competition_mode!='Coupe' && competition.active==1">
 	<div class="col-lg-4 firstTab" ng-if="competitions.length<7"></div>
 	<div class="col-lg-4 tab" ng-if="tab.id != competition.id" ng-repeat="tab in competitions" ng-click="goToPage('competition/'+tab.id)">{{tab.site_name}}</div>
-</div>
+</div-->
 <div class="row scroll">
 	<div ng-class="{'col-lg-7':competition.competition_mode!='Coupe','col-lg-5':competition.competition_mode=='Coupe'}">
-		<img class="banner" src="../resources/img/banners/{{competition.division}}.png">
+		<!--img class="banner" src="../resources/img/banners/{{competition.division}}.png"-->
 
 		<!-- Championship / Championnat -->
 		<div class="plain prime main" ng-if="competition.competition_mode!='Coupe'" ng-style="colours[0].border" ng-cloak>
@@ -22,10 +22,11 @@
 						<th class="text-center hidden-xs-down">D</th>
 						<th class="text-center hidden-sm-down">TD</th>
 						<th class="text-center hidden-sm-down">S</th>
+
 					</tr>
 				</thead>
 				<tbody class="table-hover">
-					<tr ng-repeat="team in competition.standing | orderBy:['-Pts','-confrontation','-V' ]" class="zelda" ng-click="goToPage('team/' + team.id)" ng-style="colours[0].border">
+					<tr ng-repeat="team in competition.standing | orderBy:['-Pts','-V','-TDS']" class="zelda" ng-class="{gold: $index+1 == 1, silver: $index+1 == 2, bronze: $index+1 == 3}" ng-click="goToPage('team/' + team.cyanide_id)" ng-style="colours[0].border">
 						<td class="text-center">{{$index+1}}</td>
 						<td class="text-left"><img class="teamLogo" src="resources/logo/Logo_{{team.logo}}.png"> {{team.team}}</td>
 						<td class="text-left hidden-sm-down">{{team.coach}}</td>
@@ -35,6 +36,7 @@
 						<td class="text-center hidden-xs-down">{{team.D}}</td>
 						<td class="text-center hidden-sm-down">{{team.TD}}</td>
 						<td class="text-center hidden-sm-down">{{team.S}}</td>
+
 					</tr>
 				</tbody>
 			</table>
@@ -59,7 +61,7 @@
 					</tr>
 				</thead>
 				<tbody class="table-hover">
-					<tr ng-repeat="team in competition.standing | orderBy:'standing'" ng-if="team.D==0" class="link" ng-click="goToPage('team/' + team.id)" ng-style="colours[0].border">
+					<tr ng-repeat="team in competition.standing | orderBy:'standing'" ng-if="team.D==0" class="link" ng-click="goToPage('team/' + team.cyanide_id)" ng-style="colours[0].border">
 						<td class="text-center">{{$index+1}}</td>
 						<td class="text-left"><img class="teamLogo" src="resources/logo/Logo_{{team.logo}}.png"> {{team.team}}</td>
 						<td class="text-left hidden-sm-down">{{team.coach}}</td>
@@ -82,7 +84,7 @@
 					</tr>
 				</thead>
 				<tbody class="table-hover">
-					<tr ng-repeat="team in competition.standing | orderBy:'standing'" ng-if="team.D>0" class="link" ng-click="goToPage('team/' + team.id)" ng-style="colours[0].border">
+					<tr ng-repeat="team in competition.standing | orderBy:'standing'" ng-if="team.D>0" class="link" ng-click="goToPage('team/' + team.cyanide_id)" ng-style="colours[0].border">
 						<td class="text-center">{{$index+1}}</td>
 						<td class="text-left"><img class="teamLogo" src="resources/logo/Logo_{{team.logo}}.png"> {{team.team}}</td>
 						<td class="text-left hidden-sm-down">{{team.coach}}</td>
@@ -138,14 +140,14 @@
 			<h3 ng-if="matchDay.round != currentDay" ng-style="colours[0].color" ng-click="sortBy('day')" class="zelda"><span ng-if="competition.competition_mode=='Coupe'">{{finals[matchDay.round-1]}}</span><span ng-if="competition.competition_mode!='Coupe'">Journée {{matchDay.round}}</span> <div class="triangle" ng-class="{down: reverse}" ng-style="colours[0].border"></div></h3>
 			<div class="match x-center">
 				<div title="{{match.name_1}} VS {{match.name_2}}" class="vs col-lg-6 col-xl-4" ng-class="{zelda:match.id}" ng-repeat="match in matchDay.matchs" ng-click="ifClicked(match)" ng-right-click="rightClicked(match)">
-					<div ng-if="!match.cyanide_id"><p>{{match.started | date:'dd MMM HH:mm' : '+000' }}</p></div>
+					<div><p>{{match.started | date:'dd MMM HH:mm' : '+000' }}</p></div>
 					<img class="teamLogo" src="resources/logo/Logo_{{match.logo_1}}.png">
 					<img class="versus" ng-if="match.cyanide_id==null" src="../resources/img/vs.png">
 					<span ng-if="match.cyanide_id && matchDay.round == currentDay"> {{match.score_1}} - {{match.score_2}} </span>
 					<span ng-if="match.cyanide_id && matchDay.round != currentDay" ng-style="colours[0].color"> {{match.score_1}} - {{match.score_2}} </span>
 					<img class="teamLogo" src="resources/logo/Logo_{{match.logo_2}}.png"><br/>
-					<div class="calendarOdds" ng-if="betsAlreadyDone(match) && !match.cyanide_id" ng-bind-html="ratio(match)"></div>
-					<div class="calendarBetsAd" ng-if="!betsAlreadyDone(match) && !match.cyanide_id"><img class="betLogo" src="resources/bets/BetLogo.png"></div>
+					<div class="calendarOdds" ng-if="matchDay.round >= currentDay && betsAlreadyDone(match)" ng-bind-html="ratio(match)"></div>
+					<div class="calendarBetsAd" ng-if="matchDay.round >= currentDay && !betsAlreadyDone(match)"><img class="betLogo" src="resources/bets/BetLogo.png"></div>
 				</div>
 			</div>
 		</div>

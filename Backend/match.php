@@ -1,57 +1,106 @@
 <?php
-$id = $_GET['id'];
-define('IN_PHPBB', true);
-$phpbb_root_path = (defined('PHPBB_ROOT_PATH')) ? PHPBB_ROOT_PATH : './../Forum/';
-$phpEx = substr(strrchr(__FILE__, '.'), 1);
 
-include($phpbb_root_path . 'common.' . $phpEx);
-include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
-include($phpbb_root_path . 'config.' . $phpEx);
+//Retrieve match info
+function match_fetch($con,$id){
+    mysqli_set_charset($con,'utf8');
 
-$con = mysqli_connect($dbhost,$dbuser,$dbpasswd,$dbname);
+    $sqlMatch = "SELECT site_matchs.cyanide_id,
+          site_matchs.contest_id,
+          site_matchs.competition_id,
+          site_matchs.forum_url,
+          site_matchs.stadium,
+          site_matchs.round,
+          DATE_ADD(site_matchs.started, INTERVAL 500 YEAR) AS started,
+          site_matchs.json,
+          site_matchs.team_id_1,
+          site_matchs.team_id_2,
+          t1.name AS team_1_name,
+          t2.name AS team_2_name,
+          t1.logo AS team_1_logo,
+          t2.logo AS team_2_logo,
+          t1.color_1 AS team_1_color_1,
+          t1.color_2 AS team_1_color_2,
+          t2.color_1 AS team_2_color_1,
+          t2.color_2 AS team_2_color_2,
+          t1.coach_id AS coach_id_1,
+          t2.coach_id AS coach_id_2
+          FROM site_matchs
+          LEFT JOIN site_teams as t1 ON t1.id=site_matchs.team_id_1
+          LEFT JOIN site_teams as t2 ON t2.id=site_matchs.team_id_2
+          LEFT JOIN site_coachs as c1 ON c1.id=t1.coach_id
+          LEFT JOIN site_coachs as c2 ON c2.id=t2.coach_id
+          WHERE site_matchs.id=".$id;
 
-if (!$con) { die('Could not connect: ' . mysqli_error()); }
-mysqli_set_charset($con,'utf8');
+    $resultMatch = $con->query($sqlMatch);
+    $match = $resultMatch->fetch_object();
 
-$sqlMatch = "SELECT m.cyanide_id,
-					m.competition_id,
-					l.forum_id,
-					m.stadium,
-					DATE_ADD(m.started, INTERVAL 500 YEAR) AS started,
-					m.json,
-					m.team_id_1,
-					m.team_id_2,
-					t1.name AS team_1_name,
-					t2.name AS team_2_name,
-					t1.logo AS team_1_logo,
-					t2.logo AS team_2_logo,
-					t1.color_1 AS team_1_color_1,
-					t1.color_2 AS team_1_color_2,
-					t2.color_1 AS team_2_color_1,
-					t2.color_2 AS team_2_color_2,
-					c1.name AS coach_1,
-					c2.name AS coach_2,
-					c1.id AS coach_id_1,
-					c2.id AS coach_id_2
-					FROM site_matchs AS m
-					LEFT JOIN site_teams as t1 ON t1.id=m.team_id_1
-					LEFT JOIN site_teams as t2 ON t2.id=m.team_id_2
-					LEFT JOIN site_coachs as c1 ON c1.id=t1.coach_id
-					LEFT JOIN site_coachs as c2 ON c2.id=t2.coach_id
-					LEFT JOIN site_forum_links AS l ON l.competition_id=m.competition_id AND l.round=m.round
-					WHERE m.id=".$id;
-$resultMatch = mysqli_query($con, $sqlMatch);
-while($dataMatch = mysqli_fetch_object($resultMatch)) {
-	$var = $dataMatch;
-	$var->bets = [];
-	$sqlBets = "SELECT p.match_id, m.score_1, m.score_2, p.team_score_1, p.team_score_2, c.name FROM site_matchs AS m, site_bets AS p, site_coachs AS c WHERE c.id=p.coach_id AND p.match_id=m.id AND match_id=".$id;
-	$resultBets = mysqli_query($con, $sqlBets);
-	while($dataBets = mysqli_fetch_array($resultBets,MYSQLI_ASSOC)) {
 
-		array_push($var->bets, $dataBets);
-	}
-}
+    $match->bets = [];
+    $sqlBets = "SELECT p.match_id, m.score_1, m.score_2, p.team_score_1, p.team_score_2, c.name FROM site_matchs AS m, site_bets AS p, site_coachs AS c WHERE c.id=p.coach_id AND p.match_id=m.id AND match_id=".$id;
+    $resultBets = $con->query($sqlBets);
 
-	echo json_encode($var);
-	die();
+    while($dataBets = $resultBets->fetch_assoc()) {
+        array_push($match->bets, $dataBets);
+
+    };
+
+    echo json_encode($match);
+
+};
+
+//Set date
+function match_set_date($con, $params){
+    mysqli_set_charset($con,'utf8');
+    $sqlMatch = "UPDATE site_matchs SET started = str_to_date('".$params->started."','%d/%m/%Y %H:%i') WHERE id=".$params->id;
+    $con->query($sqlMatch);
+    $con->close();
+};
+
+//Save match
+function match_save($con, $Cyanide_Key, $params, $reset){
+
+    $request = 'http://web.cyanide-studio.com/ws/bb2/match/?key='.$Cyanide_Key.'&uuid='.$params[0];
+    $response  = file_get_contents($request);
+    $json = str_replace("\\","\\\\",$response);
+    $matchDetails = json_decode($response);
+
+    //Save match
+    $sqlMatch = "UPDATE site_matchs SET
+      cyanide_id = '".$matchDetails->uuid."',
+      started = '".$matchDetails->match->started."',
+      score_1 = '".$matchDetails->match->teams[0]->score."',
+      nbsupporters_1 = '".$matchDetails->match->teams[0]->nbsupporters."',
+      possessionball_1 = '".$matchDetails->match->teams[0]->possessionball."',
+      occupationown_1 = '".$matchDetails->match->teams[0]->occupationown."',
+      occupationtheir_1 = '".$matchDetails->match->teams[0]->occupationtheir."',
+      sustainedcasualties_1 = '".$matchDetails->match->teams[0]->sustainedcasualties."',
+      sustainedko_1 = '".$matchDetails->match->teams[0]->sustainedko."',
+      sustainedinjuries_1 = '".$matchDetails->match->teams[0]->sustainedinjuries."',
+      sustaineddead_1 = '".$matchDetails->match->teams[0]->sustaineddead."',
+      score_2 = '".$matchDetails->match->teams[1]->score."',
+      nbsupporters_2 = '".$matchDetails->match->teams[1]->nbsupporters."',
+      possessionball_2 = '".$matchDetails->match->teams[1]->possessionball."',
+      occupationown_2 = '".$matchDetails->match->teams[1]->occupationown."',
+      occupationtheir_2 = '".$matchDetails->match->teams[1]->occupationtheir."',
+      sustainedcasualties_2 = '".$matchDetails->match->teams[1]->sustainedcasualties."',
+      sustainedko_2 = '".$matchDetails->match->teams[1]->sustainedko."',
+      sustainedinjuries_2 = '".$matchDetails->match->teams[1]->sustainedinjuries."',
+      sustaineddead_2 = '".$matchDetails->match->teams[1]->sustaineddead."',
+      json = '".str_replace("'","\'",$json)."'
+      WHERE contest_id=".$params[1];
+    $con->query($sqlMatch);
+
+    if($reset == 1){
+        $con->query("DELETE FROM site_players_stats WHERE cyanide_id_match='".$matchDetails->uuid."'");
+    };
+
+    foreach ($matchDetails->match->teams as $team){
+        //update team
+        $teamBBBL = team_update($con, $Cyanide_Key, $team->idteamlisting);
+        //add players stats
+        foreach ($team->roster as $player) {
+            player_stats_save($con, $player, $matchDetails->uuid);
+        };
+    };
+};
 ?>

@@ -1,4 +1,40 @@
 <?php
+/**
+ * Get the leaders in an area of the game
+ * @param $con la connexion à la BDD
+ */
+
+function league($con){
+
+    $sql_leagueStats = "SELECT SUM(sustainedcasualties) AS casualties, SUM(sustaineddead) AS death, SUM(inflictedtouchdowns) AS TD FROM site_players_stats";
+    $res_leagueStats = $con->query($sql_leagueStats);
+    $leagueStats = $res_leagueStats->fetch_object();
+
+    $sql_coachs = "SELECT COUNT(*) FROM site_coachs WHERE active=1";
+    $res_coachs = $con->query($sql_coachs);
+    $coachs = $res_coachs->fetch_row();
+    $leagueStats->coachs = $coachs[0];
+
+    $sql_matches = "SELECT COUNT(*) FROM site_matchs WHERE started IS NOT NULL";
+    $res_matches = $con->query($sql_matches);
+    $matches = $res_matches->fetch_row();
+    $leagueStats->matches = $matches[0];
+
+    //Leaderboards
+    $competitions = [];
+    $sql_competitions =  'SELECT id FROM site_competitions WHERE active=1';
+    $res_competitions = $con->query($sql_competitions);
+    while($data = $res_competitions->fetch_assoc()){
+      array_push($competitions, $data[id]);
+    }
+    $leagueStats->playersStats = [];
+    $stats = ['scorer','thrower','tackler','killer','intercepter','catcher','punchingball'];
+    foreach($stats as $stat){
+        array_push($leagueStats->playersStats, leaders($con,[$stat,$competitions,1]));
+    }
+
+    return $leagueStats;
+}
 
 /**
  * Get the leaders in an area of the game
@@ -49,11 +85,10 @@ function leaders($con, $params){
     }
     //Manage competition filter
     if($params[2]){
-$where = " AND s.match_id IN (SELECT id FROM site_matchs WHERE competition_id IN (".implode(",",$params[1])."))";
+        $where = " AND s.match_id IN (SELECT id FROM site_matchs WHERE competition_id IN (".implode(",",$params[1])."))";
     }
     else{
-      $where = " AND s.match_id IN (SELECT id FROM site_matchs WHERE competition_id IN (".$params[1]."))";
-
+        $where = " AND s.match_id IN (SELECT id FROM site_matchs WHERE competition_id IN (".$params[1]."))";
     }
 
     $sqlPlayers = "SELECT p.id as player, p.name, t.id AS team_id, t.name AS team, t.logo".$fields."

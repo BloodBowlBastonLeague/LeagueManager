@@ -80,7 +80,8 @@ LeagueManager.directive('match1', function() {
 					'height': '100%',
 					'background': 'url(../resources/logo/Logo_' + $scope.teams[0].teamlogo + '.png) center center no-repeat',
 					'background-size': '50% auto',
-					'z-index': '-1'
+					'z-index': '-1',
+					'opacity': '0.1'
 				}
 				$scope.helmet_1_svg = '../resources/helmet/helmet_' + $scope.teams[0].idraces + '.svg';
 				$('.helmet2 .helmet-logo').css({
@@ -93,7 +94,8 @@ LeagueManager.directive('match1', function() {
 					'height': '100%',
 					'background': 'url(../resources/logo/Logo_' + $scope.teams[1].teamlogo + '.png) center center no-repeat',
 					'background-size': '50% auto',
-					'z-index': '-1'
+					'z-index': '-1',
+					'opacity': '0.1'
 				}
 				$scope.helmet_2_svg = '../resources/helmet/helmet_' + $scope.teams[1].idraces + '.2.svg';
 			});

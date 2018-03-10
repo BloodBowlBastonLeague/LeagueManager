@@ -20,15 +20,8 @@
         <br/>
         Nom sur le site: <input type="text" ng-model="newCompetition.site_name"><br/>
         Division &amp; poule : <select ng-model="newCompetition.site_order" >
-          <option value="0" ng-selected="newCompetition.site_order==0">Elite A</option>
-          <option value="1">Elite B</option>
-          <option value="2">Prestige A</option>
-          <option value="3">Prestige B</option>
-          <option value="4">Prestige C</option>
-          <option value="5">Espoir A</option>
-          <option value="6">Espoir B</option>
-          <option value="7">Espoir C</option>
-          <option value="8">BB Cup</option>
+          <option value="0" ng-selected="newCompetition.site_order==0">Competition principale</option>
+          <option value="1">Tournoi annexe</option>
         </select><br/>
         Saison : <select ng-model="newCompetition.season" >
           <option value="Hiver">Hiver</option>
@@ -39,10 +32,10 @@
         <br/>
         Partie de saison : <select ng-model="newCompetition.competition_mode">
           <option value="Partie 1">Saison complète</option>
-          <option value="Partie 1">Partie 1</option>
-          <option value="Partie 2">Partie 2</option>
           <option value="Qualification">Qualifications</option>
           <option value="Coupe">Coupe</option>
+          <option value="Partie 1">Partie 1</option>
+          <option value="Partie 2">Partie 2</option>
         </select><br/>
         Champion : <select ng-model="newCompetition.champion">
           <option value="0"ng-selected="newCompetition.champion==0">Non</option>

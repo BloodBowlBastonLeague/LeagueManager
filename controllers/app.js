@@ -13,17 +13,11 @@ LeagueManager.config(function($routeProvider) {
 		.when("/competition/:ID", {
 			template: '<competition></competition>'
 		})
-		.when("/league", {
-			template: '<league></league>'
-		})
 		.when("/team/:ID", {
 			template: '<team></team>'
 		})
 		.when("/match/:ID", {
 			template: '<match></match>'
-		})
-		.when("/lepoing/:ID", {
-			template: '<lepoing></lepoing>'
 		})
 		.when("/forum", {
 			templateUrl: '/Forum/index.php'
@@ -46,23 +40,25 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 	$rootScope.competitions = [];
 	$rootScope.finalsTemplate = ['Finale', 'Demi-Finales', 'Quart de finales', '8emes de finales', '16emes de finales', '32emes de finales'];
 
-	//Récupération des compétitions
-	$http.get('Backend/competitions.php?active=1').success(function(result) {
-		$rootScope.competitions = result;
-	});
-
-	//Récupération des statistiques de la ligue
-	$http.get('Backend/generic.php').success(function(result) {
-		$rootScope.leagueStats = result;
+	//Récupération des informations de base
+	$http.get('Backend/routes.php?action=boot').success(function(result) {
+		$rootScope.parameters = result.parameters;
+		$rootScope.competitions = result.competitions;
+		$rootScope.leagueStats = result.stats;
 		$rootScope.$broadcast('statsSuccess');
 	});
-	//Récupération des parametres
-	$http.get('Backend/parameters.php').success(function(result) {
-		$rootScope.parameters = result;
-	});
+
+	//Récupération des liens compétitions-forums
+	$http
+		.get("resources/json/competition_forum.json")
+		.success(function(result) {
+			$rootScope.competitionForum = result;
+		});
+
 
 	$rootScope.goToPage = function(page) {
 		$('#Logo').removeAttr('style');
+		$('.navbar').removeAttr('style');
 		$rootScope.$broadcast('routeChangeSuccess');
 		$location.path(page);
 	};
@@ -79,16 +75,6 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 		$location.path(prevUrl);
 	};
 
-	$rootScope.randomArticle = function(categories) {
-		//Récupération des articles en JSON (temporaire)
-		var selection = [];
-		for (i = 0; i < Object.keys($rootScope.articles).length; i++) {
-			if ($rootScope.articles[i].random == 1 && categories.indexOf($rootScope.articles[i].category) != -1) {
-				selection.push($rootScope.articles[i]);
-			}
-		}
-		return selection[Math.floor(Math.random() * selection.length)];
-	};
 
 	$rootScope.translate = function(param) {
 		var idx = $rootScope.parameters.map(function(e) {
@@ -99,9 +85,9 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 
 	//Gestion des couleurs
 	//Couleurs de bases du site
-	$rootScope.colours = ['#00558D', '#DD7C00'];
+	$rootScope.colours = ['#00558D', '#91BFDC'];
 	$rootScope.colourA = "#00558D";
-	$rootScope.colourB = "#DD7C00";
+	$rootScope.colourB = "#91BFDC";
 	//Mise à jours de couleurs (pour les équipes)
 	$rootScope.setColours = function(args) {
 		for (i = 0; i < args.length; i++) {
@@ -123,11 +109,9 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 				'color': args[i],
 				'text-shadow': '-2px -2px #FFFFFF, 2px 2px #FFFFFF, 2px -2px #FFFFFF, -2px 2px #FFFFFF'
 			};
-		}
-		$rootScope.navbarColour = {
-			'background': '-webkit-linear-gradient(' + args[0] + ',#000000)',
-			'background': '-moz-linear-gradient(' + args[0] + ',#000000)',
-			'background': 'linear-gradient(' + args[0] + ',#000000)'
+			$rootScope.navbarColour = {
+				'border-bottom': '3px solid' + args[i]
+			};
 		};
 	};
 	//Tri des listes

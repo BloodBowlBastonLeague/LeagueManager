@@ -19,15 +19,17 @@ LeagueManager.directive("match", function() {
 			];
 
 			$http
-				.get("Backend/match.php?id=" + $scope.matchID)
+				.post("Backend/routes.php?action=match", [$scope.matchID])
 				.success(function(result) {
 					var data = JSON.parse(result.json);
-
 					$rootScope.match = data.match;
+					$rootScope.match.round = result.round;
+
 					$rootScope.match.coach_id_1 = result.coach_id_1;
 					$rootScope.match.coach_id_2 = result.coach_id_2;
 					$rootScope.match.cyanide_id = result.cyanide_id;
 					$rootScope.match.competition_id = result.competition_id;
+					$rootScope.match.contest_id = result.contest_id;
 					$rootScope.match.started = result.started;
 					$rootScope.title = $rootScope.match.competitionname;
 					$scope.stadium = data.teams[0].stadiumname;
@@ -42,6 +44,11 @@ LeagueManager.directive("match", function() {
 					$scope.teams[1].color2 = result.team_2_color_2;
 					$rootScope.match.forum_id = result.forum_id;
 					$scope.bets = result.bets;
+
+					$scope.forum = $rootScope.competitionForum.filter(function(obj) {
+						return obj.id === $rootScope.match.competition_id;
+					});
+
 
 					//Récupération des couleurs - Fetching colours
 					for (i = 0; i < 2; i++) {
@@ -140,15 +147,12 @@ LeagueManager.directive("match", function() {
 						"resources/helmet/helmet_" + $scope.teams[1].idraces + ".2.svg";
 				});
 
-			$scope.matchRefresh = function() {
+			$scope.matchReset = function() {
 				if ($rootScope.admin == 1) {
-					$scope.displayMatchForm(
-						$scope.matchID,
-						$scope.teams[0].id,
-						$scope.teams[1].id
-					);
+					$http.post("Backend/routes.php?action=matchReset", [$rootScope.match.cyanide_id, $rootScope.match.contest_id, $scope.matchID]);
 				}
 			};
+
 		}
 	};
 });

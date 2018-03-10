@@ -16,7 +16,7 @@
         <div class="helmet_png helmet-{{teams[0].idraces}}"></div>
         <div class="helmet-logo"></div>
     </div>
-    <div class="plain prime content noselect text-right" ng-if="!activePlayer" ng-style="colours[2].border">
+    <div class="plain prime board content noselect text-right" ng-if="!activePlayer" ng-style="colours[2].border">
       <h2><a ng-style="colours[2].color" href="http://bbbl.fr/#/team/{{match.teams[0].id}}" target="_blank">{{teams[0].teamname}}</a></h2>
       <div id="ScoreLeft" class="score" ng-style="colours[2].textborder">{{teams[0].score}}</div>
       <div class="teamBoard">
@@ -32,7 +32,7 @@
         <div class="helmet_png helmet-{{teams[1].idraces}}"></div>
         <div class="helmet-logo"></div>
     </div>
-    <div class="plain prime content noselect text-left" ng-if="!activePlayer" ng-style="colours[4].border">
+    <div class="plain prime board content noselect text-left" ng-if="!activePlayer" ng-style="colours[4].border">
       <h2><a ng-style="colours[4].color" href="http://bbbl.fr/#/team/{{match.teams[1].id}}" target="_blank">{{teams[1].teamname}}</a></h2>
       <div id="ScoreRight" class="score" ng-style="colours[4].textborder">{{match.teams[1].score}}</div>
       <div class="teamBoard">
@@ -45,7 +45,7 @@
 </div>
 <div class="row adapt">
   <div class="col-md-4">
-    <div class="plain prime text-center" ng-style="colours[2].border">
+    <div class="plain prime board text-center" ng-style="colours[2].border">
       <div ng-style="team_1_BG"></div>
       <h3 ng-style="colours[2].color">Statistiques</h3>
       <ul class="stats list-unstyled">
@@ -90,7 +90,7 @@
     </div>
   </div>
   <div class="col-md-4">
-    <div class="plain prime text-center" ng-style="colours[4].border">
+    <div class="plain prime board text-center" ng-style="colours[4].border">
       <div ng-style="team_2_BG"></div>
       <h3 ng-style="colours[4].color">Statistiques</h3>
       <ul class="stats list-unstyled">

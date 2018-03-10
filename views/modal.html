@@ -1,18 +1,5 @@
 <div id="veil" ng-show="modal.subject" ng-click="displayOff()"></div>
 
-<div id="Reader" class="container seconde" ng-if="modal.subject==='reader'" ng-click="" ng-style="colours[1].border">
-  <article ng-click="">
-    <h2 ng-bind-html="article.title" ng-style="colours[1].color"></h2>
-    <img ng-if="article.image == 1" src="resources/img/articles/article_{{article.article_id}}.jpg">
-    <p ng-bind-html="article.text"> </p>
-  </article>
-  <div class="spacer"></div>
-  <div class="button" ng-click="displayOff()">
-    <div ng-include="'resources/img/Button_1.svg'"></div>
-    <div class="label">fermer</div>
-  </div>
-</div>
-
 <div id="connect" class="container seconde" ng-if="modal.subject==='connector'" ng-click="" ng-style="colours[1].border">
   <form id="forumConnect" name="forumConnect" action="./Forum/ucp.php?mode=login" accept-charset='UTF-8' method='post' ng-style="colours[1].color">
     Nom d'utilisateur<br/>
@@ -28,20 +15,6 @@
       <div class="label">Login</div>
     </div>
   </form>
-</div>
-
-<div id="match" class="container seconde" ng-if="modal.subject==='match'" ng-style="colours[1].border">
-  <form id="matchSave" name="matchSave" ng-style="colours[1].color">
-    ID du match<br/>
-    <input type="text" ng-model="match.cyanide_id"><br/>
-    URL forum<br/>
-    <input type="text" ng-model="match.discussion"><br/>
-  </form>
-  <div class="spacer"></div>
-  <div class="button" ng-click="saveMatch(matchToSave,match.cyanide_id,match.discussion)">
-    <div ng-include="'resources/img/Button_1.svg'"></div>
-    <div class="label">Enregistrer</div>
-  </div>
 </div>
 
 <div id="team" class="container seconde main" ng-if="modal.subject==='team'" ng-click="" ng-style="modal.border">

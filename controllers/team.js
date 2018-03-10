@@ -11,8 +11,7 @@ LeagueManager.directive('team', function() {
 			$rootScope.orderFilter = 'position';
 			$rootScope.reverse = false;
 
-			//Récupération du classement en JSON (temporaire)
-			$http.get('Backend/team.php?id=' + $scope.teamID).success(function(result) {
+			$http.post('Backend/routes.php?action=team', [$routeParams.ID]).success(function(result) {
 				$scope.team = result;
 				angular.forEach($scope.team, function(detail) {
 					detail.xp = parseInt(detail.xp);
@@ -52,26 +51,8 @@ LeagueManager.directive('team', function() {
 				}
 				$scope.helmet_svg = 'resources/helmet/helmet_' + $scope.team.param_id_race + '.svg';
 
-
-
-
-				$scope.teamArticle();
-
-				//Classement
-				$http.get('Backend/competition.php?id=' + $scope.team.competition.id).success(function(result) {
-					$scope.standing = result.standing;
-					$scope.ranking = $scope.standing.map(function(e) {
-						return e.id;
-					}).indexOf($scope.team.id);
-				});
 			});
 
-			//Gestion du RP
-			$scope.teamArticle = function(categories) {
-				for (i = 0; i < $scope.team.articles.length; i++) {
-					$scope.team.articles[i].summary = $scope.team.articles[i].text.substr(0, $scope.team.articles[i].text.indexOf('<br/><br/>'))
-				}
-			};
 
 			$scope.showPlayer = function(id) {
 				if (id) {
@@ -86,10 +67,9 @@ LeagueManager.directive('team', function() {
 			};
 
 			$scope.teamUpdate = function() {
-				params = [window.Cyanide_Key, $scope.team.cyanide_id];
-				$http.post('Backend/update/routes.php?action=teamUpdate', params).then(function(result) {
-					console.log(result.data);
-				});
+				$http.post('Backend/routes.php?action=teamUpdate', {
+					"id": $scope.team.cyanide_id
+				}).then(function(result) {});
 			};
 
 		}

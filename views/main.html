@@ -4,7 +4,7 @@
       <img src="resources/img/BBBL2_5x.png">
     </div>
 
-    <div class="plain seconde" ng-style="colours[1].border" ng-if="!coach_id">
+    <div class="plain seconde" ng-style="colours[1].border">
       <h3 ng-style="colours[1].color">La BBBL c'est</h3>
       <ul class="hallOfFame list-unstyled">
         <li><h3 ng-style="colours[1].color">{{leagueStats.coachs}}</h3> coachs actifs</li>
@@ -21,27 +21,6 @@
         <div ng-include="'resources/img/Button_1.svg'"></div>
         <div class="label">Découvrir</div>
       </a>
-      <a class="button" ng-click="goToPage('admin')" ng-if="admin==1">
-        <div ng-include="'resources/img/Button_1.svg'"></div>
-        <div class="label">Administrer</div>
-      </a>
-    </div>
-
-    <div class="plain seconde" ng-style="colours[1].border" ng-if="coach_id">
-      <h2>Programme CabalVision</h2>
-      <p ng-if="games.length==0">Aucun match de programmé pour le moment.</p>
-      <div ng-repeat="day in games track by $index" style="display:inline-block;">
-        <h3 ng-style="colours[1].color">{{day.day | date:'EEEE d MMM' }}</h3>
-        <div class="col-xs-12 match noPadding" ng-repeat="match in day.matchs">
-          <h4 class="x-center">{{match.planned | date:'HH:mm' : '+000' }}</h4>
-            <div class="col-xs-4 text-right  noPadding"><h4>{{match.name_1}}</h4></div>
-            <div class="col-xs-4 x-center noPadding">
-              <img class="teamLogo" src="resources/logo/Logo_{{match.logo_1}}.png"><img class="versus" style="width:30px;" src="../resources/img/vs.png"><img class="teamLogo" src="resources/logo/Logo_{{match.logo_2}}.png">
-            </div>
-            <div class="col-xs-4 text-left  noPadding"><h4>{{match.name_2}}</h4></div>
-        </div>
-      </div>
-      <div class="spacer"></div>
       <a class="button" ng-click="goToPage('admin')" ng-if="admin==1">
         <div ng-include="'resources/img/Button_1.svg'"></div>
         <div class="label">Administrer</div>
@@ -73,6 +52,47 @@
     </div>
     <!-- Competitions -->
     <div class="row">
+
+    <div class="plain prime" ng-style="colours[0].border">
+        <div ng-repeat="competition in competitions | orderBy: 'site_order'"  ng-click="goToPage('competition/'+competition.id)" >
+          <h2>{{competition.site_name}}</h2>
+          <table>
+            <tbody>
+              <tr ng-repeat="team in competition.standing | orderBy:['-Pts','-V','-TDS'] | limitTo:5" ng-class="{gold: $index+1 == 1, silver: $index+1 == 2, bronze: $index+1 == 3}" ng-style="colours[0].border">
+                <td>{{$index+1}}</td>
+                <td class="text-left">{{team.team}}</td>
+                <td>{{team.Pts}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <h5 ng-style="colours[0].color">Classement complet et calendrier</h5>
+        </div>
+    </div>
+
+  <div class="plain prime" ng-style="colours[0].border">
+    <h2>Programme CabalVision</h2>
+    <p ng-if="games.length==0">Aucun match de programmé pour le moment.</p>
+    <div ng-repeat="day in games track by $index" style="display:inline-block;">
+      <h3 ng-style="colours[0].color">{{day.day | date:'EEEE d MMM' }}</h3>
+      <div class="match noPadding" ng-repeat="match in day.matchs">
+        <h4 class="col-xs-2">{{match.planned | date:'HH:mm' : '+000' }}</h4>
+          <div class="col-xs-3 text-right  noPadding"><h4>{{match.name_1}}</h4></div>
+          <div class="col-xs-3 x-center noPadding">
+            <img class="teamLogo" src="resources/logo/Logo_{{match.logo_1}}.png"><img class="versus" style="width:30px;" src="../resources/img/vs.png"><img class="teamLogo" src="resources/logo/Logo_{{match.logo_2}}.png">
+          </div>
+          <div class="col-xs-3 text-left  noPadding"><h4>{{match.name_2}}</h4></div>
+      </div>
+    </div>
+    <div class="spacer"></div>
+    <a class="button" ng-click="goToPage('admin')" ng-if="admin==1">
+      <div ng-include="'resources/img/Button_0.svg'"></div>
+      <div class="label">Administrer</div>
+    </a>
+  </div>
+
+</div>
+
+    <!--div class="row">
       <div class="plain prime col-md-12" ng-style="colours[0].border">
           <div class="col-md-6">
             <img class="banner_100" src="../resources/img/Banner_Elite.png">
@@ -136,7 +156,7 @@
           <h5 ng-style="colours[0].color">Classement complet et calendrier</h5>
         </div>
       </div>
-    </div>
+    </div-->
 
   </div>
 
@@ -147,18 +167,16 @@
       <h3>CHAMPION</h3>
       <h4 ng-style="colours[0].color" ng-click="">BB Cup 2517</h4>
       <hr>
-      <h1 class="zelda" ng-style="colours[4].color" ng-click="goToPage('team/278')">Dieux de l'Arène</h1>
+      <h1 class="zelda" ng-click="goToPage('team/294')">Black Berrurier</h1>
       <hr>
-      <h2 ng-style="colours[5].color">Voodoo</h2>
+      <h2>Zongo</h2>
       <div class="spacer"></div>
-      <div class="button" ng-click="goToPage('competition/251')">
+      <div class="button" ng-click="goToPage('competition/252')">
         <div ng-include="'resources/img/Button_0.svg'"></div>
         <div class="label">la compétition</div>
       </div>
     </div>
-    <div class="image">
-      <a href="http://www.bbbl.fr/Forum/viewforum.php?f=368"><img class="affiche" src="resources/img/CoupeDesVices.jpg"></a>
-    </div>
+
     <!--Stats Players-->
 
       <div class="plain seconde" ng-style="colours[1].border" ng-repeat="stats in leagueStats.playersStats" ng-if="stats.players.length>0">
