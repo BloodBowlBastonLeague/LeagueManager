@@ -31,8 +31,16 @@ function player_fire($con, $cyanideID){
     $con->query($sqlFire);
 };
 
-//Save player stats for a match
-function player_save_stats($con, $player, $cyanideIDMatch){
+//Get player's stats
+function player_stats_fetch($con, $playerID){
+      $sqlStats = "SELECT SUM(matchplayed) AS matchplayed, SUM(mvp) AS mvp, SUM(inflictedpasses) AS inflictedpasses, SUM(inflictedcatches) AS inflictedcatches, SUM(inflictedinterceptions) AS inflictedinterceptions, SUM(inflictedtouchdowns) AS inflictedtouchdowns, SUM(inflictedcasualties) AS inflictedcasualties, SUM(inflictedstuns) AS inflictedstuns, SUM(inflictedko) AS inflictedko, SUM(inflictedinjuries) AS inflictedinjuries, SUM(inflicteddead) AS inflicteddead, SUM(inflictedtackles) AS inflictedtackles, SUM(inflictedmeterspassing) AS inflictedmeterspassing, SUM(inflictedmetersrunning) AS inflictedmetersrunning, SUM(sustainedinterceptions) AS sustainedinterceptions, SUM(sustainedcasualties) AS sustainedcasualties, SUM(sustainedstuns) AS sustainedstuns, SUM(sustainedko) AS sustainedko, SUM(sustainedinjuries) AS sustainedinjuries, SUM(sustainedtackles) AS sustainedtackles, sustaineddead FROM site_players_stats WHERE player_id=".$playerID." GROUP BY player_id";
+      $resultStats = $con->query($sqlStats);
+      $stats = $resultStats->fetch_object();
+      return $stats;
+};
+
+//Save player's stats for a match
+function player_stats_save($con, $player, $cyanideIDMatch){
     $matchBBBL = $con->query("SELECT id FROM site_matchs WHERE cyanide_id = ".$cyanideIDMatch)->fetch_row();
     $playerBBBL = $con->query("SELECT id FROM site_players WHERE cyanide_id = ".$player->id)->fetch_row();
     //Save players stats
