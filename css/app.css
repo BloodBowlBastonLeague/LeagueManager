@@ -199,6 +199,8 @@ border-radius: 5px; border-bottom: 2px solid; }
 .tab + .tab { background: url(../resources/img/TopRight_Tab.png) no-repeat; background-size: 200px 30px, calc(100% - 200px) 30px; background-position: 0 0; height:30px; line-height:25px; padding-left:45px; color:#FFFFFF; height:30px; line-height:25px; padding-left:45px; }
 .tabRow  { height:30px; }
 
+.tab .label { top: 2px; left: 65px; }
+
 .main > table { width: 100%; color:#FFFFFF; margin:0 0 10px;}
 .main > table > tbody > tr, .bet table > tbody > tr { height: 28px; border-bottom: 1px solid; }
 .main > table > thead > tr > th, .bet table > thead > tr > th { line-height: 28px; padding: 0 5px; }

@@ -24,6 +24,7 @@ LeagueManager.directive("match", function() {
 					var data = JSON.parse(result.json);
 					$rootScope.match = data.match;
 					$rootScope.match.round = result.round;
+
 					$rootScope.match.coach_id_1 = result.coach_id_1;
 					$rootScope.match.coach_id_2 = result.coach_id_2;
 					$rootScope.match.cyanide_id = result.cyanide_id;

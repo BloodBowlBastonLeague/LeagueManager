@@ -47,6 +47,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
   <script src="bower_components\angular-locale_fr-fr.js"></script>
 </head>
+
 <body>
   <header>
     <div id="Intro" class="hd-100 x-center y-center">la Blood Bowl Baston League pr&eacute;sente</div>
@@ -62,23 +63,21 @@
     </nav>
   </header>
 
-
-
   <div id="Main" class="container-fluid" ng-class="{ blur : reader }">
     <ng-view></ng-view>
     <modal></modal>
   </div>
 
-
-<script>
+  <script>
     var Cyanide_Key = "<?=$Cyanide_Key?>";
     var Cyanide_League = "<?=$Cyanide_League?>";
     var User = "<?=$user->data['username'];?>";
     var user_id = "<?=$user->data['user_id'];?>";
     var Group = "<?=$user->data['group_id'];?>";
-    var coach_id = ("<?=$coach[id]?>");
-    var coach_gold = ("<?=$coach[gold]?>")
-</script>
+    var coach_id = "<?=$coach[id]?>";
+    var coach_gold = "<?=$coach[gold]?>";
+    var session_id = "<?=$user->session_id?>";
+  </script>
 
   <!-- jquery -->
   <script src="bower_components/jquery/dist/jquery.min.js"></script>

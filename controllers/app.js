@@ -33,7 +33,7 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 	$rootScope.user_id = window.user_id;
 	$rootScope.coach_id = window.coach_id;
 	$rootScope.coach_gold = window.coach_gold;
-
+	$rootScope.session_id = window.session_id;
 	$rootScope.admin = ['9', '10'].indexOf(window.Group) > -1 ? 1 : 0;
 	$rootScope.external = window.Group == 19 || !window.coach_id ? 1 : 0;
 	$rootScope.title = "Tribunes - le mag de la BBBL";

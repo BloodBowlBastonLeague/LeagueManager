@@ -17,6 +17,7 @@ function competition_fetch_all($con,$active){
 //Get competition
 function competition_fetch($con, $id){
 
+
     $sql = "SELECT c.id, c.league_name AS division, c.game, c.pool, c.site_name, c.site_order, c.season, c.active, c.competition_mode, c.game_name, c.champion, c.param_name_format AS format, (SELECT COUNT(*) FROM site_matchs WHERE competition_id=".$id." AND cyanide_id IS NULL) AS matchesLeft FROM site_competitions AS c  WHERE c.id = ".$id;
     $result = $con->query($sql);
     $competition = $result->fetch_object();

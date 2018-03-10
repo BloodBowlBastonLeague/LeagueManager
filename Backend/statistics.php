@@ -89,7 +89,6 @@ function leaders($con, $params){
     }
     else{
         $where = " AND s.match_id IN (SELECT id FROM site_matchs WHERE competition_id IN (".$params[1]."))";
-
     }
 
     $sqlPlayers = "SELECT p.id as player, p.name, t.id AS team_id, t.name AS team, t.logo".$fields."
