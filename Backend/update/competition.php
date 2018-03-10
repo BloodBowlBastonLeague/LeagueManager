@@ -18,7 +18,9 @@ function competition_update_matches($con,$params){
 	$played = json_decode($response);
 
 	foreach ($played->upcoming_matches as $game) {
-		var_dump($game->contest_id);
+
+
+
 		if(in_array($game->contest_id, $params[3])){
 
 			$request_2 = 'http://web.cyanide-studio.com/ws/bb2/match/?key='.$params[0].'&uuid='.$game->match_uuid;

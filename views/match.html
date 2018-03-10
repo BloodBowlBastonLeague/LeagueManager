@@ -6,16 +6,16 @@
       <h3 ng-style="colours[1].color">{{match.competitionname}}</h3>
     </div>
   </div>
-  <div class="col-md-2" ng-class="{firstTab : admin==1 || coach_id==match.coach_id_1 || coach_id==match.coach_id_2}"></div>
-  <!--div class="col-md-1" ng-class="{tab : admin==1}">
-    <div ng-click="matchRefresh()" ng-if="admin==1">Reset</div>
-  </div-->
+  <div class="col-md-1" ></div>
+  <div class="col-md-1 topright" ng-class="{tab : admin==1}">
+    <div class="label" ng-click="matchReset()" ng-if="admin==1">Reset</div>
+  </div>
   <div class="col-md-1 topright" ng-class="{tab : coach_id==match.coach_id_1 || coach_id==match.coach_id_2 || admin==1}">
-    <a class="button" href="http://bbbl.fr/Forum/posting.php?mode=post&f={{forum[0].rounds[match.round-1].forum}}&match={{matchID}}" ng-if="coach_id==match.coach_id_1 || coach_id==match.coach_id_2 || admin==1">
+    <a href="http://bbbl.fr/Forum/posting.php?mode=post&f={{forum[0].rounds[match.round-1].forum}}&match={{matchID}}" ng-if="coach_id==match.coach_id_1 || coach_id==match.coach_id_2 || admin==1">
       <div class="label">Poster</div>
     </a>
-
   </div>
+
   <div class="col-md-6">
     <div id="HelmetLeft" class="helmet1">
       <svg class="helmet_svg" viewBox="0 0 300 300" ng-include='helmet_1_svg'></svg>

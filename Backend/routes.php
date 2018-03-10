@@ -1,6 +1,6 @@
 <?php
-
 $action = $_GET["action"];
+
 define('PHPBB_ROOT_PATH','./../Forum/');
 
 include('config.php');
@@ -9,7 +9,10 @@ $postdata = file_get_contents("php://input");
 $params = json_decode($postdata);
 
 include('parameters.php');
+include('bets.php');
 include('competition.php');
+include('match.php');
+include('player.php');
 include('statistics.php');
 include('team.php');
 
@@ -33,8 +36,21 @@ switch ($action) {
     case "competitionUpdate":
         competition_update($con,$params);
         break;
+    case "match":
+        match_fetch($con, $params[0]);
+        break;
+    case "matchDate":
+        match_set_date($con,$params);
+        break;
+    case "matchReset":
+        match_save($con, $Cyanide_Key, $params, 1);
+        break;
     case "team":
-        team_fetch($con,$params->id);
+        team_fetch($con,$params[0]);
+        break;
+    case "teamUpdate":
+        team_update($con,$params[0]);
+        team_fetch($con,$params[0]);
         echo json_encode($team,JSON_NUMERIC_CHECK);
         break;
     default:

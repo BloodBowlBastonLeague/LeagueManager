@@ -13,9 +13,6 @@ LeagueManager.config(function($routeProvider) {
 		.when("/competition/:ID", {
 			template: '<competition></competition>'
 		})
-		.when("/league", {
-			template: '<league></league>'
-		})
 		.when("/team/:ID", {
 			template: '<team></team>'
 		})

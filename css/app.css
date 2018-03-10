@@ -168,7 +168,7 @@ article img { max-width: 95%; }
 .topright { top:0; }
 .button .label { position: absolute; top: 5px; left: 40px; width: 150px; color: #ffffff; font-family: "Akashi"; font-size: 16px; font-weight:400; font-style: italic; text-transform: capitalize; }
 .b2 { right:154px; opacity:0.75; padding-right: 50px;}
-.topright .label { top: 2px; left: 25px; width: 180px; color: #000;font-family: "Muli";font-size: 14px }
+.topright .label { top: 2px; color: #000;font-family: "Muli";font-size: 14px }
 
 .plain table { width: 100%; color:#FFFFFF; cursor: pointer; text-align: center; }
 .plain table > tbody > tr { height: 20px !important; font-size:14px; border-bottom: 1px solid; }
@@ -195,8 +195,8 @@ border-radius: 5px; border-bottom: 2px solid; }
 
 
 /* COMPETITION */
-.tab { background: url(../resources/img/Button_TopRight2.png) no-repeat, url(../resources/img/Repeater_TopRight.png) no-repeat; background-size: 200px 30px, calc(100% - 200px) 30px; background-position: 0 0,200px 0; height:30px; line-height:25px; padding-left:45px; color:#FFFFFF; height:30px; line-height:25px; padding-left:45px; cursor: pointer;}
-.firstTab + .tab { background: url(../resources/img/Button_TopRight.png) no-repeat, url(../resources/img/Repeater_TopRight.png) no-repeat; background-size: 200px 30px, calc(100% - 200px) 30px; background-position: 0 0,200px 0; height:30px; line-height:25px; padding-left:45px; color:#FFFFFF; height:30px; line-height:25px; padding-left:45px; }
+.tab { background: url(../resources/img/TopRight_FirstTab.png) no-repeat; background-size: 200px 30px, calc(100% - 200px) 30px; background-position: 0 0; height:30px; line-height:25px; padding-left:45px; color:#FFFFFF; height:30px; line-height:25px; padding-left:45px; cursor: pointer;}
+.tab + .tab { background: url(../resources/img/TopRight_Tab.png) no-repeat; background-size: 200px 30px, calc(100% - 200px) 30px; background-position: 0 0; height:30px; line-height:25px; padding-left:45px; color:#FFFFFF; height:30px; line-height:25px; padding-left:45px; }
 .tabRow  { height:30px; }
 
 .main > table { width: 100%; color:#FFFFFF; margin:0 0 10px;}

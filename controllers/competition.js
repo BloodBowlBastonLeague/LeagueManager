@@ -248,7 +248,7 @@ LeagueManager.directive('competition', function() {
 			//Mise à jour de la competition
 			$scope.competitionUpdate = function(league, competition_name) {
 				$scope.saving = true;
-				var params = [window.Cyanide_Key, window.Cyanide_League, competition_name, $scope.competition.id, $scope.matchesToSave, $scope.competition.format, $scope.calendar.length + 1];
+				var params = [window.Cyanide_Key, window.Cyanide_League, competition_name, $scope.competition.id, $scope.matchesToSave, $scope.competition.format, $scope.currentDay];
 
 				$http.post('Backend/routes.php?action=competitionUpdate', params).then(function(result) {
 					$scope.calendarUpdate();
@@ -257,7 +257,7 @@ LeagueManager.directive('competition', function() {
 
 			//Mise à jour de date
 			$scope.matchDate = function(match) {
-				$http.post('Backend/update/routes.php?action=matchDate', match).then(function(result) {
+				$http.post('Backend/routes.php?action=matchDate', match).then(function(result) {
 					$scope.veilOff();
 				});
 			};

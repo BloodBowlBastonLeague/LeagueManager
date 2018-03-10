@@ -1,7 +1,6 @@
 <div class="row">
 	<div class="col-md-11"></div>
-	<div class="col-md-1" ng-class="{firstTab : admin==1}">
-		<div class="tab"
+	<div class="col-md-1 topright" ng-class="{tab : admin==1}">
 		<div class="label" ng-click="teamUpdate()" ng-if="admin==1">Reset</div>
 	</div>
 	<div class="col-lg-7">
@@ -61,10 +60,6 @@
 						<td class="text-center" ng-if="showStats">{{player.stats.inflictedmeterspassing}}</td>
 						<td class="text-center" ng-if="showStats">{{player.stats.inflictedmetersrunning}}</td>
 					</tr>
-					<!--tr class="playerSkills">
-						<td></td>
-						<td  class="text-left text-cutter" colspan="7"><b>Compétences :</b> <span ng-repeat="skill in player.skills">{{skill}}<span ng-if="$index+1<player.skills.length">, </span></span> </td>
-					</tr-->
 				</tbody>
 			</table>
 			<div class="spacer"></div>
@@ -94,7 +89,7 @@
 				<h4 ng-style="colours[1].color">{{team.roster}}</h4>
 				<ul class="teamDetails list-unstyled">
 					<li>coaché par <span class="" ng-style="colours[1].color"><b>{{team.coach}}</b></span></li>
-					<li class="zelda" ng-click="goToPage('competition/'+team.competition.id)" ng-if="team.competition.id"><span ng-style="colours[1].color"><b>{{ranking+1}}<sup>e<span ng-if="ranking==0">r</span></sup></b></span>  {{team.competition.name}}</li>
+					<li class="zelda" ng-click="goToPage('competition/'+team.competition.id)" ng-if="team.competition.id"> {{team.competition.name}}</li>
 				</ul><br />
 				<ul class="teamDetails col2 list-unstyled">
 					<li ng-if="team.rerolls>0">{{team.rerolls}} relance<span ng-if="team.rerolls>1">s</span></li>
@@ -109,7 +104,7 @@
 	<div class="col-lg-5">
 		<div id="teamPhoto" class="plain" ng-style="colours[1].border" ng-if="teamID>268">
 			<img class="cover" src="resources/img/Cover_Glass.png">
-			<img src="resources/img/teams/photo{{teamID}}.jpg">
+			<img src="resources/img/teams/photo{{team.id}}.jpg">
 		</div>
 		<div class="plain seconde" ng-style="colours[1].border" ng-if="teamID<269 || team.active==0 ">
 			<p>Cette équipe n'est plus en activité dans la ligue.</p>
