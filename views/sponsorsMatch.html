@@ -1,0 +1,73 @@
+<div class="row adapt">
+	<div class="col-md-3"></div>
+	<div class="col-md-6" ng-click="previousPage()">
+		<div class="plain header seconde text-center stadium zelda" ng-style="colours[1].border">
+			<h4>{{competition.competition_mode}}</h4>
+			<h3 ng-style="colours[1].color">{{competition.site_name}}</h3>
+		</div>
+	</div>
+	<div class="col-md-6">
+
+		<div class="plain prime content noselect text-right" ng-if="!activePlayer" ng-style="colours[0].border">
+			<h1 ng-style="colours[0].color">{{competition.sponsors[0].name}}</h1>
+			<div class="score" ng-style="colours[0].textborder">{{competition.sponsors[0].score}}</div>
+			<img class="sponsorLeft" src="resources/img/sponsors/{{competition.sponsors[0].id}}.png">
+			<div class="teamBoard">
+				<!--h3>menée par <span ng-style="colours[0].color">{{competition.sponsors[0].captain}}</span></h3-->
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+
+		<div class="plain prime content noselect text-left" ng-if="!activePlayer" ng-style="colours[2].border">
+			<h1 ng-style="colours[2].color">{{competition.sponsors[1].name}}</h1>
+			<div class="score" ng-style="colours[2].textborder">{{competition.sponsors[1].score}}</div>
+			<img class="sponsorRight" src="resources/img/sponsors/{{competition.sponsors[1].id}}.png">
+			<div class="teamBoard">
+				<!--h3>menée par <span ng-style="colours[2].color">{{competition.sponsors[1].captain}}</span></h3-->
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row adapt">
+	<div class="col-md-4">
+		<div class="plain prime text-center" ng-style="colours[0].border">
+			<h3 ng-style="colours[0].color">{{competition.sponsors[0].name}}</h3>
+			<div ng-repeat="team in competition.sponsors[0].teams" class="zelda sponsorTeam" ng-click="goToPage('team/' + team.cyanide_id)" ng-style="colours[0].border">
+				<img class="teamLogo" style="Float:left" src="resources/logo/Logo_{{team.logo}}.png">
+					<h4>{{team.name}}</h4>
+					<p class="hidden-sm-down">{{team.param_id_race | talkingToTheGods:parameters}}, coachés par <span ng-style="colours[0].color">{{team.coach}}</span></p>
+			</div>
+		</div>
+	</div>
+	<div class="col-md-4">
+		<div ng-repeat="matchDay in calendar" class="plain seconde" ng-style="colours[1].border">
+			<h3 class="text-center">Matchs</h3>
+			<div class="match x-center">
+				<div title="{{match.name_1}} VS {{match.name_2}}" class="vs col-sm-12" ng-class="{zelda:match.id}" ng-repeat="match in matchDay.matchs" ng-click="ifClicked(match)" ng-right-click="rightClicked(match)">
+					<div ng-show="match.score_1>match.score_2" class="starLeft">&#9733;</div>
+					<img class="teamLogo" src="resources/logo/Logo_{{match.logo_1}}.png">
+					<img class="versus" ng-if="match.cyanide_id==null" src="../resources/img/vs.png">
+					<span class="scoreMini" ng-if="match.cyanide_id"> {{match.score_1}} - {{match.score_2}} </span>
+					<img class="teamLogo" src="resources/logo/Logo_{{match.logo_2}}.png">
+					<div ng-show="match.score_1<match.score_2" class="starRight">&#9733;</div><br/>
+				</div>
+			</div>
+			<div class="spacer"></div>
+			<div ng-if="!saving" class="button" ng-click="competitionUpdate(competition.game_name)">
+				<div ng-include="'resources/img/Button_1.svg'"></div>
+				<div class="label">Mise à jour</div>
+			</div>
+		</div>
+
+	</div>
+	<div class="col-md-4">
+		<div class="plain prime text-center" ng-style="colours[2].border">
+			<h3 ng-style="colours[2].color">{{competition.sponsors[1].name}}</h3>
+			<div ng-repeat="team in competition.sponsors[1].teams" class="zelda sponsorTeam" ng-click="goToPage('team/' + team.cyanide_id)" ng-style="colours[1].border">
+				<img class="teamLogo" style="Float:left" src="resources/logo/Logo_{{team.logo}}.png">
+					<h4>{{team.name}}</h4>
+					<p class="hidden-sm-down">{{team.param_id_race | talkingToTheGods:parameters}}, coachés par <span ng-style="colours[1].color">{{team.coach}}</span></p>
+			</div>
+	</div>
+</div>

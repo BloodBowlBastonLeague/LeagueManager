@@ -87,8 +87,8 @@ time, mark, audio, video {
 a { font-weight: 500; cursor: pointer; }
 h1 { font-family: 'Akashi';  font-size: 40px; line-height: 50px; color: #ffffff; }
 h2, h2 a { font-family: 'Akashi' !important; font-size: 30px; line-height: 1; margin:0 0 10px; color: #ffffff; }
-h3 { font-family: 'Akashi';  font-size: 24px; line-height: 1; margin:0 0 10px; color: #ffffff; }
-h4 { font-family: 'Akashi';  font-size: 18px; line-height: 1; margin:0 0 10px; color: #ffffff; }
+h3 { font-family: 'Akashi';  font-size: 24px; line-height: 1; margin:8px 0; color: #ffffff; }
+h4 { font-family: 'Akashi';  font-size: 18px; line-height: 1; margin:2px 0; color: #ffffff; }
 h5 { font-family:'Muli'; font-weight:700; text-decoration: underline; margin:5px; text-align: center; }
 h6 { font-family:'Muli'; font-weight:700; }
 p { font-family:'Muli'; font-size: 14px; line-height: 18px; text-align: justify; color:#cccccc; display:inline-block; }
@@ -207,14 +207,25 @@ border-radius: 5px; border-bottom: 2px solid; }
 .main > table > tbody > tr > td, .bet table > tbody > tr > td { line-height: 28px; padding: 0 5px; }
 
 .match { display: table; vertical-align: middle; width:100%; }
-.vs { display: inline-block; font-family: 'Muli'; font-size: 20px; line-height: 24px; font-weight: 400; vertical-align: middle; text-align: center; margin: 10px 0 0; padding: 5px 0; border-radius: 5px; border:1px solid transparent;}
+.vs { display: inline-block; font-family: 'Muli'; font-size: 20px; color: #FFF; line-height: 24px; font-weight: 400; vertical-align: middle; text-align: center; margin: 10px 0 0; padding: 5px 0; border-radius: 5px; border:1px solid transparent;}
 .vs:hover { background: #000000; color:#ffffff; border: 1px solid #00558D;}
 .hide {display: none; height:0px; padding:10px 1vw -webkit-transition: all linear 0.5s;  transition: height linear 0.5s; }
 
+.starLeft, .starRight { font-size: 30px;  line-height: 30px; color:#FFF; position:absolute;
+    display:inline-flex;
+    text-align: center;
+    -ms-transform: rotate(-10deg);
+    -webkit-transform: rotate(-10deg);
+    transform: rotate(-10deg); }
+.starLeft {left:0}
+.starRight {right:0}
+
+
+
 .current { border-bottom: 3px solid #000000; background: rgba(0, 85, 141, 0.75) !important; color: #FFFFFF !important;}
 .current span { color: #FFFFFF; }
-.teamLogo {width: 40px; height: 40px; display: inline; vertical-align: middle;}
-td > .teamLogo {width: 20px; height: 20px; display: inline; padding-right: 2px;}
+.teamLogo {max-width: 40px; max-height: 40px; display: inline; vertical-align: middle;}
+td > .teamLogo {max-width: 20px; max-height: 20px; display: inline; padding-right: 2px;}
 .gold {
 	background: linear-gradient(to left, rgba(255,215,0,0.1),rgba(255,215,0,0.75), rgba(255,215,0,0.1));
   background: -webkit-linear-gradient(-90deg, rgba(255,215,0,0),rgba(255,215,0,0.5), rgba(255,215,0,0.75));}
@@ -339,6 +350,21 @@ td img { max-height: 20px; max-width: 20px; }
   .helmet_svg, .helmet_png { position:absolute; height:inherit; width:inherit; }
 }
 
+.sponsorLeft, .sponsorRight {
+  position: absolute;
+  z-index: 2;
+  bottom: 0px;
+  max-width: 60%;
+  max-height: 80%;
+  float: right;
+  top: 10%;
+}
+.sponsorLeft {
+  left:5%
+}
+.sponsorRight {
+  right: 5%;
+}
 
 .star { font-size: 30px;  line-height: 30px;  display: inline-block;
     -ms-transform: rotate(-10deg);
@@ -488,6 +514,21 @@ text-align: center;
 -moz-appearance: textfield;
 -webkit-appearance: none;}
 
+
+.sponsorTeam {
+  margin:5px 0;
+  padding:5px 0;
+  text-align: left;
+}
+.sponsorTeam + .sponsorTeam {
+  border-top:1px solid #000;
+}
+.sponsorTeam img {
+  margin-right: 10px;
+}
+.sponsorTeam span {
+  font-weight: bold;
+}
 
 /*Admin*/
 .success {color:green;}

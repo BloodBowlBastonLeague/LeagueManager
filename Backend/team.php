@@ -1,21 +1,25 @@
 <?php
 
 //Fetch team info
-function team_fetch($con,$id){
+function team_fetch($con, $id){
 
     //Get team info
     $sqlTeam = "SELECT * FROM site_teams WHERE cyanide_id=".$id;
     $resultTeam = $con->query($sqlTeam);
     $team = $resultTeam->fetch_object();
-
     //Get current competition
     $team->competition = team_competition_fetch($con, $team->id);
 
     //Get players
-    $team->players = team_roster_fetch($con, $team->id, $id);;
+    $team->players = team_roster_fetch($con, $team->id, $id);
 
     //Get coach
     $team->coach = coach_fetch($con, $team->coach_id);
+
+    //Get sponsor
+    if($team->sponsor_id){
+        $team->sponsor = sponsor_fetch($con, $team->sponsor_id);
+    };
 
     echo json_encode($team,JSON_NUMERIC_CHECK);
 

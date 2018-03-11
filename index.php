@@ -95,10 +95,9 @@
   <script src="controllers/main.js"></script>
   <script src="controllers/admin.js"></script>
   <script src="controllers/archives.js"></script>
-  <script src="controllers/league.js"></script>
   <script src="controllers/competition.js"></script>
-  <script src="controllers/ranking.js"></script>
   <script src="controllers/match.js"></script>
+  <script src="controllers/sponsorsMatch.js"></script>
   <script src="controllers/team.js"></script>
   <script src="controllers/modal.js"></script>
 

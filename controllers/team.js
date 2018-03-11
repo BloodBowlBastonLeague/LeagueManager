@@ -13,9 +13,10 @@ LeagueManager.directive('team', function() {
 
 			$http.post('Backend/routes.php?action=team', [$routeParams.ID]).success(function(result) {
 				$scope.team = result;
-				angular.forEach($scope.team, function(detail) {
+				console.log(result);
+				/*angular.forEach($scope.team, function(detail) {
 					detail.xp = parseInt(detail.xp);
-				});
+				});*/
 				for (p = 0; p < result.players.length; p++) {
 					$scope.team.players[p].attributes = result.players[p].attributes.length > 0 ? JSON.parse(result.players[p].attributes) : [];
 					$scope.team.players[p].skills = result.players[p].skills.length > 0 ? JSON.parse(result.players[p].skills) : [];

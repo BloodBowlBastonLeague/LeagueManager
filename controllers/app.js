@@ -19,6 +19,9 @@ LeagueManager.config(function($routeProvider) {
 		.when("/match/:ID", {
 			template: '<match></match>'
 		})
+		.when("/sponsorsMatch/:ID", {
+			template: '<sponsors-match></sponsors-match>'
+		})
 		.when("/forum", {
 			templateUrl: '/Forum/index.php'
 		})

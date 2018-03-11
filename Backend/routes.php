@@ -13,6 +13,7 @@ include('bets.php');
 include('competition.php');
 include('match.php');
 include('player.php');
+include('sponsors.php');
 include('statistics.php');
 include('team.php');
 
@@ -52,6 +53,12 @@ switch ($action) {
         team_update($con,$params[0]);
         team_fetch($con,$params[0]);
         echo json_encode($team,JSON_NUMERIC_CHECK);
+        break;
+    case "sponsorsMatch":
+        sponsorsMatch_fetch($con, $params[0]);
+        break;
+    case "sponsorsStanding":
+        sponsors_standing($con,$params[0]);
         break;
     default:
         echo "Erreur!";
