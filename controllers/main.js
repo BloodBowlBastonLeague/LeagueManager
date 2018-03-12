@@ -13,7 +13,7 @@ LeagueManager.directive('main', function() {
 			$rootScope.title = "Tribunes - le mag de la BBBL";
 
 			//Récupération de l'agenda en JSON (temporaire)
-			$http.get('Backend/calendar.php?action=upcomingGames').success(function(result) {
+			$http.get('Backend/routes.php?action=upcomingGames').success(function(result) {
 				$scope.games = result;
 			});
 

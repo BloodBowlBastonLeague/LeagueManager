@@ -28,13 +28,14 @@ LeagueManager.directive('competition', function() {
 					$scope.competition = result;
 					$rootScope.title = $scope.competition.game_name;
 				});
-				$http.get('Backend/calendar.php?id=' + $routeParams.ID).success(function(result) {
+				$http.post('Backend/routes.php?action=competitionCalendar', [$routeParams.ID]).success(function(result) {
 					$scope.calendar = result;
 					$scope.finals = $rootScope.finalsTemplate;
 					$scope.finals.splice($scope.calendar.length);
 					$scope.finals.reverse();
-
-					$scope.currentDay = $scope.calendar[0].currentDay ? $scope.calendar[0].currentDay : 0;
+					$scope.currentDay = Math.max.apply(Math, $scope.calendar.map(function(item) {
+						return item.round;
+					}));
 					if ($scope.calendar.length < 6) {
 						$scope.displayDay = 0;
 					} else {

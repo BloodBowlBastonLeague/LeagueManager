@@ -34,8 +34,11 @@ switch ($action) {
         $competition = competition_stats($con, $competition);
         echo json_encode($competition,JSON_NUMERIC_CHECK);
         break;
+    case "competitionCalendar":
+        competition_calendar($con, $params[0]);
+        break;
     case "competitionUpdate":
-        competition_update($con,$params);
+        competition_update($con, $params);
         break;
     case "match":
         match_fetch($con, $params[0]);
@@ -59,6 +62,9 @@ switch ($action) {
         break;
     case "sponsorsStanding":
         sponsors_standing($con,$params[0]);
+        break;
+    case "upcomingGames":
+        upcomingGames($con);
         break;
     default:
         echo "Erreur!";
