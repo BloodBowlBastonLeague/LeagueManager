@@ -91,7 +91,7 @@ function competition($con,$id){
     $sql3 = "SELECT CASE WHEN c.competition_mode='Coupe' THEN MAX(m.round) ELSE MIN(m.round) END
       FROM site_matchs AS m
       INNER JOIN site_competitions AS c ON c.id = m.competition_id
-	    WHERE m.competition_id=".$id." AND m.started IS NULL";
+	    WHERE m.competition_id=".$id." AND m.cyanide_id IS NULL";
 	  $result3 = mysqli_query($con, $sql3);
     while($var3 = mysqli_fetch_row($result3)) {
      $data[currentDay] = $var3[0];

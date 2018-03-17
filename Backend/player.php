@@ -41,7 +41,7 @@ function player_stats_fetch($con, $playerID){
 
 //Save player's stats for a match
 function player_stats_save($con, $player, $cyanideIDMatch){
-    $matchBBBL = $con->query("SELECT id FROM site_matchs WHERE cyanide_id = ".$cyanideIDMatch)->fetch_row();
+    $matchBBBL = $con->query("SELECT id FROM site_matchs WHERE cyanide_id = '".$cyanideIDMatch."'")->fetch_row();
     $playerBBBL = $con->query("SELECT id FROM site_players WHERE cyanide_id = ".$player->id)->fetch_row();
     //Save players stats
     if($playerBBBL[0]){

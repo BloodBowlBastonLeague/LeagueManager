@@ -58,7 +58,12 @@ switch ($action) {
         echo json_encode($team,JSON_NUMERIC_CHECK);
         break;
     case "sponsorsMatch":
-        sponsorsMatch_fetch($con, $params[0]);
+        $competition = sponsorsMatch_fetch($con, $params[0], 1);
+        echo json_encode($competition,JSON_NUMERIC_CHECK);
+
+        break;
+    case "sponsorsCalendar":
+        sponsors_calendar($con,$params[0]);
         break;
     case "sponsorsStanding":
         sponsors_standing($con,$params[0]);

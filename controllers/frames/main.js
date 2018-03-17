@@ -23,10 +23,10 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $window) {
 	$rootScope.competitions = [];
 	$rootScope.eliminations = ['32emes de finales', '16emes de finales', '8emes de finales', 'Quart de finales', 'Demi-Finales', 'Finale'];
 
-	$http.post('Backend/routes.php?action=competition', $scope.competition).success(function(result) {
-		$rootScope.competition = result;
-		$rootScope.title = $rootScope.competition.league + ' - ' + $rootScope.competition.season;
-	});
+	/*	$http.post('Backend/routes.php?action=competition', $scope.competition).success(function(result) {
+			$rootScope.competition = result;
+			$rootScope.title = $rootScope.competition.league + ' - ' + $rootScope.competition.season;
+		});*/
 
 	//Gestion des couleurs
 	//Couleurs de bases du site

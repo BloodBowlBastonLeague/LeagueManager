@@ -99,7 +99,9 @@ function match_save($con, $Cyanide_Key, $params, $reset){
         $teamBBBL = team_update($con, $Cyanide_Key, $team->idteamlisting);
         //add players stats
         foreach ($team->roster as $player) {
-            player_stats_save($con, $player, $matchDetails->uuid);
+            if($player->id){
+                player_stats_save($con, $player, $matchDetails->uuid);
+            }
         };
     };
 };

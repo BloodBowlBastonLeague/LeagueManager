@@ -38,7 +38,7 @@ function competition_standing($con, $id){
           id,
           cyanide_id,
           logo,
-          team,
+          name,
           color_1,
           color_2,
           coach,
@@ -54,12 +54,12 @@ function competition_standing($con, $id){
           SUM(score_1) - SUM(score_2) + SUM(sustainedcasualties_2 ) - SUM(sustainedcasualties_1) AS TDS,
           0 AS confrontation
           FROM (
-          SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.cyanide_id AS cyanide_id, site_teams.logo AS logo, site_teams.name AS team, site_teams.color_1 AS color_1, site_teams.color_2 AS color_2, site_coachs.name AS coach, score_1, score_2, sustainedcasualties_1, sustainedcasualties_2, sustaineddead_1, sustaineddead_2 FROM site_matchs
+          SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.cyanide_id AS cyanide_id, site_teams.logo AS logo, site_teams.name AS name, site_teams.color_1 AS color_1, site_teams.color_2 AS color_2, site_coachs.name AS coach, score_1, score_2, sustainedcasualties_1, sustainedcasualties_2, sustaineddead_1, sustaineddead_2 FROM site_matchs
           LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_1
           INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
           WHERE competition_id = '.$id.'
           UNION
-          SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.cyanide_id AS cyanide_id, site_teams.logo AS logo, site_teams.name AS team, site_teams.color_1 AS color_1, site_teams.color_2 AS color_2, site_coachs.name AS coach, score_2, score_1, sustainedcasualties_2, sustainedcasualties_1, sustaineddead_2, sustaineddead_1 FROM site_matchs
+          SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.cyanide_id AS cyanide_id, site_teams.logo AS logo, site_teams.name AS name, site_teams.color_1 AS color_1, site_teams.color_2 AS color_2, site_coachs.name AS coach, score_2, score_1, sustainedcasualties_2, sustainedcasualties_1, sustaineddead_2, sustaineddead_1 FROM site_matchs
           LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_2
           INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
           WHERE competition_id='.$id.'
@@ -105,7 +105,6 @@ function competition_standing($con, $id){
 
 //Get fixtures
 function competition_calendar($con, $id){
-    mysqli_set_charset($con,'utf8');
     $calendar = [];
     $sqlRounds = "SELECT DISTINCT(round) FROM site_matchs WHERE competition_id=".$id." ORDER BY round";
     $resultRounds = $con->query($sqlRounds);
@@ -131,6 +130,13 @@ function competition_calendar($con, $id){
             }
             array_push($matchs, $dataMatchs);
         }
+        $sqlCurrentDay="SELECT CASE WHEN c.competition_mode='Coupe' THEN MAX(m.round) ELSE MIN(m.round) END
+          FROM site_matchs AS m
+          INNER JOIN site_competitions AS c ON c.id = m.competition_id
+    	    WHERE m.competition_id=".$id." AND m.cyanide_id IS NULL";
+        $resultCurrentDay = $con->query($sqlCurrentDay);
+        $currentDay = $resultCurrentDay->fetch_row();
+        $rounds->currentDay = $currentDay[0];
         $rounds->matchs = $matchs;
         array_push($calendar, $rounds);
     }
@@ -167,7 +173,7 @@ function competition_update_matchs($con,$params){
     $response  = file_get_contents($request);
     $played = json_decode($response);
 
-    foreach ($played->upcoming_matchs as $game) {
+    foreach ($played->upcoming_matches as $game) {
         if(in_array($game->contest_id, $params[4])){
             match_save($con, $params[0], [$game->match_uuid,$game->contest_id], 0);
         }
@@ -186,7 +192,7 @@ function competition_next_day($con,$params){
     $schedule = json_decode($response);
 
     //Saving matchs
-    foreach ($schedule->upcoming_matchs as $match) {
+    foreach ($schedule->upcoming_matches as $match) {
         $teams = [];
         foreach ($match->opponents as $key=>$opponent) {
           $sqlTeam = "SELECT id FROM site_teams WHERE cyanide_id = '".$opponent->team->id."'";

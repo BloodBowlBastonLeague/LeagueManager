@@ -44,12 +44,14 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 	$rootScope.finalsTemplate = ['Finale', 'Demi-Finales', 'Quart de finales', '8emes de finales', '16emes de finales', '32emes de finales'];
 
 	//Récupération des informations de base
-	$http.get('Backend/routes.php?action=boot').success(function(result) {
-		$rootScope.parameters = result.parameters;
-		$rootScope.competitions = result.competitions;
-		$rootScope.leagueStats = result.stats;
-		$rootScope.$broadcast('statsSuccess');
-	});
+	$http
+		.get('Backend/routes.php?action=boot')
+		.success(function(result) {
+			$rootScope.parameters = result.parameters;
+			$rootScope.competitions = result.competitions;
+			$rootScope.leagueStats = result.stats;
+			$rootScope.$broadcast('statsSuccess');
+		});
 
 	//Récupération des liens compétitions-forums
 	$http
@@ -60,8 +62,10 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 
 
 	$rootScope.goToPage = function(page) {
-		$('#Logo').removeAttr('style');
-		$('.navbar').removeAttr('style');
+		$('#Logo')
+			.removeAttr('style');
+		$('.navbar')
+			.removeAttr('style');
 		$rootScope.$broadcast('routeChangeSuccess');
 		$location.path(page);
 	};
@@ -73,7 +77,8 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 	});
 
 	$rootScope.previousPage = function() {
-		$('#Logo').removeAttr('style');
+		$('#Logo')
+			.removeAttr('style');
 		var prevUrl = $rootScope.history.length > 0 ? $rootScope.history.splice(-1)[0] : "/";
 		$location.path(prevUrl);
 	};
@@ -81,8 +86,9 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 
 	$rootScope.translate = function(param) {
 		var idx = $rootScope.parameters.map(function(e) {
-			return e.name;
-		}).indexOf(param);
+				return e.name;
+			})
+			.indexOf(param);
 		return $rootScope.parameters[idx].translation;
 	};
 
@@ -137,8 +143,9 @@ LeagueManager.filter('talkingToTheGods', function() {
 
 	return function(input, dictionnary) {
 		var idx = dictionnary.map(function(e) {
-			return e.name;
-		}).indexOf(input);
+				return e.name;
+			})
+			.indexOf(input);
 		return dictionnary[idx].translation;
 	}
 
