@@ -14,12 +14,14 @@
     <div class="plain seconde" ng-style="colours[1].border">
       <h2>2. Ajoutez une compétition</h2>
       <form>
-        Compétition en jeu : <select ng-model="newCompetition.indexIG" >
-        <option ng-repeat="competition in competitionsIG" value="{{$index}}" ng-selected="$index==newCompetition.indexIG">{{competition.game_name}}</option>
+        Compétition en jeu :
+        <select ng-model="newCompetition.indexIG">
+          <option value="">Competition chapeau (sponsors)</option>
+          <option ng-repeat="competition in competitionsIG" value="{{$index}}" ng-selected="$index==newCompetition.indexIG">{{competition.game_name}}</option>
         </select>
         <br/>
         Nom sur le site: <input type="text" ng-model="newCompetition.site_name"><br/>
-        Division &amp; poule : <select ng-model="newCompetition.site_order" >
+        Type de competition : <select ng-model="newCompetition.site_order" >
           <option value="0" ng-selected="newCompetition.site_order==0">Competition principale</option>
           <option value="1">Tournoi annexe</option>
         </select><br/>
@@ -31,16 +33,28 @@
         </select>
         <br/>
         Partie de saison : <select ng-model="newCompetition.competition_mode">
-          <option value="Partie 1">Saison complète</option>
+          <option value="Saison">Saison complète</option>
           <option value="Qualification">Qualifications</option>
           <option value="Coupe">Coupe</option>
           <option value="Partie 1">Partie 1</option>
           <option value="Partie 2">Partie 2</option>
         </select><br/>
         Champion : <select ng-model="newCompetition.champion">
-          <option value="0"ng-selected="newCompetition.champion==0">Non</option>
+          <option value="0" ng-selected="newCompetition.champion==0">Non</option>
           <option value="1">Oui</option>
-        </select>
+        </select><br/>
+        <span ng-show="newCompetition.indexIG">
+          Competition chapeau : <select ng-model="newCompetition.competition_id_parent">
+            <option ng-repeat="competition in competitions" value="{{competition.id}}">{{competition.site_name}}</option>
+          </select><br/>
+          Sponsor 1 : <select ng-model="newCompetition.sponsor_id_1">
+            <option ng-repeat="sponsor in sponsors track by $index" value="{{sponsor.id}}">{{sponsor.name}}</option>
+          </select><br/>
+          Sponsor 2 : <select ng-model="newCompetition.sponsor_id_2">
+            <option ng-repeat="sponsor in sponsors track by $index" value="{{sponsor.id}}">{{sponsor.name}}</option>
+          </select><br/>
+          Round : <input type="number" min="1" ng-model="newCompetition.round"></input>
+        </span>
       </form><br/><br/>
       <div class="spacer" ng-class="newCompetition.result">{{newCompetition.message}}</div>
       <div class="button" ng-click="competitionAdd()" ng-if="newCompetition.processing==0">

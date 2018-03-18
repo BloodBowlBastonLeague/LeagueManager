@@ -1,19 +1,19 @@
 <?php
 
 //Create player
-function player_create($con, $teamID, $cyanideIDTeam, $player){
+function player_create($con, $bbblID, $teamID, $player){
     if( $player->id ){
       $sqlCreate = "INSERT INTO site_players (cyanide_id, team_id, cyanide_id_team, param_name_type, name, level, xp, attributes, skills, dead, casualties)
-      VALUES (".$player->id.",".$teamID.",".$cyanideIDTeam.",'".$player->type."','".str_replace("'","\'",$player->name)."',".$player->level.",".$player->xp.",'".json_encode($player->attributes)."','".json_encode($player->skills)."',0,'".json_encode($player->casualties_state)."')";
+      VALUES (".$player->id.",".$bbblID.",".$teamID.",'".$player->type."','".str_replace("'","\'",$player->name)."',".$player->level.",".$player->xp.",'".json_encode($player->attributes)."','".json_encode($player->skills)."',0,'".json_encode($player->casualties_state)."')";
       $con->query($sqlCreate);
     };
 };
 
 //Update player
-function player_update($con, $teamID, $cyanideIDTeam, $player){
+function player_update($con, $bbblID, $teamID, $player){
     $sqlUpdate = "UPDATE site_players SET
-      team_id = ".$teamID.",
-      cyanide_id_team = ".$cyanideIDTeam.",
+      team_id = ".$bbblID.",
+      cyanide_id_team = ".$teamID.",
       level = ".$player->level.",
       xp = CASE WHEN ".$player->xp." > 0 THEN ".$player->xp." ELSE xp END,
       attributes = '".json_encode($player->attributes)."',

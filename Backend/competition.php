@@ -31,7 +31,7 @@ function competition_fetch($con, $id){
 
 };
 
-//Get competition standing
+//Get standing
 function competition_standing($con, $id){
     $standing = [];
     $sqlStanding = 'SELECT
@@ -144,7 +144,7 @@ function competition_calendar($con, $id){
     die();
 };
 
-//Get competition statistics
+//Get statistics
 function competition_stats($con,$competition){
     //Leaderboard
     $competition->playersStats = [];
@@ -156,14 +156,14 @@ function competition_stats($con,$competition){
     return $competition;
 };
 
-//Update Competition
+//Update competition
 function competition_update($con,$params){
     if(count($params[4]) != 0){
         competition_update_matchs($con,$params);
     }
     elseif ($params[5] == 'swiss') {
       echo "test";
-        competition_next_day($con,$params);
+        competition_next_round($con,$params);
     }
 };
 
@@ -183,8 +183,8 @@ function competition_update_matchs($con,$params){
 
 };
 
-//Swiss format insert next day
-function competition_next_day($con,$params){
+//Swiss format insert next round
+function competition_next_round($con,$params){
 
     $nextRound = $params[6]+1;
     $request = "http://web.cyanide-studio.com/ws/bb2/contests/?key=".$params[0]."&league=".urlencode($params[1])."&competition=".urlencode($params[2])."&exact=1&status=scheduled&round=".$nextRound;

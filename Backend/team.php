@@ -34,18 +34,23 @@ function team_create($con, $Cyanide_Key, $id){
     $team = $json->team;
     $roster = $json->roster;
 
-    $sqlCreate = "INSERT INTO site_teams ( name, cyanide_id, coach_id, param_id_race, active, apothecary, assistantcoaches,  cheerleaders, cash, rerolls, popularity, value, stadiumname, stadium_level, leitmotiv, logo, json)
-    VALUES ('".str_replace("'","\'",$team->name)."', '".$team->cyanide_id."', '".$team->coach_id."', '".$team->idraces."', '1', '".$team->apothecary."', '".$team->assistantcoaches."', '".$team->cheerleaders."', '".$team->cash."', '".$team->rerolls."', '".$team->popularity."', '".$team->value."', '".str_replace("'","\'",$team->stadiumname)."', ".$team->stadiumlevel.", '".str_replace("'","\'",$team->leitmotiv)."', '".$team->logo."',  '".$team->json."')";
+    $team->name = str_replace("'","\'",$team->name);
+    $team->stadium_name = str_replace("'","\'",$team->stadiumname);
+    $team->leitmotiv = str_replace("'","\'",$team->leitmotiv);
+    $sqlCreate = "INSERT INTO site_teams ( name, cyanide_id, coach_id, param_id_race, active, apothecary, assistantcoaches,  cheerleaders, cash, rerolls, popularity, value, stadium_name, stadium_level, leitmotiv, logo, json) VALUES ('".$team->name."', '".$team->id."', '".$team->coach_id."', '".$team->idraces."', '1', '".$team->apothecary."', '".$team->assistantcoaches."', '".$team->cheerleaders."', '".$team->cash."', '".$team->rerolls."', '".$team->popularity."', '".$team->value."', '".$team->stadium_name."', ".$team->stadiumlevel.", '".$team->leitmotiv."', '".$team->logo."',  '".$team->json."')";
     $con->query($sqlCreate);
+    $team->bbblID = $con->insert_id;
 
-    team_roster($con, $team->id, $roster);
+    team_roster_update($con, $team->id, $team->bbblID, $roster);
+
+    return $team->bbblID;
 
 };
 
 //Update team
-function team_update($con, $Cyanide_Key, $id){
+function team_update($con, $Cyanide_Key, $teamID, $bbblID){
 
-    $request = 'http://web.cyanide-studio.com/ws/bb2/team/?key='.$Cyanide_Key.'&id='.$id;
+    $request = 'http://web.cyanide-studio.com/ws/bb2/team/?key='.$Cyanide_Key.'&id='.$teamID;
     $response  = file_get_contents($request);
     $json = json_decode($response);
     $team = $json->team;
@@ -66,14 +71,14 @@ function team_update($con, $Cyanide_Key, $id){
       WHERE cyanide_id = '".$team->id."'";
     $con->query($sqlTeam);
 
-    team_roster_update($con, $team->id, $roster);
+    team_roster_update($con, $team->id, $bbblID, $roster);
 
 };
 
 //Fetch roster details
-function team_roster_fetch($con, $teamID, $cyanideIDTeam){
+function team_roster_fetch($con, $bbblID, $teamID){
     $roster = [];
-    $sqlPlayers = "SELECT id, name, param_name_type AS position, attributes, skills, casualties, level, xp, dead, fired FROM site_players WHERE team_id=".$teamID;
+    $sqlPlayers = "SELECT id, name, param_name_type AS position, attributes, skills, casualties, level, xp, dead, fired FROM site_players WHERE team_id=".$bbblID;
     $resultPlayers = $con->query($sqlPlayers);
     while($player = $resultPlayers->fetch_object()) {
         $player->stats = player_stats_fetch($con, $player->id);
@@ -83,11 +88,11 @@ function team_roster_fetch($con, $teamID, $cyanideIDTeam){
 };
 
 //Update roster
-function team_roster_update($con, $teamID, $roster){
+function team_roster_update($con, $teamID, $bbblID, $roster){
+
     //Get current roster and store it to control players to remove
-    $teamBBBL = $con->query("SELECT id FROM site_teams WHERE cyanide_id = ".$teamID)->fetch_row();
     $rosterControl = [];
-    $sqlRosterControl = $con->query("SELECT cyanide_id FROM site_players WHERE dead != 1 AND fired != 1 AND team_id = ".$teamBBBL[0]);
+    $sqlRosterControl = $con->query("SELECT cyanide_id FROM site_players WHERE dead != 1 AND fired != 1 AND team_id = ".$bbblID);
     while($row = $sqlRosterControl->fetch_array(MYSQLI_NUM)){
         array_push($rosterControl, (int) $row[0]);
     };
@@ -98,13 +103,13 @@ function team_roster_update($con, $teamID, $roster){
         $playerBBBL = $resultPlayerBBBL->fetch_row();
         //Update
         if ( $playerBBBL[0] > 0 ){
-            player_update($con, $teamBBBL[0], $teamID, $player);
+            player_update($con, $bbblID, $teamID, $player);
             //Remove player from control
             $rosterControl = array_diff($rosterControl, [(int) $player->id]);
         }
         //Create
         else {
-            player_create($con, $teamBBBL[0], $teamID, $player);
+            player_create($con, $bbblID, $teamID, $player);
         };
     };
 

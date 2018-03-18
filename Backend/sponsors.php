@@ -1,5 +1,5 @@
 <?php
-
+//Get sponsor
 function sponsor_fetch($con, $id){
     $sqlSponsor = "SELECT * FROM site_sponsors WHERE id=".$id;
     $resultSponsor = $con->query($sqlSponsor);
@@ -7,9 +7,9 @@ function sponsor_fetch($con, $id){
     return $sponsor;
 };
 
-
+//Get all sponpors
 function sponsor_fetch_all($con){
-    $sponsors=[];
+    $sponsors = [];
     $sqlSponsors = "SELECT * FROM site_sponsors";
     $resultSponsors = $con->query($sqlSponsors);
     while($dataSponsors = $resultSponsors->fetch_object()){
@@ -18,7 +18,7 @@ function sponsor_fetch_all($con){
     return $sponsors;
 };
 
-
+//Get sponsor's teams
 function sponsor_fetch_teams($con, $sponsorID){
     $teams = [];
     $sqlTeams = "SELECT * FROM site_teams WHERE sponsor_id=".$sponsorID;
@@ -30,7 +30,7 @@ function sponsor_fetch_teams($con, $sponsorID){
     return $teams;
 };
 
-
+//Get sponsors competition's standing
 function sponsors_standing($con, $competitionID){
 
     //$sponsors = sponsor_fetch_all($con);
@@ -107,7 +107,7 @@ function sponsors_standing($con, $competitionID){
     return $sponsors;
 };
 
-
+//Get sponsors competition's calendar
 function sponsors_calendar($con, $competitionID){
     $calendar = [];
     $sqlRounds = "SELECT DISTINCT(round) FROM site_competitions WHERE competition_id_parent=".$competitionID." ORDER BY round";
@@ -127,7 +127,7 @@ function sponsors_calendar($con, $competitionID){
 
 };
 
-
+//Get sponsors match
 function sponsorsMatch_fetch($con, $competitionID, $teams){
     $sqlCompetition = "SELECT id, site_name, site_order, season, active, competition_mode, game_name, sponsor_id_1, sponsor_id_2
       FROM site_competitions AS c
@@ -162,7 +162,7 @@ function sponsorsMatch_fetch($con, $competitionID, $teams){
     return $competition;
 };
 
-
+//Get sponsors details for a match
 function sponsorsMatch_fetch_sponsors($con, $ids, $teams){
     $sponsors=[];
     //Set ordering to fix display
