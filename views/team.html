@@ -89,6 +89,8 @@
 				<h4 ng-style="colours[1].color">{{team.roster}}</h4>
 				<ul class="teamDetails list-unstyled">
 					<li>coaché par <span class="" ng-style="colours[1].color"><b>{{team.coach}}</b></span></li>
+					<li ng-if="team.sponsor">sponsorisé par <span class="" ng-style="colours[1].color"><b>{{team.sponsor.name}}</b></span></li>
+
 					<li class="zelda" ng-click="goToPage('competition/'+team.competition.id)" ng-if="team.competition.id"> {{team.competition.name}}</li>
 				</ul><br />
 				<ul class="teamDetails col2 list-unstyled">

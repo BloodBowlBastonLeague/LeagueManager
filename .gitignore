@@ -1,6 +1,6 @@
 /Forum
 /resources/helmet
 /resources/img/teams
+/resources/json/matches
 *.ini
 *~
-

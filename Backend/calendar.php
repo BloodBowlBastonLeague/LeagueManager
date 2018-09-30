@@ -25,32 +25,32 @@ switch ($action) {
 function upcomingGames($con){
   mysqli_set_charset($con,'utf8');
 
-  $var = [];
+  $fixtures = [];
   $sqlCompetitions = "SELECT DISTINCT(DATE_FORMAT(m.started,'%Y-%m-%d')) AS day
     FROM site_matchs AS m
     LEFT JOIN site_competitions AS c ON c.id=m.competition_id
     WHERE c.active=1 AND m.cyanide_id IS NULL AND m.started>NOW()
     ORDER BY m.started";
-  $resultCompetitions = mysqli_query($con, $sqlCompetitions);
-  while($data = mysqli_fetch_array($resultCompetitions,MYSQLI_ASSOC)){
-    $data[matchs]=[];
+  $resultCompetitions = $con->query($sqlCompetitions);
+  while($competitions = $resultCompetitions->fetch_object()){
+    $competitions->matchs = [];
     $sqlMatchs = "SELECT m.id, DATE_FORMAT(m.started,'%Y%m%dT%H%i%sZ') AS planned,
-    c.league_name, m.round,
-    t1.name as name_1, t1.logo as logo_1,
-    t2.name as name_2, t2.logo as logo_2
-    FROM site_matchs AS m
-    LEFT JOIN site_competitions AS c ON c.id=m.competition_id
-    LEFT JOIN site_teams AS t1 ON t1.id=m.team_id_1
-    LEFT JOIN site_teams AS t2 ON t2.id=m.team_id_2
-    WHERE m.cyanide_id IS NULL AND m.started IS NOT NULL AND DATE_FORMAT(m.started,'%Y-%m-%d')='".$data[day]."'
-    ORDER BY c.site_order";
-    $resultMatchs = mysqli_query($con, $sqlMatchs);
-    while($dataMatchs = mysqli_fetch_array($resultMatchs,MYSQLI_ASSOC)){
-      array_push($data[matchs], $dataMatchs);
+      c.league_name, m.round,
+      t1.name as name_1, t1.logo as logo_1,
+      t2.name as name_2, t2.logo as logo_2
+      FROM site_matchs AS m
+      LEFT JOIN site_competitions AS c ON c.id=m.competition_id
+      LEFT JOIN site_teams AS t1 ON t1.id=m.team_id_1
+      LEFT JOIN site_teams AS t2 ON t2.id=m.team_id_2
+      WHERE m.cyanide_id IS NULL AND m.started IS NOT NULL AND DATE_FORMAT(m.started,'%Y-%m-%d')='".$data[day]."'
+      ORDER BY c.site_order";
+    $resultMatchs = $con->query($sqlMatchs);
+    while($dataMatchs = $resultMatchs->fetch_object()){
+      array_push($competitions->matchs, $dataMatchs);
     }
-    array_push($var, $data);
+    array_push($fixtures, $competitions);
   }
-  echo json_encode($var,JSON_NUMERIC_CHECK);
+  echo json_encode($fixtures,JSON_NUMERIC_CHECK);
 }
 
 
@@ -91,7 +91,7 @@ function competition($con,$id){
     $sql3 = "SELECT CASE WHEN c.competition_mode='Coupe' THEN MAX(m.round) ELSE MIN(m.round) END
       FROM site_matchs AS m
       INNER JOIN site_competitions AS c ON c.id = m.competition_id
-	    WHERE m.competition_id=".$id." AND m.started IS NULL";
+	    WHERE m.competition_id=".$id." AND m.cyanide_id IS NULL";
 	  $result3 = mysqli_query($con, $sql3);
     while($var3 = mysqli_fetch_row($result3)) {
      $data[currentDay] = $var3[0];

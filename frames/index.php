@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <? $competition = $_REQUEST['competition'];
  $round = $_REQUEST['round'];
-//include('phpBB_Connect.php');
  ?>
 <html  ng-app="LeagueManager">
 <head>

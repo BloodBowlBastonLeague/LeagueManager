@@ -19,9 +19,11 @@ LeagueManager.directive("match", function() {
 			];
 
 			$http
-				.post("Backend/routes.php?action=match", [$scope.matchID])
+				.post("backend/routes.php?action=match", [$scope.matchID])
 				.success(function(result) {
+
 					var data = JSON.parse(result.json);
+
 					$rootScope.match = data.match;
 					$rootScope.match.round = result.round;
 
@@ -71,7 +73,6 @@ LeagueManager.directive("match", function() {
 								$scope.teamIdx = 0;
 							}
 						}
-
 						$scope.teams[i].color1 = $scope.teams[i].color1 != undefined ?
 							$scope.teams[i].color1 :
 							$scope.tmpTeams[$scope.teamIdx].color1;
@@ -90,7 +91,8 @@ LeagueManager.directive("match", function() {
 						}
 					}
 					$rootScope.match.started =
-						$scope.match.started.replace(/-/g, "").replace(/ /g, "T") + "Z";
+						$scope.match.started.replace(/-/g, "")
+						.replace(/ /g, "T") + "Z";
 
 					$rootScope.setColours([
 						$rootScope.colourA,
@@ -109,12 +111,13 @@ LeagueManager.directive("match", function() {
 						"border-color": $rootScope.colours[1].hexa
 					};
 					//Team Images
-					$(".helmet1 .helmet-logo").css({
-						background: "url(../resources/logo/Logo_" +
-							$scope.teams[0].teamlogo +
-							".png) center center no-repeat",
-						"background-size": "cover"
-					});
+					$(".helmet1 .helmet-logo")
+						.css({
+							background: "url(../resources/logo/Logo_" +
+								$scope.teams[0].teamlogo +
+								".png) center center no-repeat",
+							"background-size": "cover"
+						});
 					$scope.team_1_BG = {
 						position: "absolute",
 						width: "100%",
@@ -127,12 +130,13 @@ LeagueManager.directive("match", function() {
 					};
 					$scope.helmet_1_svg =
 						"resources/helmet/helmet_" + $scope.teams[0].idraces + ".svg";
-					$(".helmet2 .helmet-logo").css({
-						background: "url(../resources/logo/Logo_" +
-							$scope.teams[1].teamlogo +
-							".png) center center no-repeat",
-						"background-size": "contain"
-					});
+					$(".helmet2 .helmet-logo")
+						.css({
+							background: "url(../resources/logo/Logo_" +
+								$scope.teams[1].teamlogo +
+								".png) center center no-repeat",
+							"background-size": "contain"
+						});
 					$scope.team_2_BG = {
 						position: "absolute",
 						width: "100%",
@@ -149,7 +153,7 @@ LeagueManager.directive("match", function() {
 
 			$scope.matchReset = function() {
 				if ($rootScope.admin == 1) {
-					$http.post("Backend/routes.php?action=matchReset", [$rootScope.match.cyanide_id, $rootScope.match.contest_id, $scope.matchID]);
+					$http.post("backend/routes.php?action=matchReset", [$rootScope.match.cyanide_id, $rootScope.match.contest_id, $scope.matchID]);
 				}
 			};
 

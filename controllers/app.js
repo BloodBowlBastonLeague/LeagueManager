@@ -19,6 +19,9 @@ LeagueManager.config(function($routeProvider) {
 		.when("/match/:ID", {
 			template: '<match></match>'
 		})
+		.when("/sponsorsMatch/:ID", {
+			template: '<sponsors-match></sponsors-match>'
+		})
 		.when("/forum", {
 			templateUrl: '/Forum/index.php'
 		})
@@ -34,19 +37,21 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 	$rootScope.coach_id = window.coach_id;
 	$rootScope.coach_gold = window.coach_gold;
 	$rootScope.session_id = window.session_id;
-	$rootScope.admin = ['9', '10'].indexOf(window.Group) > -1 ? 1 : 0;
+	$rootScope.admin = ['5', '9', '10'].indexOf(window.Group) > -1 ? 1 : 0;
 	$rootScope.external = window.Group == 19 || !window.coach_id ? 1 : 0;
 	$rootScope.title = "Tribunes - le mag de la BBBL";
 	$rootScope.competitions = [];
 	$rootScope.finalsTemplate = ['Finale', 'Demi-Finales', 'Quart de finales', '8emes de finales', '16emes de finales', '32emes de finales'];
 
 	//Récupération des informations de base
-	$http.get('Backend/routes.php?action=boot').success(function(result) {
-		$rootScope.parameters = result.parameters;
-		$rootScope.competitions = result.competitions;
-		$rootScope.leagueStats = result.stats;
-		$rootScope.$broadcast('statsSuccess');
-	});
+	$http
+		.get('backend/routes.php?action=boot')
+		.success(function(result) {
+			$rootScope.parameters = result.parameters;
+			$rootScope.competitions = result.competitions;
+			$rootScope.leagueStats = result.stats;
+			$rootScope.$broadcast('statsSuccess');
+		});
 
 	//Récupération des liens compétitions-forums
 	$http
@@ -57,8 +62,10 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 
 
 	$rootScope.goToPage = function(page) {
-		$('#Logo').removeAttr('style');
-		$('.navbar').removeAttr('style');
+		$('#Logo')
+			.removeAttr('style');
+		$('.navbar')
+			.removeAttr('style');
 		$rootScope.$broadcast('routeChangeSuccess');
 		$location.path(page);
 	};
@@ -70,7 +77,8 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 	});
 
 	$rootScope.previousPage = function() {
-		$('#Logo').removeAttr('style');
+		$('#Logo')
+			.removeAttr('style');
 		var prevUrl = $rootScope.history.length > 0 ? $rootScope.history.splice(-1)[0] : "/";
 		$location.path(prevUrl);
 	};
@@ -78,16 +86,17 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 
 	$rootScope.translate = function(param) {
 		var idx = $rootScope.parameters.map(function(e) {
-			return e.name;
-		}).indexOf(param);
+				return e.name;
+			})
+			.indexOf(param);
 		return $rootScope.parameters[idx].translation;
 	};
 
 	//Gestion des couleurs
 	//Couleurs de bases du site
-	$rootScope.colours = ['#00558D', '#91BFDC'];
-	$rootScope.colourA = "#00558D";
-	$rootScope.colourB = "#91BFDC";
+	$rootScope.colours = ['#FF8217', '#AC483B'];
+	$rootScope.colourA = "#FF8217";
+	$rootScope.colourB = "#AC483B";
 	//Mise à jours de couleurs (pour les équipes)
 	$rootScope.setColours = function(args) {
 		for (i = 0; i < args.length; i++) {
@@ -134,8 +143,9 @@ LeagueManager.filter('talkingToTheGods', function() {
 
 	return function(input, dictionnary) {
 		var idx = dictionnary.map(function(e) {
-			return e.name;
-		}).indexOf(input);
+				return e.name;
+			})
+			.indexOf(input);
 		return dictionnary[idx].translation;
 	}
 

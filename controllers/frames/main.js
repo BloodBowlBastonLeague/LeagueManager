@@ -23,16 +23,17 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $window) {
 	$rootScope.competitions = [];
 	$rootScope.eliminations = ['32emes de finales', '16emes de finales', '8emes de finales', 'Quart de finales', 'Demi-Finales', 'Finale'];
 
-	$http.post('Backend/routes.php?action=competition', $scope.competition).success(function(result) {
-		$rootScope.competition = result;
-		$rootScope.title = $rootScope.competition.league + ' - ' + $rootScope.competition.season;
-	});
+	/*	$http.post('backend/routes.php?action=competition', $scope.competition).success(function(result) {
+			$rootScope.competition = result;
+			$rootScope.title = $rootScope.competition.league + ' - ' + $rootScope.competition.season;
+		});*/
 
 	//Gestion des couleurs
 	//Couleurs de bases du site
-	$rootScope.colours = [];
-	$rootScope.colourA = "#00558D";
-	$rootScope.colourB = "#91BFDC";
+	//Couleurs de bases du site
+	$rootScope.colours = ['#FF8217', '#AC483B'];
+	$rootScope.colourA = "#FF8217";
+	$rootScope.colourB = "#AC483B";
 	//Mise à jours de couleurs (pour les équipes)
 	$rootScope.setColours = function(args) {
 		for (i = 0; i < args.length; i++) {

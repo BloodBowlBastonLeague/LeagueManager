@@ -12,14 +12,14 @@ LeagueManager.directive('archives', function() {
 				$scope.competition = undefined;
 			}
 			//Récupération des compétitions
-			$http.get('Backend/routes.php?action=archives').success(function(result) {
+			$http.get('backend/routes.php?action=archives').success(function(result) {
 				$rootScope.archives = result;
 			});
 
 			$scope.showCompetition = function(competition) {
 				$rootScope.setColours([$rootScope.colourA, $rootScope.colourB, competition.standing[0].color_1, competition.standing[0].color_2, competition.standing[0].color_1, competition.standing[0].color_2]);
 				console.log(competition.standing[0].logo);
-				$http.get('Backend/calendar.php?id=' + competition.id).success(function(result) {
+				$http.get('backend/calendar.php?id=' + competition.id).success(function(result) {
 					$scope.calendar = result;
 					$scope.finals = $rootScope.finalsTemplate;
 					$scope.finals.splice($scope.calendar.length);

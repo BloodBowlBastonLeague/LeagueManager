@@ -7,7 +7,7 @@
 		<!--img class="banner" src="../resources/img/banners/{{competition.division}}.png"-->
 
 		<!-- Championship / Championnat -->
-		<div class="plain prime main" ng-if="competition.competition_mode!='Coupe'" ng-style="colours[0].border" ng-cloak>
+		<div class="plain prime main" ng-if="['Coupe','Sponsors'].indexOf(competition.competition_mode)<0" ng-style="colours[0].border" ng-cloak>
 
 			<h3 ng-style="colours[0].color">Classement</h3>
 			<table>
@@ -22,13 +22,16 @@
 						<th class="text-center hidden-xs-down">D</th>
 						<th class="text-center hidden-sm-down">TD</th>
 						<th class="text-center hidden-sm-down">S</th>
+						<th class="text-center hidden-sm-down">M</th>
+						<th class="text-center hidden-sm-down" ng-if="competition.format == 'ladder'">Pts/M</th>
+						<th ng-if="admin==1" ng-click="competitionTest()" class="text-center hidden-sm-down">C</th>
 
 					</tr>
 				</thead>
 				<tbody class="table-hover">
 					<tr ng-repeat="team in competition.standing | orderBy:['-Pts','-V','-TDS']" class="zelda" ng-class="{gold: $index+1 == 1, silver: $index+1 == 2, bronze: $index+1 == 3}" ng-click="goToPage('team/' + team.cyanide_id)" ng-style="colours[0].border">
 						<td class="text-center">{{$index+1}}</td>
-						<td class="text-left"><img class="teamLogo" src="resources/logo/Logo_{{team.logo}}.png"> {{team.team}}</td>
+						<td class="text-left"><img class="teamLogo" src="resources/logo/Logo_{{team.logo}}.png"> {{team.name}}</td>
 						<td class="text-left hidden-sm-down">{{team.coach}}</td>
 						<td class="text-center">{{team.Pts}}</td>
 						<td class="text-center hidden-xs-down">{{team.V}}</td>
@@ -36,6 +39,9 @@
 						<td class="text-center hidden-xs-down">{{team.D}}</td>
 						<td class="text-center hidden-sm-down">{{team.TD}}</td>
 						<td class="text-center hidden-sm-down">{{team.S}}</td>
+						<td class="text-center hidden-xs-down">{{team.V+team.N+team.D}}</td>
+						<td class="text-center hidden-xs-down" ng-if="competition.format == 'ladder'">{{team.Pts / (team.V+team.N+team.D)  | number:1}}</td>
+						<td ng-if="admin==1" class="text-center hidden-sm-down">{{team.confrontation}}</td>
 
 					</tr>
 				</tbody>
@@ -63,7 +69,7 @@
 				<tbody class="table-hover">
 					<tr ng-repeat="team in competition.standing | orderBy:'standing'" ng-if="team.D==0" class="link" ng-click="goToPage('team/' + team.cyanide_id)" ng-style="colours[0].border">
 						<td class="text-center">{{$index+1}}</td>
-						<td class="text-left"><img class="teamLogo" src="resources/logo/Logo_{{team.logo}}.png"> {{team.team}}</td>
+						<td class="text-left"><img class="teamLogo" src="resources/logo/Logo_{{team.logo}}.png"> {{team.name}}</td>
 						<td class="text-left hidden-sm-down">{{team.coach}}</td>
 						<td class="text-center hidden-sm-down">{{team.TD}}</td>
 						<td class="text-center hidden-sm-down">{{team.S}}</td>
@@ -86,7 +92,7 @@
 				<tbody class="table-hover">
 					<tr ng-repeat="team in competition.standing | orderBy:'standing'" ng-if="team.D>0" class="link" ng-click="goToPage('team/' + team.cyanide_id)" ng-style="colours[0].border">
 						<td class="text-center">{{$index+1}}</td>
-						<td class="text-left"><img class="teamLogo" src="resources/logo/Logo_{{team.logo}}.png"> {{team.team}}</td>
+						<td class="text-left"><img class="teamLogo" src="resources/logo/Logo_{{team.logo}}.png"> {{team.name}}</td>
 						<td class="text-left hidden-sm-down">{{team.coach}}</td>
 						<td class="text-center hidden-sm-down">{{team.TD}}</td>
 						<td class="text-center hidden-sm-down">{{team.S}}</td>
@@ -99,6 +105,37 @@
 				<div class="label">Mise à jour</div>
 			</div>
 		</div>
+
+		<!-- Sponsors -->
+		<div class="plain prime main" ng-if="competition.competition_mode=='Sponsors'" ng-style="colours[0].border" ng-cloak>
+
+			<h3 ng-style="colours[0].color">Classement</h3>
+			<table>
+				<thead>
+					<tr ng-style="colours[0].background">
+						<th></th>
+						<th class="text-left">Sponsor</th>
+						<th class="text-center">Pts</th>
+						<th class="text-center hidden-xs-down" title="Victoire">V</th>
+						<th class="text-center hidden-xs-down" title="Nul">N</th>
+						<th class="text-center hidden-xs-down" style="text-transform:lowercase" title="Petite défaite">d</th>
+						<th class="text-center hidden-xs-down" title="Défaite">D</th>
+					</tr>
+				</thead>
+				<tbody class="table-hover">
+					<tr ng-repeat="sponsor in competition.standing | orderBy:['-Pts','-V','-N','-pD','-D']" class="zelda" ng-class="{gold: $index+1 == 1, silver: $index+1 == 2, bronze: $index+1 == 3}"  ng-style="colours[0].border">
+						<td class="text-center">{{$index+1}}</td>
+						<td class="text-left"><img class="teamLogo" src="resources/img/sponsors/{{sponsor.id}}.png"> {{sponsor.name}}</td>
+						<td class="text-center">{{sponsor.Pts}}</td>
+						<td class="text-center hidden-xs-down">{{sponsor.V}}</td>
+						<td class="text-center hidden-xs-down">{{sponsor.N}}</td>
+						<td class="text-center hidden-xs-down">{{sponsor.pD}}</td>
+						<td class="text-center hidden-xs-down">{{sponsor.D}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
 
 		<!--Stats Players-->
 		<div class="row">
@@ -131,7 +168,8 @@
 	</div>
 
 	<div ng-class="{'col-lg-5':competition.competition_mode!='Coupe','col-lg-7':competition.competition_mode=='Coupe'}">
-		<div ng-repeat="matchDay in calendar | orderBy:orderFilter:reverse" id="day{{matchDay.round}}" ng-class="{current: matchDay.round == currentDay }" class="plain prime" ng-style="colours[0].border" ng-show="matchDay.round <= displayDay || displayDay==0">
+
+		<div  ng-if="'Sponsors'!=competition.competition_mode" ng-repeat="matchDay in calendar | orderBy:orderFilter:reverse" id="day{{matchDay.round}}" ng-class="{current: matchDay.round == currentDay }" class="plain prime" ng-style="colours[0].border" ng-show="matchDay.round <= displayDay || displayDay==0">
 			<div ng-if="matchDay.round == currentDay && displayDay != 0" class="button topright" ng-click="showNextDays()">
 				<img src="resources/img/Button_TopRight.png">
 				<div class="label">Calendrier complet</div>
@@ -151,9 +189,31 @@
 				</div>
 			</div>
 		</div>
+
+		<div  ng-if="competition.competition_mode=='Sponsors'" ng-repeat="matchDay in calendar | orderBy:orderFilter:reverse" id="day{{matchDay.round}}" ng-class="{current: matchDay.round == currentDay }" class="plain prime" ng-style="colours[0].border" >
+			<div ng-if="matchDay.round == currentDay && displayDay != 0" class="button topright" ng-click="showNextDays()">
+				<img src="resources/img/Button_TopRight.png">
+				<div class="label">Calendrier complet</div>
+			</div>
+			<h3 ng-if="matchDay.round == currentDay" ng-click="sortBy('round')" class="zelda"><span ng-if="competition.competition_mode=='Coupe'">{{finals[matchDay.round-1]}}</span><span ng-if="competition.competition_mode!='Coupe'">Journée {{matchDay.round}}</span> <div class="triangle" ng-class="{down: reverse}"></div></h3>
+			<h3 ng-if="matchDay.round != currentDay" ng-style="colours[0].color" ng-click="sortBy('day')" class="zelda"><span ng-if="competition.competition_mode=='Coupe'">{{finals[matchDay.round-1]}}</span><span ng-if="competition.competition_mode!='Coupe'">Journée {{matchDay.round}}</span> <div class="triangle" ng-class="{down: reverse}" ng-style="colours[0].border"></div></h3>
+			<div class="match x-center">
+				<div title="{{match.sponsors[0].name}} VS {{match.sponsors[0].name}}" class="vs col-lg-6 col-xl-4" ng-class="{zelda:match.id}" ng-repeat="match in matchDay.matchs" ng-click="goToPage('sponsorsMatch/'+match.id)">
+					<img class="teamLogo" src="resources/img/sponsors/{{match.sponsors[0].id}}.png">
+					<img class="versus" ng-if="match.sponsors[0].score==null" src="../resources/img/vs.png">
+					<span ng-if="matchDay.round == currentDay"> {{match.sponsors[0].score}} - {{match.sponsors[1].score}} </span>
+					<span ng-if="matchDay.round != currentDay" ng-style="colours[0].color"> {{match.sponsors[0].score}} - {{match.sponsors[1].score}} </span>
+					<img class="teamLogo" src="resources/img/sponsors/{{match.sponsors[1].id}}.png"><br/>
+				</div>
+			</div>
+		</div>
+
 		<div class="bet ad zelda" ng-click="displayBets(competitionId)">
 			<img src="resources/bets/BetLogo.png">
 		</div>
+	</div>
+
+	<div class="col-lg-7" ng-if="competition.competition_mode=='Sponsors'">
 	</div>
 </div>
 
