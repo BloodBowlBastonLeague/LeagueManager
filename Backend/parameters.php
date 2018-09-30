@@ -27,7 +27,7 @@ function upcomingGames($con){
       LEFT JOIN site_competitions AS c ON c.id=m.competition_id
       LEFT JOIN site_teams AS t1 ON t1.id=m.team_id_1
       LEFT JOIN site_teams AS t2 ON t2.id=m.team_id_2
-      WHERE m.cyanide_id IS NULL AND m.started IS NOT NULL AND DATE_FORMAT(m.started,'%Y-%m-%d')='".$data[day]."'
+      WHERE m.cyanide_id IS NULL AND m.started IS NOT NULL AND DATE_FORMAT(m.started,'%Y-%m-%d')='".$competitions->day."'
       ORDER BY c.site_order";
     $resultMatchs = $con->query($sqlMatchs);
     while($dataMatchs = $resultMatchs->fetch_object()){

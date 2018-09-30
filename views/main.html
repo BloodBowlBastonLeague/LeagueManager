@@ -58,7 +58,7 @@
           <h2>{{competition.site_name}}</h2>
           <table>
             <tbody>
-              <tr ng-repeat="team in competition.standing | orderBy:['-Pts','-V','-TDS'] | limitTo:5" ng-class="{gold: $index+1 == 1, silver: $index+1 == 2, bronze: $index+1 == 3}" ng-style="colours[0].border">
+              <tr ng-repeat="team in competition.standing | orderBy:['-Pts','-V','-TDS'] | limitTo:6" ng-class="{gold: $index+1 == 1, silver: $index+1 == 2, bronze: $index+1 == 3}" ng-style="colours[0].border">
                 <td>{{$index+1}}</td>
                 <td class="text-left">{{team.name}}</td>
                 <td>{{team.Pts}}</td>
@@ -161,21 +161,21 @@
   </div>
 
   <div class="col-lg-3 stick-right hidden-md-down" >
-      <!--Champion-->
-    <div class="plain prime champion" ng-style="colours[0].border">
-      <div ng-style="teamBG"></div>
-      <h3>CHAMPION</h3>
-      <h4 ng-style="colours[0].color" ng-click="">BB Cup 2517</h4>
-      <hr>
-      <h1 class="zelda" ng-click="goToPage('team/294')">Black Berrurier</h1>
-      <hr>
-      <h2>Zongo</h2>
-      <div class="spacer"></div>
-      <div class="button" ng-click="goToPage('competition/252')">
-        <div ng-include="'resources/img/Button_0.svg'"></div>
-        <div class="label">la compétition</div>
+            <!--Champion-->
+          <div class="plain prime champion" ng-style="colours[0].border">
+            <div ng-style="teamBG"></div>
+            <h3>CHAMPION</h3>
+            <h4 ng-style="colours[0].color" ng-click="">Joute de Bretonnie 2518</h4>
+            <hr>
+            <h1 class="zelda" ng-click="goToPage('team/1832148')">Les Busards du Blizzard</h1>
+            <hr>
+            <h2 ng-style="colours[0].color">Cysterion</h2>
+            <div class="spacer"></div>
+            <div class="button" ng-click="goToPage('competition/302')">
+              <div ng-include="'resources/img/Button_0.svg'"></div>
+              <div class="label">la compétition</div>
+            </div>
       </div>
-    </div>
 
     <!--Stats Players-->
 

@@ -3,7 +3,7 @@
 function competition_fetch_all($con,$active){
 
     $competitions = [];
-    $sql = "SELECT id FROM site_competitions WHERE active=".$active." ORDER BY started DESC";
+    $sql = "SELECT id FROM site_competitions WHERE active=".$active." AND competition_id_parent IS NULL ORDER BY started DESC";
     $result = $con->query($sql);
 
     while( $ids = $result->fetch_row()){
@@ -23,9 +23,11 @@ function competition_fetch($con, $id){
 
     if($competition->competition_mode!='Sponsors'){
         $competition->standing = competition_standing($con, $id);
+        $competition = competition_stats($con, $competition);
     }
     else{
         $competition->standing = sponsors_standing($con, $id);
+        $competition = sponsors_stats($con, $competition);
     };
     return $competition;
 
@@ -56,12 +58,12 @@ function competition_standing($con, $id){
           FROM (
           SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.cyanide_id AS cyanide_id, site_teams.logo AS logo, site_teams.name AS name, site_teams.color_1 AS color_1, site_teams.color_2 AS color_2, site_coachs.name AS coach, score_1, score_2, sustainedcasualties_1, sustainedcasualties_2, sustaineddead_1, sustaineddead_2 FROM site_matchs
           LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_1
-          INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
+          INNER JOIN site_coachs ON site_coachs.cyanide_id=site_teams.coach_id
           WHERE competition_id = '.$id.'
           UNION
           SELECT site_matchs.id AS m, site_teams.id AS id, site_teams.cyanide_id AS cyanide_id, site_teams.logo AS logo, site_teams.name AS name, site_teams.color_1 AS color_1, site_teams.color_2 AS color_2, site_coachs.name AS coach, score_2, score_1, sustainedcasualties_2, sustainedcasualties_1, sustaineddead_2, sustaineddead_1 FROM site_matchs
           LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_2
-          INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
+          INNER JOIN site_coachs ON site_coachs.cyanide_id=site_teams.coach_id
           WHERE competition_id='.$id.'
           ) AS a
           WHERE LENGTH(coach)>0
@@ -74,29 +76,37 @@ function competition_standing($con, $id){
     }
 
     //Managing exaequo
-    $limit = count($competition->standing);
-    for($i = 0; $i <= $limit-1; $i++) {
-        if ( $competition->standing[$i][Pts] == $competition->standing[$i-1][Pts] ) {
+    $limit = count($standing);
+
+    for($i = 1; $i <= $limit-1; $i++) {
+        $row = [1];
+        if ( $standing[$i][Pts] == $standing[$i-1][Pts] ) {
             $sqlConfrontation = 'SELECT
-            case when score_1 > score_2 then 2 else case when score_1 = score_2 AND score_1 IS NOT NULL then 1 else 0 end end
+            case when score_1 > score_2 then 2 else
+            case when score_1 = score_2 AND score_1 IS NOT NULL then 1
+            else 0 end end,
+            name
             FROM (
-            SELECT site_teams.id, score_1, score_2 FROM site_matchs
+            SELECT site_teams.id, site_teams.name, score_1, score_2 FROM site_matchs
             LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_1
             INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
-            WHERE competition_id = '.$competition->id.' AND site_matchs.team_id_1 = '.$competition->standing[$i][id].' AND site_matchs.team_id_2 = '.$competition->standing[$i-1][id].'
+            WHERE competition_id = '.$id.' AND site_matchs.team_id_1 = '.$standing[$i][id].' AND site_matchs.team_id_2 = '.$standing[$i-1][id].'
             UNION
-            SELECT site_teams.id, score_2, score_1 FROM site_matchs
+            SELECT site_teams.id, site_teams.name, score_2, score_1 FROM site_matchs
             LEFT JOIN site_teams ON site_teams.id=site_matchs.team_id_2
             INNER JOIN site_coachs ON site_coachs.id=site_teams.coach_id
-            WHERE competition_id='.$competition->id.' AND site_matchs.team_id_2 = '.$competition->standing[$i][id].' AND site_matchs.team_id_1 = '.$competition->standing[$i-1][id].'
+            WHERE competition_id='.$id.' AND site_matchs.team_id_2 = '.$standing[$i][id].' AND site_matchs.team_id_1 = '.$standing[$i-1][id].'
             ) AS a
             GROUP BY id';
             $result = $con->query($sqlConfrontation);
-            $row = $result->fetch_row();
-        }
-        else{
-            $row = [1];
-        }
+            if(  mysqli_num_rows($result) > 0){
+              $row = $result->fetch_row();
+            }
+            else{
+              $row = [1];
+            }
+
+          }
       $standing[$i]['confrontation'] = $row[0];
     }
     return $standing;
@@ -158,18 +168,20 @@ function competition_stats($con,$competition){
 
 //Update competition
 function competition_update($con,$params){
-    if(count($params[4]) != 0){
-        competition_update_matchs($con,$params);
-    }
-    elseif ($params[5] == 'swiss') {
-      echo "test";
-        competition_next_round($con,$params);
-    }
+  if($params[5] == 'ladder'){
+      competition_ladder_update($con,$params);
+  };
+  if(count($params[4]) != 0){
+      competition_update_matchs($con,$params);
+  }
+  elseif ($params[5] == 'swiss') {
+      competition_next_round($con,$params);
+  }
 };
 
 //Update matchs
 function competition_update_matchs($con,$params){
-    $request = 'http://web.cyanide-studio.com/ws/bb2/contests/?key='.$params[0].'&league='.urlencode($params[1]).'&competition='.urlencode($params[2]).'&status=played&round='.$params[6];
+    $request = "http://web.cyanide-studio.com/ws/bb2/contests/?key=".$params[0]."&league=".urlencode($params[1])."&competition=".urlencode($params[2])."&status=played&round=".$params[6];
     $response  = file_get_contents($request);
     $played = json_decode($response);
 
@@ -215,6 +227,123 @@ function competition_next_round($con,$params){
       VALUES (".$match->contest_id.",".$params[3].",".$match->round.",".$teams[0].",".$teams[1].")";
       $con->query($sqlMatch);
     }
+
+};
+
+// Admin functions
+
+function competition_add($con, $Cyanide_Key, $competition){
+    //Test if competition exist
+    if($competition->cyanide_id != 'NULL'){
+      $resultTest = $con->query("SELECT id FROM site_competitions WHERE cyanide_id='".$competition->cyanide_id."'");
+      $test_competition = $resultTest->fetch_row();
+    }
+    else {
+      $test_competition = [0];
+    };
+
+    if ( $test_competition[0] == 0 ){
+        //Saving competition
+        $sql = "INSERT INTO site_competitions ( cyanide_id, league_name, param_name_format, champion, pool, game_name, season, competition_mode, site_order, site_name, active, started, competition_id_parent, sponsor_id_1, sponsor_id_2, round)
+        VALUES (".$competition->cyanide_id.",'".$competition->league_name."','".$competition->format."','".$competition->champion."','".$competition->pool."','".$competition->game_name."',CONCAT('".$competition->season." ', YEAR(DATE_ADD(NOW(), INTERVAL 500 YEAR)) ),'".$competition->competition_mode."',".$competition->site_order.",'".$competition->site_name."','1',NOW(),".$competition->competition_id_parent.",".$competition->sponsor_id_1.",".$competition->sponsor_id_2.",IFNULL(".$competition->round.",0))";
+        echo $sql;
+        $con->query($sql);
+        $competition_id = $con->insert_id;
+
+        if($competition->competition_mode!='Sponsors'){
+            competition_add_matchs($con, $Cyanide_Key, $competition_id, $competition);
+        };
+
+        $json = new stdClass;
+        $json->result = "success";
+        $json->message = "Compétition créée (bordel! 3 e...)";
+        echo json_encode($json);
+
+    }
+    else {
+        $json = new stdClass;
+        $json->result = "failure";
+        $json->message = "La compétition existe déjà";
+        echo json_encode($json);
+    }
+
+};
+
+
+function competition_add_matchs($con, $Cyanide_Key, $competitionID, $competition){
+    $teams = [];
+    $coachs = [];
+    //Saving matches
+    foreach ($competition->matches as $match) {
+        if( $match->opponents[0]->coach->id!=$match->opponents[1]->coach->id && ($match->round == 1 || !$competition->round)){
+            $match->teamBBBL = [];
+            //Test if coach and team exists
+            foreach ($match->opponents as $key=>$opponent) {
+                $test_coach = $con->query("SELECT id FROM site_coachs WHERE cyanide_id = '".$opponent->coach->id."'")->fetch_row();
+            //    if(in_array($opponent->coach->id,$coachs)==false){
+                    if ( $test_coach[0] == 0){
+                        $sqlCoach = "INSERT INTO site_coachs ( name, cyanide_id, active ) VALUES ('".$opponent->coach->name."','".$opponent->coach->id."',1)";
+                        $con->query($sqlCoach);
+                        array_push($coachs,$opponent->coach->id);
+                    }
+                    else {
+                        $sqlCoach = "UPDATE site_coachs SET active=1 WHERE cyanide_id=".$opponent->coach->id;
+                        $con->query($sqlCoach);
+                        array_push($coachs,$opponent->coach->id);
+                    };
+              //  }
+                $test_team = $con->query("SELECT id FROM site_teams WHERE cyanide_id = '".$opponent->team->id."'")->fetch_row();
+              //  echo "SELECT id FROM site_teams WHERE cyanide_id = '".$opponent->team->id."'";
+              //  if(in_array($opponent->team->id,$teams)==false){
+                    if ( $test_team[0] == 0){
+                        $test_team[0] = team_create($con, $Cyanide_Key, $opponent->team->id);
+                        array_push($teams,$opponent->team->id);
+                    }
+                    else {
+                        team_update($con, $Cyanide_Key, $opponent->team->id);
+                        array_push($teams,$opponent->team->id);
+                    };
+              //  }
+                array_push($match->teamBBBL,$test_team[0]);
+            }
+            //add match
+            $sqlMatch = "INSERT INTO site_matchs (contest_id, cyanide_id, competition_id, round, team_id_1, team_id_2)
+            VALUES (".$match->contest_id.",'".$match->match_uuid."',".$competitionID.",".$match->round.",".$match->teamBBBL[0].",".$match->teamBBBL[1].")";
+            $con->query($sqlMatch);
+        }
+    }
+};
+
+//Ladder
+function competition_ladder_update($con, $params){
+  $sqlLastGame = "SELECT DATE_ADD(MAX(started), INTERVAL - 1 HOUR ) FROM site_matchs";
+  $Lastgame = $con->query($sqlLastGame);
+  $DateLastgame = $Lastgame->fetch_row();
+  $request = "http://web.cyanide-studio.com/ws/bb2/matches/?key=".$params[0]."&league=".urlencode($params[1])."&exact=1&start=".urlencode($DateLastgame[0]);
+  $response  = file_get_contents($request);
+  $played = json_decode($response);
+  foreach($played->matches as $match){
+      $match->match_uuid = $match->uuid;
+      $match->contest_id = 'null';
+      $match->round=1;
+      $match->opponents = [];
+      for($i=0;$i<2;$i++){
+          $coach = new stdClass;
+          $coach->id = $match->coaches[$i]->idcoach;
+          $coach->name = $match->coaches[$i]->coachname;
+          $team = new stdClass;
+          $team->id = $match->teams[$i]->idteamlisting;
+          $opponent = new stdClass;
+          $opponent->coach = $coach;
+          $opponent->team = $team;
+          array_push($match->opponents,$opponent);
+      }
+  };
+  competition_add_matchs($con, $params[0], $params[3], $played);
+  foreach ($played->matches as $game) {
+      match_save($con, $params[0], [$game->match_uuid,'null'], 0);
+  }
+
 
 };
 

@@ -19,9 +19,11 @@ LeagueManager.directive("match", function() {
 			];
 
 			$http
-				.post("Backend/routes.php?action=match", [$scope.matchID])
+				.post("backend/routes.php?action=match", [$scope.matchID])
 				.success(function(result) {
+
 					var data = JSON.parse(result.json);
+
 					$rootScope.match = data.match;
 					$rootScope.match.round = result.round;
 
@@ -151,7 +153,7 @@ LeagueManager.directive("match", function() {
 
 			$scope.matchReset = function() {
 				if ($rootScope.admin == 1) {
-					$http.post("Backend/routes.php?action=matchReset", [$rootScope.match.cyanide_id, $rootScope.match.contest_id, $scope.matchID]);
+					$http.post("backend/routes.php?action=matchReset", [$rootScope.match.cyanide_id, $rootScope.match.contest_id, $scope.matchID]);
 				}
 			};
 

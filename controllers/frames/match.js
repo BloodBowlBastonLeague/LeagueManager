@@ -17,7 +17,7 @@ LeagueManager.directive('match1', function() {
 				}
 			];
 
-			$http.post("../Backend/routes.php?action=match", [$scope.matchID])
+			$http.post("../backend/routes.php?action=match", [$scope.matchID])
 				.success(function(result) {
 
 					var data = JSON.parse(result.json);

@@ -55,17 +55,17 @@ function sponsors_standing($con, $competitionID){
             SUM(score_1) - SUM(score_2) AS TD,
             SUM(sustainedcasualties_2 ) + SUM(sustaineddead_2) - SUM(sustainedcasualties_1) - SUM(sustaineddead_1) AS S
             FROM (
-                SELECT c.id AS sponsorsMatch, score_1, score_2, sustainedcasualties_1, sustainedcasualties_2, sustaineddead_1, sustaineddead_2
+                SELECT c.id AS sponsorsMatch, score_1, score_2, sustainedcasualties_1, sustainedcasualties_2, sustaineddead_1, sustaineddead_2, t.sponsor_id
                 FROM site_matchs AS m
                 LEFT JOIN site_teams AS t ON t.id=m.team_id_1
                 INNER JOIN site_competitions AS c ON c.id=m.competition_id
-                WHERE t.sponsor_id = ".$sponsor->id." AND c.competition_id_parent=".$competitionID."
+                WHERE score_1 IS NOT NULL AND t.sponsor_id = ".$sponsor->id." AND c.competition_id_parent=".$competitionID."
                 UNION
-                SELECT c.id AS sponsorsMatch, score_2, score_1, sustainedcasualties_2, sustainedcasualties_1, sustaineddead_2, sustaineddead_1
+                SELECT c.id AS sponsorsMatch, score_2, score_1, sustainedcasualties_2, sustainedcasualties_1, sustaineddead_2, sustaineddead_1, t.sponsor_id
                 FROM site_matchs AS m
                 LEFT JOIN site_teams AS t ON t.id=m.team_id_2
                 INNER JOIN site_competitions AS c ON c.id=m.competition_id
-                WHERE t.sponsor_id = ".$sponsor->id." AND c.competition_id_parent=".$competitionID."
+                WHERE score_1 IS NOT NULL AND t.sponsor_id = ".$sponsor->id." AND c.competition_id_parent=".$competitionID."
             ) AS a
             GROUP BY sponsorsMatch";
         $resultScores = $con->query($sqlScores);
@@ -73,9 +73,8 @@ function sponsors_standing($con, $competitionID){
         while( $score = $resultScores->fetch_object() ){
             //Sponsor point calculation
             //"small" loss
-            if( ($score->matchV==1 &&  $score->matchN==2 &&  $score->matchD=2) ||
-                ($score->matchV==0 &&  $score->matchN==4 &&  $score->matchD=2) ||
-                ($score->matchV==2 &&  $score->matchN==0 &&  $score->matchD=3) ){
+            if( ($score->matchV==1 &&  $score->matchN==1 &&  $score->matchD=2) ||
+                ($score->matchV==0 &&  $score->matchN==3 &&  $score->matchD=1) ){
                 $score->Pts = 1;
                 $score->pD = 1;
             }
@@ -99,6 +98,7 @@ function sponsors_standing($con, $competitionID){
             $sponsor->N += $score->N;
             $sponsor->pD += $score->pD;
             $sponsor->D += $score->D;
+            $sponsor->Pts += $score->Pts;
         }
 
         array_push($sponsors, $sponsor);
@@ -138,21 +138,20 @@ function sponsorsMatch_fetch($con, $competitionID, $teams){
     //Fetch sponsors & teams
     $sponsors = sponsorsMatch_fetch_sponsors($con, [$competition->sponsor_id_1,$competition->sponsor_id_2],$teams);
 
-
     foreach ($sponsors as $sponsor) {
         $sqlScore = "SELECT SUM(case when score_1 > score_2 then 1 else 0 end) AS score
         FROM (
-            SELECT c.id AS t, score_1, score_2
+            SELECT m.id, score_1, score_2
             FROM site_matchs AS m
             LEFT JOIN site_teams AS t ON t.id=m.team_id_1
             INNER JOIN site_competitions AS c ON c.id=m.competition_id
-            WHERE t.sponsor_id = ".$sponsor->id." AND c.id=".$competitionID."
+            WHERE score_1 IS NOT NULL AND t.sponsor_id = ".$sponsor->id." AND c.id=".$competitionID."
             UNION
-            SELECT c.id AS t, score_2, score_1
+            SELECT m.id AS t, score_2, score_1
             FROM site_matchs AS m
             LEFT JOIN site_teams AS t ON t.id=m.team_id_2
             INNER JOIN site_competitions AS c ON c.id=m.competition_id
-            WHERE t.sponsor_id = ".$sponsor->id." AND c.id=".$competitionID."
+            WHERE score_1 IS NOT NULL AND t.sponsor_id = ".$sponsor->id." AND c.id=".$competitionID."
         ) AS a";
         $resultScore = $con->query($sqlScore);
         $score = $resultScore->fetch_row();
@@ -178,5 +177,23 @@ function sponsorsMatch_fetch_sponsors($con, $ids, $teams){
     return $sponsors;
 };
 
+//Get statistics
+function sponsors_stats($con,$competition){
+  $sponsorsmatch = [];
+  $sql = "SELECT c.id FROM site_competitions AS c  WHERE c.competition_id_parent = ".$competition->id;
+  $result = $con->query($sql);
+  while($competitions = $result->fetch_object()){
+    array_push($sponsorsmatch, $competitions->id);
+  };
+
+    //Leaderboard
+    $competition->playersStats = [];
+
+    $stats = ['scorer','thrower','tackler','killer','intercepter','catcher','punchingball'];
+    foreach($stats as $stat){
+        array_push($competition->playersStats, leaders($con,[$stat,$sponsorsmatch,1]));
+    }
+    return $competition;
+};
 
 ?>

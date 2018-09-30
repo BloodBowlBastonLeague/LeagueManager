@@ -1,6 +1,8 @@
 <?php
 $action = $_GET["action"];
 
+header('Content-Type: text/html; charset=utf-8');
+
 define('PHPBB_ROOT_PATH','./../Forum/');
 
 include('config.php');
@@ -31,8 +33,11 @@ switch ($action) {
         break;
     case "competition":
         $competition = competition_fetch($con, $params->id);
-        $competition = competition_stats($con, $competition);
+        //$competition = competition_stats($con, $competition);
         echo json_encode($competition,JSON_NUMERIC_CHECK);
+        break;
+    case "competitionAdd":
+        competition_add($con, $Cyanide_Key, $params);
         break;
     case "competitionCalendar":
         competition_calendar($con, $params[0]);
@@ -53,8 +58,8 @@ switch ($action) {
         team_fetch($con,$params[0]);
         break;
     case "teamUpdate":
-        team_update($con,$params[0]);
-        team_fetch($con,$params[0]);
+        team_update($con, $Cyanide_Key, $params->id);
+        team_fetch($con, $params[0]);
         echo json_encode($team,JSON_NUMERIC_CHECK);
         break;
     case "sponsors":
@@ -73,6 +78,9 @@ switch ($action) {
         break;
     case "upcomingGames":
         upcomingGames($con);
+        break;
+    case "alltojson":
+        save_all_to_json($con, $Cyanide_Key);
         break;
     default:
         echo "Erreur!";

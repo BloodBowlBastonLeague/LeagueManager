@@ -45,7 +45,7 @@ LeagueManager.directive("modal", function() {
 			$scope.displayBets = function(competition) {
 				$http
 					.get(
-						"Backend/bets/bets.php?action=ranking&competition=" + competition
+						"backend/bets/bets.php?action=ranking&competition=" + competition
 					)
 					.success(function(result) {
 						$scope.ranking = result;

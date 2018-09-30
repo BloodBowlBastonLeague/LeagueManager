@@ -13,7 +13,6 @@
 			<div class="score" ng-style="colours[0].textborder">{{competition.sponsors[0].score}}</div>
 			<img class="sponsorLeft" src="resources/img/sponsors/{{competition.sponsors[0].id}}.png">
 			<div class="teamBoard">
-				<!--h3>menée par <span ng-style="colours[0].color">{{competition.sponsors[0].captain}}</span></h3-->
 			</div>
 		</div>
 	</div>
@@ -24,7 +23,6 @@
 			<div class="score" ng-style="colours[2].textborder">{{competition.sponsors[1].score}}</div>
 			<img class="sponsorRight" src="resources/img/sponsors/{{competition.sponsors[1].id}}.png">
 			<div class="teamBoard">
-				<!--h3>menée par <span ng-style="colours[2].color">{{competition.sponsors[1].captain}}</span></h3-->
 			</div>
 		</div>
 	</div>
@@ -64,10 +62,21 @@
 	<div class="col-md-4">
 		<div class="plain prime text-center" ng-style="colours[2].border">
 			<h3 ng-style="colours[2].color">{{competition.sponsors[1].name}}</h3>
-			<div ng-repeat="team in competition.sponsors[1].teams" class="zelda sponsorTeam" ng-click="goToPage('team/' + team.cyanide_id)" ng-style="colours[1].border">
+			<div ng-repeat="team in competition.sponsors[1].teams" class="zelda sponsorTeam" ng-click="goToPage('team/' + team.cyanide_id)" ng-style="colours[2].border">
 				<img class="teamLogo" style="Float:left" src="resources/logo/Logo_{{team.logo}}.png">
 					<h4>{{team.name}}</h4>
-					<p class="hidden-sm-down">{{team.param_id_race | talkingToTheGods:parameters}}, coachés par <span ng-style="colours[1].color">{{team.coach}}</span></p>
+					<p class="hidden-sm-down">{{team.param_id_race | talkingToTheGods:parameters}}, coachés par <span ng-style="colours[2].color">{{team.coach}}</span></p>
 			</div>
+		</div>
 	</div>
-</div>
+	<div id="planner" class="container seconde" ng-if="showMatchDate" ng-style="colours[1].border">
+		<form id="matchSave" name="matchSave" ng-style="colours[1].color">
+			Date du match<br/>
+			 <input datetime-picker ng-model="match.started" date-format="dd/MM/yy HH:mm"/>
+		</form>
+		<div class="spacer"></div>
+		<div class="button" ng-click="matchDate(match)">
+			<div ng-include="'resources/img/Button_1.svg'"></div>
+			<div class="label">Enregistrer</div>
+		</div>
+	</div>

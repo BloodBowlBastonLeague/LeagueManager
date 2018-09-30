@@ -28,7 +28,9 @@ function team_fetch($con, $id){
 
 //Create new team
 function team_create($con, $Cyanide_Key, $id){
+
     $request = 'http://web.cyanide-studio.com/ws/bb2/team/?key='.$Cyanide_Key.'&id='.$id;
+    echo $request;
     $response  = file_get_contents($request);
     $json = json_decode($response);
     $team = $json->team;
@@ -37,18 +39,19 @@ function team_create($con, $Cyanide_Key, $id){
     $team->name = str_replace("'","\'",$team->name);
     $team->stadium_name = str_replace("'","\'",$team->stadiumname);
     $team->leitmotiv = str_replace("'","\'",$team->leitmotiv);
-    $sqlCreate = "INSERT INTO site_teams ( name, cyanide_id, coach_id, param_id_race, active, apothecary, assistantcoaches,  cheerleaders, cash, rerolls, popularity, value, stadium_name, stadium_level, leitmotiv, logo, json) VALUES ('".$team->name."', '".$team->id."', '".$team->coach_id."', '".$team->idraces."', '1', '".$team->apothecary."', '".$team->assistantcoaches."', '".$team->cheerleaders."', '".$team->cash."', '".$team->rerolls."', '".$team->popularity."', '".$team->value."', '".$team->stadium_name."', ".$team->stadiumlevel.", '".$team->leitmotiv."', '".$team->logo."',  '".$team->json."')";
+    $sqlCreate = "INSERT INTO site_teams ( name, cyanide_id, coach_id, param_id_race, active, apothecary, assistantcoaches,  cheerleaders, cash, rerolls, popularity, value, stadium_name, stadium_level, leitmotiv, logo) VALUES ('".$team->name."', '".$team->id."', '".$team->idcoach."', '".$team->idraces."', '1', '".$team->apothecary."', '".$team->assistantcoaches."', '".$team->cheerleaders."', '".$team->cash."', '".$team->rerolls."', '".$team->popularity."', '".$team->value."', '".$team->stadium_name."', ".$team->stadiumlevel.", '".$team->leitmotiv."', '".$team->logo."')";
+    echo $sqlCreate;
     $con->query($sqlCreate);
     $team->bbblID = $con->insert_id;
 
-    team_roster_update($con, $team->id, $team->bbblID, $roster);
+    team_roster_update($con, $team->id, $roster);
 
     return $team->bbblID;
 
 };
 
 //Update team
-function team_update($con, $Cyanide_Key, $teamID, $bbblID){
+function team_update($con, $Cyanide_Key, $teamID){
 
     $request = 'http://web.cyanide-studio.com/ws/bb2/team/?key='.$Cyanide_Key.'&id='.$teamID;
     $response  = file_get_contents($request);
@@ -71,7 +74,7 @@ function team_update($con, $Cyanide_Key, $teamID, $bbblID){
       WHERE cyanide_id = '".$team->id."'";
     $con->query($sqlTeam);
 
-    team_roster_update($con, $team->id, $bbblID, $roster);
+    team_roster_update($con, $team->id, $roster);
 
 };
 
@@ -88,28 +91,30 @@ function team_roster_fetch($con, $bbblID, $teamID){
 };
 
 //Update roster
-function team_roster_update($con, $teamID, $bbblID, $roster){
+function team_roster_update($con, $teamID, $roster){
+    $bbblID = $con->query("SELECT id FROM site_teams WHERE cyanide_id = '".$teamID."'")->fetch_row();
 
     //Get current roster and store it to control players to remove
     $rosterControl = [];
-    $sqlRosterControl = $con->query("SELECT cyanide_id FROM site_players WHERE dead != 1 AND fired != 1 AND team_id = ".$bbblID);
+    $sqlRosterControl = $con->query("SELECT cyanide_id FROM site_players WHERE dead != 1 AND fired != 1 AND team_id = ".$bbblID[0]);
     while($row = $sqlRosterControl->fetch_array(MYSQLI_NUM)){
         array_push($rosterControl, (int) $row[0]);
     };
 
     foreach ( $roster as $player ) {
+
         $sqlPlayerBBBL = "SELECT id FROM site_players WHERE cyanide_id = ".$player->id;
         $resultPlayerBBBL = $con->query($sqlPlayerBBBL);
         $playerBBBL = $resultPlayerBBBL->fetch_row();
         //Update
         if ( $playerBBBL[0] > 0 ){
-            player_update($con, $bbblID, $teamID, $player);
+            player_update($con, $bbblID[0], $teamID, $player);
             //Remove player from control
             $rosterControl = array_diff($rosterControl, [(int) $player->id]);
         }
         //Create
         else {
-            player_create($con, $bbblID, $teamID, $player);
+            player_create($con, $bbblID[0], $teamID, $player);
         };
     };
 
@@ -128,7 +133,7 @@ function team_competition_fetch($con, $teamID){
 
 //Get coach info
 function coach_fetch($con, $coachID){
-    $sqlCoach = "SELECT name FROM site_coachs WHERE id=".$coachID;
+    $sqlCoach = "SELECT name FROM site_coachs WHERE cyanide_id=".$coachID;
     $resultCoach = $con->query($sqlCoach);
     $coach = $resultCoach->fetch_row();
     return $coach[0];

@@ -10,6 +10,7 @@
       </div>
     </div>
   </div>
+
   <div class="col-xs-4">
     <div class="plain seconde" ng-style="colours[1].border">
       <h2>2. Ajoutez une compétition</h2>
@@ -47,13 +48,15 @@
           Competition chapeau : <select ng-model="newCompetition.competition_id_parent">
             <option ng-repeat="competition in competitions" value="{{competition.id}}">{{competition.site_name}}</option>
           </select><br/>
-          Sponsor 1 : <select ng-model="newCompetition.sponsor_id_1">
-            <option ng-repeat="sponsor in sponsors track by $index" value="{{sponsor.id}}">{{sponsor.name}}</option>
-          </select><br/>
-          Sponsor 2 : <select ng-model="newCompetition.sponsor_id_2">
-            <option ng-repeat="sponsor in sponsors track by $index" value="{{sponsor.id}}">{{sponsor.name}}</option>
-          </select><br/>
-          Round : <input type="number" min="1" ng-model="newCompetition.round"></input>
+          <span ng-show="newCompetition.competition_id_parent!='NULL'">
+            Sponsor 1 : <select ng-model="newCompetition.sponsor_id_1">
+              <option ng-repeat="sponsor in sponsors track by $index" value="{{sponsor.id}}">{{sponsor.name}}</option>
+            </select><br/>
+            Sponsor 2 : <select ng-model="newCompetition.sponsor_id_2">
+              <option ng-repeat="sponsor in sponsors track by $index" value="{{sponsor.id}}">{{sponsor.name}}</option>
+            </select><br/>
+            Round : <input type="number" min="1" ng-model="newCompetition.round"></input>
+          </span>
         </span>
       </form><br/><br/>
       <div class="spacer" ng-class="newCompetition.result">{{newCompetition.message}}</div>
@@ -75,4 +78,14 @@
       </div>
     </div>
   </div>
+  <!--div class="col-xs-4">
+    <div class="plain seconde" ng-style="colours[1].border">
+      <h2>matchs to json </h2>
+      <p></p>
+      <div class="button" ng-click="alltojson()">
+        <div ng-include="'resources/img/Button_1.svg'"></div>
+        <div class="label">to json</div>
+      </div>
+    </div>
+  </div-->
 </div>

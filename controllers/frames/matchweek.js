@@ -5,7 +5,7 @@ LeagueManager.directive('matchweek', function() {
 		controller: function($scope, $rootScope, $http, $timeout, $routeParams) {
 			$rootScope.setColours([$rootScope.colourA, $rootScope.colourB]);
 			$http
-				.post('Backend/routes.php?action=competitionCalendar', [$routeParams.ID])
+				.post('../backend/routes.php?action=competitionCalendar', [window.competition])
 				.success(function(result) {
 					$scope.calendar = result;
 					if (window.round > 5) {

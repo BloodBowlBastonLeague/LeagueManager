@@ -11,7 +11,7 @@ LeagueManager.directive('team', function() {
 			$rootScope.orderFilter = 'position';
 			$rootScope.reverse = false;
 
-			$http.post('Backend/routes.php?action=team', [$routeParams.ID]).success(function(result) {
+			$http.post('backend/routes.php?action=team', [$routeParams.ID]).success(function(result) {
 				$scope.team = result;
 				console.log(result);
 				/*angular.forEach($scope.team, function(detail) {
@@ -68,7 +68,7 @@ LeagueManager.directive('team', function() {
 			};
 
 			$scope.teamUpdate = function() {
-				$http.post('Backend/routes.php?action=teamUpdate', {
+				$http.post('backend/routes.php?action=teamUpdate', {
 					"id": $scope.team.cyanide_id
 				}).then(function(result) {});
 			};

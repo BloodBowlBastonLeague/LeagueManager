@@ -20,16 +20,28 @@ LeagueManager.directive('competition', function() {
 				$scope.displayDay = 0;
 			};
 
+			$scope.competitionTest = function() {
+				var test = {
+					"id": $routeParams.ID
+				};
+				$http
+					.post('backend/routes.php?action=test', test)
+					.success(function(competition) {
+						console.log(competition);
+					});
+			};
+
 			$scope.competitionFetch = function() {
 				$scope.competition = {
 					"id": $routeParams.ID
 				};
 				$http
-					.post('Backend/routes.php?action=competition', $scope.competition)
+					.post('backend/routes.php?action=competition', $scope.competition)
 					.success(function(competition) {
 						$scope.competition = competition;
-						$rootScope.title = $scope.competition.game_name;
-						if ($scope.competition.competition_mode == 'Sponsors') {
+
+						$rootScope.title = $scope.competition.site_name;
+						if ($scope.competition.format == 'Sponsors') {
 							$scope.sponsorsCalendarUpdate(competition)
 						} else {
 							$scope.calendarUpdate(competition);
@@ -38,7 +50,7 @@ LeagueManager.directive('competition', function() {
 			};
 			$scope.calendarUpdate = function(competition) {
 				$http
-					.post('Backend/routes.php?action=competitionCalendar', [competition.id])
+					.post('backend/routes.php?action=competitionCalendar', [competition.id])
 					.success(function(result) {
 						$scope.calendar = result;
 						if (competition.competition_mode == 'Coupe') {
@@ -46,7 +58,6 @@ LeagueManager.directive('competition', function() {
 							$scope.finals.splice($scope.calendar.length);
 							$scope.finals.reverse();
 						};
-
 						//Si la saison est finie ou fait moins de 6 journées on affiche la totalité du calendrier
 						$scope.currentDay = $scope.calendar[0].currentDay;
 						if ($scope.calendar.length < 6 || !$scope.currentDay) {
@@ -56,21 +67,23 @@ LeagueManager.directive('competition', function() {
 						};
 
 						$scope.matchesToSave = [];
-						for (i = 0; $scope.calendar.length > i; i++) {
-							var matchs = $scope.calendar[i].matchs;
-							for (j = 0; matchs.length > j; j++) {
-								if (matchs[j].cyanide_id == null) {
-									$scope.matchesToSave.push(matchs[j].contest_id)
+						if ($scope.competition.format != 'ladder') {
+							for (i = 0; $scope.calendar.length > i; i++) {
+								var matchs = $scope.calendar[i].matchs;
+								for (j = 0; matchs.length > j; j++) {
+									if (matchs[j].cyanide_id == null) {
+										$scope.matchesToSave.push(matchs[j].contest_id)
+									}
 								}
-							}
-						};
+							};
+						}
 						$scope.saving = false;
 					});
 			};
 
 			$scope.sponsorsCalendarUpdate = function(competition) {
 				$http
-					.post('Backend/routes.php?action=sponsorsCalendar', [competition.id])
+					.post('backend/routes.php?action=sponsorsCalendar', [competition.id])
 					.success(function(calendar) {
 						$scope.calendar = calendar;
 
@@ -116,7 +129,7 @@ LeagueManager.directive('competition', function() {
 				$scope.saving = true;
 				var params = [window.Cyanide_Key, window.Cyanide_League, competition_name, $scope.competition.id, $scope.matchesToSave, $scope.competition.format, $scope.currentDay];
 
-				$http.post('Backend/routes.php?action=competitionUpdate', params)
+				$http.post('backend/routes.php?action=competitionUpdate', params)
 					.then(function(result) {
 						$scope.calendarUpdate($scope.competition);
 					});
@@ -124,7 +137,7 @@ LeagueManager.directive('competition', function() {
 
 			//Mise à jour de date
 			$scope.matchDate = function(match) {
-				$http.post('Backend/routes.php?action=matchDate', match)
+				$http.post('backend/routes.php?action=matchDate', match)
 					.then(function(result) {
 						$scope.veilOff();
 					});
@@ -256,7 +269,7 @@ LeagueManager.directive('competition', function() {
 								"match_id": $scope.bet.id
 							};
 							//MAJ en base
-							$http.post('Backend/update/routes.php?action=betUpdate', prognos)
+							$http.post('backend/update/routes.php?action=betUpdate', prognos)
 								.then(function(result) {
 									$rootScope.coach_gold -= result.data;
 								});
@@ -279,7 +292,7 @@ LeagueManager.directive('competition', function() {
 							"stake": stake,
 							"match_id": $scope.bet.id
 						};
-						$http.post('Backend/update/routes.php?action=betAdd', prognos)
+						$http.post('backend/update/routes.php?action=betAdd', prognos)
 							.then(function(result) {
 								$rootScope.coach_gold -= result.data;
 							});

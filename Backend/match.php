@@ -1,5 +1,6 @@
-<?php
 
+<?php
+set_time_limit(0);
 //Retrieve match info
 function match_fetch($con,$id){
     mysqli_set_charset($con,'utf8');
@@ -11,7 +12,6 @@ function match_fetch($con,$id){
           site_matchs.stadium,
           site_matchs.round,
           DATE_ADD(site_matchs.started, INTERVAL 500 YEAR) AS started,
-          site_matchs.json,
           site_matchs.team_id_1,
           site_matchs.team_id_2,
           t1.name AS team_1_name,
@@ -22,18 +22,22 @@ function match_fetch($con,$id){
           t1.color_2 AS team_1_color_2,
           t2.color_1 AS team_2_color_1,
           t2.color_2 AS team_2_color_2,
-          t1.coach_id AS coach_id_1,
-          t2.coach_id AS coach_id_2
+          c1.id AS coach_id_1,
+          c2.id AS coach_id_2
           FROM site_matchs
           LEFT JOIN site_teams as t1 ON t1.id=site_matchs.team_id_1
           LEFT JOIN site_teams as t2 ON t2.id=site_matchs.team_id_2
-          LEFT JOIN site_coachs as c1 ON c1.id=t1.coach_id
-          LEFT JOIN site_coachs as c2 ON c2.id=t2.coach_id
+          LEFT JOIN site_coachs as c1 ON c1.cyanide_id=t1.coach_id
+          LEFT JOIN site_coachs as c2 ON c2.cyanide_id=t2.coach_id
           WHERE site_matchs.id=".$id;
 
     $resultMatch = $con->query($sqlMatch);
     $match = $resultMatch->fetch_object();
 
+    $request = './../resources/json/matches/'.$match->cyanide_id.'.json';
+    $response  = file_get_contents($request);
+
+    $match->json = $response;
 
     $match->bets = [];
     $sqlBets = "SELECT p.match_id, m.score_1, m.score_2, p.team_score_1, p.team_score_2, c.name FROM site_matchs AS m, site_bets AS p, site_coachs AS c WHERE c.id=p.coach_id AND p.match_id=m.id AND match_id=".$id;
@@ -61,6 +65,7 @@ function match_save($con, $Cyanide_Key, $params, $reset){
 
     $request = 'http://web.cyanide-studio.com/ws/bb2/match/?key='.$Cyanide_Key.'&uuid='.$params[0];
     $response  = file_get_contents($request);
+    file_put_contents( './../resources/json/matches/'.$params[0].'.json', $response);
     $json = str_replace("\\","\\\\",$response);
     $matchDetails = json_decode($response);
 
@@ -85,9 +90,8 @@ function match_save($con, $Cyanide_Key, $params, $reset){
       sustainedcasualties_2 = '".$matchDetails->match->teams[1]->sustainedcasualties."',
       sustainedko_2 = '".$matchDetails->match->teams[1]->sustainedko."',
       sustainedinjuries_2 = '".$matchDetails->match->teams[1]->sustainedinjuries."',
-      sustaineddead_2 = '".$matchDetails->match->teams[1]->sustaineddead."',
-      json = '".str_replace("'","\'",$json)."'
-      WHERE contest_id=".$params[1];
+      sustaineddead_2 = '".$matchDetails->match->teams[1]->sustaineddead."'
+      WHERE (contest_id=".$params[1]." OR cyanide_id = '".$matchDetails->uuid."') AND started IS NULL";
     $con->query($sqlMatch);
 
     if($reset == 1){
@@ -104,5 +108,15 @@ function match_save($con, $Cyanide_Key, $params, $reset){
             }
         };
     };
+};
+
+function save_all_to_json($con, $Cyanide_Key){
+    $sql = "SELECT cyanide_id FROM site_matchs WHERE cyanide_id IS NOT NULL AND competition_id>231";
+    $result = $con->query($sql);
+    while($data = $result->fetch_object()) {
+        $request = 'http://web.cyanide-studio.com/ws/bb2/match/?key='.$Cyanide_Key.'&uuid='.$data->cyanide_id;
+        $response  = file_get_contents($request);
+        file_put_contents( './../resources/json/matches/'.$data->cyanide_id.'.json', $response);
+    }
 };
 ?>

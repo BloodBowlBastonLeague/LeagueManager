@@ -2,9 +2,9 @@
 
 $action = $_GET["action"];
 
-define('PHPBB_ROOT_PATH','./../../Forum/');
+define('PHPBB_ROOT_PATH','./../Forum/');
 
-include('../config.php');
+include('config.php');
 
 $postdata = file_get_contents("php://input");
 $params = json_decode($postdata);
@@ -12,8 +12,8 @@ $params = json_decode($postdata);
 include('competition.php');
 include('season.php');
 include('forum.php');
-include('../player.php');
-include('../team.php');
+include('player.php');
+include('team.php');
 
 
 switch ($action) {

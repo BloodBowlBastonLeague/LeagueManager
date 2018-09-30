@@ -22,6 +22,9 @@
 						<th class="text-center hidden-xs-down">D</th>
 						<th class="text-center hidden-sm-down">TD</th>
 						<th class="text-center hidden-sm-down">S</th>
+						<th class="text-center hidden-sm-down">M</th>
+						<th class="text-center hidden-sm-down" ng-if="competition.format == 'ladder'">Pts/M</th>
+						<th ng-if="admin==1" ng-click="competitionTest()" class="text-center hidden-sm-down">C</th>
 
 					</tr>
 				</thead>
@@ -36,6 +39,9 @@
 						<td class="text-center hidden-xs-down">{{team.D}}</td>
 						<td class="text-center hidden-sm-down">{{team.TD}}</td>
 						<td class="text-center hidden-sm-down">{{team.S}}</td>
+						<td class="text-center hidden-xs-down">{{team.V+team.N+team.D}}</td>
+						<td class="text-center hidden-xs-down" ng-if="competition.format == 'ladder'">{{team.Pts / (team.V+team.N+team.D)  | number:1}}</td>
+						<td ng-if="admin==1" class="text-center hidden-sm-down">{{team.confrontation}}</td>
 
 					</tr>
 				</tbody>
@@ -120,7 +126,7 @@
 					<tr ng-repeat="sponsor in competition.standing | orderBy:['-Pts','-V','-N','-pD','-D']" class="zelda" ng-class="{gold: $index+1 == 1, silver: $index+1 == 2, bronze: $index+1 == 3}"  ng-style="colours[0].border">
 						<td class="text-center">{{$index+1}}</td>
 						<td class="text-left"><img class="teamLogo" src="resources/img/sponsors/{{sponsor.id}}.png"> {{sponsor.name}}</td>
-						<td class="text-center">{{sponsor.scores.Pts}}</td>
+						<td class="text-center">{{sponsor.Pts}}</td>
 						<td class="text-center hidden-xs-down">{{sponsor.V}}</td>
 						<td class="text-center hidden-xs-down">{{sponsor.N}}</td>
 						<td class="text-center hidden-xs-down">{{sponsor.pD}}</td>
@@ -192,7 +198,7 @@
 			<h3 ng-if="matchDay.round == currentDay" ng-click="sortBy('round')" class="zelda"><span ng-if="competition.competition_mode=='Coupe'">{{finals[matchDay.round-1]}}</span><span ng-if="competition.competition_mode!='Coupe'">Journée {{matchDay.round}}</span> <div class="triangle" ng-class="{down: reverse}"></div></h3>
 			<h3 ng-if="matchDay.round != currentDay" ng-style="colours[0].color" ng-click="sortBy('day')" class="zelda"><span ng-if="competition.competition_mode=='Coupe'">{{finals[matchDay.round-1]}}</span><span ng-if="competition.competition_mode!='Coupe'">Journée {{matchDay.round}}</span> <div class="triangle" ng-class="{down: reverse}" ng-style="colours[0].border"></div></h3>
 			<div class="match x-center">
-				<div title="{{match.sponsors.name_1}} VS {{match.sponsors.name_2}}" class="vs col-lg-6 col-xl-4" ng-class="{zelda:match.id}" ng-repeat="match in matchDay.matchs" ng-click="goToPage('sponsorsMatch/'+match.id)">
+				<div title="{{match.sponsors[0].name}} VS {{match.sponsors[0].name}}" class="vs col-lg-6 col-xl-4" ng-class="{zelda:match.id}" ng-repeat="match in matchDay.matchs" ng-click="goToPage('sponsorsMatch/'+match.id)">
 					<img class="teamLogo" src="resources/img/sponsors/{{match.sponsors[0].id}}.png">
 					<img class="versus" ng-if="match.sponsors[0].score==null" src="../resources/img/vs.png">
 					<span ng-if="matchDay.round == currentDay"> {{match.sponsors[0].score}} - {{match.sponsors[1].score}} </span>

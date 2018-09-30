@@ -75,13 +75,13 @@ time, mark, audio, video {
 }
 
 @media all and (orientation:landscape  ) {
-  body { line-height: 1; background:#FFF url('../resources/img/background.jpg'); background-position: bottom; background-size: cover; overflow: hidden; }
+  body { line-height: 1; background:#FFF url('../resources/img/automne/background.jpg'); background-position: bottom; background-size: cover; overflow: hidden; }
 }
 @media all and ( max-height:1200px ) {
-  body { line-height: 1; background:#FFF url('../resources/img/background.jpg'); background-position: bottom; background-size: cover; overflow: hidden; }
+  body { line-height: 1; background:#FFF url('../resources/img/automne/background.jpg'); background-position: bottom; background-size: cover; overflow: hidden; }
  }
 @media all and (orientation:portrait) {
-  body { line-height: 1; background:#FFF url('../resources/img/background.jpg'); background-size: auto 100%; overflow: hidden; }
+  body { line-height: 1; background:#FFF url('../resources/img/automne/background.jpg'); background-size: auto 100%; overflow: hidden; }
  }
 
 a { font-weight: 500; cursor: pointer; }
@@ -126,10 +126,10 @@ li > h3 { display:inline; }
 .plain .row {margin:0;}
 .noPadding {padding:0 !important;}
 /* HEADER */
-#Intro { position:relative; width:100vw; height:18px; background:transparent; font-size: 12px;box-sizing: border-box; line-height: 18px;text-align:center; font-family:'Muli'; color:#000; font-weight:600; z-index:2;}
+#Intro { position:relative; width:100vw; height:18px; background:transparent; font-size: 12px;box-sizing: border-box; line-height: 18px;text-align:center; font-family:'Muli'; color:#FFF; font-weight:600; z-index:2;}
 #Logo { position:fixed; top:0px; left:0; margin:0 10px; height: 90px; width: 120px; cursor: pointer; background: url(../resources/img/BBBL2.png) no-repeat; background-position: center 2px; background-size:contain; z-index:100;}
 /* Navbar */
-.navbar { color:#ffffff;  height:50px; margin:0; padding: 0 0 0 170px; border-radius: 0; background: url(../resources/img/navbar.jpg); border-bottom: 3px solid #00558D;}
+.navbar { color:#ffffff;  height:50px; margin:0; padding: 0 0 0 170px; border-radius: 0; background: url(../resources/img/navbar.jpg); border-bottom: 3px solid #FF8217;}
 
 .navbar-brand { padding:0; margin:0; font-size: 36px; max-width:calc(100vw - 160px); }
 
@@ -140,13 +140,13 @@ nav > ul > li:hover { background: linear-gradient(to left, rgba(0,0,0,0.5) 0%, r
 nav > ul > li:active { background: transparent; box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);}
 nav > ul > li > a { text-decoration: none; color: #FFFFFF; line-height:50px; font-weight: 400;  font-family: "Akashi"; display:block; height:100%; width:100%; padding: 0 10px !important; }
 nav > ul > li:hover > a { text-decoration: none; color: #CCCCCC;}
-nav > ul > li > a:active { text-decoration: none; color: #91BFDC;}
+nav > ul > li > a:active { text-decoration: none; color: #D30000;}
 nav > ul > li > a:visited { text-decoration: none; color: #FFFFFF;}
 
 
 /* BODY */
 
-.plain, .forabg > .inner, .stat-block, .panel, .forumbg, .post, .action-bar, .headerspace, #review, .solo, .toolbar,.dropdown .dropdown-contents, .ucp-title, #tabs, .memberlist-title { position:relative; margin:20px 10px;	padding:10px 15px; border-radius: 0 0 5px 5px; border-bottom: 2px solid; border-color:inherit;	box-shadow: 0px 5px 10px rgba(0,0,0,0.9); }
+.plain, .forabg > .inner, .stat-block, .panel, .forumbg, .post, .action-bar, .headerspace, #review, .solo, .toolbar,.dropdown .dropdown-contents, .ucp-title, #tabs, .memberlist-title { position:relative; margin:20px 10px; padding:10px 15px; border-radius: 0 0 5px 5px; border-bottom: 2px solid; border-color:inherit; box-shadow: 0px 5px 10px rgba(0,0,0,0.9); }
 .plain.board {border: 1px solid; border-bottom: 2px solid; background: transparent;}
 .header { margin: 20px 10px 0 10px;}
 .image { position:relative; margin:20px 0px; text-align: center;}
@@ -183,7 +183,7 @@ border-radius: 5px; border-bottom: 2px solid; }
 
 .container > article, .container > .standing { margin:0; padding:0; max-height:calc(100vh - 268px); background: none; border:none; overflow: auto; box-shadow: none;}
 .container > article > img { float:left; padding:0 20px 10px 0; }
-.container > footer > h2 { margin: 5px 0px; text-align: center; cursor: pointer; border-top: 1px solid #91BFDC; color:#91BFDC;}
+.container > footer > h2 { margin: 5px 0px; text-align: center; cursor: pointer; border-top: 1px solid #D30000; color:#D30000;}
 .container > .close { position: absolute; right: 2vw; cursor: pointer; }
 
 #newsfeed { width:100vw; height:50px; background: #000000;}
@@ -208,7 +208,7 @@ border-radius: 5px; border-bottom: 2px solid; }
 
 .match { display: table; vertical-align: middle; width:100%; }
 .vs { display: inline-block; font-family: 'Muli'; font-size: 20px; color: #FFF; line-height: 24px; font-weight: 400; vertical-align: middle; text-align: center; margin: 10px 0 0; padding: 5px 0; border-radius: 5px; border:1px solid transparent;}
-.vs:hover { background: #000000; color:#ffffff; border: 1px solid #00558D;}
+.vs:hover { background: #000000; color:#ffffff; border: 1px solid #FF8217;}
 .hide {display: none; height:0px; padding:10px 1vw -webkit-transition: all linear 0.5s;  transition: height linear 0.5s; }
 
 .starLeft, .starRight { font-size: 30px;  line-height: 30px; color:#FFF; position:absolute;
@@ -222,7 +222,7 @@ border-radius: 5px; border-bottom: 2px solid; }
 
 
 
-.current { border-bottom: 3px solid #000000; background: rgba(0, 85, 141, 0.75) !important; color: #FFFFFF !important;}
+.current { border-bottom: 3px solid #000000; background: rgba(0, 136, 34, 0.75) !important; color: #FFFFFF !important;}
 .current span { color: #FFFFFF; }
 .teamLogo {max-width: 40px; max-height: 40px; display: inline; vertical-align: middle;}
 td > .teamLogo {max-width: 20px; max-height: 20px; display: inline; padding-right: 2px;}
@@ -421,6 +421,8 @@ img.player { max-width: 150px; max-height: 100%; }
 .champion h4 { font-family: 'Muli';  font-size: 22px; line-height: 1; color: #ffffff; text-align:center; margin:0;}
 
 .champion img { position:absolute; left:-65px; top:35px; width:256px; height:256px;}
+.champion img.sponsor  { position:relative; left:0; top:0; width:60%; height:auto;}
+
 .champion hr, .archives hr  { width:80%; border-top:1px  solid  #ffffff; text-align:center; margin: 10px auto;}
 .champion #HelmetLeft {display: inline-block; top: 45px !important; left: -15px !important;}
 .champion #HelmetRight {display: inline-block; top: -10px !important; right: -15px !important;}
@@ -467,8 +469,8 @@ table.mainStats, table.modalStats {cursor:default;}
 
 .stick-right .button {bottom:1px;}
 .quote {padding: 40px 20px;}
-.quote h1 { font-size: 60px; font-family: 'Niconne', cursive; color: #555;}
-.quote p,.quote p a { font-size: 30px; line-height: 30px; font-family: 'Niconne', cursive; text-align: right; display:inherit; color:#999;}
+.quote h1 { font-size: 60px; font-family: 'Niconne', cursive; color: #FFF;}
+.quote p,.quote p a { font-size: 30px; line-height: 30px; font-family: 'Niconne', cursive; text-align: right; display:inherit; color:#000;}
 .quote p a {text-decoration: underline;}
 
 .quickLink {font-weight: 500;}

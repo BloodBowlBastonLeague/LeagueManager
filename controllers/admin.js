@@ -22,7 +22,7 @@ LeagueManager.directive('admin', function() {
 				"competition_id_parent": 'NULL',
 				"sponsor_id_1": 'NULL',
 				"sponsor_id_2": 'NULL',
-				"round": 'NULL',
+				"round": 0,
 				"processing": 0
 			};
 			$scope.divisions = [{
@@ -35,7 +35,7 @@ LeagueManager.directive('admin', function() {
 				}
 			];
 
-			$http.get('http://web.cyanide-studio.com/ws/bb2/contests/?key=' + window.Cyanide_Key + '&status=scheduled&league=' + window.Cyanide_League + '&exact=1')
+			$http.get('http://web.cyanide-studio.com/ws/bb2/contests/?key=' + window.Cyanide_Key + '&league=' + window.Cyanide_League + '&exact=1')
 				.success(function(result) {
 					for (i = 0; i < result.upcoming_matches.length; i++) {
 						var competitionIdx = $scope.competitionsIG.map(function(e) {
@@ -53,7 +53,7 @@ LeagueManager.directive('admin', function() {
 					}
 				});
 
-			$http.get('../Backend/routes.php?action=sponsors')
+			$http.get('../backend/routes.php?action=sponsors')
 				.success(function(sponsors) {
 					$scope.sponsors = sponsors;
 				});
@@ -62,7 +62,7 @@ LeagueManager.directive('admin', function() {
 				$scope.season.processing = 1;
 				$scope.season.message = "Les gobelins pédalent...";
 				$scope.season.result = "processing";
-				$http.post('Backend/admin/admin.php?action=seasonArchive')
+				$http.post('backend/admin/admin.php?action=seasonArchive')
 					.then(function(result) {
 						$scope.season.message = result.data.message;
 						$scope.season.result = result.data.result;
@@ -77,19 +77,19 @@ LeagueManager.directive('admin', function() {
 				$scope.newCompetition.league_name = $scope.divisions[$scope.newCompetition.site_order].league_name;
 				$scope.newCompetition.pool = $scope.divisions[$scope.newCompetition.site_order].pool;
 				//Gestion des competitions chapeau
-				if ($scope.newCompetition.indexIG > 0) {
-					$scope.newCompetition.matches = $scope.competitionsIG[$scope.newCompetition.indexIG].matches;
-					$scope.newCompetition.cyanide_id = $scope.newCompetition.matches[0].competition_id;
-					$scope.newCompetition.format = $scope.newCompetition.matches[0].format;
-					$scope.newCompetition.game_name = $scope.newCompetition.matches[0].competition;
-				} else {
-					$scope.newCompetition.matches = [];
-					$scope.newCompetition.cyanide_id = 'NULL';
-					$scope.newCompetition.format = 'Sponsors';
-					$scope.newCompetition.competition_mode = 'Sponsors';
-					$scope.newCompetition.game_name = $scope.newCompetition.site_name;
-				};
-				$http.post('Backend/admin/admin.php?action=competitionAdd', $scope.newCompetition)
+				//	if ($scope.newCompetition.indexIG > 0) {
+				$scope.newCompetition.matches = $scope.competitionsIG[$scope.newCompetition.indexIG].matches;
+				$scope.newCompetition.cyanide_id = $scope.newCompetition.matches[0].competition_id;
+				$scope.newCompetition.format = $scope.newCompetition.matches[0].format;
+				$scope.newCompetition.game_name = $scope.newCompetition.matches[0].competition;
+				/*	} else {
+						$scope.newCompetition.matches = [];
+						$scope.newCompetition.cyanide_id = 'NULL';
+						$scope.newCompetition.format = 'Sponsors';
+						$scope.newCompetition.competition_mode = 'Sponsors';
+						$scope.newCompetition.game_name = $scope.newCompetition.site_name;
+					};*/
+				$http.post('backend/routes.php?action=competitionAdd', $scope.newCompetition)
 					.then(function(result) {
 						$scope.newCompetition.message = result.data.message;
 						$scope.newCompetition.result = result.data.result;
@@ -101,13 +101,20 @@ LeagueManager.directive('admin', function() {
 				$scope.forum.processing = 1;
 				$scope.forum.message = "Les gobelins pédalent...";
 				$scope.forum.result = "processing";
-				$http.post('Backend/admin/admin.php?action=forumUpdate')
+				$http.post('backend/admin.php?action=forumUpdate')
 					.then(function(result) {
 						$scope.forum.message = result.data.message;
 						$scope.forum.result = result.data.result;
 						$scope.forum.processing = 0;
 					});
-			}
+			};
+
+			$scope.alltojson = function() {
+				$http.post('backend/routes.php?action=alltojson')
+					.then(function(result) {
+						console.log("OK");
+					});
+			};
 		}
 	}
 });

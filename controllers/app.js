@@ -37,7 +37,7 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 	$rootScope.coach_id = window.coach_id;
 	$rootScope.coach_gold = window.coach_gold;
 	$rootScope.session_id = window.session_id;
-	$rootScope.admin = ['9', '10'].indexOf(window.Group) > -1 ? 1 : 0;
+	$rootScope.admin = ['5', '9', '10'].indexOf(window.Group) > -1 ? 1 : 0;
 	$rootScope.external = window.Group == 19 || !window.coach_id ? 1 : 0;
 	$rootScope.title = "Tribunes - le mag de la BBBL";
 	$rootScope.competitions = [];
@@ -45,7 +45,7 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 
 	//Récupération des informations de base
 	$http
-		.get('Backend/routes.php?action=boot')
+		.get('backend/routes.php?action=boot')
 		.success(function(result) {
 			$rootScope.parameters = result.parameters;
 			$rootScope.competitions = result.competitions;
@@ -94,9 +94,9 @@ LeagueManager.run(function($rootScope, $http, $location, $timeout, $filter) {
 
 	//Gestion des couleurs
 	//Couleurs de bases du site
-	$rootScope.colours = ['#00558D', '#91BFDC'];
-	$rootScope.colourA = "#00558D";
-	$rootScope.colourB = "#91BFDC";
+	$rootScope.colours = ['#FF8217', '#AC483B'];
+	$rootScope.colourA = "#FF8217";
+	$rootScope.colourB = "#AC483B";
 	//Mise à jours de couleurs (pour les équipes)
 	$rootScope.setColours = function(args) {
 		for (i = 0; i < args.length; i++) {

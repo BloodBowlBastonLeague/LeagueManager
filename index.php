@@ -2,7 +2,7 @@
 <?php
   $forum = './Forum/';
   define('PHPBB_ROOT_PATH','./Forum/');
-  include('Backend/config.php');
+  include('backend/config.php');
 ?>
 
 <!--?php include('phpBB_Connect.php') ?-->
